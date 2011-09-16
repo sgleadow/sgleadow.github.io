@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://sgleadow.github.com/blog/2011/03/26/hello-world/</loc>
+        <lastmod>2011-09-16T17:04:29+10:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sgleadow.github.com/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/</loc>
+        <lastmod>2011-09-16T17:04:28+10:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sgleadow.github.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell/</loc>
+        <lastmod>2011-09-16T17:05:45+10:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sgleadow.github.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk/</loc>
+        <lastmod>2011-09-16T16:52:33+10:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sgleadow.github.com/blog/2011/09/16/moving-from-wordpress-to-octopress/</loc>
+        <lastmod>2011-09-16T17:00:35+10:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sgleadow.github.com/blog/archives/</loc>
+        <lastmod>2011-09-16T17:05:45+10:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sgleadow.github.com/</loc>
+        <lastmod>2011-09-16T17:05:45+10:00</lastmod>
+    </url>
+</urlset>

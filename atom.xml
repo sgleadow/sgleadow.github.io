@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Stewart Gleadow</title>
+  <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
+  <link href="http://sgleadow.github.com/"/>
+  <updated>2011-09-16T17:05:46+10:00</updated>
+  <id>http://sgleadow.github.com/</id>
+  <author>
+    <name>Stewart Gleadow</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>Moving From Wordpress to Octopress</title>
+    <link href="http://sgleadow.github.com/blog/2011/09/16/moving-from-wordpress-to-octopress/"/>
+    <updated>2011-09-16T16:53:00+10:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/09/16/moving-from-wordpress-to-octopress</id>
+    <content type="html">&lt;p&gt;My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I&amp;#8217;m hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer&amp;#8217;s text editor, in plain text, using Markdown is ideal.&lt;/p&gt;
+
+&lt;p&gt;I tried to get &lt;code&gt;jekyll&lt;/code&gt; set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn&amp;#8217;t find the time to get the blog set up properly. This morning I read about Matt Gemmell&amp;#8217;s blog &lt;a href=&quot;http://mattgemmell.com/2011/09/12/blogging-with-octopress/&quot;&gt;moving to Octopress&lt;/a&gt;, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;ve gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Xcode 4 Shortcuts Lightning Talk</title>
+    <link href="http://sgleadow.github.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk/"/>
+    <updated>2011-04-19T16:46:00+10:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk</id>
+    <content type="html">&lt;p&gt;Last week I have a short lightning talk with Jesse Collis (@sirjec) at the Melbourne Cocoaheads meetup. The topic was fairly boring, just some useful Xcode 4 shortcuts we have found since switching from Xcode 3 a few weeks ago. It ended up being a bit of a laugh, probably the first and only time a talk about keyboard shortcuts will be funny - I think it had something to do with the pizza and beer that had just arrived.&lt;/p&gt;
+
+&lt;p&gt;Jesse saved me the effort of writing up anything more and linking to the slides on his blog below.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.jcmultimedia.com.au/2011/04/xcode4-shortcuts-melbourne-cocoaheads-april-2011.html&quot;&gt;http://blog.jcmultimedia.com.au/2011/04/xcode4-shortcuts-melbourne-cocoaheads-april-2011.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;ve managed to find the &lt;a href=&quot;http://vimeo.com/22598371&quot;&gt;video footage of the xcode shortcuts talk&lt;/a&gt; put together by Oliver Jones (@orj) on vimeo. After flicking through the footage a couple of questions were raised that I can now answer:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Q: &lt;em&gt;Does Cmd+Option+[ or ] work if multiple lines are selected?&lt;/em&gt;&lt;br/&gt;
+A: Yes.&lt;/li&gt;
+&lt;li&gt;Q: &lt;em&gt;Does Ctrl+6 for the class outline in the jump bar work in non-primary editors?&lt;/em&gt;&lt;br/&gt;
+A: Yes, it is based on the editor that has focus.&lt;/li&gt;
+&lt;li&gt;Follow up: &lt;em&gt;Proper clean (Cmd+Option+Shift+K) did not completely clean the build for us.&lt;/em&gt;&lt;br/&gt;
+&lt;code&gt;rm -rf&lt;/code&gt; is still your friend&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The Melbourne Cocoaheads faithful also contributed some keyboard shortcuts of their own, here are the ones I jotted down:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Cmd+Ctrl+Opt+?&lt;/em&gt; - open item under the cursor in Xcode help (&amp;#8220;real help, not the stupid little help&amp;#8221; @tupps)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cmd+Double-Click&lt;/em&gt; - drill through to the implementation&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cmd+Opt+,&lt;/em&gt; - open current file back in the main editor&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cmd+/&lt;/em&gt; - Comment Line&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cmd+Shift+[ or ]&lt;/em&gt; - navigate back and forth between tabs&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cmd+T&lt;/em&gt; - Open new tab (same as Safari)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cmd+Ctrl+Up and Down&lt;/em&gt; - switch between counterparts&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;and a few more shortcuts I&amp;#8217;ve found since then:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Cmd+Ctrl+Opt+Up&lt;/em&gt; - open up the counterpart in the secondary editor&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&amp;#8230;&lt;/em&gt; - Organise Import&amp;#8230; just kidding. Maybe one day.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I&amp;#8217;m sure there are plenty more shortcuts I haven&amp;#8217;t found yet. Let me know the ones you find most useful.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>RVM: Escaping Gem Dependency Hell</title>
+    <link href="http://sgleadow.github.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell/"/>
+    <updated>2011-03-27T16:02:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell</id>
+    <content type="html">&lt;p&gt;This is my second post on my move to rvm. The first being about &lt;a href=&quot;blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/&quot;&gt;cleaning out my existing gems&lt;/a&gt; for a fresh start.&lt;/p&gt;
+
+&lt;p&gt;Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&amp;#8217;m working on. I know I can use &lt;code&gt;bundle &#8211;deployment&lt;/code&gt; but then I have to &lt;code&gt;bundle exec&lt;/code&gt; everything and I don&amp;#8217;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;m looking to &lt;a href=&quot;http://rvm.beginrescueend.com/&quot;&gt;rvm&lt;/a&gt; to solve the problem. The steps I followed are below:&lt;/p&gt;
+
+&lt;h2&gt;Installing RVM&lt;/h2&gt;
+
+&lt;p&gt;There are some pretty good &lt;a href=&quot;http://rvm.beginrescueend.com/rvm/install/&quot;&gt;installation instructions&lt;/a&gt; on the rvm site. The actual installation is a just single command.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bash &amp;lt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl -B http://rvm.beginrescueend.com/install/rvm&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;You&amp;#8217;ll see a bunch of output, and towards the bottom, a confirmation message saying &amp;#8220;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&amp;#8221;, but that&amp;#8217;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; -s &lt;span class=&quot;s2&quot;&gt;&amp;quot;$HOME/.rvm/scripts/rvm&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . &lt;span class=&quot;s2&quot;&gt;&amp;quot;$HOME/.rvm/scripts/rvm&amp;quot;&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;After that, source your profile and check rvm is present and accessible.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.bash_profile
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which rvm/Users/sgleadow/.rvm/bin/rvm
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;/Users/sgleadow/.rvm/bin/rvm
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &#8211;version
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;rvm 1.5.2 by Wayne E. Seguin &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;wayneeseguin@gmail.com&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;http://rvm.beginrescueend.com/&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;rvm | head -1
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;rvm is a &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;h2&gt;Installing some Rubies&lt;/h2&gt;
+
+&lt;p&gt;Now that rvm is installed, let&amp;#8217;s install some rubies to use with it. First, check which ruby versions are available.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm list known
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&#8230;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ruby-&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;1.8.7&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-p334&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&#8230;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;I&amp;#8217;ll install the main two versions that I&amp;#8217;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&amp;#8217;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm install 1.8.7
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm install 1.9.2
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;I&amp;#8217;m still using 1.8.7 for some things at the moment, so I&amp;#8217;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &#8211;default use 1.8.7
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby -v
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;ruby 1.8.7 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2011-02-18 patchlevel 334&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;i686-darwin10.7.0&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which ruby
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;/Users/sgleadow/.rvm/rubies/ruby-1.8.7-p334/bin/ruby
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which gem
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;/Users/sgleadow/.rvm/rubies/ruby-1.8.7-p334/bin/gem
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm list default
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;Default Ruby &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;new shells&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;ruby-1.8.7-p334 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; x86_64 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Done. We have rvm up and running&lt;/p&gt;
+
+&lt;h2&gt;Setting up your gemsets&lt;/h2&gt;
+
+&lt;p&gt;While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&amp;#8217;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.&lt;/p&gt;
+
+&lt;p&gt;I should have a pretty clean slate to start on for my gems. I&amp;#8217;m not 100% on whether rvm will use my old system gems or not, but I&amp;#8217;ve cleaned them all out anyway, so it shouldn&amp;#8217;t be a problem.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem list
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;*** LOCAL GEMS ***
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;rake &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.8.7&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm list gemsets
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;rvm &lt;span class=&quot;nv&quot;&gt;gemsets&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; ruby-1.8.7-head &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; x86_64 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;   ruby-1.8.7-head@global &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; x86_64 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;   ruby-1.9.2-head &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; x86_64 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;   ruby-1.9.2-head@global &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; x86_64 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;rvm will set up a default gemset for you, but I&amp;#8217;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&amp;#8217;m setting a project up that uses the &lt;a href=&quot;https://github.com/moredip/Frank&quot;&gt;Frank&lt;/a&gt; iOS testing tool, below is a sample of the .rvmrc file I have &lt;em&gt;inside&lt;/em&gt; that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The &lt;code&gt;&#8211;create&lt;/code&gt; means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&amp;#8217;s automatic.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cat my_project/.rvmrc
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;rvm &#8211;create use ruby-1.8.7-p334@frank
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Once the .rvmrc file is created, leave and return to the directory to kick it off, authorise it and you should see something like &lt;code&gt;Using /Users/sgleadow/.rvm/gems/ruby-1.8.7-p334 with gemset frank&lt;/code&gt; printed to the console. To double check we are, in fact, using the newly created gemset, use &lt;code&gt;rvm list gemsets&lt;/code&gt; or &lt;code&gt;rvm gemset list&lt;/code&gt; and check the little hashrocket is pointing to the new gemset. Do another &lt;code&gt;gem list&lt;/code&gt; to double check you have a clean slate.&lt;/p&gt;
+
+&lt;p&gt;Most of my projects use bundler, so first I&amp;#8217;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rm .bundle/config
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rm -r vendor/bundle
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install bundler
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with &lt;code&gt;gem list&lt;/code&gt;. If you&amp;#8217;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Cleaning Out Ruby Gems Under OS X</title>
+    <link href="http://sgleadow.github.com/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/"/>
+    <updated>2011-03-27T15:55:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x</id>
+    <content type="html">&lt;p&gt;As a bit of background, I have been getting into Ruby development for the past year, but I have been getting into gem dependency hell recently. Different projects need different gemsets. &lt;a href=&quot;http://gembundler.com/&quot;&gt;Bundler&lt;/a&gt; helps but I want to use that in combination with &lt;a href=&quot;http://rvm.beginrescueend.com/&quot;&gt;rvm&lt;/a&gt; to keep things organised.&lt;/p&gt;
+
+&lt;p&gt;To get a clean start with rvm, so I wanted to remove all my existing system gems. My first attempt used the little shell script below to loop over all installed gems and remove them. That worked for a lot of gems, but left some behind, possibly all the default gems that come pre-installed with OS X.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ for x in `gem list &#8211;no-versions` ; do gem uninstall -aIx $x; done&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;After some googling, the next step I tried was to physically remove the gem directories that are returned by &lt;code&gt;gem env paths&lt;/code&gt;. After that, &lt;code&gt;gem list&lt;/code&gt; said there were no gems installed. There were still some binaries left over that depended on these gems, like &lt;code&gt;spec&lt;/code&gt;, &lt;code&gt;rails&lt;/code&gt;, &lt;code&gt;rake&lt;/code&gt; in &lt;code&gt;/usr/bin&lt;/code&gt;. These binaries no longer worked as the actual gem was gone, so I removed them. I couldn&amp;#8217;t find a definitive list of the OS X default gems so I stopped here.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;m not a shell guru by any means, but below is my attempt at a quick one line shell script to remove all the existing gem directories.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;rm -rf `gem env paths | tr &quot;:&quot; &quot; &quot;`&lt;/code&gt;&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://sgleadow.github.com/blog/2011/03/26/hello-world/"/>
+    <updated>2011-03-26T15:47:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/03/26/hello-world</id>
+    <content type="html">&lt;p&gt;I&amp;#8217;ve been meaning to start a blog for a while know. Until now, I&amp;#8217;ve kept notes to myself in all sorts of places about problems I&amp;#8217;ve encountered while developing software and solutions I&amp;#8217;ve found. My favourite way of keeping notes to date is in a nice Moleskine notebook with a fountain pen - a bit backwards I know, you wouldn&amp;#8217;t believe I write software for a living.&lt;/p&gt;
+
+&lt;p&gt;Often my notes just disappear into the depths of my filesystem or bookshelf never to be seen again. If I&amp;#8217;m really proactive, I might write up an answer on Stack Overflow or reply to a mailing list. The next time I want to share that experience, I have to filter through to find that information again&lt;/p&gt;
+
+&lt;p&gt;Hopefully a blog will be an easier way to keep track of this information and later refer to it. Whether it&amp;#8217;s useful information or not remains to be seen, but it will at least be useful to me. For shorter, random and less useful musings, I&amp;#8217;m on twitter at @stewgleadow&lt;/p&gt;
+
+&lt;p&gt;The current topics I&amp;#8217;m interested in are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Objective C and native iOS apps&lt;/li&gt;
+&lt;li&gt;testing iOS apps, mainly with GHUnit and Frank&lt;/li&gt;
+&lt;li&gt;ReST APIs in Ruby/Rails&lt;/li&gt;
+&lt;li&gt;hand-wavy discussion about agile software development and testing in general&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;User groups I&amp;#8217;m involved in or attend occasionally:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.melbournecocoaheads.com/&quot;&gt;Melbourne Cocoaheads&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://melbournepatterns.org/&quot;&gt;Melbourne Patterns Group&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.meetup.com/Agile-Melbourne/&quot;&gt;Agile Alliance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.yowconference.com.au/&quot;&gt;YOW Conference and tech nights&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.swipeconference.com.au&quot;&gt;Swipe Conference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+  </entry>
+  
+</feed>

@@ -4,13 +4,113 @@
   <title>Learning software the hard way</title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2011-09-19T23:10:49+10:00</updated>
+  <updated>2011-10-17T12:08:01+11:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name>Stewart Gleadow</name>
     
   </author>
 
+  
+  <entry>
+    <title>Enabling Accessibility for iOS applications</title>
+    <link href="http://sgleadow.github.com/blog/2011/10/14/enabling-accessibility-for-ios-applications/"/>
+    <updated>2011-10-14T16:24:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/10/14/enabling-accessibility-for-ios-applications</id>
+    <content type="html">&lt;p&gt;I&amp;#8217;m looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling accessibility for your apps in the simulator and on the device.&lt;/p&gt;
+
+&lt;h2&gt;Why use accessibility&lt;/h2&gt;
+
+&lt;p&gt;Firstly, the iPhone and iPad are setting a new standard for usability by impaired users. That&amp;#8217;s a great thing, and I think we should be making a bigger effort to support these features. Apple provides assistants like VoiceOver that use the building UIAccessibility framework. If you&amp;#8217;d like to find out more about accessibility for the sake of accessibility, &lt;a href=&quot;http://mattgemmell.com/2010/12/19/accessibility-for-iphone-and-ipad-apps/&quot;&gt;Matt Gemmell&lt;/a&gt; has a great post on the topic&lt;/p&gt;
+
+&lt;p&gt;A great side effect of making an app accessible to assistive devices is that the app also becomes easier to test in an automated fashion. This post is not about how and why to use accessibility to test your app (although that is a valid topic that I will write a separate post on), it a quick guide to turning accessibility on. Generally, the properties of the UIAccessibilty framework are only available to third party testing tools like &lt;a href=&quot;http://www.testingwithfrank.com/&quot;&gt;Frank&lt;/a&gt; and &lt;a href=&quot;https://github.com/square/KIF&quot;&gt;KIF&lt;/a&gt; if you have accessibility enabled for the application, either in the simulator or on the device.&lt;/p&gt;
+
+&lt;h2&gt;Enabling accessibility in the Simulator&lt;/h2&gt;
+
+&lt;p&gt;During development, we need to enable accessibility for both OS X and the iOS Simulator. Under Mac OS X, open up the System Preferences and open the &lt;em&gt;Universal Access&lt;/em&gt; pane at the top right. In the pane that opens, check the box for &lt;em&gt;Enable Access for Assistive Devices&lt;/em&gt;. The OS will persist this setting from now on.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#8221; src=&#8217;http://sgleadow.github.com/images/posts/accessibility/osx-prefs.png&#8217; width=&#8221; height=&#8221; alt=&#8217;Universal Access in the OS X Preferences&#8217; title=&#8217;Universal Access in the OS X Preferences&#8217;&gt;
+&lt;img class=&#8221; src=&#8217;http://sgleadow.github.com/images/posts/accessibility/enable-osx-prefs.png&#8217; width=&#8221; height=&#8221; alt=&#8217;Universal Access in the OS X Preferences&#8217; title=&#8217;Universal Access in the OS X Preferences&#8217;&gt;&lt;/p&gt;
+
+&lt;p&gt;Load the iOS Simulator and open the &lt;em&gt;Settings&lt;/em&gt; application. Enable accessibility using the switch under &lt;em&gt;General &gt; Accessibility&lt;/em&gt;. If you see a little coloured box appear, you have successfully enabled accessibility in the simulator. The setting is stored in an underlying plist file under that iOS version of the simulator, so you will need to enable this setting for for both iOS 4 and 5 separately, but that will effect all of the device types (iPhone, iPhone Retina and iPad) for that OS version. The iOS Simulator will keep accessibility enabled as long as you don&amp;#8217;t clear out its settings. If you&amp;#8217;re anything like me, you have &lt;em&gt;Reset Content and Settings&lt;/em&gt; mapped to a keyboard shortcut, you&amp;#8217;ll regularly need to navigate in and re-enable accessibility.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#8217;right &#8217; src=&#8217;http://sgleadow.github.com/images/posts/accessibility/enable-on-simulator.png&#8217; width=&#8221; height=&#8221; alt=&#8217;Enable accessibility in the iOS Simulator&#8217; title=&#8217;Enable accessibility in the iOS Simulator&#8217;&gt;&lt;/p&gt;
+
+&lt;p&gt;The small coloured box that appears is called the accessibility inspector. It shows a small summary of what is available from the UIAccessibility framework for iOS. There are two main types of information shown in the inspector: notifications and properties. Notifications are fired when the UI changes. To be honest, I&amp;#8217;ve not played around with firing accessibility notifications much at all. Notifications could be a potential solution for tests that need to &amp;#8216;wait&amp;#8217; until a screen transition is finished before continuing rather than busy-waiting or just a plain old sleep (you know it&amp;#8217;s not a real test suite unless there are a couple of &lt;em&gt;sleep&lt;/em&gt; calls in there!).&lt;/p&gt;
+
+&lt;p&gt;The properties show aspects of the selected UI element. With the accessibility inspector expanded, tap around in some of Apple&amp;#8217;s built in applications to see the UIAccessibility properties. With the accessibility inspector expanded like this, the first touch even brings up the accessibility - which is great if that&amp;#8217;s the only way to use the app, but can get in the way if you&amp;#8217;re not used to it. If you collapse the inspector using the little cross-button, touch interaction returns to normal.  In the image above I&amp;#8217;ve collapsed the accessibility inspector and dragged it to the side, since the properties are available to our tests anyway, so it&amp;#8217;s easiest to get it as far off the screen as possible.&lt;/p&gt;
+
+&lt;h2&gt;Enabling accessibility on the device&lt;/h2&gt;
+
+&lt;p&gt;Usually, to get access to the accessibility framework on an actual iOS device, you need to enable &lt;em&gt;VoiceOver&lt;/em&gt;. If you do your testing with Apple&amp;#8217;s sanctioned UIAutomation Instrument, it seems to be able to hook in automatically without you having to specifically enable those features. Although with iOS 5, I&amp;#8217;ve found that to not always be the case.&lt;/p&gt;
+
+&lt;p&gt;VoiceOver is pretty easy to enable in the Settings app under &lt;em&gt;General &gt; Accessibility &gt; VoiceOver&lt;/em&gt;. Once this is enabled, the device acts in a similar way to when you have the accessibility inspector visible in the simulator. A pleasant computerised voice now describes your every gesture, and more importantly, activates the accessibility framework for all applications, including the one you want to test. Your first tap will select a UI element and read the available information about it. Double-tapping actually executes the action for a button. People using VoiceOver as a means to navigate the OS are likely to drag their finger on the screen to get a better idea of where items are relative to each other, so single-finger scrolling is also disabled. You can scroll by dragging with three fingers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#8217;left &#8217; src=&#8217;http://sgleadow.github.com/images/posts/accessibility/itunes-configure-accessibility.png&#8217; width=&#8221; height=&#8221; alt=&#8217;Configure Universal Access in iTunes&#8217; title=&#8217;Configure Universal Access in iTunes&#8217;&gt;
+&lt;img class=&#8217;left &#8217; src=&#8217;http://sgleadow.github.com/images/posts/accessibility/itunes-voiceover-on.png&#8217; width=&#8221; height=&#8221; alt=&#8217;Enable VoiceOver in iTunes&#8217; title=&#8217;Enable VoiceOver in iTunes&#8217;&gt;&lt;/p&gt;
+
+&lt;p&gt;Navigate some well known apps on the phone, and see how Apple&amp;#8217;s own applications integrate with VoiceOver. To actually design an accessible application, you&amp;#8217;ll be wanting to spend a whole lot of time using VoiceOver yourself to get an idea of what information is useful and necessary. At some stage, you will pick up a test device with VoiceOver on, so it’s good to know at least how to get into the settings and turn accessibility off in order to operate manually.&lt;/p&gt;
+
+&lt;p&gt;If you are only enabling VoiceOver for testing purposes, the changed gestures and audio instructions can seem to get in the way of you just using the device. If you regularly switch accessibility on and off, using iTunes is going to be much more convenient. Before the latest version of iTunes, enabling accessibility this way required the device to be plugged in via USB. I was pleasantly surprised to discover that this VoiceOver can now be toggle on and off over wifi.&lt;/p&gt;
+
+&lt;h2&gt;Enabling accessibility programmatically&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Note: these steps apply to the iOS Simulator only. If someone knows how to enable accessibility programmatically on the device, I would love to know&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;When you are running tests in the simulator, it&amp;#8217;s likely that you use the &lt;em&gt;Reset Content and Settings&amp;#8230;&lt;/em&gt; menu item frequently. If you forget to reenable accessibility after this, tests will fail because UI information will not be available to the tests. We need a programmatic way to turn accessibility on. I&amp;#8217;m not sure how to do this on the device, but in the simulator, this is just a matter of setting a flag in one of the underlying plist files. It&amp;#8217;s possible to call plist editors from the command line to do this, but then the plist file is separate for each iOS version supported by the simulator. I find it&amp;#8217;s easier to call from the Objective C code at run time, since it it possible to obtain the root for that version of the simulator.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;objc&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;#import &amp;lt;dlfcn.h&amp;gt;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;NSAutoreleasePool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoReleasePool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSAutoreleasePool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;simulatorRoot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSProcessInfo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;processInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;objectForKey:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;IPHONE_SIMULATOR_ROOT&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;simulatorRoot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSupportLibrary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;simulatorRoot&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;stringByAppendingPathComponent:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileSystemRepresentation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RTLD_LAZY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;n&quot;&gt;CFStringRef&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copySharedResourcesPreferencesDomainForDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CFStringRef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dlsym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSupportLibrary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;CPCopySharedResourcesPreferencesDomainForDomain&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copySharedResourcesPreferencesDomainForDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;            &lt;span class=&quot;n&quot;&gt;CFStringRef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accessibilityDomain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copySharedResourcesPreferencesDomainForDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CFSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.apple.Accessibility&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;accessibilityDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;                &lt;span class=&quot;n&quot;&gt;CFPreferencesSetValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CFSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;ApplicationAccessibilityEnabled&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCFBooleanTrue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accessibilityDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCFPreferencesAnyUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCFPreferencesAnyHost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;                &lt;span class=&quot;n&quot;&gt;CFRelease&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;accessibilityDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoReleasePool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;I first tried to use this code in &lt;code&gt;init&lt;/code&gt; for a test framework class, and it didn&amp;#8217;t seem to work. Moving the code to be called from &lt;code&gt;load&lt;/code&gt; solved the problem. Since this code actually changes a &lt;em&gt;plist&lt;/em&gt; file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&amp;#8217;t bring up the inspector over the top of the UI.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Moving From Wordpress to Octopress</title>

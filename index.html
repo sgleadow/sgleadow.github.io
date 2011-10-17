@@ -68,6 +68,128 @@
     
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2011/10/14/enabling-accessibility-for-ios-applications/">Enabling Accessibility for iOS Applications</a></h1>
+    
+    
+      <p class="meta">
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-10-14T16:24:00+11:00" pubdate  data-updated="true" >Oct 14<span>th</span>, 2011</time></p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling accessibility for your apps in the simulator and on the device.</p>
+
+<h2>Why use accessibility</h2>
+
+<p>Firstly, the iPhone and iPad are setting a new standard for usability by impaired users. That&#8217;s a great thing, and I think we should be making a bigger effort to support these features. Apple provides assistants like VoiceOver that use the building UIAccessibility framework. If you&#8217;d like to find out more about accessibility for the sake of accessibility, <a href="http://mattgemmell.com/2010/12/19/accessibility-for-iphone-and-ipad-apps/">Matt Gemmell</a> has a great post on the topic</p>
+
+<p>A great side effect of making an app accessible to assistive devices is that the app also becomes easier to test in an automated fashion. This post is not about how and why to use accessibility to test your app (although that is a valid topic that I will write a separate post on), it a quick guide to turning accessibility on. Generally, the properties of the UIAccessibilty framework are only available to third party testing tools like <a href="http://www.testingwithfrank.com/">Frank</a> and <a href="https://github.com/square/KIF">KIF</a> if you have accessibility enabled for the application, either in the simulator or on the device.</p>
+
+<h2>Enabling accessibility in the Simulator</h2>
+
+<p>During development, we need to enable accessibility for both OS X and the iOS Simulator. Under Mac OS X, open up the System Preferences and open the <em>Universal Access</em> pane at the top right. In the pane that opens, check the box for <em>Enable Access for Assistive Devices</em>. The OS will persist this setting from now on.</p>
+
+<p><img class='' src='/images/posts/accessibility/osx-prefs.png' width='' height='' alt='Universal Access in the OS X Preferences' title='Universal Access in the OS X Preferences'>
+<img class='' src='/images/posts/accessibility/enable-osx-prefs.png' width='' height='' alt='Universal Access in the OS X Preferences' title='Universal Access in the OS X Preferences'></p>
+
+<p>Load the iOS Simulator and open the <em>Settings</em> application. Enable accessibility using the switch under <em>General > Accessibility</em>. If you see a little coloured box appear, you have successfully enabled accessibility in the simulator. The setting is stored in an underlying plist file under that iOS version of the simulator, so you will need to enable this setting for for both iOS 4 and 5 separately, but that will effect all of the device types (iPhone, iPhone Retina and iPad) for that OS version. The iOS Simulator will keep accessibility enabled as long as you don&#8217;t clear out its settings. If you&#8217;re anything like me, you have <em>Reset Content and Settings</em> mapped to a keyboard shortcut, you&#8217;ll regularly need to navigate in and re-enable accessibility.</p>
+
+<p><img class='right ' src='/images/posts/accessibility/enable-on-simulator.png' width='' height='' alt='Enable accessibility in the iOS Simulator' title='Enable accessibility in the iOS Simulator'></p>
+
+<p>The small coloured box that appears is called the accessibility inspector. It shows a small summary of what is available from the UIAccessibility framework for iOS. There are two main types of information shown in the inspector: notifications and properties. Notifications are fired when the UI changes. To be honest, I&#8217;ve not played around with firing accessibility notifications much at all. Notifications could be a potential solution for tests that need to &#8216;wait&#8217; until a screen transition is finished before continuing rather than busy-waiting or just a plain old sleep (you know it&#8217;s not a real test suite unless there are a couple of <em>sleep</em> calls in there!).</p>
+
+<p>The properties show aspects of the selected UI element. With the accessibility inspector expanded, tap around in some of Apple&#8217;s built in applications to see the UIAccessibility properties. With the accessibility inspector expanded like this, the first touch even brings up the accessibility - which is great if that&#8217;s the only way to use the app, but can get in the way if you&#8217;re not used to it. If you collapse the inspector using the little cross-button, touch interaction returns to normal.  In the image above I&#8217;ve collapsed the accessibility inspector and dragged it to the side, since the properties are available to our tests anyway, so it&#8217;s easiest to get it as far off the screen as possible.</p>
+
+<h2>Enabling accessibility on the device</h2>
+
+<p>Usually, to get access to the accessibility framework on an actual iOS device, you need to enable <em>VoiceOver</em>. If you do your testing with Apple&#8217;s sanctioned UIAutomation Instrument, it seems to be able to hook in automatically without you having to specifically enable those features. Although with iOS 5, I&#8217;ve found that to not always be the case.</p>
+
+<p>VoiceOver is pretty easy to enable in the Settings app under <em>General > Accessibility > VoiceOver</em>. Once this is enabled, the device acts in a similar way to when you have the accessibility inspector visible in the simulator. A pleasant computerised voice now describes your every gesture, and more importantly, activates the accessibility framework for all applications, including the one you want to test. Your first tap will select a UI element and read the available information about it. Double-tapping actually executes the action for a button. People using VoiceOver as a means to navigate the OS are likely to drag their finger on the screen to get a better idea of where items are relative to each other, so single-finger scrolling is also disabled. You can scroll by dragging with three fingers.</p>
+
+<p><img class='left ' src='/images/posts/accessibility/itunes-configure-accessibility.png' width='' height='' alt='Configure Universal Access in iTunes' title='Configure Universal Access in iTunes'>
+<img class='left ' src='/images/posts/accessibility/itunes-voiceover-on.png' width='' height='' alt='Enable VoiceOver in iTunes' title='Enable VoiceOver in iTunes'></p>
+
+<p>Navigate some well known apps on the phone, and see how Apple&#8217;s own applications integrate with VoiceOver. To actually design an accessible application, you&#8217;ll be wanting to spend a whole lot of time using VoiceOver yourself to get an idea of what information is useful and necessary. At some stage, you will pick up a test device with VoiceOver on, so it’s good to know at least how to get into the settings and turn accessibility off in order to operate manually.</p>
+
+<p>If you are only enabling VoiceOver for testing purposes, the changed gestures and audio instructions can seem to get in the way of you just using the device. If you regularly switch accessibility on and off, using iTunes is going to be much more convenient. Before the latest version of iTunes, enabling accessibility this way required the device to be plugged in via USB. I was pleasantly surprised to discover that this VoiceOver can now be toggle on and off over wifi.</p>
+
+<h2>Enabling accessibility programmatically</h2>
+
+<p><em>Note: these steps apply to the iOS Simulator only. If someone knows how to enable accessibility programmatically on the device, I would love to know</em></p>
+
+<p>When you are running tests in the simulator, it&#8217;s likely that you use the <em>Reset Content and Settings&#8230;</em> menu item frequently. If you forget to reenable accessibility after this, tests will fail because UI information will not be available to the tests. We need a programmatic way to turn accessibility on. I&#8217;m not sure how to do this on the device, but in the simulator, this is just a matter of setting a flag in one of the underlying plist files. It&#8217;s possible to call plist editors from the command line to do this, but then the plist file is separate for each iOS version supported by the simulator. I find it&#8217;s easier to call from the Objective C code at run time, since it it possible to obtain the root for that version of the simulator.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+<span class='line'>5</span>
+<span class='line'>6</span>
+<span class='line'>7</span>
+<span class='line'>8</span>
+<span class='line'>9</span>
+<span class='line'>10</span>
+<span class='line'>11</span>
+<span class='line'>12</span>
+<span class='line'>13</span>
+<span class='line'>14</span>
+<span class='line'>15</span>
+<span class='line'>16</span>
+<span class='line'>17</span>
+<span class='line'>18</span>
+<span class='line'>19</span>
+<span class='line'>20</span>
+<span class='line'>21</span>
+<span class='line'>22</span>
+<span class='line'>23</span>
+</pre></td><td class='code' width='100%'><pre><code class='objc'><div class='line'><span class="cp">#import &lt;dlfcn.h&gt;</span>
+</div><div class='line'>
+</div><div class='line'><span class="o">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">load</span>
+</div><div class='line'><span class="p">{</span>
+</div><div class='line'>    <span class="n">NSAutoreleasePool</span> <span class="o">*</span><span class="n">autoReleasePool</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSAutoreleasePool</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</div><div class='line'>
+</div><div class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">simulatorRoot</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">NSProcessInfo</span> <span class="n">processInfo</span><span class="p">]</span> <span class="n">environment</span><span class="p">]</span> <span class="nl">objectForKey:</span><span class="s">@&quot;IPHONE_SIMULATOR_ROOT&quot;</span><span class="p">];</span>
+</div><div class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">simulatorRoot</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>        <span class="kt">void</span> <span class="o">*</span><span class="n">appSupportLibrary</span> <span class="o">=</span> <span class="n">dlopen</span><span class="p">([[</span><span class="n">simulatorRoot</span> <span class="nl">stringByAppendingPathComponent:</span><span class="s">@&quot;/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport&quot;</span><span class="p">]</span> <span class="n">fileSystemRepresentation</span><span class="p">],</span> <span class="n">RTLD_LAZY</span><span class="p">);</span>
+</div><div class='line'>        <span class="n">CFStringRef</span> <span class="p">(</span><span class="o">*</span><span class="n">copySharedResourcesPreferencesDomainForDomain</span><span class="p">)(</span><span class="n">CFStringRef</span> <span class="n">domain</span><span class="p">)</span> <span class="o">=</span> <span class="n">dlsym</span><span class="p">(</span><span class="n">appSupportLibrary</span><span class="p">,</span> <span class="s">&quot;CPCopySharedResourcesPreferencesDomainForDomain&quot;</span><span class="p">);</span>
+</div><div class='line'>
+</div><div class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">copySharedResourcesPreferencesDomainForDomain</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>            <span class="n">CFStringRef</span> <span class="n">accessibilityDomain</span> <span class="o">=</span> <span class="n">copySharedResourcesPreferencesDomainForDomain</span><span class="p">(</span><span class="n">CFSTR</span><span class="p">(</span><span class="s">&quot;com.apple.Accessibility&quot;</span><span class="p">));</span>
+</div><div class='line'>
+</div><div class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">accessibilityDomain</span><span class="p">)</span> <span class="p">{</span>
+</div><div class='line'>                <span class="n">CFPreferencesSetValue</span><span class="p">(</span><span class="n">CFSTR</span><span class="p">(</span><span class="s">&quot;ApplicationAccessibilityEnabled&quot;</span><span class="p">),</span> <span class="n">kCFBooleanTrue</span><span class="p">,</span> <span class="n">accessibilityDomain</span><span class="p">,</span> <span class="n">kCFPreferencesAnyUser</span><span class="p">,</span> <span class="n">kCFPreferencesAnyHost</span><span class="p">);</span>
+</div><div class='line'>                <span class="n">CFRelease</span><span class="p">(</span><span class="n">accessibilityDomain</span><span class="p">);</span>
+</div><div class='line'>            <span class="p">}</span>
+</div><div class='line'>        <span class="p">}</span>
+</div><div class='line'>    <span class="p">}</span>
+</div><div class='line'>
+</div><div class='line'>    <span class="p">[</span><span class="n">autoReleasePool</span> <span class="n">drain</span><span class="p">];</span>
+</div><div class='line'><span class="p">}</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>I first tried to use this code in <code>init</code> for a test framework class, and it didn&#8217;t seem to work. Moving the code to be called from <code>load</code> solved the problem. Since this code actually changes a <em>plist</em> file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&#8217;t bring up the inspector over the top of the UI.</p>
+</div>
+  
+  
+
+
+  </article>
+
+
+  <article>
+    
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2011/09/16/moving-from-wordpress-to-octopress/">Moving From Wordpress to Octopress</a></h1>
     
     
@@ -465,6 +587,10 @@ A: Yes, it is based on the editor that has focus.</li>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2011/10/14/enabling-accessibility-for-ios-applications/">Enabling Accessibility for iOS applications</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/09/16/moving-from-wordpress-to-octopress/">Moving From Wordpress to Octopress</a>
       </li>
     
@@ -478,10 +604,6 @@ A: Yes, it is based on the editor that has focus.</li>
     
       <li class="post">
         <a href="/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">Cleaning Out Ruby Gems Under OS X</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/26/hello-world/">Hello World</a>
       </li>
     
   </ul>

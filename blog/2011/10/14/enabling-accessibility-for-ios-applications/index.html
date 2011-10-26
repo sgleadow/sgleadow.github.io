@@ -175,6 +175,8 @@
 
 
 <p>I first tried to use this code in <code>init</code> for a test framework class, and it didn&#8217;t seem to work. Moving the code to be called from <code>load</code> solved the problem. Since this code actually changes a <em>plist</em> file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&#8217;t bring up the inspector over the top of the UI.</p>
+
+<p>Special thanks to an awesome colleague of mine, Sadat Rahman (@sadatrahman) for the code above that enables accessibility in the simulator automatically.</p>
 </div>
 
 

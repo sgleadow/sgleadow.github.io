@@ -4,7 +4,7 @@
   <title>Learning software the hard way</title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2011-10-17T12:08:01+11:00</updated>
+  <updated>2011-10-26T22:31:29+11:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name>Stewart Gleadow</name>
@@ -109,6 +109,8 @@
 
 
 &lt;p&gt;I first tried to use this code in &lt;code&gt;init&lt;/code&gt; for a test framework class, and it didn&amp;#8217;t seem to work. Moving the code to be called from &lt;code&gt;load&lt;/code&gt; solved the problem. Since this code actually changes a &lt;em&gt;plist&lt;/em&gt; file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&amp;#8217;t bring up the inspector over the top of the UI.&lt;/p&gt;
+
+&lt;p&gt;Special thanks to an awesome colleague of mine, Sadat Rahman (@sadatrahman) for the code above that enables accessibility in the simulator automatically.&lt;/p&gt;
 </content>
   </entry>
   

@@ -1,16 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title>Learning software the hard way</title>
+  <title>Stewart Gleadow&#8217;s Blog</title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2011-10-26T22:31:29+11:00</updated>
+  <updated>2011-10-28T10:48:44+11:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name>Stewart Gleadow</name>
     
   </author>
 
+  
+  <entry>
+    <title>Which Automated iOS Testing Tool To Use</title>
+    <link href="http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
+    <updated>2011-10-26T22:38:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
+    <content type="html">&lt;p&gt;I&amp;#8217;ve been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Frank&lt;/li&gt;
+&lt;li&gt;KIF&lt;/li&gt;
+&lt;li&gt;UIAutomation&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Other tools that might be worth looking at, but I haven&amp;#8217;t used and wont comment on are: NativeDriver, LessPainful, iCuke and UISpec.&lt;/p&gt;
+
+&lt;p&gt;I recently watched a recording of Pete Hodgson (@beingagile), the primary maintainer of Frank in which he gave a quick summary of the other testing tools, and when it might be appropriate to use them. I made a few notes, and added some of my own thoughts. There is a &lt;a href=&quot;http://pivotallabs.com/talks/147-frank-cucumber-tests-for-native-ios-apps&quot;&gt;video of the talk&lt;/a&gt; Pete gave at &lt;a href=&quot;http://pivotallabs.com/&quot;&gt;Pivotal Labs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Frank&lt;/h2&gt;
+
+&lt;p&gt;Frank has been described as Selenium for native iOS apps. It&amp;#8217;s a tool written mainly by some fellow Thoughtworkers that uses a combination of &lt;a href=&quot;http://cukes.info/&quot;&gt;Cucumber&lt;/a&gt; and JSON commands that are sent to a server running inside your native application, and leverages &lt;a href=&quot;http://code.google.com/p/uispec/&quot;&gt;UISpec&lt;/a&gt; to run the commands. Frank used to require changes to your production code, but that&amp;#8217;s got a lot easier with the new static library approach.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;ve used Frank quite a bit, and I like it. I have a lot more I could say about it, but I&amp;#8217;ll leave that for another time. You can find out more about Frank at:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.testingwithfrank.com&quot;&gt;Frank&amp;#8217;s new home page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/moredip/Frank&quot;&gt;The github page for Frank&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sgleadow.github.com/talks.html&quot;&gt;A slightly out of date talk I gave on Frank&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; The good parts of Frank &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Clean CSS-like selector syntax, allowing for fairly tolerant tests&lt;/li&gt;
+&lt;li&gt;Active community discussing and extending the library&lt;/li&gt;
+&lt;li&gt;Driven by Cucumber (if you&amp;#8217;re a cuke fan)&lt;/li&gt;
+&lt;li&gt;Includes &lt;em&gt;Symbiote&lt;/em&gt;, a live introspection tool&lt;/li&gt;
+&lt;li&gt;Command line and CI come pretty much for free&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; The bad parts of Frank &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Difficult, but not impossible, to run on the device&lt;/li&gt;
+&lt;li&gt;Separation between tests/native code over HTTP can confuse the cause of failure&lt;/li&gt;
+&lt;li&gt;Decoupling test/native code into separate processes makes it a bit slower (Pete makes the good point that most of the slowness in your iOS tests are likely to be waiting for animations and transitions, not the HTTP communication)&lt;/li&gt;
+&lt;li&gt;Very little support for gestures (but hopefully that&amp;#8217;s coming soon)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; When using Frank might be appropriate &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your team has experience with web application testing tools (Selenium, Cucumber)&lt;/li&gt;
+&lt;li&gt;You prefer a BDD style of development, with CI support&lt;/li&gt;
+&lt;li&gt;Your app is not driven by complex gestures&lt;/li&gt;
+&lt;li&gt;You have a goal of having cross platform tests across Android, iOS and mobile web&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;KIF&lt;/h2&gt;
+
+&lt;p&gt;KIF is an Objective C based framework written at Square. It&amp;#8217;s a nice solid implementation from what I&amp;#8217;ve seen, with active development going on. Since it&amp;#8217;s Objective C, you can call out to anything else in your app as well. It&amp;#8217;s a brand new test framework, so it&amp;#8217;s not going to immediately integrate with other tools (like JUnit-style XML output and that kind of thing). I haven&amp;#8217;t KIF a lot yet, so I can&amp;#8217;t comment too much but I think it shows a lot of promise. You can find out more about KIF at:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/square/KIF&quot;&gt;The github repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://groups.google.com/group/kif-framework&quot;&gt;KIF Google group&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://corner.squareup.com/2011/07/ios-integration-testing.html&quot;&gt;The initial blog post on KIF from Square&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; The good parts of KIF &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your tests are in Objective C. Everything in one language, easier for pure iOS devs to pick up&lt;/li&gt;
+&lt;li&gt;Active community and good support&lt;/li&gt;
+&lt;li&gt;Pretty reasonable support for gestures&lt;/li&gt;
+&lt;li&gt;Command line and CI&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; The bad parts of KIF &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your tests are in Objective C. Non-devs will find it hard to read, doesn&amp;#8217;t make a great executable spec)&lt;/li&gt;
+&lt;li&gt;Tricky to integrate with back end stubs because it&amp;#8217;s all running in-process&lt;/li&gt;
+&lt;li&gt;Not stand alone&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; When using KIF might be appropriate &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Primarily a developer driven team&lt;/li&gt;
+&lt;li&gt;Developers have stronger Objective C skills than Ruby/Cucumber/Javascript&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t need business folk to read or write test specs&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t want to deal with the whacky regex from Cucumber&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t have really complex back end interactions to stub out&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t have cross platform requirements&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;UIAutomation&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://developer.apple.com/library/ios/#documentation/DeveloperTools/Reference/UIAutomationRef/Introduction/Introduction.html&quot;&gt;UIAutomation&lt;/a&gt; is Apple&amp;#8217;s own solution for automated testing. It runs tests written in Javascript through the Instruments application that comes with the developer tools. It sounds like a no-brainer to use Apple&amp;#8217;s solution for building iOS apps, but I&amp;#8217;ve found it a real pain to deal with in practice. UIAutomation is pretty good for actually driving the UI, but not great for organising and running a test suite, especially from CI. My impression is that Apple QA staff must use UIAutomation for test scripts with profiling instruments attached and actually sit there and watch, it doesn&amp;#8217;t seem to be purpose built for fully automated testing.&lt;/p&gt;
+
+&lt;p&gt;At this point I would like to link to a lot of useful documentation about UIAutomation, but in practice I have found Apple&amp;#8217;s documentation to be either minimal or non-existent, and very little online discussion past the &amp;#8220;boot up an app and tap a button in a single javascript file&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; The good parts of UIAutomation &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Apple&amp;#8217;s own tool. Doing things the way Apple wants is generally a good idea (and as Pete mentions, Apple&amp;#8217;s not going to go bust or quit iOS any time soon, so the chances are it will be supported)&lt;/li&gt;
+&lt;li&gt;More closely linked to the device, I primarily run UIAutomation tests on the device, not in the simulator&lt;/li&gt;
+&lt;li&gt;Good support for gestures (pinch zooming and swipes) and rotation&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; The bad parts of UIAutomation &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Not built with CI in mind. The command line integration is pretty bad&lt;/li&gt;
+&lt;li&gt;Can&amp;#8217;t integrate with other tools very well&lt;/li&gt;
+&lt;li&gt;It&amp;#8217;s Apple&amp;#8217;s tool, and it&amp;#8217;s not open source. You can&amp;#8217;t jump in and fix the bits that are missing&lt;/li&gt;
+&lt;li&gt;Runs within Instruments, seems to be aimed at regression testing not TDD and aimed at QAs not devs&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt; When using UIAutomation might be appropriate &lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You have a separation between development and QA on your team&lt;/li&gt;
+&lt;li&gt;You prefer regression test suites over a test-first approach&lt;/li&gt;
+&lt;li&gt;You don&amp;#8217;t really care about CI&lt;/li&gt;
+&lt;li&gt;You prefer manual QA and you just want to speed that up a bit&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;So far I&amp;#8217;ve used Frank and UIAutomation on fairly large projects, and I&amp;#8217;m very keen to try KIF. Ideally what I would like is the Frank architecture using Cucumber to drive your tests, but using KIF&amp;#8217;s implementation on the native side which is a lot more solid than UISpec. Frank would give nice clean readable test features, and integration with other tools through cucumber as well as the concise selector syntax. KIF would give gesture support and a much cleaner implementation of those features.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Enabling Accessibility for iOS applications</title>

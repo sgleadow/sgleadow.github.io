@@ -68,6 +68,160 @@
     
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/">Universal Static Libraries and Frameworks for iOS</a></h1>
+    
+    
+      <p class="meta">
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-10-28T17:48:00+11:00" pubdate  data-updated="true" >Oct 28<span>th</span>, 2011</time></p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You only have to look at github to see the explosion of new open source iOS frameworks. Incorporating third party libraries into your app is still a pain. I spent today fighting with static libraries and frameworks for the <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> library, and I think I won, so that&#8217;s got to be work writing about.</p>
+
+<p>The changes I made can be see on <a href="https://github.com/sgleadow/DCIntrospect">my fork of DCIntrospect</a>.</p>
+
+<h2>Static libraries and frameworks</h2>
+
+<p>Until recently, my default use case was to actually drag in the source files from a third party library and compile it into my application. For libraries that I have forked and plan to modify or extend, this would still be my preferred option. Some third party libraries are stable and reliable, and I do not wish to change the source code at all. For these tools, I would prefer to just drag in a static library or framework and get on with my own app.</p>
+
+<p>I&#8217;ve tried my hand at static libraries before, and it definitely wasn&#8217;t plain sailing. A twitter conversation between two local iOS devs, <a href="http://twitter.com/#!/patr">Pat</a> and <a href="http://twitter.com/#!/orj">Oliver</a> prompted me to have another go at getting these libraries working. Pat&#8217;s own tool, <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> is a perfect example. It&#8217;s a great tool for introspecting and testing strange UI layout behaviour in your app, and it&#8217;s a library that <em>just works</em> (famous last words, I bet you find a bug in it now)&#8230; but credit to Pat, I&#8217;ve used it on a few apps, and never touched the source code. DCIntrospect seems like a good case for bundling everything up in a library.</p>
+
+<h2>Static Library</h2>
+
+<p>I created an  Xcode 4 workspace for DCIntrospect, which initially just contained the existing <em>DCIntrospectDemo</em>. The demo included the source code directly, so I removed the references to those files and created a new static library project that included the existing DCIntrospect source files. That basically compiled straight away, but to make it useful, I had to tweak a few build settings.</p>
+
+<p>The target name is DCIntrospectStaticLib, but I wanted the output to be libDCIntrospect.a, which can be done by changing the <strong>Product Name</strong> build setting. I also wanted to group the header files with the compiled binary, so I set the <strong>Public Headers Folder Path</strong> to be <code>$(PRODUCT_NAME)</code> so that it would match whatever I entered for the product name.</p>
+
+<p>To link to this static library, you simply have to drag it into your project. Xcode sorts out adjusting the <strong>Library Search Paths</strong> automatically when you add the library. However, if you want to import headers and make calls to the library, you will need to manually set the <strong>Header Search Paths</strong>. For DCIntrospectDemo, the search path is <code>"$(SRCROOT)/../Products/lib"</code> and then use <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code>. That&#8217;s easy enough to do, but it is one more barrier to entry for people using the library. A static framework could make it a single step.</p>
+
+<h2>Static Framework</h2>
+
+<p>I followed the steps described in <a href="http://twitter.com/#!/dineybomfim">Diney Bomfim&#8217;s</a> updated post on building a <a href="http://db-in.com/blog/2011/07/universal-framework-iphone-ios-2-0/">universal framework for iPhone</a>, and it all went pretty smoothly. He describes the different build settings you have to adjust to get it all to work.</p>
+
+<p>Diney&#8217;s instructions also include a sample shell script for compiling a universal static library using the <code>lipo</code> tool. I adjusted the script slightly, so that it would build both a universal static library as well as the static framework. I haven&#8217;t had much success running DCIntrospect on the device, so I&#8217;m not sure if that part is working or not.</p>
+
+<p>The joy of using the static framework in this way is that installing DCIntrospect is now a single drag and drop of a framework into your source code. To get it working at this point, you would still need to add <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code> into your app delegate and after you have loaded the window, call <code>[[DCIntrospect sharedIntrospector] start]</code>.</p>
+
+<h2>Automatic Loading of DCIntrospect</h2>
+
+<p>My next task is to get DCIntrospect to automatically load if it is linked to your target. I had a play around with this a few months ago with the <a href="https://github.com/moredip/Frank">Frank iOS testing library</a>, with some success but never pursued the final solution, but <a href="http://twitter.com/#!/beingagile">Pete Hodgson</a> obviously got sick of waiting for me and did it himself.</p>
+
+<p>The solution is pretty neat. You basically hook into when a class in the library is being loaded, and set yourself up to listen for the <code>UIApplicationDidBecomeActiveNotification</code> notification, which gets called after the app delegate <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code> gets called. When that happens, we start DCIntrospect. I&#8217;ve wrapped the call to load DCIntrospect in a check that we are running in the simulator, so it will never be called on the app we submit to Apple. Initially I tried to do a check using <code>#ifdef DEBUG</code>, but that wont work with the static precompiled library approach, since those flags are only valid when the library is initially compiled, not at run time.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+<span class='line'>5</span>
+<span class='line'>6</span>
+<span class='line'>7</span>
+<span class='line'>8</span>
+<span class='line'>9</span>
+<span class='line'>10</span>
+<span class='line'>11</span>
+<span class='line'>12</span>
+<span class='line'>13</span>
+<span class='line'>14</span>
+<span class='line'>15</span>
+<span class='line'>16</span>
+<span class='line'>17</span>
+<span class='line'>18</span>
+<span class='line'>19</span>
+<span class='line'>20</span>
+<span class='line'>21</span>
+<span class='line'>22</span>
+<span class='line'>23</span>
+<span class='line'>24</span>
+<span class='line'>25</span>
+<span class='line'>26</span>
+<span class='line'>27</span>
+<span class='line'>28</span>
+<span class='line'>29</span>
+<span class='line'>30</span>
+</pre></td><td class='code' width='100%'><pre><code class='objc'><div class='line'><span class="cp">#import &quot;DCIntrospect.h&quot;</span>
+</div><div class='line'>
+</div><div class='line'><span class="k">@interface</span> <span class="nc">DCIntrospectLoader</span> : <span class="nc">NSObject</span>
+</div><div class='line'><span class="k">@end</span>
+</div><div class='line'>
+</div><div class='line'><span class="k">@implementation</span> <span class="nc">DCIntrospectLoader</span>
+</div><div class='line'>
+</div><div class='line'><span class="c1">// This is called after application:didFinishLaunchingWithOptions:</span>
+</div><div class='line'><span class="c1">// so the statusBarOrientation should be reported correctly</span>
+</div><div class='line'><span class="o">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">applicationDidBecomeActive:</span><span class="p">(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="n">notification</span>
+</div><div class='line'><span class="p">{</span>
+</div><div class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">simulatorRoot</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">NSProcessInfo</span> <span class="n">processInfo</span><span class="p">]</span> <span class="n">environment</span><span class="p">]</span> <span class="nl">objectForKey:</span><span class="s">@&quot;IPHONE_SIMULATOR_ROOT&quot;</span><span class="p">];</span>
+</div><div class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">simulatorRoot</span><span class="p">)</span>
+</div><div class='line'>    <span class="p">{</span>
+</div><div class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Running in simulator, loading DCIntrospect&quot;</span><span class="p">);</span>
+</div><div class='line'>        <span class="p">[[</span><span class="n">DCIntrospect</span> <span class="n">sharedIntrospector</span><span class="p">]</span> <span class="n">start</span><span class="p">];</span>
+</div><div class='line'>    <span class="p">}</span>
+</div><div class='line'><span class="p">}</span>
+</div><div class='line'>
+</div><div class='line'><span class="o">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">load</span>
+</div><div class='line'><span class="p">{</span>
+</div><div class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Injecting DCIntrospect loader&quot;</span><span class="p">);</span>
+</div><div class='line'>
+</div><div class='line'>    <span class="p">[[</span><span class="n">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">]</span> <span class="nl">addObserver:</span><span class="p">[</span><span class="n">self</span> <span class="n">class</span><span class="p">]</span>
+</div><div class='line'>                                             <span class="nl">selector:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">applicationDidBecomeActive:</span><span class="p">)</span>
+</div><div class='line'>                                                 <span class="nl">name:</span><span class="s">@&quot;UIApplicationDidBecomeActiveNotification&quot;</span>
+</div><div class='line'>                                               <span class="nl">object:</span><span class="nb">nil</span><span class="p">];</span>
+</div><div class='line'><span class="p">}</span>
+</div><div class='line'>
+</div><div class='line'><span class="k">@end</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>With the auto loading class above now part of DCIntrospect, installation is literally a single drag and drop of the framework. It will automatically load as needed, as long as we are running in the simulator. I usually have a separate target for App Store submission without any test libraries linked into it just in case, since they bloat the binary and probably call some private API magic at some point.</p>
+
+<h2>DCIntrospect Demo Project</h2>
+
+<p>To use either the static library or the framework in the two demo project targets, the only change I had to make was to add the <em>-ObjC</em> setting to <strong>Other Linker Flags</strong>. For the static library, you still need to set a header path but only if you want to make direct calls to DCIntrospect, since it now loads automatically.</p>
+
+<p>Since I had both the DCIntrospect and DCIntrospectDemo projects in the same workspace, XCode 4 had the smarts to find the <em>implicit dependency</em>, so when I edit the library source code, it&#8217;s automatically rebuilt. However, I set up the project to use the <em>BundleProducts</em> target to create the universal distributable binaries, which did not get picked up as a dependency.</p>
+
+<p>You can create <em>explicit dependencies</em> between targets in different projects by first creating a project dependency. That is, dragging the dependent project into the demo project. Once that is done, when editing the <strong>Target Dependencies</strong> in the demo target&#8217;s <em>Build Phases</em>, you will be able to explicitly select the dependency. In this case, it is the <em>BundleProducts</em> target.</p>
+
+<p>Unless you plan to edit the source code and recompile the binary often, the chances are you wont need to set up the project dependencies like this.</p>
+
+<h2>Issues with static libraries and frameworks</h2>
+
+<p>DCIntrospect is a fairly simple framework to generate. Larger libraries are likely to come across two issues, neither of which affect DCIntrospect.</p>
+
+<ul>
+<li>categories from static libraries don&#8217;t seem to load properly</li>
+<li>resources is static libraries or frameworks need to be linked into the target using them separately</li>
+</ul>
+
+
+<p>For the categories issue, I know if two solutions. First, you can add <em>-all_load</em> to the <strong>Other Linker Flags</strong> section of the target using the static library. We&#8217;ve already added the <em>-ObjC</em> flag in there, so it&#8217;s not really adding much of a burden. The other option is to use Karl Stenerud&#8217;s <em>MAKE_CATEGORIES_LOADABLE</em> as <a href="https://github.com/moredip/Frank/blob/master/LoadableCategory.h">used in Frank</a>.</p>
+
+<p>For the resources issue, you can generate a resource bundle along with your static library or framework. When linking the library to your target, you can also drag in the resources bundle as a dependency and it should work. Karl has a neat way of making this even easier in his <a href="https://github.com/kstenerud/iOS-Universal-Framework">iOS Univeral Framework</a> project in github. He creates an <em>embedded framework</em>, which is essentially a single container for both the static framework and the resources bundle. This extra container makes it easy to drag in a single <em>.embeddedframework</em> file into your project and have everything link up correctly.</p>
+
+<h2>Final Thoughts</h2>
+
+<p>This is probably the first time I have fought with static libraries and frameworks and felt like I came out on top, and DCIntrospect seems like a good case for using it. That said, there are lots of libraries I use where I prefer being able to see the source code, and potentially edit the implementation. For those, git submodules and adding the source directly is still my preferred option. The single drag-and-drop solution here does make using a new library pretty easy though.</p>
+</div>
+  
+  
+
+
+  </article>
+
+
+  <article>
+    
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">Which Automated iOS Testing Tool to Use</a></h1>
     
     
@@ -756,6 +910,10 @@ A: Yes, it is based on the editor that has focus.</li>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/">Universal Static Libraries and Frameworks for iOS</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">Which Automated iOS Testing Tool To Use</a>
       </li>
     
@@ -769,10 +927,6 @@ A: Yes, it is based on the editor that has focus.</li>
     
       <li class="post">
         <a href="/blog/2011/04/19/xcode-4-shortcuts-lightning-talk/">Xcode 4 Shortcuts Lightning Talk</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/27/rvm-escaping-gem-dependency-hell/">RVM: Escaping Gem Dependency Hell</a>
       </li>
     
   </ul>

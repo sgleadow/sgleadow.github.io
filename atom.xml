@@ -4,13 +4,50 @@
   <title>Stewart Gleadow&#8217;s Blog</title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2011-10-29T11:12:19+11:00</updated>
+  <updated>2011-10-30T17:31:24+11:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name>Stewart Gleadow</name>
     
   </author>
 
+  
+  <entry>
+    <title>Adding Unit Tests to an Existing iOS Project</title>
+    <link href="http://sgleadow.github.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/"/>
+    <updated>2011-10-30T16:30:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project</id>
+    <content type="html">&lt;p&gt;I recently came across a post from the guys at &lt;a href=&quot;http://twobitlabs.com&quot;&gt;Two Bit Labs&lt;/a&gt; on &lt;a href=&quot;http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/&quot;&gt;Adding Unit Tests to an existing iOS project&lt;/a&gt; with Xcode 4.&lt;/p&gt;
+
+&lt;p&gt;I always include unit tests by default in any project that is more than a demo, but up until recently I have always used &lt;a href=&quot;https://github.com/gabriel/gh-unit&quot;&gt;GHUnit&lt;/a&gt;. &lt;a href=&quot;http://twitter.com/#!/makdad&quot;&gt;Mark Makdad&lt;/a&gt; wrote a piece earlier in the year &lt;a href=&quot;http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit&quot;&gt;comparing GHUnit and OCUnit&lt;/a&gt;. That post combined with &lt;a href=&quot;https://github.com/allending/Kiwi&quot;&gt;Kiwi&lt;/a&gt;&amp;#8217;s Rspec-style wrappers around OCUnit has made me consider using Apple&amp;#8217;s built in unit testing again.&lt;/p&gt;
+
+&lt;p&gt;I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the &lt;em&gt;Test&lt;/em&gt; build action hooked up. This isn&amp;#8217;t exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press &lt;code&gt;Cmd + U&lt;/code&gt; or select &lt;code&gt;Product &amp;gt; Test&lt;/code&gt; from the menu.&lt;/p&gt;
+
+&lt;h2&gt;Adding the test action to an existing scheme&lt;/h2&gt;
+
+&lt;p&gt;When I select my target, called &lt;em&gt;Development&lt;/em&gt;, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you&amp;#8230; but here is what I had to do in order to get my unit tests hooked up to my main Development target&amp;#8217;s scheme.&lt;/p&gt;
+
+&lt;p&gt;Select your main target&amp;#8217;s scheme in the little scheme selector in the Xcode toolbar, and choose &lt;em&gt;Edit Scheme&amp;#8230;&lt;/em&gt; from the drop down menu. When you select the &lt;em&gt;Test&lt;/em&gt; build action on the left, you&amp;#8217;ll notice no tests appear in the list. Tap the &lt;em&gt;+&lt;/em&gt; button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press &lt;em&gt;Add&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#8221; src=&#8217;http://sgleadow.github.com/images/posts/adding-unit-tests/adding-test-action-to-scheme.png&#8217; width=&#8221; height=&#8221; alt=&#8217;Adding tests to the scheme&#8217;s test action&#8217; title=&#8217;Adding tests to the scheme&#8217;s test action&#8217;&gt;&lt;/p&gt;
+
+&lt;p&gt;You should see the test bundle appear in the table, as shown in the image above. Tap on the &lt;em&gt;Build&lt;/em&gt; action for this scheme, and you will notice that there are now two targets lists: our application and our unit tests. The tests are only linked up to the &lt;em&gt;Test&lt;/em&gt; build action by default, which should look similar to the image below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#8221; src=&#8217;http://sgleadow.github.com/images/posts/adding-unit-tests/test-build-action.png&#8217; width=&#8221; height=&#8221; alt=&#8217;Checking the two targets in the build action&#8217; title=&#8217;Checking the two targets in the build action&#8217;&gt;&lt;/p&gt;
+
+&lt;h2&gt;Running your unit tests&lt;/h2&gt;
+
+&lt;p&gt;Now that your unit tests are hooked up to your test build action, select your main target&amp;#8217;s scheme. The menu item &lt;code&gt;Product &amp;gt; Test&lt;/code&gt; should now be active. Select &lt;em&gt;Test&lt;/em&gt;, and Xcode will build your application and run your tests. When creating the test bundle, Apple&amp;#8217;s default test case includes a failure, so if the tests run, you will see that failure.&lt;/p&gt;
+
+&lt;p&gt;Just to double check you&amp;#8217;ve got all your target dependencies set up correctly, try a full clean (hold &lt;em&gt;Option&lt;/em&gt; while selecting &lt;code&gt;Product &amp;gt; Clean&lt;/code&gt;) and then press &lt;em&gt;Cmd + U&lt;/em&gt;. This should trigger a full build and run the unit tests and show your test failure again.&lt;/p&gt;
+
+&lt;p&gt;If you see an error like &lt;code&gt;ld: file not found:&lt;/code&gt; &lt;code&gt;&amp;lt;path to app&amp;gt;/Debug-iphonesimulator/Development.app/Development&lt;/code&gt;, it&amp;#8217;s likely your test target does not automatically build your main application under test, as explained in the &lt;a href=&quot;http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/&quot;&gt;original article&lt;/a&gt;: select your project in the navigator, select your unit test target, open the &lt;em&gt;Build Phases&lt;/em&gt; tab and add your app target as a dependency. Ending up with something like the image shown.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#8221; src=&#8217;http://sgleadow.github.com/images/posts/adding-unit-tests/test-target-dependency.png&#8217; width=&#8221; height=&#8221; alt=&#8217;Setting up dependencies for your test target&#8217; title=&#8217;Setting up dependencies for your test target&#8217;&gt;&lt;/p&gt;
+
+&lt;p&gt;Now&amp;#8230; do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Universal Static Libraries and Frameworks for iOS</title>

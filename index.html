@@ -559,7 +559,7 @@
 
 <p>I first tried to use this code in <code>init</code> for a test framework class, and it didn&#8217;t seem to work. Moving the code to be called from <code>load</code> solved the problem. Since this code actually changes a <em>plist</em> file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&#8217;t bring up the inspector over the top of the UI.</p>
 
-<p>Special thanks to an awesome colleague of mine, Sadat Rahman (@sadatrahman) for the code above that enables accessibility in the simulator automatically.</p>
+<p>Special thanks to <a href="http://twitter.com/#!/0xced">Cedric Luthi</a>, who originally wrote the code to enable accessibility programmatically for DCIntrospect <a href="https://github.com/0xced/DCIntrospect/commit/49b76a6630cc29444aac30f14fd0fc17e22b37cf">in this commit</a>, and to an awesome colleague of mine, Sadat Rahman (@sadatrahman), for bringing that code to my attention.</p>
 </div>
   
   

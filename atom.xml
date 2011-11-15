@@ -4,13 +4,120 @@
   <title>Stewart Gleadow&#8217;s Blog</title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2011-11-08T21:54:22+11:00</updated>
+  <updated>2011-11-16T09:00:11+11:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name>Stewart Gleadow</name>
     
   </author>
 
+  
+  <entry>
+    <title>Enabling Accessibility Programatically on iOS Devices</title>
+    <link href="http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/"/>
+    <updated>2011-11-16T08:29:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices</id>
+    <content type="html">&lt;p&gt;I wrote a recent post on &lt;a href=&quot;http://sgleadow.github.com/blog/2011/10/14/enabling-accessibility-for-ios-applications/&quot;&gt;enabling accessibility for iOS applications&lt;/a&gt;, which ended with a snippet of code for automatically enabling accessibility on the iOS simulator. This is essential if you want to have your tests running on a continuous integration server, since the accessibility inspector is off by default.&lt;/p&gt;
+
+&lt;p&gt;I hadn&amp;#8217;t yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the &lt;a href=&quot;http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/&quot;&gt;common automated testing tools&lt;/a&gt;. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://twitter.com/#!/0xced&quot;&gt;Cedric Luthi&lt;/a&gt; commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn&amp;#8217;t sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.&lt;/p&gt;
+
+&lt;p&gt;I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick &lt;a href=&quot;https://github.com/square/KIF&quot;&gt;KIF&lt;/a&gt; test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It&amp;#8217;s a gimmick test, but enough that it will fail if accessibility is &lt;em&gt;not&lt;/em&gt; enabled because none of the labels will be available to the test.&lt;/p&gt;
+
+&lt;p&gt;After following the standard KIF set up instructions, I write the following test:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;objc&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initializeScenarios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;KIFTestScenario&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loadScreen&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KIFTestScenario&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;scenarioWithDescription:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;Test app loads up on correct screen&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loadScreen&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addStep:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KIFTestStep&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;stepToWaitForViewWithAccessibilityLabel:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;Master&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addScenario:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loadScreen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;KIFTestScenario&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigateToDetails&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KIFTestScenario&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;scenarioWithDescription:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;Test can navigate&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigateToDetails&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addStep:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KIFTestStep&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;stepToTapViewWithAccessibilityLabel:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;Detail&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigateToDetails&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addStep:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KIFTestStep&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;stepToWaitForViewWithAccessibilityLabel:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;Detail view content goes here&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;addScenario:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigateToDetails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;That works fine on the simulator, whether you have explicitly enabled accessibility or not now that the maintainers of KIF have merged in &lt;a href=&quot;https://github.com/square/KIF/pull/78&quot;&gt;my pull request&lt;/a&gt;. That code only runs for the simulator, and does nothing if &lt;code&gt;IPHONE_SIMULATOR_ROOT&lt;/code&gt; is not available in the &lt;code&gt;[[NSProcessInfo processInfo] environment]&lt;/code&gt;. The KIF test will only run on the device (at least for me) if I turned VoiceOver on, which is a pain and not possible to automate.&lt;/p&gt;
+
+&lt;p&gt;I modified the code so that on the device, it does not try to prepend the simulator root when running on the device, and points to &lt;code&gt;@&quot;/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport&quot;&lt;/code&gt; directly. Amazingly, the KIF test then worked and all accessibility values were available to the tests. The updated code to enable accessibility programmatically on the device or the simulator looks like this:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;24&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;25&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;26&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;objc&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_enableAccessibilityInSimulator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;NSAutoreleasePool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoreleasePool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSAutoreleasePool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSupportLocation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&amp;quot;/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;NSDictionary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSProcessInfo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;processInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;simulatorRoot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environment&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;objectForKey:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&amp;quot;IPHONE_SIMULATOR_ROOT&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;simulatorRoot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;n&quot;&gt;appSupportLocation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;simulatorRoot&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;stringByAppendingString:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSupportLocation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSupportLibrary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSupportLocation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileSystemRepresentation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RTLD_LAZY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;CFStringRef&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copySharedResourcesPreferencesDomainForDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CFStringRef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dlsym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSupportLibrary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;CPCopySharedResourcesPreferencesDomainForDomain&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copySharedResourcesPreferencesDomainForDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;n&quot;&gt;CFStringRef&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accessibilityDomain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copySharedResourcesPreferencesDomainForDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CFSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.apple.Accessibility&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;accessibilityDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;            &lt;span class=&quot;n&quot;&gt;CFPreferencesSetValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CFSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;ApplicationAccessibilityEnabled&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCFBooleanTrue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accessibilityDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCFPreferencesAnyUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCFPreferencesAnyHost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;            &lt;span class=&quot;n&quot;&gt;CFRelease&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;accessibilityDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoreleasePool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;I&amp;#8217;m a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device - but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I&amp;#8217;m comfortable with it for now. I&amp;#8217;m hoping this combined with my &lt;a href=&quot;http://sgleadow.github.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line&quot;&gt;recent work with fruitstrap&lt;/a&gt; could get us all the way to functional tests running on a physical device in CI.&lt;/p&gt;
+
+&lt;p&gt;You can find this code in &lt;a href=&quot;https://github.com/sgleadow/KIF&quot;&gt;my fork of KIF&lt;/a&gt;, and I&amp;#8217;m hoping after a bit of testing it can be merged into the main KIF repo, so I sent them &lt;a href=&quot;https://github.com/square/KIF/pull/93&quot;&gt;this pull request&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Installing iOS Apps on the Device From the Command Line</title>

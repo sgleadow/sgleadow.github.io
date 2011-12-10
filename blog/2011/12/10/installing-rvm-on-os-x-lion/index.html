@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About - Stewart Gleadow's Blog</title>
+  <title>Installing RVM on OS X Lion - Stewart Gleadow's Blog</title>
   <meta name="author" content="Stewart Gleadow">
   
 
@@ -16,7 +16,7 @@
 
   
 
-  <link rel="canonical" href="http://sgleadow.github.com/about.html"/>
+  <link rel="canonical" href="http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/"/>
   <link href="/favicon.png" rel="shortcut icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -61,43 +61,14 @@
   <div id="main">
     <div id="content">
       <div>
-<article>
+<article class="hentry">
   
   <header>
-    <h1 class="entry-title">About</h1>
-    <p class="meta">
-
-
-
-
-
-  
-
-
-
-<time datetime="2011-09-16T18:12:00+10:00" pubdate  data-updated="true" >Sep 16<span>th</span>, 2011</time></p>
-  </header>
-  
-  <p>I&#8217;m a software consultant with Thoughtworks Australia. Currently, my focus is on iOS development and testing and has been for the last year or so. Who knows how long that will last. I&#8217;m also interested in Ruby, including Rails, ReST and a bunch of other things. I&#8217;m interested in functional programming without being particularly capable at it. Before Thoughtworks, my background was mainly in scientific software for Earth Science and Astronomy - using mainly C and Java.</p>
-
-<p>Anything that you read on this site, including links to presentations I have given and code I have written are my own thoughts, and not those of my employer.</p>
-
-<h2>Contact Details</h2>
-
-<p>Feel free to use the comments on and of the pages on this site, or get in touch on Twitter or via email. I do have a Google+ account but am yet to find a way to integrate it into my life in any way.</p>
-
-<ul>
-<li>Employer: Thoughtworks Australia</li>
-<li>Twitter: @stewgleadow</li>
-<li>Email (gmail): sgleadow</li>
-</ul>
-
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Installing RVM on OS X Lion</h1>
+    
+    
       <p class="meta">
-        
-        
 
 
 
@@ -107,22 +78,87 @@
 
 
 
-<time datetime="2011-09-16T18:12:00+10:00" pubdate  data-updated="true" >Sep 16<span>th</span>, 2011</time>
-        
-      </p>
+<time datetime="2011-12-10T19:28:00+11:00" pubdate  data-updated="true" >Dec 10<span>th</span>, 2011</time></p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I wrote a post a little while ago about transferring my Ruby dev environments to use <a href="http://beginrescueend.com/">rvm</a> to organise and separate Ruby envinroments and assosiated <a href="">gemsets</a>. I just got a new MacBook Air which I&#8217;m setting up at the moment, so I&#8217;m running through the set up process again. Here are my notes.</p>
+
+<p>There are a few rvm haters out there who find it to be over-engineered and trying to do too much. If that&#8217;s you, there is another, more lightweight tool called <a href="https://github.com/sstephenson/rbenv">rbenv</a> that you can use and if you really like separate gemsets, someone has written <a href="https://github.com/jamis/rbenv-gemset">rbenv-gemset</a> to go with it. I have a handful of projects already set up with rvm, so I&#8217;m going to keep using it for now.</p>
+
+<p>Installing rvm itself is pretty easy. The <a href="http://beginrescueend.com/">rvm homepage</a> gives a quick install command:</p>
+
+<figure role=code><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+</pre></td><td class='code' width='100%'><pre><code class=''><div class='line'>bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)</div></code></pre></td></tr></table></div></figure>
+
+
+<p>and then add this to your shell profile:</p>
+
+<figure role=code><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+</pre></td><td class='code' width='100%'><pre><code class=''><div class='line'>[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"</div></code></pre></td></tr></table></div></figure>
+
+
+<p>That works fine. Now it&#8217;s time to install some rubies - at the moment I have projects using 1.8.7 and 1.9.2, and I&#8217;d like to use 1.9.3 going forward. I used the following command and got an error:</p>
+
+<figure role=code><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+</pre></td><td class='code' width='100%'><pre><code class=''><div class='line'>rvm install 1.8.7
+</div><div class='line'>...
+</div><div class='line'>ERROR: There has been an error while running configure. Halting the installation.</div></code></pre></td></tr></table></div></figure>
+
+
+<p>It turns out this is a common issue in OS X Lion because gcc is just a sym link to LLVM, and the whole installation gets a bit confused (that&#8217;s the technical term for it). I read on <a href="http://www.mattpolito.info/post/9383196211/rvm-ruby-install-on-lion-got-you-down">Matt Polito&#8217;s blog</a> that you can simply point the CC environment variable straight to GCC 4.2 like this:</p>
+
+<figure role=code><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+</pre></td><td class='code' width='100%'><pre><code class=''><div class='line'>CC=/usr/local/bin/gcc-4.2 rvm install &lt;ruby version&gt;</div></code></pre></td></tr></table></div></figure>
+
+
+<p>That didn&#8217;t work for me. I&#8217;m using a brand new machine with Xcode 4.2 installed. It turns out this solution worked for Xcode 4.1 but 4.2 does not install the right gcc to use. One solution I saw was to roll back to Xcode 4.1 and then install Xcode 4.2 again. That seemed like it would take a while, so I used the standalone OS X GCC installer from https://github.com/kennethreitz/osx-gcc-installer. After that, installing different Rubies worked fine. I&#8217;m hoping that installing gcc like this doesn&#8217;t mess up my Xcode 4.2. So far so good, the few Xcode projects I&#8217;ve tried still compile and run fine.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sgleadow.github.com/about.html" data-via="stewgleadow" data-counturl="http://sgleadow.github.com/about.html" >Tweet</a>
+
+<span class="byline author vcard">Posted by <span class="fn">Stewart Gleadow</span></span>
+
+      
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-12-10T19:28:00+11:00" pubdate  data-updated="true" >Dec 10<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/" data-via="stewgleadow" data-counturl="http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
 </div>
 
-      
-    </footer>
-  
+    
+  </footer>
 </article>
 
   <section>
@@ -130,8 +166,8 @@
     <div id="disqus_thread"><div id="disqus_thread"></div>
 <script type="text/javascript">
   var disqus_shortname = 'sgleadow-blog';
-  var disqus_identifier = 'http://sgleadow.github.com/about.html';
-  var disqus_url = 'http://sgleadow.github.com/about.html';
+  var disqus_identifier = 'http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/';
+  var disqus_url = 'http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/';
   //var disqus_developer = 1;
   (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

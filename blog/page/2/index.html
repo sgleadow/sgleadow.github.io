@@ -68,6 +68,47 @@
     
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">Cleaning Out Ruby Gems Under OS X</a></h1>
+    
+    
+      <p class="meta">
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-03-27T15:55:00+11:00" pubdate  data-updated="true" >Mar 27<span>th</span>, 2011</time></p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As a bit of background, I have been getting into Ruby development for the past year, but I have been getting into gem dependency hell recently. Different projects need different gemsets. <a href="http://gembundler.com/">Bundler</a> helps but I want to use that in combination with <a href="http://rvm.beginrescueend.com/">rvm</a> to keep things organised.</p>
+
+<p>To get a clean start with rvm, so I wanted to remove all my existing system gems. My first attempt used the little shell script below to loop over all installed gems and remove them. That worked for a lot of gems, but left some behind, possibly all the default gems that come pre-installed with OS X.</p>
+
+<p><code>$ for x in `gem list --no-versions` ; do gem uninstall -aIx $x; done</code></p>
+
+<p>After some googling, the next step I tried was to physically remove the gem directories that are returned by <code>gem env paths</code>. After that, <code>gem list</code> said there were no gems installed. There were still some binaries left over that depended on these gems, like <code>spec</code>, <code>rails</code>, <code>rake</code> in <code>/usr/bin</code>. These binaries no longer worked as the actual gem was gone, so I removed them. I couldn&#8217;t find a definitive list of the OS X default gems so I stopped here.</p>
+
+<p>I&#8217;m not a shell guru by any means, but below is my attempt at a quick one line shell script to remove all the existing gem directories.</p>
+
+<p><code>rm -rf `gem env paths | tr ":" " "`</code></p>
+</div>
+  
+  
+
+
+  </article>
+
+
+  <article>
+    
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2011/03/26/hello-world/">Hello World</a></h1>
     
     
@@ -147,6 +188,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">Installing RVM on OS X Lion</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/">Enabling Accessibility Programatically on iOS Devices</a>
       </li>
     
@@ -160,10 +205,6 @@
     
       <li class="post">
         <a href="/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/">Universal Static Libraries and Frameworks for iOS</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">Which Automated iOS Testing Tool To Use</a>
       </li>
     
   </ul>

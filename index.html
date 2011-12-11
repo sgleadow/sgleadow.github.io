@@ -86,7 +86,7 @@
   </header>
 
 
-  <div class="entry-content"><p>I wrote a post a little while ago about transferring my Ruby dev environments to use <a href="http://beginrescueend.com/">rvm</a> to organise and separate Ruby envinroments and assosiated <a href="">gemsets</a>. I just got a new MacBook Air which I&#8217;m setting up at the moment, so I&#8217;m running through the set up process again. Here are my notes.</p>
+  <div class="entry-content"><p>I wrote a post a little while ago about transferring my Ruby dev environments to use <a href="http://beginrescueend.com/">rvm</a> to organise and separate Ruby envinroments and assosiated <a href="http://beginrescueend.com/gemsets/">gemsets</a>. I just got a new MacBook Air which I&#8217;m setting up at the moment, so I&#8217;m running through the set up process again. Here are my notes.</p>
 
 <p>There are a few rvm haters out there who find it to be over-engineered and trying to do too much. If that&#8217;s you, there is another, more lightweight tool called <a href="https://github.com/sstephenson/rbenv">rbenv</a> that you can use and if you really like separate gemsets, someone has written <a href="https://github.com/jamis/rbenv-gemset">rbenv-gemset</a> to go with it. I have a handful of projects already set up with rvm, so I&#8217;m going to keep using it for now.</p>
 
@@ -115,10 +115,16 @@
 <p>It turns out this is a common issue in OS X Lion because gcc is just a sym link to LLVM, and the whole installation gets a bit confused (that&#8217;s the technical term for it). I read on <a href="http://www.mattpolito.info/post/9383196211/rvm-ruby-install-on-lion-got-you-down">Matt Polito&#8217;s blog</a> that you can simply point the CC environment variable straight to GCC 4.2 like this:</p>
 
 <figure role=code><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-</pre></td><td class='code' width='100%'><pre><code class=''><div class='line'>CC=/usr/local/bin/gcc-4.2 rvm install &lt;ruby version&gt;</div></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code' width='100%'><pre><code class=''><div class='line'>CC=/usr/bin/gcc-4.2 rvm install &lt;ruby version&gt;</div></code></pre></td></tr></table></div></figure>
 
 
 <p>That didn&#8217;t work for me. I&#8217;m using a brand new machine with Xcode 4.2 installed. It turns out this solution worked for Xcode 4.1 but 4.2 does not install the right gcc to use. One solution I saw was to roll back to Xcode 4.1 and then install Xcode 4.2 again. That seemed like it would take a while, so I used the standalone OS X GCC installer from https://github.com/kennethreitz/osx-gcc-installer. After that, installing different Rubies worked fine. I&#8217;m hoping that installing gcc like this doesn&#8217;t mess up my Xcode 4.2. So far so good, the few Xcode projects I&#8217;ve tried still compile and run fine.</p>
+
+<p><strong>Edit:</strong> I think next time I will try the approach mentioned by <a href="https://twitter.com/tonyarnold">Tony Arnold</a> in the comments below, using the <code>--with-gcc=clang</code> option to rvm, something like this:</p>
+
+<figure role=code><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+</pre></td><td class='code' width='100%'><pre><code class=''><div class='line'>rvm install 1.9.3 --reconfigure --debug -C --enable-pthread --with-gcc=clang</div></code></pre></td></tr></table></div></figure>
+
 </div>
   
   

@@ -4,13 +4,126 @@
   <title>Stewart Gleadow&#8217;s Blog</title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2011-12-12T08:52:02+11:00</updated>
+  <updated>2012-02-09T08:54:42+11:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name>Stewart Gleadow</name>
     
   </author>
 
+  
+  <entry>
+    <title>Running OCUnit &amp; Kiwi Tests on the Command Line</title>
+    <link href="http://sgleadow.github.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/"/>
+    <updated>2012-02-09T07:54:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line</id>
+    <content type="html">&lt;p&gt;A common question I get asked is: how to I run my OCUnit tests from the command line? I&amp;#8217;ve answered this a number of times, so here is a quick brain dump so I can just point to this post each time. I say OCUnit, but since &lt;a href=&quot;https://github.com/allending/Kiwi&quot;&gt;Kiwi&lt;/a&gt; is just a wrapper above OCUnit, these instructions should also work for Kiwi tests.&lt;/p&gt;
+
+&lt;h2&gt;Xcodebuild&lt;/h2&gt;
+
+&lt;p&gt;OCUnit tests are run from a shell script during the build for that target, which is usually called something like MyAppTests. If you look at the &lt;em&gt;Build Phases&lt;/em&gt; for that target, you&amp;#8217;ll see a little RunScript phase that actually runs the tests:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;# Run the unit tests in this test bundle.
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&quot;${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests&quot;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;We can then use the &lt;code&gt;xcodebuild&lt;/code&gt; command line utility to run this same build from the command line. On the command line (or from a Makefile if you are so inclined), try building and running the tests:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;xcodebuild -sdk iphonesimulator -configuration Debug -scheme MyAppTests build&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;This may or may not work, depending on whether or not you have &lt;em&gt;Logic&lt;/em&gt; or &lt;em&gt;Application&lt;/em&gt; tests. What?&lt;/p&gt;
+
+&lt;h2&gt;Logic &amp;amp; Application Unit Tests&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#8217;m not sure why Apple bothers to differentiate these tests. The basic difference is that Application tests need to be run inside of a UIKit environment, while Logic tests don&amp;#8217;t. I&amp;#8217;d prefer if the build system just detected whether it needed UIKit and decided for you. There&amp;#8217;s a longer explanation in  &lt;a href=&quot;https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/00-About_Unit_Testing/about.html#//apple_ref/doc/uid/TP40002143&quot;&gt;Apple&amp;#8217;s unit testing guide&lt;/a&gt;. I often want to write unit tests for my UIViewController classes and any other UI logic, so I always tick the Application checkbox when adding unit tests to an Xcode project. If you&amp;#8217;re making a static library with no UI then you might want to select Logic.&lt;/p&gt;
+
+&lt;p&gt;Anyway, if your project has &lt;em&gt;Logic&lt;/em&gt; tests, the above &lt;code&gt;xcodebuild&lt;/code&gt; command should run your unit tests fine and you will see the test output in the Terminal window. However, if they are Application tests, the command silently succeeds without actually running your tests. If you look near the bottom of the output, you&amp;#8217;ll see this in the output:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests:95:
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;warning: Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set).&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;So the tests didn&amp;#8217;t even run, but the command succeeds, the build stays green and everyone&amp;#8217;s happy&amp;#8230; but the tests aren&amp;#8217;t running.&lt;/p&gt;
+
+&lt;h2&gt;Running From The Command Line&lt;/h2&gt;
+
+&lt;p&gt;I usually point people to &lt;a href=&quot;http://longweekendmobile.com/2011/04/17/xcode4-running-application-tests-from-the-command-line-in-ios/&quot;&gt;a post from the guys at Long Weekend&lt;/a&gt; for how to get these Application tests running from the command line. Here&amp;#8217;s quick summary:&lt;/p&gt;
+
+&lt;p&gt;Open up &lt;code&gt;/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests&lt;/code&gt; in your favourite editor and check out the code around line 95. You&amp;#8217;ll see the culprit line:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;Warning ${LINENO} &quot;Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set).&quot;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;THe &lt;code&gt;TEST_HOST&lt;/code&gt; is only set when running the tests through Xcode, not from the command line. If the host isn&amp;#8217;t set, the tests don&amp;#8217;t run. We want them to run in this case. We could replace that line with the following:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;export OTHER_TEST_FLAGS=&quot;-RegisterForSystemEvents&quot;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;RunTestsForApplication &quot;${TEST_HOST}&quot; &quot;${TEST_BUNDLE_PATH}&quot;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;This command will actually boot up your app in the iOS simulator and run the tests in that UI environment.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;#8217;t really feel comfortable hacking scripts in my Developer directory, so I&amp;#8217;d rather copy this script into my project and run it from there. Also, editing the actual installed tools like this means that you have to do it on each and every machine running the tests. Even once you get it running on your machine, you&amp;#8217;ll need to log into your build machine and make the same hack there. Try making a copy of the same shell script Apple uses into your project directory:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;cd your-project
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;mkdir scripts
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;cp /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests scripts/&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Now edit that local copy of your shell script to replace line 95 to actually run the tests in the simulator environment. The MyAppTests target is still pointing to the system developer script. In Xcode, open up the &lt;em&gt;Build Phases&lt;/em&gt; for your test target and change the &lt;em&gt;Run Script&lt;/em&gt; to point to your local script:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;# Run the unit tests in this test bundle.
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&quot;${SRCROOT}/../scripts/RunPlatformUnitTests&quot;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Run the tests in the IDE to make sure you didn&amp;#8217;t screw anything up. Now quit the simulator, and run them from the command line with xcodebuild again. You should see the test output printed and a few statements at the bottom saying that the tests succeeded. Your tests do pass, right?&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;/Developer/Tools/RunPlatformUnitTests.include:334: note: Passed tests for architecture &#8216;i386&#8217; (GC OFF)
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;/Developer/Tools/RunPlatformUnitTests.include:345: note: Completed tests for architectures &#8216;i386&#8217;&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;h2&gt;One simulator to rule them all&lt;/h2&gt;
+
+&lt;p&gt;The reason I said to close the simulator before running the tests from the command line is that the tests don&amp;#8217;t seem to like running when the iOS Simulator is already doing something. Try it. Open the similator, and then run the tests. If your system is anything like mine, you get an error like this:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;** BUILD FAILED **
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;The following build commands failed:
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    PhaseScriptExecution &quot;Run Script&quot; path-to-the-script-in-derived-data&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;If I&amp;#8217;m running them locally, I see this, quit the simulator and try again. That&amp;#8217;s a bit of a pain, and it certainly wont work on the CI server. To solve that, in my Makefile, I just use a little Applescript to close the simulator before running the tests:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8221;&gt;&lt;div class=&#8217;line&#8217;&gt;test:
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    osascript -e &#8216;tell app &quot;iPhone Simulator&quot; to quit&#8217;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    xcodebuild -sdk iphonesimulator -configuration Debug -scheme MyAppTests build&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Now I can use the command &lt;code&gt;make test&lt;/code&gt; to run the tests from the command line both on my machine and the CI server without having to change the development environment.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Installing RVM on OS X Lion</title>

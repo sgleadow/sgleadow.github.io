@@ -68,6 +68,180 @@
     
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2011/03/27/rvm-escaping-gem-dependency-hell/">RVM: Escaping Gem Dependency Hell</a></h1>
+    
+    
+      <p class="meta">
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-03-27T16:02:00+11:00" pubdate  data-updated="true" >Mar 27<span>th</span>, 2011</time></p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is my second post on my move to rvm. The first being about <a href="blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">cleaning out my existing gems</a> for a fresh start.</p>
+
+<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&#8217;m working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don&#8217;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
+
+<p>I&#8217;m looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
+
+<h2>Installing RVM</h2>
+
+<p>There are some pretty good <a href="http://rvm.beginrescueend.com/rvm/install/">installation instructions</a> on the rvm site. The actual installation is a just single command.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="nv">$ </span>bash &lt; &lt;<span class="o">(</span>curl -B http://rvm.beginrescueend.com/install/rvm<span class="o">)</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>You&#8217;ll see a bunch of output, and towards the bottom, a confirmation message saying &#8220;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&#8221;, but that&#8217;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="o">[[</span> -s <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> . <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>After that, source your profile and check rvm is present and accessible.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+<span class='line'>5</span>
+<span class='line'>6</span>
+<span class='line'>7</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="nv">$ </span><span class="nb">source</span> ~/.bash_profile
+</div><div class='line'><span class="nv">$ </span>which rvm/Users/sgleadow/.rvm/bin/rvm
+</div><div class='line'>/Users/sgleadow/.rvm/bin/rvm
+</div><div class='line'><span class="nv">$ </span>rvm --version
+</div><div class='line'>rvm 1.5.2 by Wayne E. Seguin <span class="o">(</span>wayneeseguin@gmail.com<span class="o">)</span> <span class="o">[</span>http://rvm.beginrescueend.com/<span class="o">]</span>
+</div><div class='line'><span class="nv">$ </span><span class="nb">type </span>rvm | head -1
+</div><div class='line'>rvm is a <span class="k">function</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
+<h2>Installing some Rubies</h2>
+
+<p>Now that rvm is installed, let&#8217;s install some rubies to use with it. First, check which ruby versions are available.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="nv">$ </span>rvm list known
+</div><div class='line'>...
+</div><div class='line'><span class="o">[</span>ruby-<span class="o">]</span>1.8.7<span class="o">[</span>-p334<span class="o">]</span>
+</div><div class='line'>...
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>I&#8217;ll install the main two versions that I&#8217;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&#8217;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="nv">$ </span>rvm install 1.8.7
+</div><div class='line'><span class="nv">$ </span>rvm install 1.9.2
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>I&#8217;m still using 1.8.7 for some things at the moment, so I&#8217;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+<span class='line'>5</span>
+<span class='line'>6</span>
+<span class='line'>7</span>
+<span class='line'>8</span>
+<span class='line'>9</span>
+<span class='line'>10</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="nv">$ </span>rvm --default use 1.8.7
+</div><div class='line'><span class="nv">$ </span>ruby -v
+</div><div class='line'>ruby 1.8.7 <span class="o">(</span>2011-02-18 patchlevel 334<span class="o">)</span> <span class="o">[</span>i686-darwin10.7.0<span class="o">]</span>
+</div><div class='line'><span class="nv">$ </span>which ruby
+</div><div class='line'>/Users/sgleadow/.rvm/rubies/ruby-1.8.7-p334/bin/ruby
+</div><div class='line'><span class="nv">$ </span>which gem
+</div><div class='line'>/Users/sgleadow/.rvm/rubies/ruby-1.8.7-p334/bin/gem
+</div><div class='line'><span class="nv">$ </span>rvm list default
+</div><div class='line'>Default Ruby <span class="o">(</span><span class="k">for </span>new shells<span class="o">)</span>
+</div><div class='line'>ruby-1.8.7-p334 <span class="o">[</span> x86_64 <span class="o">]</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>Done. We have rvm up and running</p>
+
+<h2>Setting up your gemsets</h2>
+
+<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&#8217;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
+
+<p>I should have a pretty clean slate to start on for my gems. I&#8217;m not 100% on whether rvm will use my old system gems or not, but I&#8217;ve cleaned them all out anyway, so it shouldn&#8217;t be a problem.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+<span class='line'>5</span>
+<span class='line'>6</span>
+<span class='line'>7</span>
+<span class='line'>8</span>
+<span class='line'>9</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="nv">$ </span>gem list
+</div><div class='line'>*** LOCAL GEMS ***
+</div><div class='line'>rake <span class="o">(</span>0.8.7<span class="o">)</span>
+</div><div class='line'><span class="nv">$ </span>rvm list gemsets
+</div><div class='line'>rvm <span class="nv">gemsets</span>
+</div><div class='line'><span class="o">=</span>&gt; ruby-1.8.7-head <span class="o">[</span> x86_64 <span class="o">]</span>
+</div><div class='line'>   ruby-1.8.7-head@global <span class="o">[</span> x86_64 <span class="o">]</span>
+</div><div class='line'>   ruby-1.9.2-head <span class="o">[</span> x86_64 <span class="o">]</span>
+</div><div class='line'>   ruby-1.9.2-head@global <span class="o">[</span> x86_64 <span class="o">]</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>rvm will set up a default gemset for you, but I&#8217;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&#8217;m setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&#8217;s automatic.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="nv">$ </span>cat my_project/.rvmrc
+</div><div class='line'>rvm --create use ruby-1.8.7-p334@frank
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>Once the .rvmrc file is created, leave and return to the directory to kick it off, authorise it and you should see something like <code>Using /Users/sgleadow/.rvm/gems/ruby-1.8.7-p334 with gemset frank</code> printed to the console. To double check we are, in fact, using the newly created gemset, use <code>rvm list gemsets</code> or <code>rvm gemset list</code> and check the little hashrocket is pointing to the new gemset. Do another <code>gem list</code> to double check you have a clean slate.</p>
+
+<p>Most of my projects use bundler, so first I&#8217;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
+
+<figure role=code><figcaption><span></span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+</pre></td><td class='code' width='100%'><pre><code class='bash'><div class='line'><span class="nv">$ </span>rm .bundle/config
+</div><div class='line'><span class="nv">$ </span>rm -r vendor/bundle
+</div><div class='line'><span class="nv">$ </span>gem install bundler
+</div><div class='line'><span class="nv">$ </span>bundle
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you&#8217;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
+</div>
+  
+  
+
+
+  </article>
+
+
+  <article>
+    
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">Cleaning Out Ruby Gems Under OS X</a></h1>
     
     
@@ -188,6 +362,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/">Running OCUnit &amp; Kiwi Tests on the Command Line</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">Installing RVM on OS X Lion</a>
       </li>
     
@@ -201,10 +379,6 @@
     
       <li class="post">
         <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/">Adding Unit Tests to an Existing iOS Project</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/">Universal Static Libraries and Frameworks for iOS</a>
       </li>
     
   </ul>
@@ -263,7 +437,7 @@
     </div>
   </div>
   <footer><p>
-  Copyright &copy; 2011 - Stewart Gleadow -
+  Copyright &copy; 2012 - Stewart Gleadow -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

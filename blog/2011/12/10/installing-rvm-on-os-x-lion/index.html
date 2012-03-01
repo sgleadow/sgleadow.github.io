@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Installing RVM on OS X Lion - Stewart Gleadow's Blog</title>
+  <meta name="author" content="Stewart Gleadow">
+
+  
+  <meta name="description" content="I wrote a post a little while ago about transferring my Ruby dev environments to use rvm to organise and separate Ruby envinroments and assosiated &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stewart Gleadow's Blog</a></h1>
+  
+    <h2>My ramblings about iOS and other software topics.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sgleadow.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul role=main-navigation>
+  <li><a href="/about.html">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/talks.html">Talks</a></li>
+  <li><a href="https://github.com/sgleadow">Code</a></li>
+  <li><a href="http://twitter.com/stewgleadow">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Installing RVM on OS X Lion</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-10T19:28:00+11:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I wrote a post a little while ago about transferring my Ruby dev environments to use <a href="http://beginrescueend.com/">rvm</a> to organise and separate Ruby envinroments and assosiated <a href="http://beginrescueend.com/gemsets/">gemsets</a>. I just got a new MacBook Air which I&#8217;m setting up at the moment, so I&#8217;m running through the set up process again. Here are my notes.</p>
+
+<p>There are a few rvm haters out there who find it to be over-engineered and trying to do too much. If that&#8217;s you, there is another, more lightweight tool called <a href="https://github.com/sstephenson/rbenv">rbenv</a> that you can use and if you really like separate gemsets, someone has written <a href="https://github.com/jamis/rbenv-gemset">rbenv-gemset</a> to go with it. I have a handful of projects already set up with rvm, so I&#8217;m going to keep using it for now.</p>
+
+<p>Installing rvm itself is pretty easy. The <a href="http://beginrescueend.com/">rvm homepage</a> gives a quick install command:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then add this to your shell profile:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That works fine. Now it&#8217;s time to install some rubies - at the moment I have projects using 1.8.7 and 1.9.2, and I&#8217;d like to use 1.9.3 going forward. I used the following command and got an error:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>rvm install 1.8.7
+</span><span class='line'>...
+</span><span class='line'>ERROR: There has been an error while running configure. Halting the installation.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It turns out this is a common issue in OS X Lion because gcc is just a sym link to LLVM, and the whole installation gets a bit confused (that&#8217;s the technical term for it). I read on <a href="http://www.mattpolito.info/post/9383196211/rvm-ruby-install-on-lion-got-you-down">Matt Polito&#8217;s blog</a> that you can simply point the CC environment variable straight to GCC 4.2 like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>CC=/usr/bin/gcc-4.2 rvm install &lt;ruby version&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That didn&#8217;t work for me. I&#8217;m using a brand new machine with Xcode 4.2 installed. It turns out this solution worked for Xcode 4.1 but 4.2 does not install the right gcc to use. One solution I saw was to roll back to Xcode 4.1 and then install Xcode 4.2 again. That seemed like it would take a while, so I used the standalone OS X GCC installer from https://github.com/kennethreitz/osx-gcc-installer. After that, installing different Rubies worked fine. I&#8217;m hoping that installing gcc like this doesn&#8217;t mess up my Xcode 4.2. So far so good, the few Xcode projects I&#8217;ve tried still compile and run fine.</p>
+
+<p><strong>Edit:</strong> I think next time I will try the approach mentioned by <a href="https://twitter.com/tonyarnold">Tony Arnold</a> in the comments below, using the <code>--with-gcc=clang</code> option to rvm, something like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>rvm install 1.9.3 --reconfigure --debug -C --enable-pthread --with-gcc=clang</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Stewart Gleadow</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-10T19:28:00+11:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/" data-via="stewgleadow" data-counturl="http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/" title="Previous Post: Enabling Accessibility Programatically on iOS Devices">&laquo; Enabling Accessibility Programatically on iOS Devices</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/" title="Next Post: Running OCUnit &amp; Kiwi Tests on the Command Line">Running OCUnit &amp; Kiwi Tests on the Command Line &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/">Running OCUnit &amp; Kiwi Tests on the Command Line</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">Installing RVM on OS X Lion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/">Enabling Accessibility Programatically on iOS Devices</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/">Installing iOS Apps on the Device From the Command Line</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/">Adding Unit Tests to an Existing iOS Project</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'sgleadow',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("stewgleadow", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
+  
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Stewart Gleadow -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'sgleadow-blog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/';
+        var disqus_url = 'http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

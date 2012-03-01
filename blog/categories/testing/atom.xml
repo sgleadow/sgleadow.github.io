@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: testing | Stewart Gleadow's Blog]]></title>
+  <link href="http://sgleadow.github.com/blog/categories/testing/atom.xml" rel="self"/>
+  <link href="http://sgleadow.github.com/"/>
+  <updated>2012-03-01T19:52:28+11:00</updated>
+  <id>http://sgleadow.github.com/</id>
+  <author>
+    <name><![CDATA[Stewart Gleadow]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Enabling Accessibility Programatically on iOS Devices]]></title>
+    <link href="http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/"/>
+    <updated>2011-11-16T08:29:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices</id>
+    <content type="html"><![CDATA[<p>I wrote a recent post on <a href="/blog/2011/10/14/enabling-accessibility-for-ios-applications/">enabling accessibility for iOS applications</a>, which ended with a snippet of code for automatically enabling accessibility on the iOS simulator. This is essential if you want to have your tests running on a continuous integration server, since the accessibility inspector is off by default.</p>
+
+<p>I hadn't yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
+
+<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn't sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
+
+<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It's a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
+
+<p>After following the standard KIF set up instructions, I write the following test:</p>
+
+<p>```objc
+- (void)initializeScenarios;
+{</p>
+
+<pre><code>KIFTestScenario *loadScreen = [KIFTestScenario scenarioWithDescription:@"Test app loads up on correct screen"];
+[loadScreen addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Master"]];
+[self addScenario:loadScreen];
+
+
+KIFTestScenario *navigateToDetails = [KIFTestScenario scenarioWithDescription:@"Test can navigate"];
+[navigateToDetails addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Detail"]];
+[navigateToDetails addStep:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Detail view content goes here"]];
+[self addScenario:navigateToDetails];
+</code></pre>
+
+<p>}
+```</p>
+
+<p>That works fine on the simulator, whether you have explicitly enabled accessibility or not now that the maintainers of KIF have merged in <a href="https://github.com/square/KIF/pull/78">my pull request</a>. That code only runs for the simulator, and does nothing if <code>IPHONE_SIMULATOR_ROOT</code> is not available in the <code>[[NSProcessInfo processInfo] environment]</code>. The KIF test will only run on the device (at least for me) if I turned VoiceOver on, which is a pain and not possible to automate.</p>
+
+<p>I modified the code so that on the device, it does not try to prepend the simulator root when running on the device, and points to <code>@"/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport"</code> directly. Amazingly, the KIF test then worked and all accessibility values were available to the tests. The updated code to enable accessibility programmatically on the device or the simulator looks like this:</p>
+
+<p>```objc
++ (void)_enableAccessibilityInSimulator;
+{</p>
+
+<pre><code>NSAutoreleasePool *autoreleasePool = [[NSAutoreleasePool alloc] init];
+NSString *appSupportLocation = @"/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport";
+
+NSDictionary *environment = [[NSProcessInfo processInfo] environment];
+NSString *simulatorRoot = [environment objectForKey:@"IPHONE_SIMULATOR_ROOT"];
+if (simulatorRoot) {
+    appSupportLocation = [simulatorRoot stringByAppendingString:appSupportLocation];
+}
+
+void *appSupportLibrary = dlopen([appSupportLocation fileSystemRepresentation], RTLD_LAZY);
+
+CFStringRef (*copySharedResourcesPreferencesDomainForDomain)(CFStringRef domain) = dlsym(appSupportLibrary, "CPCopySharedResourcesPreferencesDomainForDomain");
+
+if (copySharedResourcesPreferencesDomainForDomain) {
+    CFStringRef accessibilityDomain = copySharedResourcesPreferencesDomainForDomain(CFSTR("com.apple.Accessibility"));
+
+    if (accessibilityDomain) {
+        CFPreferencesSetValue(CFSTR("ApplicationAccessibilityEnabled"), kCFBooleanTrue, accessibilityDomain, kCFPreferencesAnyUser, kCFPreferencesAnyHost);
+        CFRelease(accessibilityDomain);
+    }
+}
+
+[autoreleasePool drain];
+</code></pre>
+
+<p>}
+```</p>
+
+<p>I'm a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device - but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I'm comfortable with it for now. I'm hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
+
+<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I'm hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing iOS Apps on the Device From the Command Line]]></title>
+    <link href="http://sgleadow.github.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/"/>
+    <updated>2011-11-05T10:50:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line</id>
+    <content type="html"><![CDATA[<p>One of the reasons I run most of my tests in the simulator is that it is easy to install and run applications automatically from the command line with tools like <a href="https://github.com/Fingertips/ios-sim">ios-sim</a>. Being able to run your tests from the command line make s it simple to set up continuous integration. I've used an Applescript to drive iTunes back in Xcode 3 days but it just felt wrong.</p>
+
+<p>The most recent functional testing tool I've been playing with is Apple's own <em>UIAutomation</em>, which runs within the Instruments app. I'll write more about that separately, but let's just say I don't think it's an ideal testing tool, especially if TDD and CI are important to you. Some details are in my <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project">comparison of a few functional testing tools</a>. The <code>instruments</code> command line tool does not seem to install the app on the device before running tests, which means you still need to use Xcode to manually install the app. Enter <code>fruitstrap</code>.</p>
+
+<h2>Fruitstrap</h2>
+
+<p><a href="https://github.com/ghughes/fruitstrap">Fruitstrap</a> is a command line tool that uses the private MobileDevice API to install an iOS application on a physical device over USB. It's pretty easy to get set up.</p>
+
+<p><code>
+git clone git://github.com/ghughes/fruitstrap.git
+cd fruitstrap
+make fruitstrap
+</code></p>
+
+<p>Fruitstrap comes with a demo applicaiton, which you can compile and install on a device using <code>make install</code>. I actually had a few issues getting the demo app to work, but I did get it working for actual sample applications. You now have the <code>fruitstrap</code> command compiled and ready to go - if you want to access the command from anywhere you probably want to add it to you path, or sym link it to <code>/usr/local/bin</code> or however you like to tinker with your machine.</p>
+
+<h2>Building from the command line</h2>
+
+<p>I made a little sample application to play around with <code>fruitstrap</code> and scripting on my <a href="https://github.com/sgleadow">github</a>, in a project called <a href="https://github.com/sgleadow/fruitstrap-demo">fruitstrap-demo</a>. It's just a simple Single View Application with a couple of labels so you know it's the right app. To get the repository:</p>
+
+<p><code>git clone git://github.com/sgleadow/fruitstrap-demo.git</code></p>
+
+<p>Just to make sure everything is working, open up the project in Xcode and build and run to your device. If that doesn't work, fruitstrap isn't going to help you much. The <code>xcodebuild</code> command allows us to build our iOS apps from the command line fairly easily. The command I used was:</p>
+
+<p><code>
+xcodebuild -scheme fruitstrap-demo -sdk iphoneos build
+</code></p>
+
+<p>Remember to use the <code>iphoneos</code> so that it builds your app for the device. Note, I originally tried this with the old <em>target</em> settings for <code>xcodebuild</code>, but it turned out I needed to use schemes for reasons explained below. The app will be built to <code>build/Debug-iphoneos/fruitstrap-demo.app</code>.</p>
+
+<h2>Try out fruitstrap</h2>
+
+<p>Now we have an application build on the command line, let's make sure fruitstrap works for our app. Make sure to remove your sample app from the device beforehand so you know it's working. Then use the <code>xcodebuild</code> command above to compile the app so it's ready to go, and make sure you know the full path to fruitstrap, or you've put fruitstrap on your path.</p>
+
+<p><code>
+fruitstrap build/Debug-iphoneos/fruitstrap-demo.app
+</code></p>
+
+<p>You should see a bunch of output and progress information finishing with the magic <code>[100%] Installed package build/Debug-iphoneos/fruitstrap-demo.app</code>, and in a few moments, the app appears in <em>Springboard</em> on your phone. That's pretty cool - I've been trying to find a solution for installing on the device like that for a long time!</p>
+
+<p>If you have more than one device plugged in (which is usually the case on a mobile continuous integration server), you'll need to also specify the device id.</p>
+
+<h2>Scripting the fruitstrap installation</h2>
+
+<p>My next goal is to write a little shell script that we can integrate into a build phase in Xcode, so that we don't have to hard code the path <code>build/Debug-iphoneos</code> into out shell script. I immediately reached for the Build Phases tab of the fruitstrap-demp target to optionally run the fruitstrap install code. However, these shell scripts seem to get called <em>before</em> the code signing is run, in which case, installing to the device will fail.</p>
+
+<p>I found out from <a href="http://stackoverflow.com/questions/1409981/how-to-run-a-script-after-xcode-runs-codesign-on-my-iphone-app">this stackoverflow thread</a> that you can run pre and post scripts for a scheme. This allows us to hook up a shell script to run fruitstrap <em>after</em> the code signing.</p>
+
+<p>There is only one scheme in the sample project, so select <em>Edit Scheme...</em>, and select the <em>Build</em> action from the list on the left hand side. There are no actions at the moment, so press the <strong>+</strong> button and add a <em>Run Script Action</em>. Since we need to know where our target has been compiled, make sure that the <em>provide build settings from</em> option is set to <em>fruitstrap-demo</em>, as show in the following screenshot.</p>
+
+<p><img src="/images/posts/fruitstrap/fruitstrap-scheme-post-script.png" title="Running a script in the post action for a scheme" ></p>
+
+<p>The actual script code is shown below. It only runs if the <code>FRUITSTRAP_CLI</code> environment variable is set, since most of the time we don't want Xcode to be using this third party tool to install on the device. We only need it to run when running from the command line as part of our continuous integration build. It seems the scheme scripts do not get run in the same working directory as you run xcodebuild, so our script makes sure to change to SRCROOT before running fruitstrap.</p>
+
+<p>```</p>
+
+<h1>Do nothing unless we are running from the command line</h1>
+
+<p>if [ "$FRUITSTRAP_CLI" = "" ]; then
+exit 0
+fi</p>
+
+<p>echo "<strong><strong><strong><strong><strong><strong><strong><strong><strong>"
+echo "Installing app to device using fruitstrap..."
+echo "Workspace location: $SRCROOT"
+echo "Install location: $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME"
+echo "</strong></strong></strong></strong></strong></strong></strong></strong></strong>"</p>
+
+<p>cd $SRCROOT
+fruitstrap $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME</p>
+
+<p>echo "******************"
+```</p>
+
+<p>Check that when you run the xcodebuild example above that it <em>does not</em> run fruitstrap, since we don't want it to in that normal operation. Now, try building the scheme with the environment variable set and check that it does in fact build and install to the device.</p>
+
+<p><code>
+FRUITSTRAP_CLI=1 xcodebuild -scheme fruitstrap-demo -sdk iphoneos build
+</code></p>
+
+<p>Done. One command to build and install the app on the device.</p>
+
+<h2>More about fruitstrap</h2>
+
+<p>There is more information about fruitstrap on <a href="https://github.com/ghughes/fruitstrap">its github page</a>.</p>
+
+<p>One extra feature fruitstrap has is to be able to launch the application and attach a debugger, by using the <code>-d</code> option. I've had mixed success with this feature, it doesn't always work for me. I'm not sure how much use it is to me anyway if the point of this is running in CI.</p>
+
+<p><code>
+fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app
+</code></p>
+
+<h2>Summary</h2>
+
+<p>Now we can build the application and install it on the device from the command line. From here, the next step is to hook it up to the <code>instruments</code> command line interface. Massive thanks to <a href="https://twitter.com/#!/heardrwt">Richie</a> for letting me know about fruitstrap.</p>
+
+<p>Ideally, I would like to be able to boot the app on the device <em>without</em> being hooked into the debugger. I'm not sure if this is possible, I certainly haven't got it working with fruitstrap yet - and the hairy C code isn't making me want to jump in and try just yet. What we have now is enough to get UIAutomation up and running, since <code>instruments</code> will boot the app when the tests start. However, I'd prefer to use Frank or KIF in which case I need to find a way to boot onto the device.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Adding Unit Tests to an Existing iOS Project]]></title>
+    <link href="http://sgleadow.github.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/"/>
+    <updated>2011-10-30T16:30:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project</id>
+    <content type="html"><![CDATA[<p>I recently came across a post from the guys at <a href="http://twobitlabs.com">Two Bit Labs</a> on <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">Adding Unit Tests to an existing iOS project</a> with Xcode 4.</p>
+
+<p>I always include unit tests by default in any project that is more than a demo, but up until recently I have always used <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. <a href="http://twitter.com/#!/makdad">Mark Makdad</a> wrote a piece earlier in the year <a href="http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit">comparing GHUnit and OCUnit</a>. That post combined with <a href="https://github.com/allending/Kiwi">Kiwi</a>'s Rspec-style wrappers around OCUnit has made me consider using Apple's built in unit testing again.</p>
+
+<p>I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the <em>Test</em> build action hooked up. This isn't exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press <code>Cmd + U</code> or select <code>Product &gt; Test</code> from the menu.</p>
+
+<h2>Adding the test action to an existing scheme</h2>
+
+<p>When I select my target, called <em>Development</em>, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you... but here is what I had to do in order to get my unit tests hooked up to my main Development target's scheme.</p>
+
+<p>Select your main target's scheme in the little scheme selector in the Xcode toolbar, and choose <em>Edit Scheme...</em> from the drop down menu. When you select the <em>Test</em> build action on the left, you'll notice no tests appear in the list. Tap the <em>+</em> button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press <em>Add</em>.</p>
+
+<p><img src="/images/posts/adding-unit-tests/adding-test-action-to-scheme.png" title="Adding tests to the scheme's test action" ></p>
+
+<p>You should see the test bundle appear in the table, as shown in the image above. Tap on the <em>Build</em> action for this scheme, and you will notice that there are now two targets lists: our application and our unit tests. The tests are only linked up to the <em>Test</em> build action by default, which should look similar to the image below.</p>
+
+<p><img src="/images/posts/adding-unit-tests/test-build-action.png" title="Checking the two targets in the build action" ></p>
+
+<h2>Running your unit tests</h2>
+
+<p>Now that your unit tests are hooked up to your test build action, select your main target's scheme. The menu item <code>Product &gt; Test</code> should now be active. Select <em>Test</em>, and Xcode will build your application and run your tests. When creating the test bundle, Apple's default test case includes a failure, so if the tests run, you will see that failure.</p>
+
+<p>Just to double check you've got all your target dependencies set up correctly, try a full clean (hold <em>Option</em> while selecting <code>Product &gt; Clean</code>) and then press <em>Cmd + U</em>. This should trigger a full build and run the unit tests and show your test failure again.</p>
+
+<p>If you see an error like <code>ld: file not found:</code> <code>&lt;path to app&gt;/Debug-iphonesimulator/Development.app/Development</code>, it's likely your test target does not automatically build your main application under test, as explained in the <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">original article</a>: select your project in the navigator, select your unit test target, open the <em>Build Phases</em> tab and add your app target as a dependency. Ending up with something like the image shown.</p>
+
+<p><img src="/images/posts/adding-unit-tests/test-target-dependency.png" title="Setting up dependencies for your test target" ></p>
+
+<p>Now... do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Which Automated iOS Testing Tool To Use]]></title>
+    <link href="http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
+    <updated>2011-10-26T22:38:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
+    <content type="html"><![CDATA[<p>I've been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:</p>
+
+<ul>
+<li>Frank</li>
+<li>KIF</li>
+<li>UIAutomation</li>
+</ul>
+
+
+<p>Other tools that might be worth looking at, but I haven't used and wont comment on are: NativeDriver, LessPainful, iCuke and UISpec.</p>
+
+<p>I recently watched a recording of Pete Hodgson (@beingagile), the primary maintainer of Frank in which he gave a quick summary of the other testing tools, and when it might be appropriate to use them. I made a few notes, and added some of my own thoughts. There is a <a href="http://pivotallabs.com/talks/147-frank-cucumber-tests-for-native-ios-apps">video of the talk</a> Pete gave at <a href="http://pivotallabs.com/">Pivotal Labs</a>.</p>
+
+<h2>Frank</h2>
+
+<p>Frank has been described as Selenium for native iOS apps. It's a tool written mainly by some fellow Thoughtworkers that uses a combination of <a href="http://cukes.info/">Cucumber</a> and JSON commands that are sent to a server running inside your native application, and leverages <a href="http://code.google.com/p/uispec/">UISpec</a> to run the commands. Frank used to require changes to your production code, but that's got a lot easier with the new static library approach.</p>
+
+<p>I've used Frank quite a bit, and I like it. I have a lot more I could say about it, but I'll leave that for another time. You can find out more about Frank at:</p>
+
+<ul>
+<li><a href="http://www.testingwithfrank.com">Frank's new home page</a></li>
+<li><a href="https://github.com/moredip/Frank">The github page for Frank</a></li>
+<li><a href="/talks.html">A slightly out of date talk I gave on Frank</a></li>
+</ul>
+
+
+<p><strong><em> The good parts of Frank </em></strong></p>
+
+<ul>
+<li>Clean CSS-like selector syntax, allowing for fairly tolerant tests</li>
+<li>Active community discussing and extending the library</li>
+<li>Driven by Cucumber (if you're a cuke fan)</li>
+<li>Includes <em>Symbiote</em>, a live introspection tool</li>
+<li>Command line and CI come pretty much for free</li>
+</ul>
+
+
+<p><strong><em> The bad parts of Frank </em></strong></p>
+
+<ul>
+<li>Difficult, but not impossible, to run on the device</li>
+<li>Separation between tests/native code over HTTP can confuse the cause of failure</li>
+<li>Decoupling test/native code into separate processes makes it a bit slower (Pete makes the good point that most of the slowness in your iOS tests are likely to be waiting for animations and transitions, not the HTTP communication)</li>
+<li>Very little support for gestures (but hopefully that's coming soon)</li>
+</ul>
+
+
+<p><strong><em> When using Frank might be appropriate </em></strong></p>
+
+<ul>
+<li>Your team has experience with web application testing tools (Selenium, Cucumber)</li>
+<li>You prefer a BDD style of development, with CI support</li>
+<li>Your app is not driven by complex gestures</li>
+<li>You have a goal of having cross platform tests across Android, iOS and mobile web</li>
+</ul>
+
+
+<h2>KIF</h2>
+
+<p>KIF is an Objective C based framework written at Square. It's a nice solid implementation from what I've seen, with active development going on. Since it's Objective C, you can call out to anything else in your app as well. It's a brand new test framework, so it's not going to immediately integrate with other tools (like JUnit-style XML output and that kind of thing). I haven't KIF a lot yet, so I can't comment too much but I think it shows a lot of promise. You can find out more about KIF at:</p>
+
+<ul>
+<li><a href="https://github.com/square/KIF">The github repo</a></li>
+<li><a href="https://groups.google.com/group/kif-framework">KIF Google group</a></li>
+<li><a href="http://corner.squareup.com/2011/07/ios-integration-testing.html">The initial blog post on KIF from Square</a></li>
+</ul>
+
+
+<p><strong><em> The good parts of KIF </em></strong></p>
+
+<ul>
+<li>Your tests are in Objective C. Everything in one language, easier for pure iOS devs to pick up</li>
+<li>Active community and good support</li>
+<li>Pretty reasonable support for gestures</li>
+<li>Command line and CI</li>
+</ul>
+
+
+<p><strong><em> The bad parts of KIF </em></strong></p>
+
+<ul>
+<li>Your tests are in Objective C. Non-devs will find it hard to read, doesn't make a great executable spec)</li>
+<li>Tricky to integrate with back end stubs because it's all running in-process</li>
+<li>Not stand alone</li>
+</ul>
+
+
+<p><strong><em> When using KIF might be appropriate </em></strong></p>
+
+<ul>
+<li>Primarily a developer driven team</li>
+<li>Developers have stronger Objective C skills than Ruby/Cucumber/Javascript</li>
+<li>Don't need business folk to read or write test specs</li>
+<li>Don't want to deal with the whacky regex from Cucumber</li>
+<li>Don't have really complex back end interactions to stub out</li>
+<li>Don't have cross platform requirements</li>
+</ul>
+
+
+<h2>UIAutomation</h2>
+
+<p><a href="http://developer.apple.com/library/ios/#documentation/DeveloperTools/Reference/UIAutomationRef/Introduction/Introduction.html">UIAutomation</a> is Apple's own solution for automated testing. It runs tests written in Javascript through the Instruments application that comes with the developer tools. It sounds like a no-brainer to use Apple's solution for building iOS apps, but I've found it a real pain to deal with in practice. UIAutomation is pretty good for actually driving the UI, but not great for organising and running a test suite, especially from CI. My impression is that Apple QA staff must use UIAutomation for test scripts with profiling instruments attached and actually sit there and watch, it doesn't seem to be purpose built for fully automated testing.</p>
+
+<p>At this point I would like to link to a lot of useful documentation about UIAutomation, but in practice I have found Apple's documentation to be either minimal or non-existent, and very little online discussion past the "boot up an app and tap a button in a single javascript file".</p>
+
+<p><strong><em> The good parts of UIAutomation </em></strong></p>
+
+<ul>
+<li>Apple's own tool. Doing things the way Apple wants is generally a good idea (and as Pete mentions, Apple's not going to go bust or quit iOS any time soon, so the chances are it will be supported)</li>
+<li>More closely linked to the device, I primarily run UIAutomation tests on the device, not in the simulator</li>
+<li>Good support for gestures (pinch zooming and swipes) and rotation</li>
+</ul>
+
+
+<p><strong><em> The bad parts of UIAutomation </em></strong></p>
+
+<ul>
+<li>Not built with CI in mind. The command line integration is pretty bad</li>
+<li>Can't integrate with other tools very well</li>
+<li>It's Apple's tool, and it's not open source. You can't jump in and fix the bits that are missing</li>
+<li>Runs within Instruments, seems to be aimed at regression testing not TDD and aimed at QAs not devs</li>
+</ul>
+
+
+<p><strong><em> When using UIAutomation might be appropriate </em></strong></p>
+
+<ul>
+<li>You have a separation between development and QA on your team</li>
+<li>You prefer regression test suites over a test-first approach</li>
+<li>You don't really care about CI</li>
+<li>You prefer manual QA and you just want to speed that up a bit</li>
+</ul>
+
+
+<h2>Conclusion</h2>
+
+<p>So far I've used Frank and UIAutomation on fairly large projects, and I'm very keen to try KIF. Ideally what I would like is the Frank architecture using Cucumber to drive your tests, but using KIF's implementation on the native side which is a lot more solid than UISpec. Frank would give nice clean readable test features, and integration with other tools through cucumber as well as the concise selector syntax. KIF would give gesture support and a much cleaner implementation of those features.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Enabling Accessibility for iOS applications]]></title>
+    <link href="http://sgleadow.github.com/blog/2011/10/14/enabling-accessibility-for-ios-applications/"/>
+    <updated>2011-10-14T16:24:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2011/10/14/enabling-accessibility-for-ios-applications</id>
+    <content type="html"><![CDATA[<p>I'm looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling accessibility for your apps in the simulator and on the device.</p>
+
+<h2>Why use accessibility</h2>
+
+<p>Firstly, the iPhone and iPad are setting a new standard for usability by impaired users. That's a great thing, and I think we should be making a bigger effort to support these features. Apple provides assistants like VoiceOver that use the building UIAccessibility framework. If you'd like to find out more about accessibility for the sake of accessibility, <a href="http://mattgemmell.com/2010/12/19/accessibility-for-iphone-and-ipad-apps/">Matt Gemmell</a> has a great post on the topic</p>
+
+<p>A great side effect of making an app accessible to assistive devices is that the app also becomes easier to test in an automated fashion. This post is not about how and why to use accessibility to test your app (although that is a valid topic that I will write a separate post on), it a quick guide to turning accessibility on. Generally, the properties of the UIAccessibilty framework are only available to third party testing tools like <a href="http://www.testingwithfrank.com/">Frank</a> and <a href="https://github.com/square/KIF">KIF</a> if you have accessibility enabled for the application, either in the simulator or on the device.</p>
+
+<h2>Enabling accessibility in the Simulator</h2>
+
+<p>During development, we need to enable accessibility for both OS X and the iOS Simulator. Under Mac OS X, open up the System Preferences and open the <em>Universal Access</em> pane at the top right. In the pane that opens, check the box for <em>Enable Access for Assistive Devices</em>. The OS will persist this setting from now on.</p>
+
+<p><img src="/images/posts/accessibility/osx-prefs.png" title="Universal Access in the OS X Preferences" >
+<img src="/images/posts/accessibility/enable-osx-prefs.png" title="Universal Access in the OS X Preferences" ></p>
+
+<p>Load the iOS Simulator and open the <em>Settings</em> application. Enable accessibility using the switch under <em>General > Accessibility</em>. If you see a little coloured box appear, you have successfully enabled accessibility in the simulator. The setting is stored in an underlying plist file under that iOS version of the simulator, so you will need to enable this setting for for both iOS 4 and 5 separately, but that will effect all of the device types (iPhone, iPhone Retina and iPad) for that OS version. The iOS Simulator will keep accessibility enabled as long as you don't clear out its settings. If you're anything like me, you have <em>Reset Content and Settings</em> mapped to a keyboard shortcut, you'll regularly need to navigate in and re-enable accessibility.</p>
+
+<p><img class="right" src="/images/posts/accessibility/enable-on-simulator.png" title="Enable accessibility in the iOS Simulator" ></p>
+
+<p>The small coloured box that appears is called the accessibility inspector. It shows a small summary of what is available from the UIAccessibility framework for iOS. There are two main types of information shown in the inspector: notifications and properties. Notifications are fired when the UI changes. To be honest, I've not played around with firing accessibility notifications much at all. Notifications could be a potential solution for tests that need to 'wait' until a screen transition is finished before continuing rather than busy-waiting or just a plain old sleep (you know it's not a real test suite unless there are a couple of <em>sleep</em> calls in there!).</p>
+
+<p>The properties show aspects of the selected UI element. With the accessibility inspector expanded, tap around in some of Apple's built in applications to see the UIAccessibility properties. With the accessibility inspector expanded like this, the first touch even brings up the accessibility - which is great if that's the only way to use the app, but can get in the way if you're not used to it. If you collapse the inspector using the little cross-button, touch interaction returns to normal.  In the image above I've collapsed the accessibility inspector and dragged it to the side, since the properties are available to our tests anyway, so it's easiest to get it as far off the screen as possible.</p>
+
+<h2>Enabling accessibility on the device</h2>
+
+<p>Usually, to get access to the accessibility framework on an actual iOS device, you need to enable <em>VoiceOver</em>. If you do your testing with Apple's sanctioned UIAutomation Instrument, it seems to be able to hook in automatically without you having to specifically enable those features. Although with iOS 5, I've found that to not always be the case.</p>
+
+<p>VoiceOver is pretty easy to enable in the Settings app under <em>General > Accessibility > VoiceOver</em>. Once this is enabled, the device acts in a similar way to when you have the accessibility inspector visible in the simulator. A pleasant computerised voice now describes your every gesture, and more importantly, activates the accessibility framework for all applications, including the one you want to test. Your first tap will select a UI element and read the available information about it. Double-tapping actually executes the action for a button. People using VoiceOver as a means to navigate the OS are likely to drag their finger on the screen to get a better idea of where items are relative to each other, so single-finger scrolling is also disabled. You can scroll by dragging with three fingers.</p>
+
+<p><img class="left" src="/images/posts/accessibility/itunes-configure-accessibility.png" title="Configure Universal Access in iTunes" >
+<img class="left" src="/images/posts/accessibility/itunes-voiceover-on.png" title="Enable VoiceOver in iTunes" ></p>
+
+<p>Navigate some well known apps on the phone, and see how Apple's own applications integrate with VoiceOver. To actually design an accessible application, you'll be wanting to spend a whole lot of time using VoiceOver yourself to get an idea of what information is useful and necessary. At some stage, you will pick up a test device with VoiceOver on, so it’s good to know at least how to get into the settings and turn accessibility off in order to operate manually.</p>
+
+<p>If you are only enabling VoiceOver for testing purposes, the changed gestures and audio instructions can seem to get in the way of you just using the device. If you regularly switch accessibility on and off, using iTunes is going to be much more convenient. Before the latest version of iTunes, enabling accessibility this way required the device to be plugged in via USB. I was pleasantly surprised to discover that this VoiceOver can now be toggle on and off over wifi.</p>
+
+<h2>Enabling accessibility programmatically</h2>
+
+<p><em>Note: these steps apply to the iOS Simulator only. If someone knows how to enable accessibility programmatically on the device, I would love to know</em></p>
+
+<p>When you are running tests in the simulator, it's likely that you use the <em>Reset Content and Settings...</em> menu item frequently. If you forget to reenable accessibility after this, tests will fail because UI information will not be available to the tests. We need a programmatic way to turn accessibility on. I'm not sure how to do this on the device, but in the simulator, this is just a matter of setting a flag in one of the underlying plist files. It's possible to call plist editors from the command line to do this, but then the plist file is separate for each iOS version supported by the simulator. I find it's easier to call from the Objective C code at run time, since it it possible to obtain the root for that version of the simulator.</p>
+
+<p>```objc</p>
+
+<h1>import &lt;dlfcn.h></h1>
+
+<ul>
+<li><p>(void)load
+{
+  NSAutoreleasePool *autoReleasePool = [[NSAutoreleasePool alloc] init];</p>
+
+<p>  NSString *simulatorRoot = [[[NSProcessInfo processInfo] environment] objectForKey:@"IPHONE_SIMULATOR_ROOT"];
+  if (simulatorRoot) {</p>
+
+<pre><code>  void *appSupportLibrary = dlopen([[simulatorRoot stringByAppendingPathComponent:@"/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport"] fileSystemRepresentation], RTLD_LAZY);
+  CFStringRef (*copySharedResourcesPreferencesDomainForDomain)(CFStringRef domain) = dlsym(appSupportLibrary, "CPCopySharedResourcesPreferencesDomainForDomain");
+
+  if (copySharedResourcesPreferencesDomainForDomain) {
+      CFStringRef accessibilityDomain = copySharedResourcesPreferencesDomainForDomain(CFSTR("com.apple.Accessibility"));
+
+      if (accessibilityDomain) {
+          CFPreferencesSetValue(CFSTR("ApplicationAccessibilityEnabled"), kCFBooleanTrue, accessibilityDomain, kCFPreferencesAnyUser, kCFPreferencesAnyHost);
+          CFRelease(accessibilityDomain);
+      }
+  }
+</code></pre>
+
+<p>  }</p>
+
+<p>  [autoReleasePool drain];
+}
+```</p></li>
+</ul>
+
+
+<p>I first tried to use this code in <code>init</code> for a test framework class, and it didn't seem to work. Moving the code to be called from <code>load</code> solved the problem. Since this code actually changes a <em>plist</em> file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn't bring up the inspector over the top of the UI.</p>
+
+<p>Special thanks to <a href="http://twitter.com/#!/0xced">Cedric Luthi</a>, who originally wrote the code to enable accessibility programmatically for DCIntrospect <a href="https://github.com/0xced/DCIntrospect/commit/49b76a6630cc29444aac30f14fd0fc17e22b37cf">in this commit</a>, and to an awesome colleague of mine, Sadat Rahman (@sadatrahman), for bringing that code to my attention.</p>
+]]></content>
+  </entry>
+  
+</feed>

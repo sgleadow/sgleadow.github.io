@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Installing iOS Apps on the Device From the Command Line - Stewart Gleadow's Blog</title>
+  <meta name="author" content="Stewart Gleadow">
+
+  
+  <meta name="description" content="One of the reasons I run most of my tests in the simulator is that it is easy to install and run applications automatically from the command line &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sgleadow.github.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stewart Gleadow's Blog</a></h1>
+  
+    <h2>My ramblings about iOS and other software topics.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sgleadow.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul role=main-navigation>
+  <li><a href="/about.html">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/talks.html">Talks</a></li>
+  <li><a href="https://github.com/sgleadow">Code</a></li>
+  <li><a href="http://twitter.com/stewgleadow">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Installing iOS Apps on the Device From the Command Line</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-05T10:50:00+11:00" pubdate data-updated="true">Nov 5<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>One of the reasons I run most of my tests in the simulator is that it is easy to install and run applications automatically from the command line with tools like <a href="https://github.com/Fingertips/ios-sim">ios-sim</a>. Being able to run your tests from the command line make s it simple to set up continuous integration. I&#8217;ve used an Applescript to drive iTunes back in Xcode 3 days but it just felt wrong.</p>
+
+<p>The most recent functional testing tool I&#8217;ve been playing with is Apple&#8217;s own <em>UIAutomation</em>, which runs within the Instruments app. I&#8217;ll write more about that separately, but let&#8217;s just say I don&#8217;t think it&#8217;s an ideal testing tool, especially if TDD and CI are important to you. Some details are in my <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project">comparison of a few functional testing tools</a>. The <code>instruments</code> command line tool does not seem to install the app on the device before running tests, which means you still need to use Xcode to manually install the app. Enter <code>fruitstrap</code>.</p>
+
+<h2>Fruitstrap</h2>
+
+<p><a href="https://github.com/ghughes/fruitstrap">Fruitstrap</a> is a command line tool that uses the private MobileDevice API to install an iOS application on a physical device over USB. It&#8217;s pretty easy to get set up.</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/ghughes/fruitstrap.git
+</span><span class='line'>cd fruitstrap
+</span><span class='line'>make fruitstrap</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fruitstrap comes with a demo applicaiton, which you can compile and install on a device using <code>make install</code>. I actually had a few issues getting the demo app to work, but I did get it working for actual sample applications. You now have the <code>fruitstrap</code> command compiled and ready to go - if you want to access the command from anywhere you probably want to add it to you path, or sym link it to <code>/usr/local/bin</code> or however you like to tinker with your machine.</p>
+
+<h2>Building from the command line</h2>
+
+<p>I made a little sample application to play around with <code>fruitstrap</code> and scripting on my <a href="https://github.com/sgleadow">github</a>, in a project called <a href="https://github.com/sgleadow/fruitstrap-demo">fruitstrap-demo</a>. It&#8217;s just a simple Single View Application with a couple of labels so you know it&#8217;s the right app. To get the repository:</p>
+
+<p><code>git clone git://github.com/sgleadow/fruitstrap-demo.git</code></p>
+
+<p>Just to make sure everything is working, open up the project in Xcode and build and run to your device. If that doesn&#8217;t work, fruitstrap isn&#8217;t going to help you much. The <code>xcodebuild</code> command allows us to build our iOS apps from the command line fairly easily. The command I used was:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>xcodebuild -scheme fruitstrap-demo -sdk iphoneos build</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Remember to use the <code>iphoneos</code> so that it builds your app for the device. Note, I originally tried this with the old <em>target</em> settings for <code>xcodebuild</code>, but it turned out I needed to use schemes for reasons explained below. The app will be built to <code>build/Debug-iphoneos/fruitstrap-demo.app</code>.</p>
+
+<h2>Try out fruitstrap</h2>
+
+<p>Now we have an application build on the command line, let&#8217;s make sure fruitstrap works for our app. Make sure to remove your sample app from the device beforehand so you know it&#8217;s working. Then use the <code>xcodebuild</code> command above to compile the app so it&#8217;s ready to go, and make sure you know the full path to fruitstrap, or you&#8217;ve put fruitstrap on your path.</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>fruitstrap build/Debug-iphoneos/fruitstrap-demo.app</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You should see a bunch of output and progress information finishing with the magic <code>[100%] Installed package build/Debug-iphoneos/fruitstrap-demo.app</code>, and in a few moments, the app appears in <em>Springboard</em> on your phone. That&#8217;s pretty cool - I&#8217;ve been trying to find a solution for installing on the device like that for a long time!</p>
+
+<p>If you have more than one device plugged in (which is usually the case on a mobile continuous integration server), you&#8217;ll need to also specify the device id.</p>
+
+<h2>Scripting the fruitstrap installation</h2>
+
+<p>My next goal is to write a little shell script that we can integrate into a build phase in Xcode, so that we don&#8217;t have to hard code the path <code>build/Debug-iphoneos</code> into out shell script. I immediately reached for the Build Phases tab of the fruitstrap-demp target to optionally run the fruitstrap install code. However, these shell scripts seem to get called <em>before</em> the code signing is run, in which case, installing to the device will fail.</p>
+
+<p>I found out from <a href="http://stackoverflow.com/questions/1409981/how-to-run-a-script-after-xcode-runs-codesign-on-my-iphone-app">this stackoverflow thread</a> that you can run pre and post scripts for a scheme. This allows us to hook up a shell script to run fruitstrap <em>after</em> the code signing.</p>
+
+<p>There is only one scheme in the sample project, so select <em>Edit Scheme&#8230;</em>, and select the <em>Build</em> action from the list on the left hand side. There are no actions at the moment, so press the <strong>+</strong> button and add a <em>Run Script Action</em>. Since we need to know where our target has been compiled, make sure that the <em>provide build settings from</em> option is set to <em>fruitstrap-demo</em>, as show in the following screenshot.</p>
+
+<p><img src="/images/posts/fruitstrap/fruitstrap-scheme-post-script.png" title="Running a script in the post action for a scheme" ></p>
+
+<p>The actual script code is shown below. It only runs if the <code>FRUITSTRAP_CLI</code> environment variable is set, since most of the time we don&#8217;t want Xcode to be using this third party tool to install on the device. We only need it to run when running from the command line as part of our continuous integration build. It seems the scheme scripts do not get run in the same working directory as you run xcodebuild, so our script makes sure to change to SRCROOT before running fruitstrap.</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'># Do nothing unless we are running from the command line
+</span><span class='line'>if [ "$FRUITSTRAP_CLI" = "" ]; then
+</span><span class='line'>exit 0
+</span><span class='line'>fi
+</span><span class='line'>
+</span><span class='line'>echo "******************"
+</span><span class='line'>echo "Installing app to device using fruitstrap..."
+</span><span class='line'>echo "Workspace location: $SRCROOT"
+</span><span class='line'>echo "Install location: $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME"
+</span><span class='line'>echo "******************"
+</span><span class='line'>
+</span><span class='line'>cd $SRCROOT
+</span><span class='line'>fruitstrap $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME
+</span><span class='line'>
+</span><span class='line'>echo "******************"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Check that when you run the xcodebuild example above that it <em>does not</em> run fruitstrap, since we don&#8217;t want it to in that normal operation. Now, try building the scheme with the environment variable set and check that it does in fact build and install to the device.</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>FRUITSTRAP_CLI=1 xcodebuild -scheme fruitstrap-demo -sdk iphoneos build</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Done. One command to build and install the app on the device.</p>
+
+<h2>More about fruitstrap</h2>
+
+<p>There is more information about fruitstrap on <a href="https://github.com/ghughes/fruitstrap">its github page</a>.</p>
+
+<p>One extra feature fruitstrap has is to be able to launch the application and attach a debugger, by using the <code>-d</code> option. I&#8217;ve had mixed success with this feature, it doesn&#8217;t always work for me. I&#8217;m not sure how much use it is to me anyway if the point of this is running in CI.</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Summary</h2>
+
+<p>Now we can build the application and install it on the device from the command line. From here, the next step is to hook it up to the <code>instruments</code> command line interface. Massive thanks to <a href="https://twitter.com/#!/heardrwt">Richie</a> for letting me know about fruitstrap.</p>
+
+<p>Ideally, I would like to be able to boot the app on the device <em>without</em> being hooked into the debugger. I&#8217;m not sure if this is possible, I certainly haven&#8217;t got it working with fruitstrap yet - and the hairy C code isn&#8217;t making me want to jump in and try just yet. What we have now is enough to get UIAutomation up and running, since <code>instruments</code> will boot the app when the tests start. However, I&#8217;d prefer to use Frank or KIF in which case I need to find a way to boot onto the device.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Stewart Gleadow</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-05T10:50:00+11:00" pubdate data-updated="true">Nov 5<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ci/'>ci</a>, <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sgleadow.github.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/" data-via="stewgleadow" data-counturl="http://sgleadow.github.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/" title="Previous Post: Adding Unit Tests to an Existing iOS Project">&laquo; Adding Unit Tests to an Existing iOS Project</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/" title="Next Post: Enabling Accessibility Programatically on iOS Devices">Enabling Accessibility Programatically on iOS Devices &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/">Running OCUnit &amp; Kiwi Tests on the Command Line</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">Installing RVM on OS X Lion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/">Enabling Accessibility Programatically on iOS Devices</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/">Installing iOS Apps on the Device From the Command Line</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/">Adding Unit Tests to an Existing iOS Project</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'sgleadow',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("stewgleadow", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
+  
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Stewart Gleadow -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'sgleadow-blog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sgleadow.github.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/';
+        var disqus_url = 'http://sgleadow.github.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

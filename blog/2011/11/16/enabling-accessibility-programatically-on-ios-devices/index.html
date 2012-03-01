@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Enabling Accessibility Programatically on iOS Devices - Stewart Gleadow's Blog</title>
+  <meta name="author" content="Stewart Gleadow">
+
+  
+  <meta name="description" content="I wrote a recent post on enabling accessibility for iOS applications, which ended with a snippet of code for automatically enabling accessibility on &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stewart Gleadow's Blog</a></h1>
+  
+    <h2>My ramblings about iOS and other software topics.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sgleadow.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul role=main-navigation>
+  <li><a href="/about.html">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/talks.html">Talks</a></li>
+  <li><a href="https://github.com/sgleadow">Code</a></li>
+  <li><a href="http://twitter.com/stewgleadow">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Enabling Accessibility Programatically on iOS Devices</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-16T08:29:00+11:00" pubdate data-updated="true">Nov 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I wrote a recent post on <a href="/blog/2011/10/14/enabling-accessibility-for-ios-applications/">enabling accessibility for iOS applications</a>, which ended with a snippet of code for automatically enabling accessibility on the iOS simulator. This is essential if you want to have your tests running on a continuous integration server, since the accessibility inspector is off by default.</p>
+
+<p>I hadn&#8217;t yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
+
+<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn&#8217;t sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
+
+<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It&#8217;s a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
+
+<p>After following the standard KIF set up instructions, I write the following test:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initializeScenarios</span><span class="p">;</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">KIFTestScenario</span> <span class="o">*</span><span class="n">loadScreen</span> <span class="o">=</span> <span class="p">[</span><span class="n">KIFTestScenario</span> <span class="nl">scenarioWithDescription:</span><span class="s">@&quot;Test app loads up on correct screen&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loadScreen</span> <span class="nl">addStep:</span><span class="p">[</span><span class="n">KIFTestStep</span> <span class="nl">stepToWaitForViewWithAccessibilityLabel:</span><span class="s">@&quot;Master&quot;</span><span class="p">]];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">self</span> <span class="nl">addScenario:</span><span class="n">loadScreen</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">KIFTestScenario</span> <span class="o">*</span><span class="n">navigateToDetails</span> <span class="o">=</span> <span class="p">[</span><span class="n">KIFTestScenario</span> <span class="nl">scenarioWithDescription:</span><span class="s">@&quot;Test can navigate&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">navigateToDetails</span> <span class="nl">addStep:</span><span class="p">[</span><span class="n">KIFTestStep</span> <span class="nl">stepToTapViewWithAccessibilityLabel:</span><span class="s">@&quot;Detail&quot;</span><span class="p">]];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">navigateToDetails</span> <span class="nl">addStep:</span><span class="p">[</span><span class="n">KIFTestStep</span> <span class="nl">stepToWaitForViewWithAccessibilityLabel:</span><span class="s">@&quot;Detail view content goes here&quot;</span><span class="p">]];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">self</span> <span class="nl">addScenario:</span><span class="n">navigateToDetails</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That works fine on the simulator, whether you have explicitly enabled accessibility or not now that the maintainers of KIF have merged in <a href="https://github.com/square/KIF/pull/78">my pull request</a>. That code only runs for the simulator, and does nothing if <code>IPHONE_SIMULATOR_ROOT</code> is not available in the <code>[[NSProcessInfo processInfo] environment]</code>. The KIF test will only run on the device (at least for me) if I turned VoiceOver on, which is a pain and not possible to automate.</p>
+
+<p>I modified the code so that on the device, it does not try to prepend the simulator root when running on the device, and points to <code>@"/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport"</code> directly. Amazingly, the KIF test then worked and all accessibility values were available to the tests. The updated code to enable accessibility programmatically on the device or the simulator looks like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">_enableAccessibilityInSimulator</span><span class="p">;</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSAutoreleasePool</span> <span class="o">*</span><span class="n">autoreleasePool</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSAutoreleasePool</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">appSupportLocation</span> <span class="o">=</span> <span class="s">@&quot;/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">environment</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSProcessInfo</span> <span class="n">processInfo</span><span class="p">]</span> <span class="n">environment</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">NSString</span> <span class="o">*</span><span class="n">simulatorRoot</span> <span class="o">=</span> <span class="p">[</span><span class="n">environment</span> <span class="nl">objectForKey:</span><span class="s">@&quot;IPHONE_SIMULATOR_ROOT&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">simulatorRoot</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">appSupportLocation</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulatorRoot</span> <span class="nl">stringByAppendingString:</span><span class="n">appSupportLocation</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="o">*</span><span class="n">appSupportLibrary</span> <span class="o">=</span> <span class="n">dlopen</span><span class="p">([</span><span class="n">appSupportLocation</span> <span class="n">fileSystemRepresentation</span><span class="p">],</span> <span class="n">RTLD_LAZY</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CFStringRef</span> <span class="p">(</span><span class="o">*</span><span class="n">copySharedResourcesPreferencesDomainForDomain</span><span class="p">)(</span><span class="n">CFStringRef</span> <span class="n">domain</span><span class="p">)</span> <span class="o">=</span> <span class="n">dlsym</span><span class="p">(</span><span class="n">appSupportLibrary</span><span class="p">,</span> <span class="s">&quot;CPCopySharedResourcesPreferencesDomainForDomain&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">copySharedResourcesPreferencesDomainForDomain</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">CFStringRef</span> <span class="n">accessibilityDomain</span> <span class="o">=</span> <span class="n">copySharedResourcesPreferencesDomainForDomain</span><span class="p">(</span><span class="n">CFSTR</span><span class="p">(</span><span class="s">&quot;com.apple.Accessibility&quot;</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">accessibilityDomain</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">CFPreferencesSetValue</span><span class="p">(</span><span class="n">CFSTR</span><span class="p">(</span><span class="s">&quot;ApplicationAccessibilityEnabled&quot;</span><span class="p">),</span> <span class="n">kCFBooleanTrue</span><span class="p">,</span> <span class="n">accessibilityDomain</span><span class="p">,</span> <span class="n">kCFPreferencesAnyUser</span><span class="p">,</span> <span class="n">kCFPreferencesAnyHost</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">CFRelease</span><span class="p">(</span><span class="n">accessibilityDomain</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">[</span><span class="n">autoreleasePool</span> <span class="n">drain</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&#8217;m a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device - but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I&#8217;m comfortable with it for now. I&#8217;m hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
+
+<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I&#8217;m hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Stewart Gleadow</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-16T08:29:00+11:00" pubdate data-updated="true">Nov 16<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ci/'>ci</a>, <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/" data-via="stewgleadow" data-counturl="http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/" title="Previous Post: Installing iOS Apps on the Device From the Command Line">&laquo; Installing iOS Apps on the Device From the Command Line</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/10/installing-rvm-on-os-x-lion/" title="Next Post: Installing RVM on OS X Lion">Installing RVM on OS X Lion &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/">Running OCUnit &amp; Kiwi Tests on the Command Line</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">Installing RVM on OS X Lion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/">Enabling Accessibility Programatically on iOS Devices</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/">Installing iOS Apps on the Device From the Command Line</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/">Adding Unit Tests to an Existing iOS Project</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'sgleadow',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("stewgleadow", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
+  
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Stewart Gleadow -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'sgleadow-blog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/';
+        var disqus_url = 'http://sgleadow.github.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

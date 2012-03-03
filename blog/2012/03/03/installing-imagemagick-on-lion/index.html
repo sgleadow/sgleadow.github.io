@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About - Stewart Gleadow's Blog</title>
+  <title>Installing ImageMagick on Lion - Stewart Gleadow's Blog</title>
   <meta name="author" content="Stewart Gleadow">
 
   
-  <meta name="description" content="About Sep 16th, 2011 I&#8217;m a software consultant with Thoughtworks Australia. Currently, my focus is on iOS development and testing and has been &hellip;">
+  <meta name="description" content="I needed to get ImageMagick installed this morning to play with an iOS testing tool called Zucchini that I&#8217;ll write about separately. My new &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sgleadow.github.com/about.html">
+  <link rel="canonical" href="http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,45 +67,15 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">About</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-16T18:12:00+10:00" pubdate data-updated="true">Sep 16<span>th</span>, 2011</time></p>
-  </header>
-  
-  <p>I&#8217;m a software consultant with Thoughtworks Australia. Currently, my focus is on iOS development and testing and has been for the last year or so. Who knows how long that will last. I&#8217;m also interested in Ruby, including Rails, ReST and a bunch of other things. I&#8217;m interested in functional programming without being particularly capable at it. Before Thoughtworks, my background was mainly in scientific software for Earth Science and Astronomy - using mainly C and Java.</p>
-
-<p>Anything that you read on this site, including links to presentations I have given and code I have written are my own thoughts, and not those of my employer.</p>
-
-<h2>Contact Details</h2>
-
-<p>Feel free to use the comments on and of the pages on this site, or get in touch on Twitter or via email. I do have a Google+ account but am yet to find a way to integrate it into my life in any way.</p>
-
-<ul>
-<li>Employer: Thoughtworks Australia</li>
-<li>Twitter: @stewgleadow</li>
-<li>Email (gmail): sgleadow</li>
-</ul>
-
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Installing ImageMagick on Lion</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
@@ -117,21 +87,82 @@
   
 
 
-<time datetime="2011-09-16T18:12:00+10:00" pubdate data-updated="true">Sep 16<span>th</span>, 2011</time>
+<time datetime="2012-03-03T13:49:00+11:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2012</time>
         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I&#8217;ll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I&#8217;ve found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn&#8217;t surprised ImageMagick didn&#8217;t install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>ln: ImageMagick: Permission denied
+</span><span class='line'>Error: The linking step did not complete successfully
+</span><span class='line'>The formula built, but is not symlinked into /usr/local
+</span><span class='line'>You can try again using `brew link imagemagick'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I&#8217;ll ignore that, maybe it&#8217;ll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
+
+<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn&#8217;t actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>sudo brew link little-cms
+</span><span class='line'>sudo brew link imagemagick
+</span><span class='line'>sudo brew link libtiff
+</span><span class='line'>sudo brew link jpeg</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Maybe it&#8217;s a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I&#8217;ve just ended up with such a mess of libraries in /usr/local on old machines, I&#8217;m trying to keep my new little machine as clean as possible.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sgleadow.github.com/about.html" data-via="stewgleadow" data-counturl="http://sgleadow.github.com/about.html" >Tweet</a>
+
+<span class="byline author vcard">Posted by <span class="fn">Stewart Gleadow</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-03T13:49:00+11:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion/" data-via="stewgleadow" data-counturl="http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion/" >Tweet</a>
   
   
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/" title="Previous Post: Running OCUnit &amp; Kiwi Tests on the Command Line">&laquo; Running OCUnit &amp; Kiwi Tests on the Command Line</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
   <section>
@@ -237,8 +268,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://sgleadow.github.com/about.html';
-        var disqus_url = 'http://sgleadow.github.com/about.html';
+        var disqus_identifier = 'http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion/';
+        var disqus_url = 'http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion/';
         var disqus_script = 'embed.js';
       
     (function () {

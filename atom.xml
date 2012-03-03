@@ -4,7 +4,7 @@
   <title><![CDATA[Stewart Gleadow's Blog]]></title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2012-03-01T19:52:28+11:00</updated>
+  <updated>2012-03-03T14:06:39+11:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing ImageMagick on Lion]]></title>
+    <link href="http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion/"/>
+    <updated>2012-03-03T13:49:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion</id>
+    <content type="html"><![CDATA[<p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I&#8217;ll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I&#8217;ve found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn&#8217;t surprised ImageMagick didn&#8217;t install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>ln: ImageMagick: Permission denied
+</span><span class='line'>Error: The linking step did not complete successfully
+</span><span class='line'>The formula built, but is not symlinked into /usr/local
+</span><span class='line'>You can try again using `brew link imagemagick'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I&#8217;ll ignore that, maybe it&#8217;ll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
+
+<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn&#8217;t actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>sudo brew link little-cms
+</span><span class='line'>sudo brew link imagemagick
+</span><span class='line'>sudo brew link libtiff
+</span><span class='line'>sudo brew link jpeg</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Maybe it&#8217;s a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I&#8217;ve just ended up with such a mess of libraries in /usr/local on old machines, I&#8217;m trying to keep my new little machine as clean as possible.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Running OCUnit &amp; Kiwi Tests on the Command Line]]></title>

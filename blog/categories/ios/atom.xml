@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Stewart Gleadow's Blog]]></title>
   <link href="http://sgleadow.github.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2012-03-01T19:52:28+11:00</updated>
+  <updated>2012-03-03T14:06:39+11:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -12,6 +12,146 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing ImageMagick on Lion]]></title>
+    <link href="http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion/"/>
+    <updated>2012-03-03T13:49:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2012/03/03/installing-imagemagick-on-lion</id>
+    <content type="html"><![CDATA[<p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I'll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I've found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn't surprised ImageMagick didn't install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
+
+<p><code>
+ln: ImageMagick: Permission denied
+Error: The linking step did not complete successfully
+The formula built, but is not symlinked into /usr/local
+You can try again using `brew link imagemagick'
+</code></p>
+
+<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I'll ignore that, maybe it'll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
+
+<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn't actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
+
+<p><code>
+sudo brew link little-cms
+sudo brew link imagemagick
+sudo brew link libtiff
+sudo brew link jpeg
+</code></p>
+
+<p>Maybe it's a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I've just ended up with such a mess of libraries in /usr/local on old machines, I'm trying to keep my new little machine as clean as possible.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Running OCUnit &amp; Kiwi Tests on the Command Line]]></title>
+    <link href="http://sgleadow.github.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/"/>
+    <updated>2012-02-09T07:54:00+11:00</updated>
+    <id>http://sgleadow.github.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line</id>
+    <content type="html"><![CDATA[<p>A common question I get asked is: how to I run my OCUnit tests from the command line? I've answered this a number of times, so here is a quick brain dump so I can just point to this post each time. I say OCUnit, but since <a href="https://github.com/allending/Kiwi">Kiwi</a> is just a wrapper above OCUnit, these instructions should also work for Kiwi tests.</p>
+
+<h2>Xcodebuild</h2>
+
+<p>OCUnit tests are run from a shell script during the build for that target, which is usually called something like MyAppTests. If you look at the <em>Build Phases</em> for that target, you'll see a little RunScript phase that actually runs the tests:</p>
+
+<p>```</p>
+
+<h1>Run the unit tests in this test bundle.</h1>
+
+<p>"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests"
+```</p>
+
+<p>We can then use the <code>xcodebuild</code> command line utility to run this same build from the command line. On the command line (or from a Makefile if you are so inclined), try building and running the tests:</p>
+
+<p><code>
+xcodebuild -sdk iphonesimulator -configuration Debug -scheme MyAppTests build
+</code></p>
+
+<p>This may or may not work, depending on whether or not you have <em>Logic</em> or <em>Application</em> tests. What?</p>
+
+<h2>Logic &amp; Application Unit Tests</h2>
+
+<p>I'm not sure why Apple bothers to differentiate these tests. The basic difference is that Application tests need to be run inside of a UIKit environment, while Logic tests don't. I'd prefer if the build system just detected whether it needed UIKit and decided for you. There's a longer explanation in  <a href="https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/00-About_Unit_Testing/about.html#//apple_ref/doc/uid/TP40002143">Apple's unit testing guide</a>. I often want to write unit tests for my UIViewController classes and any other UI logic, so I always tick the Application checkbox when adding unit tests to an Xcode project. If you're making a static library with no UI then you might want to select Logic.</p>
+
+<p>Anyway, if your project has <em>Logic</em> tests, the above <code>xcodebuild</code> command should run your unit tests fine and you will see the test output in the Terminal window. However, if they are Application tests, the command silently succeeds without actually running your tests. If you look near the bottom of the output, you'll see this in the output:</p>
+
+<p><code>
+/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests:95:
+warning: Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set).
+</code></p>
+
+<p>So the tests didn't even run, but the command succeeds, the build stays green and everyone's happy... but the tests aren't running.</p>
+
+<h2>Running From The Command Line</h2>
+
+<p>I usually point people to <a href="http://longweekendmobile.com/2011/04/17/xcode4-running-application-tests-from-the-command-line-in-ios/">a post from the guys at Long Weekend</a> for how to get these Application tests running from the command line. Here's quick summary:</p>
+
+<p>Open up <code>/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests</code> in your favourite editor and check out the code around line 95. You'll see the culprit line:</p>
+
+<p><code>
+Warning ${LINENO} "Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set)."
+</code></p>
+
+<p>THe <code>TEST_HOST</code> is only set when running the tests through Xcode, not from the command line. If the host isn't set, the tests don't run. We want them to run in this case. We could replace that line with the following:</p>
+
+<p><code>
+export OTHER_TEST_FLAGS="-RegisterForSystemEvents"
+RunTestsForApplication "${TEST_HOST}" "${TEST_BUNDLE_PATH}"
+</code></p>
+
+<p>This command will actually boot up your app in the iOS simulator and run the tests in that UI environment.</p>
+
+<p>I don't really feel comfortable hacking scripts in my Developer directory, so I'd rather copy this script into my project and run it from there. Also, editing the actual installed tools like this means that you have to do it on each and every machine running the tests. Even once you get it running on your machine, you'll need to log into your build machine and make the same hack there. Try making a copy of the same shell script Apple uses into your project directory:</p>
+
+<p><code>
+cd your-project
+mkdir scripts
+cp /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests scripts/
+</code></p>
+
+<p>Now edit that local copy of your shell script to replace line 95 to actually run the tests in the simulator environment. The MyAppTests target is still pointing to the system developer script. In Xcode, open up the <em>Build Phases</em> for your test target and change the <em>Run Script</em> to point to your local script:</p>
+
+<p>```</p>
+
+<h1>Run the unit tests in this test bundle.</h1>
+
+<p>"${SRCROOT}/../scripts/RunPlatformUnitTests"
+```</p>
+
+<p>Run the tests in the IDE to make sure you didn't screw anything up. Now quit the simulator, and run them from the command line with xcodebuild again. You should see the test output printed and a few statements at the bottom saying that the tests succeeded. Your tests do pass, right?</p>
+
+<p><code>
+/Developer/Tools/RunPlatformUnitTests.include:334: note: Passed tests for architecture 'i386' (GC OFF)
+/Developer/Tools/RunPlatformUnitTests.include:345: note: Completed tests for architectures 'i386'
+</code></p>
+
+<h2>One simulator to rule them all</h2>
+
+<p>The reason I said to close the simulator before running the tests from the command line is that the tests don't seem to like running when the iOS Simulator is already doing something. Try it. Open the simulator, and then run the tests. If your system is anything like mine, you get an error like this:</p>
+
+<p>```
+<strong> BUILD FAILED </strong></p>
+
+<p>The following build commands failed:</p>
+
+<pre><code>PhaseScriptExecution "Run Script" path-to-the-script-in-derived-data
+</code></pre>
+
+<p>```</p>
+
+<p>If I'm running them locally, I see this, quit the simulator and try again. That's a bit of a pain, and it certainly wont work on the CI server. To solve that, in my Makefile, I just use a little Applescript to close the simulator before running the tests:</p>
+
+<p>```
+test:</p>
+
+<pre><code>osascript -e 'tell app "iPhone Simulator" to quit'
+xcodebuild -sdk iphonesimulator -configuration Debug -scheme MyAppTests build
+</code></pre>
+
+<p>```</p>
+
+<p>Now I can use the command <code>make test</code> to run the tests from the command line both on my machine and the CI server without having to change the development environment.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Enabling Accessibility Programatically on iOS Devices]]></title>
@@ -227,263 +367,6 @@ fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app
 <p><img src="/images/posts/adding-unit-tests/test-target-dependency.png" title="Setting up dependencies for your test target" ></p>
 
 <p>Now... do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Universal Static Libraries and Frameworks for iOS]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/"/>
-    <updated>2011-10-28T17:48:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios</id>
-    <content type="html"><![CDATA[<p>You only have to look at github to see the explosion of new open source iOS frameworks. Incorporating third party libraries into your app is still a pain. I spent today fighting with static libraries and frameworks for the <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> library, and I think I won, so that's got to be work writing about.</p>
-
-<p>The changes I made can be see on <a href="https://github.com/sgleadow/DCIntrospect">my fork of DCIntrospect</a>.</p>
-
-<h2>Static libraries and frameworks</h2>
-
-<p>Until recently, my default use case was to actually drag in the source files from a third party library and compile it into my application. For libraries that I have forked and plan to modify or extend, this would still be my preferred option. Some third party libraries are stable and reliable, and I do not wish to change the source code at all. For these tools, I would prefer to just drag in a static library or framework and get on with my own app.</p>
-
-<p>I've tried my hand at static libraries before, and it definitely wasn't plain sailing. A twitter conversation between two local iOS devs, <a href="http://twitter.com/#!/patr">Pat</a> and <a href="http://twitter.com/#!/orj">Oliver</a> prompted me to have another go at getting these libraries working. Pat's own tool, <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> is a perfect example. It's a great tool for introspecting and testing strange UI layout behaviour in your app, and it's a library that <em>just works</em> (famous last words, I bet you find a bug in it now)... but credit to Pat, I've used it on a few apps, and never touched the source code. DCIntrospect seems like a good case for bundling everything up in a library.</p>
-
-<h2>Static Library</h2>
-
-<p>I created an  Xcode 4 workspace for DCIntrospect, which initially just contained the existing <em>DCIntrospectDemo</em>. The demo included the source code directly, so I removed the references to those files and created a new static library project that included the existing DCIntrospect source files. That basically compiled straight away, but to make it useful, I had to tweak a few build settings.</p>
-
-<p>The target name is DCIntrospectStaticLib, but I wanted the output to be libDCIntrospect.a, which can be done by changing the <strong>Product Name</strong> build setting. I also wanted to group the header files with the compiled binary, so I set the <strong>Public Headers Folder Path</strong> to be <code>$(PRODUCT_NAME)</code> so that it would match whatever I entered for the product name.</p>
-
-<p>To link to this static library, you simply have to drag it into your project. Xcode sorts out adjusting the <strong>Library Search Paths</strong> automatically when you add the library. However, if you want to import headers and make calls to the library, you will need to manually set the <strong>Header Search Paths</strong>. For DCIntrospectDemo, the search path is <code>"$(SRCROOT)/../Products/lib"</code> and then use <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code>. That's easy enough to do, but it is one more barrier to entry for people using the library. A static framework could make it a single step.</p>
-
-<h2>Static Framework</h2>
-
-<p>I followed the steps described in <a href="http://twitter.com/#!/dineybomfim">Diney Bomfim's</a> updated post on building a <a href="http://db-in.com/blog/2011/07/universal-framework-iphone-ios-2-0/">universal framework for iPhone</a>, and it all went pretty smoothly. He describes the different build settings you have to adjust to get it all to work.</p>
-
-<p>Diney's instructions also include a sample shell script for compiling a universal static library using the <code>lipo</code> tool. I adjusted the script slightly, so that it would build both a universal static library as well as the static framework. I haven't had much success running DCIntrospect on the device, so I'm not sure if that part is working or not.</p>
-
-<p>The joy of using the static framework in this way is that installing DCIntrospect is now a single drag and drop of a framework into your source code. To get it working at this point, you would still need to add <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code> into your app delegate and after you have loaded the window, call <code>[[DCIntrospect sharedIntrospector] start]</code>.</p>
-
-<h2>Automatic Loading of DCIntrospect</h2>
-
-<p>My next task is to get DCIntrospect to automatically load if it is linked to your target. I had a play around with this a few months ago with the <a href="https://github.com/moredip/Frank">Frank iOS testing library</a>, with some success but never pursued the final solution, but <a href="http://twitter.com/#!/beingagile">Pete Hodgson</a> obviously got sick of waiting for me and did it himself.</p>
-
-<p>The solution is pretty neat. You basically hook into when a class in the library is being loaded, and set yourself up to listen for the <code>UIApplicationDidBecomeActiveNotification</code> notification, which gets called after the app delegate <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code> gets called. When that happens, we start DCIntrospect. I've wrapped the call to load DCIntrospect in a check that we are running in the simulator, so it will never be called on the app we submit to Apple. Initially I tried to do a check using <code>#ifdef DEBUG</code>, but that wont work with the static precompiled library approach, since those flags are only valid when the library is initially compiled, not at run time.</p>
-
-<p>```objc</p>
-
-<h1>import "DCIntrospect.h"</h1>
-
-<p>@interface DCIntrospectLoader : NSObject
-@end</p>
-
-<p>@implementation DCIntrospectLoader</p>
-
-<p>// This is called after application:didFinishLaunchingWithOptions:
-// so the statusBarOrientation should be reported correctly
-+ (void)applicationDidBecomeActive:(NSNotification *)notification
-{</p>
-
-<pre><code>NSString *simulatorRoot = [[[NSProcessInfo processInfo] environment] objectForKey:@"IPHONE_SIMULATOR_ROOT"];
-if (simulatorRoot)
-{
-    NSLog(@"Running in simulator, loading DCIntrospect");
-    [[DCIntrospect sharedIntrospector] start];
-}
-</code></pre>
-
-<p>}</p>
-
-<ul>
-<li><p>(void)load
-{
-  NSLog(@"Injecting DCIntrospect loader");</p>
-
-<p>  [[NSNotificationCenter defaultCenter] addObserver:[self class]</p>
-
-<pre><code>                                       selector:@selector(applicationDidBecomeActive:) 
-                                           name:@"UIApplicationDidBecomeActiveNotification" 
-                                         object:nil];
-</code></pre>
-
-<p>}</p></li>
-</ul>
-
-
-<p>@end
-```</p>
-
-<p>With the auto loading class above now part of DCIntrospect, installation is literally a single drag and drop of the framework. It will automatically load as needed, as long as we are running in the simulator. I usually have a separate target for App Store submission without any test libraries linked into it just in case, since they bloat the binary and probably call some private API magic at some point.</p>
-
-<h2>DCIntrospect Demo Project</h2>
-
-<p>To use either the static library or the framework in the two demo project targets, the only change I had to make was to add the <em>-ObjC</em> setting to <strong>Other Linker Flags</strong>. For the static library, you still need to set a header path but only if you want to make direct calls to DCIntrospect, since it now loads automatically.</p>
-
-<p>Since I had both the DCIntrospect and DCIntrospectDemo projects in the same workspace, XCode 4 had the smarts to find the <em>implicit dependency</em>, so when I edit the library source code, it's automatically rebuilt. However, I set up the project to use the <em>BundleProducts</em> target to create the universal distributable binaries, which did not get picked up as a dependency.</p>
-
-<p>You can create <em>explicit dependencies</em> between targets in different projects by first creating a project dependency. That is, dragging the dependent project into the demo project. Once that is done, when editing the <strong>Target Dependencies</strong> in the demo target's <em>Build Phases</em>, you will be able to explicitly select the dependency. In this case, it is the <em>BundleProducts</em> target.</p>
-
-<p>Unless you plan to edit the source code and recompile the binary often, the chances are you wont need to set up the project dependencies like this.</p>
-
-<h2>Issues with static libraries and frameworks</h2>
-
-<p>DCIntrospect is a fairly simple framework to generate. Larger libraries are likely to come across two issues, neither of which affect DCIntrospect.</p>
-
-<ul>
-<li>categories from static libraries don't seem to load properly</li>
-<li>resources is static libraries or frameworks need to be linked into the target using them separately</li>
-</ul>
-
-
-<p>For the categories issue, I know if two solutions. First, you can add <em>-all_load</em> to the <strong>Other Linker Flags</strong> section of the target using the static library. We've already added the <em>-ObjC</em> flag in there, so it's not really adding much of a burden. The other option is to use Karl Stenerud's <em>MAKE_CATEGORIES_LOADABLE</em> as <a href="https://github.com/moredip/Frank/blob/master/LoadableCategory.h">used in Frank</a>.</p>
-
-<p>For the resources issue, you can generate a resource bundle along with your static library or framework. When linking the library to your target, you can also drag in the resources bundle as a dependency and it should work. Karl has a neat way of making this even easier in his <a href="https://github.com/kstenerud/iOS-Universal-Framework">iOS Univeral Framework</a> project in github. He creates an <em>embedded framework</em>, which is essentially a single container for both the static framework and the resources bundle. This extra container makes it easy to drag in a single <em>.embeddedframework</em> file into your project and have everything link up correctly.</p>
-
-<h2>Final Thoughts</h2>
-
-<p>This is probably the first time I have fought with static libraries and frameworks and felt like I came out on top, and DCIntrospect seems like a good case for using it. That said, there are lots of libraries I use where I prefer being able to see the source code, and potentially edit the implementation. For those, git submodules and adding the source directly is still my preferred option. The single drag-and-drop solution here does make using a new library pretty easy though.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Which Automated iOS Testing Tool To Use]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
-    <updated>2011-10-26T22:38:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
-    <content type="html"><![CDATA[<p>I've been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:</p>
-
-<ul>
-<li>Frank</li>
-<li>KIF</li>
-<li>UIAutomation</li>
-</ul>
-
-
-<p>Other tools that might be worth looking at, but I haven't used and wont comment on are: NativeDriver, LessPainful, iCuke and UISpec.</p>
-
-<p>I recently watched a recording of Pete Hodgson (@beingagile), the primary maintainer of Frank in which he gave a quick summary of the other testing tools, and when it might be appropriate to use them. I made a few notes, and added some of my own thoughts. There is a <a href="http://pivotallabs.com/talks/147-frank-cucumber-tests-for-native-ios-apps">video of the talk</a> Pete gave at <a href="http://pivotallabs.com/">Pivotal Labs</a>.</p>
-
-<h2>Frank</h2>
-
-<p>Frank has been described as Selenium for native iOS apps. It's a tool written mainly by some fellow Thoughtworkers that uses a combination of <a href="http://cukes.info/">Cucumber</a> and JSON commands that are sent to a server running inside your native application, and leverages <a href="http://code.google.com/p/uispec/">UISpec</a> to run the commands. Frank used to require changes to your production code, but that's got a lot easier with the new static library approach.</p>
-
-<p>I've used Frank quite a bit, and I like it. I have a lot more I could say about it, but I'll leave that for another time. You can find out more about Frank at:</p>
-
-<ul>
-<li><a href="http://www.testingwithfrank.com">Frank's new home page</a></li>
-<li><a href="https://github.com/moredip/Frank">The github page for Frank</a></li>
-<li><a href="/talks.html">A slightly out of date talk I gave on Frank</a></li>
-</ul>
-
-
-<p><strong><em> The good parts of Frank </em></strong></p>
-
-<ul>
-<li>Clean CSS-like selector syntax, allowing for fairly tolerant tests</li>
-<li>Active community discussing and extending the library</li>
-<li>Driven by Cucumber (if you're a cuke fan)</li>
-<li>Includes <em>Symbiote</em>, a live introspection tool</li>
-<li>Command line and CI come pretty much for free</li>
-</ul>
-
-
-<p><strong><em> The bad parts of Frank </em></strong></p>
-
-<ul>
-<li>Difficult, but not impossible, to run on the device</li>
-<li>Separation between tests/native code over HTTP can confuse the cause of failure</li>
-<li>Decoupling test/native code into separate processes makes it a bit slower (Pete makes the good point that most of the slowness in your iOS tests are likely to be waiting for animations and transitions, not the HTTP communication)</li>
-<li>Very little support for gestures (but hopefully that's coming soon)</li>
-</ul>
-
-
-<p><strong><em> When using Frank might be appropriate </em></strong></p>
-
-<ul>
-<li>Your team has experience with web application testing tools (Selenium, Cucumber)</li>
-<li>You prefer a BDD style of development, with CI support</li>
-<li>Your app is not driven by complex gestures</li>
-<li>You have a goal of having cross platform tests across Android, iOS and mobile web</li>
-</ul>
-
-
-<h2>KIF</h2>
-
-<p>KIF is an Objective C based framework written at Square. It's a nice solid implementation from what I've seen, with active development going on. Since it's Objective C, you can call out to anything else in your app as well. It's a brand new test framework, so it's not going to immediately integrate with other tools (like JUnit-style XML output and that kind of thing). I haven't KIF a lot yet, so I can't comment too much but I think it shows a lot of promise. You can find out more about KIF at:</p>
-
-<ul>
-<li><a href="https://github.com/square/KIF">The github repo</a></li>
-<li><a href="https://groups.google.com/group/kif-framework">KIF Google group</a></li>
-<li><a href="http://corner.squareup.com/2011/07/ios-integration-testing.html">The initial blog post on KIF from Square</a></li>
-</ul>
-
-
-<p><strong><em> The good parts of KIF </em></strong></p>
-
-<ul>
-<li>Your tests are in Objective C. Everything in one language, easier for pure iOS devs to pick up</li>
-<li>Active community and good support</li>
-<li>Pretty reasonable support for gestures</li>
-<li>Command line and CI</li>
-</ul>
-
-
-<p><strong><em> The bad parts of KIF </em></strong></p>
-
-<ul>
-<li>Your tests are in Objective C. Non-devs will find it hard to read, doesn't make a great executable spec)</li>
-<li>Tricky to integrate with back end stubs because it's all running in-process</li>
-<li>Not stand alone</li>
-</ul>
-
-
-<p><strong><em> When using KIF might be appropriate </em></strong></p>
-
-<ul>
-<li>Primarily a developer driven team</li>
-<li>Developers have stronger Objective C skills than Ruby/Cucumber/Javascript</li>
-<li>Don't need business folk to read or write test specs</li>
-<li>Don't want to deal with the whacky regex from Cucumber</li>
-<li>Don't have really complex back end interactions to stub out</li>
-<li>Don't have cross platform requirements</li>
-</ul>
-
-
-<h2>UIAutomation</h2>
-
-<p><a href="http://developer.apple.com/library/ios/#documentation/DeveloperTools/Reference/UIAutomationRef/Introduction/Introduction.html">UIAutomation</a> is Apple's own solution for automated testing. It runs tests written in Javascript through the Instruments application that comes with the developer tools. It sounds like a no-brainer to use Apple's solution for building iOS apps, but I've found it a real pain to deal with in practice. UIAutomation is pretty good for actually driving the UI, but not great for organising and running a test suite, especially from CI. My impression is that Apple QA staff must use UIAutomation for test scripts with profiling instruments attached and actually sit there and watch, it doesn't seem to be purpose built for fully automated testing.</p>
-
-<p>At this point I would like to link to a lot of useful documentation about UIAutomation, but in practice I have found Apple's documentation to be either minimal or non-existent, and very little online discussion past the "boot up an app and tap a button in a single javascript file".</p>
-
-<p><strong><em> The good parts of UIAutomation </em></strong></p>
-
-<ul>
-<li>Apple's own tool. Doing things the way Apple wants is generally a good idea (and as Pete mentions, Apple's not going to go bust or quit iOS any time soon, so the chances are it will be supported)</li>
-<li>More closely linked to the device, I primarily run UIAutomation tests on the device, not in the simulator</li>
-<li>Good support for gestures (pinch zooming and swipes) and rotation</li>
-</ul>
-
-
-<p><strong><em> The bad parts of UIAutomation </em></strong></p>
-
-<ul>
-<li>Not built with CI in mind. The command line integration is pretty bad</li>
-<li>Can't integrate with other tools very well</li>
-<li>It's Apple's tool, and it's not open source. You can't jump in and fix the bits that are missing</li>
-<li>Runs within Instruments, seems to be aimed at regression testing not TDD and aimed at QAs not devs</li>
-</ul>
-
-
-<p><strong><em> When using UIAutomation might be appropriate </em></strong></p>
-
-<ul>
-<li>You have a separation between development and QA on your team</li>
-<li>You prefer regression test suites over a test-first approach</li>
-<li>You don't really care about CI</li>
-<li>You prefer manual QA and you just want to speed that up a bit</li>
-</ul>
-
-
-<h2>Conclusion</h2>
-
-<p>So far I've used Frank and UIAutomation on fairly large projects, and I'm very keen to try KIF. Ideally what I would like is the Frank architecture using Cucumber to drive your tests, but using KIF's implementation on the native side which is a lot more solid than UISpec. Frank would give nice clean readable test features, and integration with other tools through cucumber as well as the concise selector syntax. KIF would give gesture support and a much cleaner implementation of those features.</p>
 ]]></content>
   </entry>
   

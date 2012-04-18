@@ -4,7 +4,7 @@
   <title><![CDATA[Stewart Gleadow's Blog]]></title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2012-03-03T14:06:39+11:00</updated>
+  <updated>2012-04-18T13:29:56+10:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -109,6 +109,8 @@
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>/Developer/Tools/RunPlatformUnitTests.include:334: note: Passed tests for architecture 'i386' (GC OFF)
 </span><span class='line'>/Developer/Tools/RunPlatformUnitTests.include:345: note: Completed tests for architectures 'i386'</span></code></pre></td></tr></table></div></figure>
 
+
+<p>I <a href="https://gist.github.com/2410839">uploaded a gist of my modified shell script</a> that I use that runs the unit tests from the command line.</p>
 
 <h2>One simulator to rule them all</h2>
 

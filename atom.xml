@@ -4,7 +4,7 @@
   <title><![CDATA[Stewart Gleadow's Blog]]></title>
   <link href="http://sgleadow.github.com/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2012-04-18T13:29:56+10:00</updated>
+  <updated>2012-05-18T12:12:07+10:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tolerant JSON parsing for iOS]]></title>
+    <link href="http://sgleadow.github.com/blog/2012/05/18/tolerant-json-parsing-for-ios/"/>
+    <updated>2012-05-18T09:38:00+10:00</updated>
+    <id>http://sgleadow.github.com/blog/2012/05/18/tolerant-json-parsing-for-ios</id>
+    <content type="html"><![CDATA[<p>Many useful iOS apps need to talk to some kind of backend web service. If you have any control over the back end, it will be talking JSON with your app. Each of these apps has some kind of JSON parsing behaviour. We&#8217;ve had many debates on the merits of parsing the dictionary into our own plain old Objective C objects (POCOs) versus just passing around <code>NSDictionary</code> objects. I&#8217;ll put on my best consultant voice and say &#8220;it depends&#8221;, let&#8217;s not have that debate again today.</p>
+
+<p>Either way, at some stage you need to be pulling values out of an NSDictionary, and you want to do so safely. Martin Fowler wrote a few years ago about the <a href="http://martinfowler.com/bliki/TolerantReader.html">tolerant reader</a> approach, in which he says:</p>
+
+<blockquote><p><em>&#8220;My recommendation is to be as tolerant as possible when reading data from a service. If you&#8217;re consuming an XML file, then only take the elements you need, ignore anything you don&#8217;t.&#8221;</em></p></blockquote>
+
+<h2>Simple mapping of NSDictionary to properties</h2>
+
+<p>Let&#8217;s say we have the following JSON to represent a person:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;stew&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;role&quot;</span> <span class="o">:</span> <span class="s2">&quot;developer&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;level&quot;</span> <span class="o">:</span> <span class="s2">&quot;awesome&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>NSDictionary has some simple KVC methods we can use to pull out the keys we want to map them to the properties on our person class. The properties are <code>name</code>, <code>role</code>, <code>level</code>, all of which are of type <code>NSString *</code> for simplicity. Something like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKey:</span><span class="s">@&quot;name&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">role</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKey:</span><span class="s">@&quot;role&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">level</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKey:</span><span class="s">@&quot;level&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Dynamic mapping of NSDictionary to properties</h2>
+
+<p>That kind of works, it grabs the right keys&#8230; but the developer in you thinks, hey, that seems pretty repeatable. I bet I could make that dynamic so as I add more data to the <code>NSDictionary</code>, new properties on my <code>Person</code> object are automatically populated. There are frameworks that do that kind of stuff for you, but a simple version could look like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">dict</span> <span class="nl">enumerateKeysAndObjectsUsingBlock:</span><span class="o">^</span><span class="p">(</span><span class="kt">id</span> <span class="n">key</span><span class="p">,</span> <span class="kt">id</span> <span class="n">obj</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">self</span> <span class="nl">setValue:</span><span class="n">obj</span> <span class="nl">forKey:</span><span class="n">key</span><span class="p">];</span>
+</span><span class='line'><span class="p">}];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Awesome. Less code is better, right?</p>
+
+<h2>Take only the elements you need</h2>
+
+<p>The problem with dynamically mapping data from a web service is that it assumes that the JSON data pulled down exactly matches what is expected, and never changes. If you so much as add a new data element to the JSON coming from the server, the app with break with an exception like <code>raised [&lt;Person 0xe328ce0&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key new-key.</code></p>
+
+<p>Now, even if you control both the client and the server, you want have a bit more flexibility than that. Sure, you could version the API and make it clever enough to serve the right data, but creating new API versions every time you add a new field is a bit of overhead. It&#8217;s better to <em>&#8220;take only the elements you need&#8221;</em>, then you can add new data as much as you want.</p>
+
+<p>So you ditch the dynamic approach, it saves a few lines of Objective C but creates more problems elsewhere. We&#8217;re back with the explicit dictionary-to-property mapping, which at least gives us the flexibility to add new data to the API and our iOS app just ignores the extra data.</p>
+
+<h2>Be as tolerant as possible</h2>
+
+<p>The issue we still have with our <em>valueForKey</em> approach is that we are assuming that the API is giving us back the correct data for each key. Objective C is pretty dynamic, so we just grab the value out of the dictionary and set it on the properties, which are NSString types. If, for some reason, the API starts returning a different type for the <em>level</em>. Maybe they&#8217;ve decided the level is now the number 11 and not a string, or maybe they&#8217;ve introduced a more complex representation of the level as a dictionary with extra keys, for example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;stew&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;role&quot;</span> <span class="o">:</span> <span class="s2">&quot;developer&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;level&quot;</span> <span class="o">:</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span> <span class="o">:</span> <span class="s2">&quot;awesome&quot;</span><span class="p">,</span> <span class="s2">&quot;rating&quot;</span> <span class="o">:</span> <span class="mi">5</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The actual parsing code still works fine. At runtime, Objective C will grab that dictionary for the <em>level</em> and shove it into the NSString. Now, everywhere else in our code will make the assumption that <code>person.level</code> will give back an NSString, and so it should - but when we start to call methods on this property that are specific to NSString, we&#8217;re going to get some strange errors. Say you had some code looking at the prefix of the level property:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">level</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="n">level</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">([</span><span class="n">level</span> <span class="nl">hasPrefix:</span><span class="s">@&quot;awesome&quot;</span><span class="p">])</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="c1">// do something for awesome people</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Try running that and you&#8217;ll get an error like <code>[__NSCFDictionary hasPrefix:]: unrecognized selector sent to instance</code>. So what we really want is to be tolerant of receiving incorrect data back when you are parsing it. We&#8217;re already ignoring extra data, now we also want to ignore data that is of the incorrect type.</p>
+
+<h2>Safe dictionary extraction</h2>
+
+<p>On a number of projects now I&#8217;ve use a little category on NSDictionary that does this type checking for me, and also allows for feeding in a default value if the data is missing. In practice I don&#8217;t usually feed in a default value, I like the properties to end up being <em>nil</em> if the data doesn&#8217;t come back in the expected format. In the instance where I want to display certain values in the UI to show data is missing, that&#8217;s UI logic and doesn&#8217;t really belong in the data parsing in my opinion.</p>
+
+<p>A short and sweet implementation of this safe NSDictionary category could be something like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@implementation</span> <span class="nc">NSDictionary</span> <span class="nl">(SafeAccess)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">valueForKey:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">key</span>
+</span><span class='line'>         <span class="nf">ifKindOf:</span><span class="p">(</span><span class="n">Class</span><span class="p">)</span><span class="nv">class</span>
+</span><span class='line'>     <span class="nf">defaultValue:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">defaultValue</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">id</span> <span class="n">obj</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nl">objectForKey:</span><span class="n">key</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">obj</span> <span class="nl">isKindOfClass:</span><span class="n">class</span><span class="p">]</span> <span class="o">?</span> <span class="n">obj</span> <span class="o">:</span> <span class="n">defaultValue</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our parsing code might then end up looking more like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKey:</span><span class="s">@&quot;name&quot;</span> <span class="nl">ifKindOf:</span><span class="p">[</span><span class="n">NSString</span> <span class="n">class</span><span class="p">]</span> <span class="nl">defaultValue:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">role</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKey:</span><span class="s">@&quot;role&quot;</span> <span class="nl">ifKindOf:</span><span class="p">[</span><span class="n">NSString</span> <span class="n">class</span><span class="p">]</span> <span class="nl">defaultValue:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">level</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKey:</span><span class="s">@&quot;level&quot;</span> <span class="nl">ifKindOf:</span><span class="p">[</span><span class="n">NSString</span> <span class="n">class</span><span class="p">]</span> <span class="nl">defaultValue:</span><span class="nb">nil</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s it. Pretty simple. Credit should be given to <a href="http://twitter.com/#!/kevinoneill">Kevin O&#8217;Neill</a> who originally introduced this method, and has a more complete implementation in his <a href="https://github.com/kevinoneill/Useful-Bits">Useful Bits github project</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Installing ImageMagick on Lion]]></title>

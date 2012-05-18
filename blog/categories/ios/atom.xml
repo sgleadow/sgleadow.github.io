@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Stewart Gleadow's Blog]]></title>
   <link href="http://sgleadow.github.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://sgleadow.github.com/"/>
-  <updated>2012-04-18T13:29:56+10:00</updated>
+  <updated>2012-05-18T12:12:07+10:00</updated>
   <id>http://sgleadow.github.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -12,6 +12,119 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tolerant JSON parsing for iOS]]></title>
+    <link href="http://sgleadow.github.com/blog/2012/05/18/tolerant-json-parsing-for-ios/"/>
+    <updated>2012-05-18T09:38:00+10:00</updated>
+    <id>http://sgleadow.github.com/blog/2012/05/18/tolerant-json-parsing-for-ios</id>
+    <content type="html"><![CDATA[<p>Many useful iOS apps need to talk to some kind of backend web service. If you have any control over the back end, it will be talking JSON with your app. Each of these apps has some kind of JSON parsing behaviour. We've had many debates on the merits of parsing the dictionary into our own plain old Objective C objects (POCOs) versus just passing around <code>NSDictionary</code> objects. I'll put on my best consultant voice and say "it depends", let's not have that debate again today.</p>
+
+<p>Either way, at some stage you need to be pulling values out of an NSDictionary, and you want to do so safely. Martin Fowler wrote a few years ago about the <a href="http://martinfowler.com/bliki/TolerantReader.html">tolerant reader</a> approach, in which he says:</p>
+
+<blockquote><p><em>"My recommendation is to be as tolerant as possible when reading data from a service. If you're consuming an XML file, then only take the elements you need, ignore anything you don't."</em></p></blockquote>
+
+<h2>Simple mapping of NSDictionary to properties</h2>
+
+<p>Let's say we have the following JSON to represent a person:</p>
+
+<p><code>js
+{
+  "name" : "stew",
+  "role" : "developer",
+  "level" : "awesome"
+}
+</code></p>
+
+<p>NSDictionary has some simple KVC methods we can use to pull out the keys we want to map them to the properties on our person class. The properties are <code>name</code>, <code>role</code>, <code>level</code>, all of which are of type <code>NSString *</code> for simplicity. Something like this:</p>
+
+<p><code>objc
+self.name = [dict valueForKey:@"name"];
+self.role = [dict valueForKey:@"role"];
+self.level = [dict valueForKey:@"level"];
+</code></p>
+
+<h2>Dynamic mapping of NSDictionary to properties</h2>
+
+<p>That kind of works, it grabs the right keys... but the developer in you thinks, hey, that seems pretty repeatable. I bet I could make that dynamic so as I add more data to the <code>NSDictionary</code>, new properties on my <code>Person</code> object are automatically populated. There are frameworks that do that kind of stuff for you, but a simple version could look like:</p>
+
+<p><code>objc
+[dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+  [self setValue:obj forKey:key];
+}];
+</code></p>
+
+<p>Awesome. Less code is better, right?</p>
+
+<h2>Take only the elements you need</h2>
+
+<p>The problem with dynamically mapping data from a web service is that it assumes that the JSON data pulled down exactly matches what is expected, and never changes. If you so much as add a new data element to the JSON coming from the server, the app with break with an exception like <code>raised [&lt;Person 0xe328ce0&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key new-key.</code></p>
+
+<p>Now, even if you control both the client and the server, you want have a bit more flexibility than that. Sure, you could version the API and make it clever enough to serve the right data, but creating new API versions every time you add a new field is a bit of overhead. It's better to <em>"take only the elements you need"</em>, then you can add new data as much as you want.</p>
+
+<p>So you ditch the dynamic approach, it saves a few lines of Objective C but creates more problems elsewhere. We're back with the explicit dictionary-to-property mapping, which at least gives us the flexibility to add new data to the API and our iOS app just ignores the extra data.</p>
+
+<h2>Be as tolerant as possible</h2>
+
+<p>The issue we still have with our <em>valueForKey</em> approach is that we are assuming that the API is giving us back the correct data for each key. Objective C is pretty dynamic, so we just grab the value out of the dictionary and set it on the properties, which are NSString types. If, for some reason, the API starts returning a different type for the <em>level</em>. Maybe they've decided the level is now the number 11 and not a string, or maybe they've introduced a more complex representation of the level as a dictionary with extra keys, for example:</p>
+
+<p><code>js
+{
+  "name" : "stew",
+  "role" : "developer",
+  "level" : {"title" : "awesome", "rating" : 5}
+}
+</code></p>
+
+<p>The actual parsing code still works fine. At runtime, Objective C will grab that dictionary for the <em>level</em> and shove it into the NSString. Now, everywhere else in our code will make the assumption that <code>person.level</code> will give back an NSString, and so it should - but when we start to call methods on this property that are specific to NSString, we're going to get some strange errors. Say you had some code looking at the prefix of the level property:</p>
+
+<p><code>objc
+NSString *level = person.level;
+if([level hasPrefix:@"awesome"])
+{
+  // do something for awesome people
+}
+</code></p>
+
+<p>Try running that and you'll get an error like <code>[__NSCFDictionary hasPrefix:]: unrecognized selector sent to instance</code>. So what we really want is to be tolerant of receiving incorrect data back when you are parsing it. We're already ignoring extra data, now we also want to ignore data that is of the incorrect type.</p>
+
+<h2>Safe dictionary extraction</h2>
+
+<p>On a number of projects now I've use a little category on NSDictionary that does this type checking for me, and also allows for feeding in a default value if the data is missing. In practice I don't usually feed in a default value, I like the properties to end up being <em>nil</em> if the data doesn't come back in the expected format. In the instance where I want to display certain values in the UI to show data is missing, that's UI logic and doesn't really belong in the data parsing in my opinion.</p>
+
+<p>A short and sweet implementation of this safe NSDictionary category could be something like:</p>
+
+<p>```objc
+@implementation NSDictionary (SafeAccess)</p>
+
+<ul>
+<li>(id)valueForKey:(NSString *)key
+
+<pre><code>   ifKindOf:(Class)class
+</code></pre>
+
+<p>   defaultValue:(id)defaultValue
+{
+  id obj = [self objectForKey:key];
+  return [obj isKindOfClass:class] ? obj : defaultValue;
+}</p></li>
+</ul>
+
+
+<p>@end
+```</p>
+
+<p>Our parsing code might then end up looking more like this:</p>
+
+<p><code>objc
+self.name = [dict valueForKey:@"name" ifKindOf:[NSString class] defaultValue:nil];
+self.role = [dict valueForKey:@"role" ifKindOf:[NSString class] defaultValue:nil];
+self.level = [dict valueForKey:@"level" ifKindOf:[NSString class] defaultValue:nil];
+</code></p>
+
+<p>That's it. Pretty simple. Credit should be given to <a href="http://twitter.com/#!/kevinoneill">Kevin O'Neill</a> who originally introduced this method, and has a more complete implementation in his <a href="https://github.com/kevinoneill/Useful-Bits">Useful Bits github project</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Installing ImageMagick on Lion]]></title>
@@ -332,43 +445,6 @@ fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app
 <p>Now we can build the application and install it on the device from the command line. From here, the next step is to hook it up to the <code>instruments</code> command line interface. Massive thanks to <a href="https://twitter.com/#!/heardrwt">Richie</a> for letting me know about fruitstrap.</p>
 
 <p>Ideally, I would like to be able to boot the app on the device <em>without</em> being hooked into the debugger. I'm not sure if this is possible, I certainly haven't got it working with fruitstrap yet - and the hairy C code isn't making me want to jump in and try just yet. What we have now is enough to get UIAutomation up and running, since <code>instruments</code> will boot the app when the tests start. However, I'd prefer to use Frank or KIF in which case I need to find a way to boot onto the device.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Adding Unit Tests to an Existing iOS Project]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/"/>
-    <updated>2011-10-30T16:30:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project</id>
-    <content type="html"><![CDATA[<p>I recently came across a post from the guys at <a href="http://twobitlabs.com">Two Bit Labs</a> on <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">Adding Unit Tests to an existing iOS project</a> with Xcode 4.</p>
-
-<p>I always include unit tests by default in any project that is more than a demo, but up until recently I have always used <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. <a href="http://twitter.com/#!/makdad">Mark Makdad</a> wrote a piece earlier in the year <a href="http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit">comparing GHUnit and OCUnit</a>. That post combined with <a href="https://github.com/allending/Kiwi">Kiwi</a>'s Rspec-style wrappers around OCUnit has made me consider using Apple's built in unit testing again.</p>
-
-<p>I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the <em>Test</em> build action hooked up. This isn't exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press <code>Cmd + U</code> or select <code>Product &gt; Test</code> from the menu.</p>
-
-<h2>Adding the test action to an existing scheme</h2>
-
-<p>When I select my target, called <em>Development</em>, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you... but here is what I had to do in order to get my unit tests hooked up to my main Development target's scheme.</p>
-
-<p>Select your main target's scheme in the little scheme selector in the Xcode toolbar, and choose <em>Edit Scheme...</em> from the drop down menu. When you select the <em>Test</em> build action on the left, you'll notice no tests appear in the list. Tap the <em>+</em> button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press <em>Add</em>.</p>
-
-<p><img src="/images/posts/adding-unit-tests/adding-test-action-to-scheme.png" title="Adding tests to the scheme's test action" ></p>
-
-<p>You should see the test bundle appear in the table, as shown in the image above. Tap on the <em>Build</em> action for this scheme, and you will notice that there are now two targets lists: our application and our unit tests. The tests are only linked up to the <em>Test</em> build action by default, which should look similar to the image below.</p>
-
-<p><img src="/images/posts/adding-unit-tests/test-build-action.png" title="Checking the two targets in the build action" ></p>
-
-<h2>Running your unit tests</h2>
-
-<p>Now that your unit tests are hooked up to your test build action, select your main target's scheme. The menu item <code>Product &gt; Test</code> should now be active. Select <em>Test</em>, and Xcode will build your application and run your tests. When creating the test bundle, Apple's default test case includes a failure, so if the tests run, you will see that failure.</p>
-
-<p>Just to double check you've got all your target dependencies set up correctly, try a full clean (hold <em>Option</em> while selecting <code>Product &gt; Clean</code>) and then press <em>Cmd + U</em>. This should trigger a full build and run the unit tests and show your test failure again.</p>
-
-<p>If you see an error like <code>ld: file not found:</code> <code>&lt;path to app&gt;/Debug-iphonesimulator/Development.app/Development</code>, it's likely your test target does not automatically build your main application under test, as explained in the <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">original article</a>: select your project in the navigator, select your unit test target, open the <em>Build Phases</em> tab and add your app target as a dependency. Ending up with something like the image shown.</p>
-
-<p><img src="/images/posts/adding-unit-tests/test-target-dependency.png" title="Setting up dependencies for your test target" ></p>
-
-<p>Now... do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
 ]]></content>
   </entry>
   

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: general | Stewart Gleadow's Blog]]></title>
-  <link href="http://sgleadow.github.com/blog/categories/general/atom.xml" rel="self"/>
-  <link href="http://sgleadow.github.com/"/>
-  <updated>2012-05-28T13:31:39+10:00</updated>
-  <id>http://sgleadow.github.com/</id>
+  <link href="http://www.stewgleadow.com/blog/categories/general/atom.xml" rel="self"/>
+  <link href="http://www.stewgleadow.com/"/>
+  <updated>2012-05-28T13:37:04+10:00</updated>
+  <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Moving From Wordpress to Octopress]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/09/16/moving-from-wordpress-to-octopress/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/09/16/moving-from-wordpress-to-octopress/"/>
     <updated>2011-09-16T16:53:00+10:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/09/16/moving-from-wordpress-to-octopress</id>
+    <id>http://www.stewgleadow.com/blog/2011/09/16/moving-from-wordpress-to-octopress</id>
     <content type="html"><![CDATA[<p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I'm hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer's text editor, in plain text, using Markdown is ideal.</p>
 
 <p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn't find the time to get the blog set up properly. This morning I read about Matt Gemmell's blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
@@ -28,9 +28,9 @@
   
   <entry>
     <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/03/26/hello-world/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/03/26/hello-world/"/>
     <updated>2011-03-26T15:47:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/03/26/hello-world</id>
+    <id>http://www.stewgleadow.com/blog/2011/03/26/hello-world</id>
     <content type="html"><![CDATA[<p>I've been meaning to start a blog for a while know. Until now, I've kept notes to myself in all sorts of places about problems I've encountered while developing software and solutions I've found. My favourite way of keeping notes to date is in a nice Moleskine notebook with a fountain pen - a bit backwards I know, you wouldn't believe I write software for a living.</p>
 
 <p>Often my notes just disappear into the depths of my filesystem or bookshelf never to be seen again. If I'm really proactive, I might write up an answer on Stack Overflow or reply to a mailing list. The next time I want to share that experience, I have to filter through to find that information again</p>

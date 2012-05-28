@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: xcode | Stewart Gleadow's Blog]]></title>
-  <link href="http://sgleadow.github.com/blog/categories/xcode/atom.xml" rel="self"/>
-  <link href="http://sgleadow.github.com/"/>
-  <updated>2012-05-28T13:31:39+10:00</updated>
-  <id>http://sgleadow.github.com/</id>
+  <link href="http://www.stewgleadow.com/blog/categories/xcode/atom.xml" rel="self"/>
+  <link href="http://www.stewgleadow.com/"/>
+  <updated>2012-05-28T13:37:04+10:00</updated>
+  <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Xcode 4 Shortcuts Lightning Talk]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk/"/>
     <updated>2011-04-19T16:46:00+10:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk</id>
+    <id>http://www.stewgleadow.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk</id>
     <content type="html"><![CDATA[<p>Last week I have a short lightning talk with Jesse Collis (@sirjec) at the Melbourne Cocoaheads meetup. The topic was fairly boring, just some useful Xcode 4 shortcuts we have found since switching from Xcode 3 a few weeks ago. It ended up being a bit of a laugh, probably the first and only time a talk about keyboard shortcuts will be funny - I think it had something to do with the pizza and beer that had just arrived.</p>
 
 <p>Jesse saved me the effort of writing up anything more and linking to the slides on his blog below.</p>

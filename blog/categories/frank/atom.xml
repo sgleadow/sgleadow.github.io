@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: frank | Stewart Gleadow's Blog]]></title>
-  <link href="http://sgleadow.github.com/blog/categories/frank/atom.xml" rel="self"/>
-  <link href="http://sgleadow.github.com/"/>
-  <updated>2012-05-28T13:31:39+10:00</updated>
-  <id>http://sgleadow.github.com/</id>
+  <link href="http://www.stewgleadow.com/blog/categories/frank/atom.xml" rel="self"/>
+  <link href="http://www.stewgleadow.com/"/>
+  <updated>2012-05-28T13:37:04+10:00</updated>
+  <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Universal Static Libraries and Frameworks for iOS]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/"/>
     <updated>2011-10-28T17:48:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios</id>
+    <id>http://www.stewgleadow.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios</id>
     <content type="html"><![CDATA[<p>You only have to look at github to see the explosion of new open source iOS frameworks. Incorporating third party libraries into your app is still a pain. I spent today fighting with static libraries and frameworks for the <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> library, and I think I won, so that's got to be work writing about.</p>
 
 <p>The changes I made can be see on <a href="https://github.com/sgleadow/DCIntrospect">my fork of DCIntrospect</a>.</p>
@@ -127,9 +127,9 @@ if (simulatorRoot)
   
   <entry>
     <title type="html"><![CDATA[Which Automated iOS Testing Tool To Use]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
     <updated>2011-10-26T22:38:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
+    <id>http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
     <content type="html"><![CDATA[<p>I've been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:</p>
 
 <ul>
@@ -272,9 +272,9 @@ if (simulatorRoot)
   
   <entry>
     <title type="html"><![CDATA[RVM: Escaping Gem Dependency Hell]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell/"/>
     <updated>2011-03-27T16:02:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell</id>
+    <id>http://www.stewgleadow.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell</id>
     <content type="html"><![CDATA[<p>This is my second post on my move to rvm. The first being about <a href="blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">cleaning out my existing gems</a> for a fresh start.</p>
 
 <p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I'm working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don't have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>

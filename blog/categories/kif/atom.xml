@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: kif | Stewart Gleadow's Blog]]></title>
-  <link href="http://sgleadow.github.com/blog/categories/kif/atom.xml" rel="self"/>
-  <link href="http://sgleadow.github.com/"/>
-  <updated>2012-05-28T13:31:39+10:00</updated>
-  <id>http://sgleadow.github.com/</id>
+  <link href="http://www.stewgleadow.com/blog/categories/kif/atom.xml" rel="self"/>
+  <link href="http://www.stewgleadow.com/"/>
+  <updated>2012-05-28T13:37:04+10:00</updated>
+  <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Which Automated iOS Testing Tool To Use]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
     <updated>2011-10-26T22:38:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
+    <id>http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
     <content type="html"><![CDATA[<p>I've been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:</p>
 
 <ul>

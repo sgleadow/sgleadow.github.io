@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ruby | Stewart Gleadow's Blog]]></title>
-  <link href="http://sgleadow.github.com/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://sgleadow.github.com/"/>
-  <updated>2012-05-28T13:31:39+10:00</updated>
-  <id>http://sgleadow.github.com/</id>
+  <link href="http://www.stewgleadow.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://www.stewgleadow.com/"/>
+  <updated>2012-05-28T13:37:04+10:00</updated>
+  <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Installing RVM on OS X Lion]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/12/10/installing-rvm-on-os-x-lion/"/>
     <updated>2011-12-10T19:28:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/12/10/installing-rvm-on-os-x-lion</id>
+    <id>http://www.stewgleadow.com/blog/2011/12/10/installing-rvm-on-os-x-lion</id>
     <content type="html"><![CDATA[<p>I wrote a post a little while ago about transferring my Ruby dev environments to use <a href="http://beginrescueend.com/">rvm</a> to organise and separate Ruby envinroments and assosiated <a href="http://beginrescueend.com/gemsets/">gemsets</a>. I just got a new MacBook Air which I'm setting up at the moment, so I'm running through the set up process again. Here are my notes.</p>
 
 <p>There are a few rvm haters out there who find it to be over-engineered and trying to do too much. If that's you, there is another, more lightweight tool called <a href="https://github.com/sstephenson/rbenv">rbenv</a> that you can use and if you really like separate gemsets, someone has written <a href="https://github.com/jamis/rbenv-gemset">rbenv-gemset</a> to go with it. I have a handful of projects already set up with rvm, so I'm going to keep using it for now.</p>
@@ -60,9 +60,9 @@ rvm install 1.9.3 --reconfigure --debug -C --enable-pthread --with-gcc=clang
   
   <entry>
     <title type="html"><![CDATA[RVM: Escaping Gem Dependency Hell]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell/"/>
     <updated>2011-03-27T16:02:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell</id>
+    <id>http://www.stewgleadow.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell</id>
     <content type="html"><![CDATA[<p>This is my second post on my move to rvm. The first being about <a href="blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">cleaning out my existing gems</a> for a fresh start.</p>
 
 <p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I'm working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don't have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
@@ -172,9 +172,9 @@ $ bundle
   
   <entry>
     <title type="html"><![CDATA[Cleaning Out Ruby Gems Under OS X]]></title>
-    <link href="http://sgleadow.github.com/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/"/>
+    <link href="http://www.stewgleadow.com/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/"/>
     <updated>2011-03-27T15:55:00+11:00</updated>
-    <id>http://sgleadow.github.com/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x</id>
+    <id>http://www.stewgleadow.com/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x</id>
     <content type="html"><![CDATA[<p>As a bit of background, I have been getting into Ruby development for the past year, but I have been getting into gem dependency hell recently. Different projects need different gemsets. <a href="http://gembundler.com/">Bundler</a> helps but I want to use that in combination with <a href="http://rvm.beginrescueend.com/">rvm</a> to keep things organised.</p>
 
 <p>To get a clean start with rvm, so I wanted to remove all my existing system gems. My first attempt used the little shell script below to loop over all installed gems and remove them. That worked for a lot of gems, but left some behind, possibly all the default gems that come pre-installed with OS X.</p>

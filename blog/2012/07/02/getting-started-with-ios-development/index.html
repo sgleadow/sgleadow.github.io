@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Getting started with iOS development - Stewart Gleadow's Blog</title>
+  <meta name="author" content="Stewart Gleadow">
+
+  
+  <meta name="description" content="Given the recent boom in demand for iOS apps, and the fact that many of us own these shiny new devices, I&#8217;m often asked where to start in &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Stewart Gleadow's Blog</a></h1>
+  
+    <h2>My ramblings about iOS and other software topics.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.stewgleadow.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul role=main-navigation>
+  <li><a href="/about.html">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/talks.html">Talks</a></li>
+  <li><a href="https://github.com/sgleadow">Code</a></li>
+  <li><a href="http://twitter.com/stewgleadow">Twitter</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Getting Started With iOS Development</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-02T14:07:00+10:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Given the recent boom in demand for iOS apps, and the fact that many of us own these shiny new devices, I&#8217;m often asked where to start in learning iOS development. To save myself writing the same email over and over, here is the approach I would currently take to learning iOS, and some of the resources I would use. I hope it&#8217;s useful.</p>
+
+<h2>Starting out</h2>
+
+<p>Some people like to just start to code an app for themselves and learn along the way. I&#8217;m sure it&#8217;s possible for iOS as well, but I initially found Objective C to be a fairly strange language, and Xcode to be a very different IDE, that I wanted a guide to get me to a certain level of understanding. I wanted to know Objective C well enough to be able to write my own independent code, and understand solutions on Stack Overflow.</p>
+
+<p>I&#8217;m still one of those people who likes to read a book cover to cover when learning a completely new platform. The two introductory books and an online course I would recommend are below. Make sure you get the latest editions, as the iOS platform evolves quickly and older books get out of date.</p>
+
+<p>Read the <a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a> by Joe Conway and Aaron Hillegass. This is the most recommended introductory iOS book I&#8217;ve come across. If you have the time and resources to attend the Big Nerd Ranch training courses, that&#8217;d be a great way to start out, but given they are pretty expensive, this book is a great way to start. Get the 3rd Edition, which has been updated for all the iOS 5 goodness.</p>
+
+<p>Read the <a href="http://pragprog.com/book/adios/ios-sdk-development">iOS SDK</a> book from Bill Dudney and Chris Adamson for the Pragmatic Programmers. This book goes into a bit more depth about specific SDKs and tools (eg. Storyboards, iCloud), but is still suitable for people just starting out.</p>
+
+<p>Watch a decent amount of Paul Hegarty&#8217;s <a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a> on iTunesU. Again, try to get the latest version which at the time of me writing this is the 2011 Fall semester. Watching videos can be a little slow. I would either watch them in double time or airplay it onto your TV and load up Xcode and code along with the lectures.</p>
+
+<h2>Build something</h2>
+
+<p>Those introductory materials should give you enough knowledge of Objective C, Xcode and iOS to really get going building your own app. Try to build something you care about, that solves a problem you have. Devote enough time to see it through.</p>
+
+<p>The things I struggled with when I started to code my own stuff was about how to break down my iOS app code properly (MVC, subclasses, categories and subprojects), and how to get out of code signing and provisioning hell. There will be a bunch of common problems you run into early on. Don&#8217;t code in isolation.</p>
+
+<p>The biggest help to me was attending the local <a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a> meetup, and they&#8217;re pretty widespread around the world these days. The group also has monthly hacknights in a bar. Once you get uses to a table of geeks with Apple hardware on the bench in the pub, it&#8217;s a great place to work and ask questions from folks who have been doing this a while.</p>
+
+<h2>Understanding iOS</h2>
+
+<p>Building your own app will get you to the point where you&#8217;re quite comfortable coding apps independently. That&#8217;s great, but also dangerous. Apple is a very controlling company, and their SDKs and development tools reflect that. You want to get a good grasp of the Objective C language, it&#8217;s design and runtime environment, so you can effectively code for their platforms. You also want to read Apple&#8217;s developer material to get an idea of how they&#8217;re intending apps to be written and what direction the platform is heading in. There are two resources I&#8217;d recommend for this.</p>
+
+<p>The <a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a> book is great. It&#8217;s more about Mac OS X than iOS, but they&#8217;re fundamentally very similar platforms. While the book is a few years old now (published in 2009), the fundamental design patterns of both the Objective C language and the runtime have not changed significantly in that time. Obviously, there have been plenty of superficial changes to the SDKs but this book will help you understand why things are the way they are.</p>
+
+<p>Watch plenty of Apple&#8217;s WWDC videos. You&#8217;ll need an Apple developer account to get to these. The most recent <a href="https://developer.apple.com/videos/wwdc/2012/">WWDC 2012</a> have recently become available, but there are plenty of talks from <a href="https://developer.apple.com/videos/wwdc/2011/">WWDC 2011</a> and <a href="https://developer.apple.com/videos/wwdc/2010/">WWDC 2010</a> that are still relevant as well.</p>
+
+<p>And if you really want to become an expect, work on an iOS app with some people who have already been on this journey and learn from them. I certainly learnt the most from pair programming with developers who are better than I will ever be.</p>
+
+<h2>Summary</h2>
+
+<p>For all you slackers who don&#8217;t like reading my carefully crafted prose, here&#8217;s a list of my recommended resources, in the order I would tackle them:</p>
+
+<ul>
+<li><a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a></li>
+<li><a href="http://pragprog.com/book/adios/ios-sdk-development">iOS SDK</a></li>
+<li><a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a></li>
+<li><a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a></li>
+<li><a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a></li>
+<li><a href="https://developer.apple.com/videos/wwdc/2012/">WWDC Videos</a></li>
+</ul>
+
+
+<p>I haven&#8217;t even mentioned the whole topic of mastering automated testing for iOS, which is something I&#8217;m passionate about. There&#8217;s enough information on iOS testing for an entirely separate post, so stay tuned for that.</p>
+
+<p>Done. Happy coding.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Stewart Gleadow</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-02T14:07:00+10:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/" data-via="stewgleadow" data-counturl="http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/18/tolerant-json-parsing-for-ios/" title="Previous Post: Tolerant JSON parsing for iOS">&laquo; Tolerant JSON parsing for iOS</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting started with iOS development</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON parsing for iOS</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/03/installing-imagemagick-on-lion/">Installing ImageMagick on Lion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/">Running OCUnit &amp; Kiwi Tests on the Command Line</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">Installing RVM on OS X Lion</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'sgleadow',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("stewgleadow", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
+  
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Stewart Gleadow -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'sgleadow-blog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/';
+        var disqus_url = 'http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

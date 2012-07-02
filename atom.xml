@@ -4,7 +4,7 @@
   <title><![CDATA[Stewart Gleadow's Blog]]></title>
   <link href="http://www.stewgleadow.com/atom.xml" rel="self"/>
   <link href="http://www.stewgleadow.com/"/>
-  <updated>2012-05-28T13:37:04+10:00</updated>
+  <updated>2012-07-02T15:09:55+10:00</updated>
   <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Getting started with iOS development]]></title>
+    <link href="http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/"/>
+    <updated>2012-07-02T14:07:00+10:00</updated>
+    <id>http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development</id>
+    <content type="html"><![CDATA[<p>Given the recent boom in demand for iOS apps, and the fact that many of us own these shiny new devices, I&#8217;m often asked where to start in learning iOS development. To save myself writing the same email over and over, here is the approach I would currently take to learning iOS, and some of the resources I would use. I hope it&#8217;s useful.</p>
+
+<h2>Starting out</h2>
+
+<p>Some people like to just start to code an app for themselves and learn along the way. I&#8217;m sure it&#8217;s possible for iOS as well, but I initially found Objective C to be a fairly strange language, and Xcode to be a very different IDE, that I wanted a guide to get me to a certain level of understanding. I wanted to know Objective C well enough to be able to write my own independent code, and understand solutions on Stack Overflow.</p>
+
+<p>I&#8217;m still one of those people who likes to read a book cover to cover when learning a completely new platform. The two introductory books and an online course I would recommend are below. Make sure you get the latest editions, as the iOS platform evolves quickly and older books get out of date.</p>
+
+<p>Read the <a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a> by Joe Conway and Aaron Hillegass. This is the most recommended introductory iOS book I&#8217;ve come across. If you have the time and resources to attend the Big Nerd Ranch training courses, that&#8217;d be a great way to start out, but given they are pretty expensive, this book is a great way to start. Get the 3rd Edition, which has been updated for all the iOS 5 goodness.</p>
+
+<p>Read the <a href="http://pragprog.com/book/adios/ios-sdk-development">iOS SDK</a> book from Bill Dudney and Chris Adamson for the Pragmatic Programmers. This book goes into a bit more depth about specific SDKs and tools (eg. Storyboards, iCloud), but is still suitable for people just starting out.</p>
+
+<p>Watch a decent amount of Paul Hegarty&#8217;s <a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a> on iTunesU. Again, try to get the latest version which at the time of me writing this is the 2011 Fall semester. Watching videos can be a little slow. I would either watch them in double time or airplay it onto your TV and load up Xcode and code along with the lectures.</p>
+
+<h2>Build something</h2>
+
+<p>Those introductory materials should give you enough knowledge of Objective C, Xcode and iOS to really get going building your own app. Try to build something you care about, that solves a problem you have. Devote enough time to see it through.</p>
+
+<p>The things I struggled with when I started to code my own stuff was about how to break down my iOS app code properly (MVC, subclasses, categories and subprojects), and how to get out of code signing and provisioning hell. There will be a bunch of common problems you run into early on. Don&#8217;t code in isolation.</p>
+
+<p>The biggest help to me was attending the local <a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a> meetup, and they&#8217;re pretty widespread around the world these days. The group also has monthly hacknights in a bar. Once you get uses to a table of geeks with Apple hardware on the bench in the pub, it&#8217;s a great place to work and ask questions from folks who have been doing this a while.</p>
+
+<h2>Understanding iOS</h2>
+
+<p>Building your own app will get you to the point where you&#8217;re quite comfortable coding apps independently. That&#8217;s great, but also dangerous. Apple is a very controlling company, and their SDKs and development tools reflect that. You want to get a good grasp of the Objective C language, it&#8217;s design and runtime environment, so you can effectively code for their platforms. You also want to read Apple&#8217;s developer material to get an idea of how they&#8217;re intending apps to be written and what direction the platform is heading in. There are two resources I&#8217;d recommend for this.</p>
+
+<p>The <a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a> book is great. It&#8217;s more about Mac OS X than iOS, but they&#8217;re fundamentally very similar platforms. While the book is a few years old now (published in 2009), the fundamental design patterns of both the Objective C language and the runtime have not changed significantly in that time. Obviously, there have been plenty of superficial changes to the SDKs but this book will help you understand why things are the way they are.</p>
+
+<p>Watch plenty of Apple&#8217;s WWDC videos. You&#8217;ll need an Apple developer account to get to these. The most recent <a href="https://developer.apple.com/videos/wwdc/2012/">WWDC 2012</a> have recently become available, but there are plenty of talks from <a href="https://developer.apple.com/videos/wwdc/2011/">WWDC 2011</a> and <a href="https://developer.apple.com/videos/wwdc/2010/">WWDC 2010</a> that are still relevant as well.</p>
+
+<p>And if you really want to become an expect, work on an iOS app with some people who have already been on this journey and learn from them. I certainly learnt the most from pair programming with developers who are better than I will ever be.</p>
+
+<h2>Summary</h2>
+
+<p>For all you slackers who don&#8217;t like reading my carefully crafted prose, here&#8217;s a list of my recommended resources, in the order I would tackle them:</p>
+
+<ul>
+<li><a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a></li>
+<li><a href="http://pragprog.com/book/adios/ios-sdk-development">iOS SDK</a></li>
+<li><a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a></li>
+<li><a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a></li>
+<li><a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a></li>
+<li><a href="https://developer.apple.com/videos/wwdc/2012/">WWDC Videos</a></li>
+</ul>
+
+
+<p>I haven&#8217;t even mentioned the whole topic of mastering automated testing for iOS, which is something I&#8217;m passionate about. There&#8217;s enough information on iOS testing for an entirely separate post, so stay tuned for that.</p>
+
+<p>Done. Happy coding.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tolerant JSON parsing for iOS]]></title>

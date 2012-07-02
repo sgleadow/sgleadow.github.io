@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Stewart Gleadow's Blog]]></title>
   <link href="http://www.stewgleadow.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://www.stewgleadow.com/"/>
-  <updated>2012-05-28T13:37:04+10:00</updated>
+  <updated>2012-07-02T15:09:55+10:00</updated>
   <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Getting started with iOS development]]></title>
+    <link href="http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/"/>
+    <updated>2012-07-02T14:07:00+10:00</updated>
+    <id>http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development</id>
+    <content type="html"><![CDATA[<p>Given the recent boom in demand for iOS apps, and the fact that many of us own these shiny new devices, I'm often asked where to start in learning iOS development. To save myself writing the same email over and over, here is the approach I would currently take to learning iOS, and some of the resources I would use. I hope it's useful.</p>
+
+<h2>Starting out</h2>
+
+<p>Some people like to just start to code an app for themselves and learn along the way. I'm sure it's possible for iOS as well, but I initially found Objective C to be a fairly strange language, and Xcode to be a very different IDE, that I wanted a guide to get me to a certain level of understanding. I wanted to know Objective C well enough to be able to write my own independent code, and understand solutions on Stack Overflow.</p>
+
+<p>I'm still one of those people who likes to read a book cover to cover when learning a completely new platform. The two introductory books and an online course I would recommend are below. Make sure you get the latest editions, as the iOS platform evolves quickly and older books get out of date.</p>
+
+<p>Read the <a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a> by Joe Conway and Aaron Hillegass. This is the most recommended introductory iOS book I've come across. If you have the time and resources to attend the Big Nerd Ranch training courses, that'd be a great way to start out, but given they are pretty expensive, this book is a great way to start. Get the 3rd Edition, which has been updated for all the iOS 5 goodness.</p>
+
+<p>Read the <a href="http://pragprog.com/book/adios/ios-sdk-development">iOS SDK</a> book from Bill Dudney and Chris Adamson for the Pragmatic Programmers. This book goes into a bit more depth about specific SDKs and tools (eg. Storyboards, iCloud), but is still suitable for people just starting out.</p>
+
+<p>Watch a decent amount of Paul Hegarty's <a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a> on iTunesU. Again, try to get the latest version which at the time of me writing this is the 2011 Fall semester. Watching videos can be a little slow. I would either watch them in double time or airplay it onto your TV and load up Xcode and code along with the lectures.</p>
+
+<h2>Build something</h2>
+
+<p>Those introductory materials should give you enough knowledge of Objective C, Xcode and iOS to really get going building your own app. Try to build something you care about, that solves a problem you have. Devote enough time to see it through.</p>
+
+<p>The things I struggled with when I started to code my own stuff was about how to break down my iOS app code properly (MVC, subclasses, categories and subprojects), and how to get out of code signing and provisioning hell. There will be a bunch of common problems you run into early on. Don't code in isolation.</p>
+
+<p>The biggest help to me was attending the local <a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a> meetup, and they're pretty widespread around the world these days. The group also has monthly hacknights in a bar. Once you get uses to a table of geeks with Apple hardware on the bench in the pub, it's a great place to work and ask questions from folks who have been doing this a while.</p>
+
+<h2>Understanding iOS</h2>
+
+<p>Building your own app will get you to the point where you're quite comfortable coding apps independently. That's great, but also dangerous. Apple is a very controlling company, and their SDKs and development tools reflect that. You want to get a good grasp of the Objective C language, it's design and runtime environment, so you can effectively code for their platforms. You also want to read Apple's developer material to get an idea of how they're intending apps to be written and what direction the platform is heading in. There are two resources I'd recommend for this.</p>
+
+<p>The <a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a> book is great. It's more about Mac OS X than iOS, but they're fundamentally very similar platforms. While the book is a few years old now (published in 2009), the fundamental design patterns of both the Objective C language and the runtime have not changed significantly in that time. Obviously, there have been plenty of superficial changes to the SDKs but this book will help you understand why things are the way they are.</p>
+
+<p>Watch plenty of Apple's WWDC videos. You'll need an Apple developer account to get to these. The most recent <a href="https://developer.apple.com/videos/wwdc/2012/">WWDC 2012</a> have recently become available, but there are plenty of talks from <a href="https://developer.apple.com/videos/wwdc/2011/">WWDC 2011</a> and <a href="https://developer.apple.com/videos/wwdc/2010/">WWDC 2010</a> that are still relevant as well.</p>
+
+<p>And if you really want to become an expect, work on an iOS app with some people who have already been on this journey and learn from them. I certainly learnt the most from pair programming with developers who are better than I will ever be.</p>
+
+<h2>Summary</h2>
+
+<p>For all you slackers who don't like reading my carefully crafted prose, here's a list of my recommended resources, in the order I would tackle them:</p>
+
+<ul>
+<li><a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a></li>
+<li><a href="http://pragprog.com/book/adios/ios-sdk-development">iOS SDK</a></li>
+<li><a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a></li>
+<li><a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a></li>
+<li><a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a></li>
+<li><a href="https://developer.apple.com/videos/wwdc/2012/">WWDC Videos</a></li>
+</ul>
+
+
+<p>I haven't even mentioned the whole topic of mastering automated testing for iOS, which is something I'm passionate about. There's enough information on iOS testing for an entirely separate post, so stay tuned for that.</p>
+
+<p>Done. Happy coding.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tolerant JSON parsing for iOS]]></title>
@@ -340,111 +397,6 @@ if (copySharedResourcesPreferencesDomainForDomain) {
 <p>I'm a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device - but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I'm comfortable with it for now. I'm hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
 
 <p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I'm hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Installing iOS Apps on the Device From the Command Line]]></title>
-    <link href="http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/"/>
-    <updated>2011-11-05T10:50:00+11:00</updated>
-    <id>http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line</id>
-    <content type="html"><![CDATA[<p>One of the reasons I run most of my tests in the simulator is that it is easy to install and run applications automatically from the command line with tools like <a href="https://github.com/Fingertips/ios-sim">ios-sim</a>. Being able to run your tests from the command line make s it simple to set up continuous integration. I've used an Applescript to drive iTunes back in Xcode 3 days but it just felt wrong.</p>
-
-<p>The most recent functional testing tool I've been playing with is Apple's own <em>UIAutomation</em>, which runs within the Instruments app. I'll write more about that separately, but let's just say I don't think it's an ideal testing tool, especially if TDD and CI are important to you. Some details are in my <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project">comparison of a few functional testing tools</a>. The <code>instruments</code> command line tool does not seem to install the app on the device before running tests, which means you still need to use Xcode to manually install the app. Enter <code>fruitstrap</code>.</p>
-
-<h2>Fruitstrap</h2>
-
-<p><a href="https://github.com/ghughes/fruitstrap">Fruitstrap</a> is a command line tool that uses the private MobileDevice API to install an iOS application on a physical device over USB. It's pretty easy to get set up.</p>
-
-<p><code>
-git clone git://github.com/ghughes/fruitstrap.git
-cd fruitstrap
-make fruitstrap
-</code></p>
-
-<p>Fruitstrap comes with a demo applicaiton, which you can compile and install on a device using <code>make install</code>. I actually had a few issues getting the demo app to work, but I did get it working for actual sample applications. You now have the <code>fruitstrap</code> command compiled and ready to go - if you want to access the command from anywhere you probably want to add it to you path, or sym link it to <code>/usr/local/bin</code> or however you like to tinker with your machine.</p>
-
-<h2>Building from the command line</h2>
-
-<p>I made a little sample application to play around with <code>fruitstrap</code> and scripting on my <a href="https://github.com/sgleadow">github</a>, in a project called <a href="https://github.com/sgleadow/fruitstrap-demo">fruitstrap-demo</a>. It's just a simple Single View Application with a couple of labels so you know it's the right app. To get the repository:</p>
-
-<p><code>git clone git://github.com/sgleadow/fruitstrap-demo.git</code></p>
-
-<p>Just to make sure everything is working, open up the project in Xcode and build and run to your device. If that doesn't work, fruitstrap isn't going to help you much. The <code>xcodebuild</code> command allows us to build our iOS apps from the command line fairly easily. The command I used was:</p>
-
-<p><code>
-xcodebuild -scheme fruitstrap-demo -sdk iphoneos build
-</code></p>
-
-<p>Remember to use the <code>iphoneos</code> so that it builds your app for the device. Note, I originally tried this with the old <em>target</em> settings for <code>xcodebuild</code>, but it turned out I needed to use schemes for reasons explained below. The app will be built to <code>build/Debug-iphoneos/fruitstrap-demo.app</code>.</p>
-
-<h2>Try out fruitstrap</h2>
-
-<p>Now we have an application build on the command line, let's make sure fruitstrap works for our app. Make sure to remove your sample app from the device beforehand so you know it's working. Then use the <code>xcodebuild</code> command above to compile the app so it's ready to go, and make sure you know the full path to fruitstrap, or you've put fruitstrap on your path.</p>
-
-<p><code>
-fruitstrap build/Debug-iphoneos/fruitstrap-demo.app
-</code></p>
-
-<p>You should see a bunch of output and progress information finishing with the magic <code>[100%] Installed package build/Debug-iphoneos/fruitstrap-demo.app</code>, and in a few moments, the app appears in <em>Springboard</em> on your phone. That's pretty cool - I've been trying to find a solution for installing on the device like that for a long time!</p>
-
-<p>If you have more than one device plugged in (which is usually the case on a mobile continuous integration server), you'll need to also specify the device id.</p>
-
-<h2>Scripting the fruitstrap installation</h2>
-
-<p>My next goal is to write a little shell script that we can integrate into a build phase in Xcode, so that we don't have to hard code the path <code>build/Debug-iphoneos</code> into out shell script. I immediately reached for the Build Phases tab of the fruitstrap-demp target to optionally run the fruitstrap install code. However, these shell scripts seem to get called <em>before</em> the code signing is run, in which case, installing to the device will fail.</p>
-
-<p>I found out from <a href="http://stackoverflow.com/questions/1409981/how-to-run-a-script-after-xcode-runs-codesign-on-my-iphone-app">this stackoverflow thread</a> that you can run pre and post scripts for a scheme. This allows us to hook up a shell script to run fruitstrap <em>after</em> the code signing.</p>
-
-<p>There is only one scheme in the sample project, so select <em>Edit Scheme...</em>, and select the <em>Build</em> action from the list on the left hand side. There are no actions at the moment, so press the <strong>+</strong> button and add a <em>Run Script Action</em>. Since we need to know where our target has been compiled, make sure that the <em>provide build settings from</em> option is set to <em>fruitstrap-demo</em>, as show in the following screenshot.</p>
-
-<p><img src="/images/posts/fruitstrap/fruitstrap-scheme-post-script.png" title="Running a script in the post action for a scheme" ></p>
-
-<p>The actual script code is shown below. It only runs if the <code>FRUITSTRAP_CLI</code> environment variable is set, since most of the time we don't want Xcode to be using this third party tool to install on the device. We only need it to run when running from the command line as part of our continuous integration build. It seems the scheme scripts do not get run in the same working directory as you run xcodebuild, so our script makes sure to change to SRCROOT before running fruitstrap.</p>
-
-<p>```</p>
-
-<h1>Do nothing unless we are running from the command line</h1>
-
-<p>if [ "$FRUITSTRAP_CLI" = "" ]; then
-exit 0
-fi</p>
-
-<p>echo "<strong><strong><strong><strong><strong><strong><strong><strong><strong>"
-echo "Installing app to device using fruitstrap..."
-echo "Workspace location: $SRCROOT"
-echo "Install location: $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME"
-echo "</strong></strong></strong></strong></strong></strong></strong></strong></strong>"</p>
-
-<p>cd $SRCROOT
-fruitstrap $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME</p>
-
-<p>echo "******************"
-```</p>
-
-<p>Check that when you run the xcodebuild example above that it <em>does not</em> run fruitstrap, since we don't want it to in that normal operation. Now, try building the scheme with the environment variable set and check that it does in fact build and install to the device.</p>
-
-<p><code>
-FRUITSTRAP_CLI=1 xcodebuild -scheme fruitstrap-demo -sdk iphoneos build
-</code></p>
-
-<p>Done. One command to build and install the app on the device.</p>
-
-<h2>More about fruitstrap</h2>
-
-<p>There is more information about fruitstrap on <a href="https://github.com/ghughes/fruitstrap">its github page</a>.</p>
-
-<p>One extra feature fruitstrap has is to be able to launch the application and attach a debugger, by using the <code>-d</code> option. I've had mixed success with this feature, it doesn't always work for me. I'm not sure how much use it is to me anyway if the point of this is running in CI.</p>
-
-<p><code>
-fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app
-</code></p>
-
-<h2>Summary</h2>
-
-<p>Now we can build the application and install it on the device from the command line. From here, the next step is to hook it up to the <code>instruments</code> command line interface. Massive thanks to <a href="https://twitter.com/#!/heardrwt">Richie</a> for letting me know about fruitstrap.</p>
-
-<p>Ideally, I would like to be able to boot the app on the device <em>without</em> being hooked into the debugger. I'm not sure if this is possible, I certainly haven't got it working with fruitstrap yet - and the hairy C code isn't making me want to jump in and try just yet. What we have now is enough to get UIAutomation up and running, since <code>instruments</code> will boot the app when the tests start. However, I'd prefer to use Frank or KIF in which case I need to find a way to boot onto the device.</p>
 ]]></content>
   </entry>
   

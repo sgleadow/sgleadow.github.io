@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://www.stewgleadow.comblog/categories/osx">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
@@ -152,11 +153,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting started with iOS development</a>
+        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting Started With iOS Development</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON parsing for iOS</a>
+        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON Parsing for iOS</a>
       </li>
     
       <li class="post">
@@ -183,7 +184,7 @@
   <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -204,23 +205,6 @@
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("stewgleadow", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
-  
-</section>
-
-
   
 </aside>
 
@@ -228,7 +212,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Stewart Gleadow -
+  Copyright &copy; 2013 - Stewart Gleadow -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

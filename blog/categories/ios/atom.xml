@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Stewart Gleadow's Blog]]></title>
   <link href="http://www.stewgleadow.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://www.stewgleadow.com/"/>
-  <updated>2012-11-27T10:55:11+11:00</updated>
+  <updated>2013-06-14T10:18:00+10:00</updated>
   <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -18,43 +18,43 @@
     <link href="http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/"/>
     <updated>2012-07-02T14:07:00+10:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development</id>
-    <content type="html"><![CDATA[<p>Given the recent boom in demand for iOS apps, and the fact that many of us own these shiny new devices, I'm often asked where to start in learning iOS development. To save myself writing the same email over and over, here is the approach I would currently take to learning iOS, and some of the resources I would use. I hope it's useful.</p>
+    <content type="html"><![CDATA[<p>Given the recent boom in demand for iOS apps, and the fact that many of us own these shiny new devices, I&rsquo;m often asked where to start in learning iOS development. To save myself writing the same email over and over, here is the approach I would currently take to learning iOS, and some of the resources I would use. I hope it&rsquo;s useful.</p>
 
 <h2>Starting out</h2>
 
-<p>Some people like to just start to code an app for themselves and learn along the way. I'm sure it's possible for iOS as well, but I initially found Objective C to be a fairly strange language, and Xcode to be a very different IDE, that I wanted a guide to get me to a certain level of understanding. I wanted to know Objective C well enough to be able to write my own independent code, and understand solutions on Stack Overflow.</p>
+<p>Some people like to just start to code an app for themselves and learn along the way. I&rsquo;m sure it&rsquo;s possible for iOS as well, but I initially found Objective C to be a fairly strange language, and Xcode to be a very different IDE, that I wanted a guide to get me to a certain level of understanding. I wanted to know Objective C well enough to be able to write my own independent code, and understand solutions on Stack Overflow.</p>
 
-<p>I'm still one of those people who likes to read a book cover to cover when learning a completely new platform. The two introductory books and an online course I would recommend are below. Make sure you get the latest editions, as the iOS platform evolves quickly and older books get out of date.</p>
+<p>I&rsquo;m still one of those people who likes to read a book cover to cover when learning a completely new platform. The two introductory books and an online course I would recommend are below. Make sure you get the latest editions, as the iOS platform evolves quickly and older books get out of date.</p>
 
-<p>Read the <a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a> by Joe Conway and Aaron Hillegass. This is the most recommended introductory iOS book I've come across. If you have the time and resources to attend the Big Nerd Ranch training courses, that'd be a great way to start out, but given they are pretty expensive, this book is a great way to start. Get the 3rd Edition, which has been updated for all the iOS 5 goodness.</p>
+<p>Read the <a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a> by Joe Conway and Aaron Hillegass. This is the most recommended introductory iOS book I&rsquo;ve come across. If you have the time and resources to attend the Big Nerd Ranch training courses, that&rsquo;d be a great way to start out, but given they are pretty expensive, this book is a great way to start. Get the 3rd Edition, which has been updated for all the iOS 5 goodness.</p>
 
 <p>Read the <a href="http://pragprog.com/book/adios/ios-sdk-development">iOS SDK</a> book from Bill Dudney and Chris Adamson for the Pragmatic Programmers. This book goes into a bit more depth about specific SDKs and tools (eg. Storyboards, iCloud), but is still suitable for people just starting out.</p>
 
-<p>Watch a decent amount of Paul Hegarty's <a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a> on iTunesU. Again, try to get the latest version which at the time of me writing this is the 2011 Fall semester. Watching videos can be a little slow. I would either watch them in double time or airplay it onto your TV and load up Xcode and code along with the lectures.</p>
+<p>Watch a decent amount of Paul Hegarty&rsquo;s <a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a> on iTunesU. Again, try to get the latest version which at the time of me writing this is the 2011 Fall semester. Watching videos can be a little slow. I would either watch them in double time or airplay it onto your TV and load up Xcode and code along with the lectures.</p>
 
 <h2>Build something</h2>
 
 <p>Those introductory materials should give you enough knowledge of Objective C, Xcode and iOS to really get going building your own app. Try to build something you care about, that solves a problem you have. Devote enough time to see it through.</p>
 
-<p>The things I struggled with when I started to code my own stuff was about how to break down my iOS app code properly (MVC, subclasses, categories and subprojects), and how to get out of code signing and provisioning hell. There will be a bunch of common problems you run into early on. Don't code in isolation.</p>
+<p>The things I struggled with when I started to code my own stuff was about how to break down my iOS app code properly (MVC, subclasses, categories and subprojects), and how to get out of code signing and provisioning hell. There will be a bunch of common problems you run into early on. Don&rsquo;t code in isolation.</p>
 
-<p>The biggest help to me was attending the local <a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a> meetup, and they're pretty widespread around the world these days. The group also has monthly hacknights in a bar. Once you get uses to a table of geeks with Apple hardware on the bench in the pub, it's a great place to work and ask questions from folks who have been doing this a while.</p>
+<p>The biggest help to me was attending the local <a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a> meetup, and they&rsquo;re pretty widespread around the world these days. The group also has monthly hacknights in a bar. Once you get uses to a table of geeks with Apple hardware on the bench in the pub, it&rsquo;s a great place to work and ask questions from folks who have been doing this a while.</p>
 
 <h2>Understanding iOS</h2>
 
-<p>Building your own app will get you to the point where you're quite comfortable coding apps independently. That's great, but also dangerous. Apple is a very controlling company, and their SDKs and development tools reflect that. You want to get a good grasp of the Objective C language, it's design and runtime environment, so you can effectively code for their platforms. You also want to read Apple's developer material to get an idea of how they're intending apps to be written and what direction the platform is heading in. There are two resources I'd recommend for this.</p>
+<p>Building your own app will get you to the point where you&rsquo;re quite comfortable coding apps independently. That&rsquo;s great, but also dangerous. Apple is a very controlling company, and their SDKs and development tools reflect that. You want to get a good grasp of the Objective C language, it&rsquo;s design and runtime environment, so you can effectively code for their platforms. You also want to read Apple&rsquo;s developer material to get an idea of how they&rsquo;re intending apps to be written and what direction the platform is heading in. There are two resources I&rsquo;d recommend for this.</p>
 
-<p>The <a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a> book is great. It's more about Mac OS X than iOS, but they're fundamentally very similar platforms. While the book is a few years old now (published in 2009), the fundamental design patterns of both the Objective C language and the runtime have not changed significantly in that time. Obviously, there have been plenty of superficial changes to the SDKs but this book will help you understand why things are the way they are.</p>
+<p>The <a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a> book is great. It&rsquo;s more about Mac OS X than iOS, but they&rsquo;re fundamentally very similar platforms. While the book is a few years old now (published in 2009), the fundamental design patterns of both the Objective C language and the runtime have not changed significantly in that time. Obviously, there have been plenty of superficial changes to the SDKs but this book will help you understand why things are the way they are.</p>
 
-<p>Watch plenty of Apple's WWDC videos. You'll need an Apple developer account to get to these. The most recent <a href="https://developer.apple.com/videos/wwdc/2012/">WWDC 2012</a> have recently become available, but there are plenty of talks from <a href="https://developer.apple.com/videos/wwdc/2011/">WWDC 2011</a> and <a href="https://developer.apple.com/videos/wwdc/2010/">WWDC 2010</a> that are still relevant as well.</p>
+<p>Watch plenty of Apple&rsquo;s WWDC videos. You&rsquo;ll need an Apple developer account to get to these. The most recent <a href="https://developer.apple.com/videos/wwdc/2012/">WWDC 2012</a> have recently become available, but there are plenty of talks from <a href="https://developer.apple.com/videos/wwdc/2011/">WWDC 2011</a> and <a href="https://developer.apple.com/videos/wwdc/2010/">WWDC 2010</a> that are still relevant as well.</p>
 
-<p>Updated: <a href="http://mark.aufflick.com/">Mark Aufflick</a> suggested that I also mention <a href="http://mikeash.com/pyblog/">Mike Ash's blog</a>, and I totally agree. Mike's posts offer great insight into the bowels of the Objective C language and runtime. It's definitely worth following and reading his material.</p>
+<p>Updated: <a href="http://mark.aufflick.com/">Mark Aufflick</a> suggested that I also mention <a href="http://mikeash.com/pyblog/">Mike Ash&rsquo;s blog</a>, and I totally agree. Mike&rsquo;s posts offer great insight into the bowels of the Objective C language and runtime. It&rsquo;s definitely worth following and reading his material.</p>
 
 <p>And if you really want to become an expect, work on an iOS app with some people who have already been on this journey and learn from them. I certainly learnt the most from pair programming with developers who are better than I will ever be.</p>
 
 <h2>Summary</h2>
 
-<p>For all you slackers who don't like reading my carefully crafted prose, here's a list of my recommended resources, in the order I would tackle them:</p>
+<p>For all you slackers who don&rsquo;t like reading my carefully crafted prose, here&rsquo;s a list of my recommended resources, in the order I would tackle them:</p>
 
 <ul>
 <li><a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a></li>
@@ -66,7 +66,7 @@
 </ul>
 
 
-<p>I haven't even mentioned the whole topic of mastering automated testing for iOS, which is something I'm passionate about. There's enough information on iOS testing for an entirely separate post, so stay tuned for that.</p>
+<p>I haven&rsquo;t even mentioned the whole topic of mastering automated testing for iOS, which is something I&rsquo;m passionate about. There&rsquo;s enough information on iOS testing for an entirely separate post, so stay tuned for that.</p>
 
 <p>Done. Happy coding.</p>
 ]]></content>
@@ -77,15 +77,15 @@
     <link href="http://www.stewgleadow.com/blog/2012/05/18/tolerant-json-parsing-for-ios/"/>
     <updated>2012-05-18T09:38:00+10:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/05/18/tolerant-json-parsing-for-ios</id>
-    <content type="html"><![CDATA[<p>Many useful iOS apps need to talk to some kind of backend web service. If you have any control over the back end, it will be talking JSON with your app. Each of these apps has some kind of JSON parsing behaviour. We've had many debates on the merits of parsing the dictionary into our own plain old Objective C objects (POCOs) versus just passing around <code>NSDictionary</code> objects. I'll put on my best consultant voice and say "it depends", let's not have that debate again today.</p>
+    <content type="html"><![CDATA[<p>Many useful iOS apps need to talk to some kind of backend web service. If you have any control over the back end, it will be talking JSON with your app. Each of these apps has some kind of JSON parsing behaviour. We&rsquo;ve had many debates on the merits of parsing the dictionary into our own plain old Objective C objects (POCOs) versus just passing around <code>NSDictionary</code> objects. I&rsquo;ll put on my best consultant voice and say &ldquo;it depends&rdquo;, let&rsquo;s not have that debate again today.</p>
 
 <p>Either way, at some stage you need to be pulling values out of an NSDictionary, and you want to do so safely. Martin Fowler wrote a few years ago about the <a href="http://martinfowler.com/bliki/TolerantReader.html">tolerant reader</a> approach, in which he says:</p>
 
-<blockquote><p><em>"My recommendation is to be as tolerant as possible when reading data from a service. If you're consuming an XML file, then only take the elements you need, ignore anything you don't."</em></p></blockquote>
+<blockquote><p><em>&ldquo;My recommendation is to be as tolerant as possible when reading data from a service. If you&rsquo;re consuming an XML file, then only take the elements you need, ignore anything you don&rsquo;t.&rdquo;</em></p></blockquote>
 
 <h2>Simple mapping of NSDictionary to properties</h2>
 
-<p>Let's say we have the following JSON to represent a person:</p>
+<p>Let&rsquo;s say we have the following JSON to represent a person:</p>
 
 <p><code>js
 {
@@ -105,7 +105,7 @@ self.level = [dict valueForKey:@"level"];
 
 <h2>Dynamic mapping of NSDictionary to properties</h2>
 
-<p>That kind of works, it grabs the right keys... but the developer in you thinks, hey, that seems pretty repeatable. I bet I could make that dynamic so as I add more data to the <code>NSDictionary</code>, new properties on my <code>Person</code> object are automatically populated. There are frameworks that do that kind of stuff for you, but a simple version could look like:</p>
+<p>That kind of works, it grabs the right keys&hellip; but the developer in you thinks, hey, that seems pretty repeatable. I bet I could make that dynamic so as I add more data to the <code>NSDictionary</code>, new properties on my <code>Person</code> object are automatically populated. There are frameworks that do that kind of stuff for you, but a simple version could look like:</p>
 
 <p><code>objc
 [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -119,13 +119,13 @@ self.level = [dict valueForKey:@"level"];
 
 <p>The problem with dynamically mapping data from a web service is that it assumes that the JSON data pulled down exactly matches what is expected, and never changes. If you so much as add a new data element to the JSON coming from the server, the app with break with an exception like <code>raised [&lt;Person 0xe328ce0&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key new-key.</code></p>
 
-<p>Now, even if you control both the client and the server, you want have a bit more flexibility than that. Sure, you could version the API and make it clever enough to serve the right data, but creating new API versions every time you add a new field is a bit of overhead. It's better to <em>"take only the elements you need"</em>, then you can add new data as much as you want.</p>
+<p>Now, even if you control both the client and the server, you want have a bit more flexibility than that. Sure, you could version the API and make it clever enough to serve the right data, but creating new API versions every time you add a new field is a bit of overhead. It&rsquo;s better to <em>&ldquo;take only the elements you need&rdquo;</em>, then you can add new data as much as you want.</p>
 
-<p>So you ditch the dynamic approach, it saves a few lines of Objective C but creates more problems elsewhere. We're back with the explicit dictionary-to-property mapping, which at least gives us the flexibility to add new data to the API and our iOS app just ignores the extra data.</p>
+<p>So you ditch the dynamic approach, it saves a few lines of Objective C but creates more problems elsewhere. We&rsquo;re back with the explicit dictionary-to-property mapping, which at least gives us the flexibility to add new data to the API and our iOS app just ignores the extra data.</p>
 
 <h2>Be as tolerant as possible</h2>
 
-<p>The issue we still have with our <em>valueForKey</em> approach is that we are assuming that the API is giving us back the correct data for each key. Objective C is pretty dynamic, so we just grab the value out of the dictionary and set it on the properties, which are NSString types. If, for some reason, the API starts returning a different type for the <em>level</em>. Maybe they've decided the level is now the number 11 and not a string, or maybe they've introduced a more complex representation of the level as a dictionary with extra keys, for example:</p>
+<p>The issue we still have with our <em>valueForKey</em> approach is that we are assuming that the API is giving us back the correct data for each key. Objective C is pretty dynamic, so we just grab the value out of the dictionary and set it on the properties, which are NSString types. If, for some reason, the API starts returning a different type for the <em>level</em>. Maybe they&rsquo;ve decided the level is now the number 11 and not a string, or maybe they&rsquo;ve introduced a more complex representation of the level as a dictionary with extra keys, for example:</p>
 
 <p><code>js
 {
@@ -135,7 +135,7 @@ self.level = [dict valueForKey:@"level"];
 }
 </code></p>
 
-<p>The actual parsing code still works fine. At runtime, Objective C will grab that dictionary for the <em>level</em> and shove it into the NSString. Now, everywhere else in our code will make the assumption that <code>person.level</code> will give back an NSString, and so it should - but when we start to call methods on this property that are specific to NSString, we're going to get some strange errors. Say you had some code looking at the prefix of the level property:</p>
+<p>The actual parsing code still works fine. At runtime, Objective C will grab that dictionary for the <em>level</em> and shove it into the NSString. Now, everywhere else in our code will make the assumption that <code>person.level</code> will give back an NSString, and so it should &ndash; but when we start to call methods on this property that are specific to NSString, we&rsquo;re going to get some strange errors. Say you had some code looking at the prefix of the level property:</p>
 
 <p><code>objc
 NSString *level = person.level;
@@ -145,11 +145,11 @@ if([level hasPrefix:@"awesome"])
 }
 </code></p>
 
-<p>Try running that and you'll get an error like <code>[__NSCFDictionary hasPrefix:]: unrecognized selector sent to instance</code>. So what we really want is to be tolerant of receiving incorrect data back when you are parsing it. We're already ignoring extra data, now we also want to ignore data that is of the incorrect type.</p>
+<p>Try running that and you&rsquo;ll get an error like <code>[__NSCFDictionary hasPrefix:]: unrecognized selector sent to instance</code>. So what we really want is to be tolerant of receiving incorrect data back when you are parsing it. We&rsquo;re already ignoring extra data, now we also want to ignore data that is of the incorrect type.</p>
 
 <h2>Safe dictionary extraction</h2>
 
-<p>On a number of projects now I've use a little category on NSDictionary that does this type checking for me, and also allows for feeding in a default value if the data is missing. In practice I don't usually feed in a default value, I like the properties to end up being <em>nil</em> if the data doesn't come back in the expected format. In the instance where I want to display certain values in the UI to show data is missing, that's UI logic and doesn't really belong in the data parsing in my opinion.</p>
+<p>On a number of projects now I&rsquo;ve use a little category on NSDictionary that does this type checking for me, and also allows for feeding in a default value if the data is missing. In practice I don&rsquo;t usually feed in a default value, I like the properties to end up being <em>nil</em> if the data doesn&rsquo;t come back in the expected format. In the instance where I want to display certain values in the UI to show data is missing, that&rsquo;s UI logic and doesn&rsquo;t really belong in the data parsing in my opinion.</p>
 
 <p>A short and sweet implementation of this safe NSDictionary category could be something like:</p>
 
@@ -158,15 +158,12 @@ if([level hasPrefix:@"awesome"])
 
 <ul>
 <li>(id)valueForKey:(NSString *)key
-
-<pre><code>   ifKindOf:(Class)class
-</code></pre>
-
-<p>   defaultValue:(id)defaultValue
+       ifKindOf:(Class)class
+   defaultValue:(id)defaultValue
 {
   id obj = [self objectForKey:key];
   return [obj isKindOfClass:class] ? obj : defaultValue;
-}</p></li>
+}</li>
 </ul>
 
 
@@ -181,7 +178,7 @@ self.role = [dict valueForKey:@"role" ifKindOf:[NSString class] defaultValue:nil
 self.level = [dict valueForKey:@"level" ifKindOf:[NSString class] defaultValue:nil];
 </code></p>
 
-<p>That's it. Pretty simple. Credit should be given to <a href="http://twitter.com/#!/kevinoneill">Kevin O'Neill</a> who originally introduced this method, and has a more complete implementation in his <a href="https://github.com/kevinoneill/Useful-Bits">Useful Bits github project</a>.</p>
+<p>That&rsquo;s it. Pretty simple. Credit should be given to <a href="http://twitter.com/#!/kevinoneill">Kevin O'Neill</a> who originally introduced this method, and has a more complete implementation in his <a href="https://github.com/kevinoneill/Useful-Bits">Useful Bits github project</a>.</p>
 ]]></content>
   </entry>
   
@@ -190,7 +187,7 @@ self.level = [dict valueForKey:@"level" ifKindOf:[NSString class] defaultValue:n
     <link href="http://www.stewgleadow.com/blog/2012/03/03/installing-imagemagick-on-lion/"/>
     <updated>2012-03-03T13:49:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/03/03/installing-imagemagick-on-lion</id>
-    <content type="html"><![CDATA[<p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I'll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I've found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn't surprised ImageMagick didn't install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
+    <content type="html"><![CDATA[<p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I&rsquo;ll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I&rsquo;ve found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn&rsquo;t surprised ImageMagick didn&rsquo;t install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
 
 <p><code>
 ln: ImageMagick: Permission denied
@@ -199,9 +196,9 @@ The formula built, but is not symlinked into /usr/local
 You can try again using `brew link imagemagick'
 </code></p>
 
-<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I'll ignore that, maybe it'll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
+<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I&rsquo;ll ignore that, maybe it&rsquo;ll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
 
-<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn't actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
+<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn&rsquo;t actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
 
 <p><code>
 sudo brew link little-cms
@@ -210,7 +207,7 @@ sudo brew link libtiff
 sudo brew link jpeg
 </code></p>
 
-<p>Maybe it's a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I've just ended up with such a mess of libraries in /usr/local on old machines, I'm trying to keep my new little machine as clean as possible.</p>
+<p>Maybe it&rsquo;s a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I&rsquo;ve just ended up with such a mess of libraries in /usr/local on old machines, I&rsquo;m trying to keep my new little machine as clean as possible.</p>
 ]]></content>
   </entry>
   
@@ -219,17 +216,17 @@ sudo brew link jpeg
     <link href="http://www.stewgleadow.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/"/>
     <updated>2012-02-09T07:54:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line</id>
-    <content type="html"><![CDATA[<p>A common question I get asked is: how to I run my OCUnit tests from the command line? I've answered this a number of times, so here is a quick brain dump so I can just point to this post each time. I say OCUnit, but since <a href="https://github.com/allending/Kiwi">Kiwi</a> is just a wrapper above OCUnit, these instructions should also work for Kiwi tests.</p>
+    <content type="html"><![CDATA[<p>A common question I get asked is: how to I run my OCUnit tests from the command line? I&rsquo;ve answered this a number of times, so here is a quick brain dump so I can just point to this post each time. I say OCUnit, but since <a href="https://github.com/allending/Kiwi">Kiwi</a> is just a wrapper above OCUnit, these instructions should also work for Kiwi tests.</p>
 
 <h2>Xcodebuild</h2>
 
-<p>OCUnit tests are run from a shell script during the build for that target, which is usually called something like MyAppTests. If you look at the <em>Build Phases</em> for that target, you'll see a little RunScript phase that actually runs the tests:</p>
+<p>OCUnit tests are run from a shell script during the build for that target, which is usually called something like MyAppTests. If you look at the <em>Build Phases</em> for that target, you&rsquo;ll see a little RunScript phase that actually runs the tests:</p>
 
 <p>```</p>
 
 <h1>Run the unit tests in this test bundle.</h1>
 
-<p>"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests"
+<p>&ldquo;${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests&rdquo;
 ```</p>
 
 <p>We can then use the <code>xcodebuild</code> command line utility to run this same build from the command line. On the command line (or from a Makefile if you are so inclined), try building and running the tests:</p>
@@ -242,28 +239,28 @@ xcodebuild -sdk iphonesimulator -configuration Debug -scheme MyAppTests build
 
 <h2>Logic &amp; Application Unit Tests</h2>
 
-<p>I'm not sure why Apple bothers to differentiate these tests. The basic difference is that Application tests need to be run inside of a UIKit environment, while Logic tests don't. I'd prefer if the build system just detected whether it needed UIKit and decided for you. There's a longer explanation in  <a href="https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/00-About_Unit_Testing/about.html#//apple_ref/doc/uid/TP40002143">Apple's unit testing guide</a>. I often want to write unit tests for my UIViewController classes and any other UI logic, so I always tick the Application checkbox when adding unit tests to an Xcode project. If you're making a static library with no UI then you might want to select Logic.</p>
+<p>I&rsquo;m not sure why Apple bothers to differentiate these tests. The basic difference is that Application tests need to be run inside of a UIKit environment, while Logic tests don&rsquo;t. I&rsquo;d prefer if the build system just detected whether it needed UIKit and decided for you. There&rsquo;s a longer explanation in  <a href="https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/00-About_Unit_Testing/about.html#//apple_ref/doc/uid/TP40002143">Apple&rsquo;s unit testing guide</a>. I often want to write unit tests for my UIViewController classes and any other UI logic, so I always tick the Application checkbox when adding unit tests to an Xcode project. If you&rsquo;re making a static library with no UI then you might want to select Logic.</p>
 
-<p>Anyway, if your project has <em>Logic</em> tests, the above <code>xcodebuild</code> command should run your unit tests fine and you will see the test output in the Terminal window. However, if they are Application tests, the command silently succeeds without actually running your tests. If you look near the bottom of the output, you'll see this in the output:</p>
+<p>Anyway, if your project has <em>Logic</em> tests, the above <code>xcodebuild</code> command should run your unit tests fine and you will see the test output in the Terminal window. However, if they are Application tests, the command silently succeeds without actually running your tests. If you look near the bottom of the output, you&rsquo;ll see this in the output:</p>
 
 <p><code>
 /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests:95:
 warning: Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set).
 </code></p>
 
-<p>So the tests didn't even run, but the command succeeds, the build stays green and everyone's happy... but the tests aren't running.</p>
+<p>So the tests didn&rsquo;t even run, but the command succeeds, the build stays green and everyone&rsquo;s happy&hellip; but the tests aren&rsquo;t running.</p>
 
 <h2>Running From The Command Line</h2>
 
-<p>I usually point people to <a href="http://longweekendmobile.com/2011/04/17/xcode4-running-application-tests-from-the-command-line-in-ios/">a post from the guys at Long Weekend</a> for how to get these Application tests running from the command line. Here's quick summary:</p>
+<p>I usually point people to <a href="http://longweekendmobile.com/2011/04/17/xcode4-running-application-tests-from-the-command-line-in-ios/">a post from the guys at Long Weekend</a> for how to get these Application tests running from the command line. Here&rsquo;s quick summary:</p>
 
-<p>Open up <code>/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests</code> in your favourite editor and check out the code around line 95. You'll see the culprit line:</p>
+<p>Open up <code>/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests</code> in your favourite editor and check out the code around line 95. You&rsquo;ll see the culprit line:</p>
 
 <p><code>
 Warning ${LINENO} "Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set)."
 </code></p>
 
-<p>THe <code>TEST_HOST</code> is only set when running the tests through Xcode, not from the command line. If the host isn't set, the tests don't run. We want them to run in this case. We could replace that line with the following:</p>
+<p>THe <code>TEST_HOST</code> is only set when running the tests through Xcode, not from the command line. If the host isn&rsquo;t set, the tests don&rsquo;t run. We want them to run in this case. We could replace that line with the following:</p>
 
 <p><code>
 export OTHER_TEST_FLAGS="-RegisterForSystemEvents"
@@ -272,7 +269,7 @@ RunTestsForApplication "${TEST_HOST}" "${TEST_BUNDLE_PATH}"
 
 <p>This command will actually boot up your app in the iOS simulator and run the tests in that UI environment.</p>
 
-<p>I don't really feel comfortable hacking scripts in my Developer directory, so I'd rather copy this script into my project and run it from there. Also, editing the actual installed tools like this means that you have to do it on each and every machine running the tests. Even once you get it running on your machine, you'll need to log into your build machine and make the same hack there. Try making a copy of the same shell script Apple uses into your project directory:</p>
+<p>I don&rsquo;t really feel comfortable hacking scripts in my Developer directory, so I&rsquo;d rather copy this script into my project and run it from there. Also, editing the actual installed tools like this means that you have to do it on each and every machine running the tests. Even once you get it running on your machine, you&rsquo;ll need to log into your build machine and make the same hack there. Try making a copy of the same shell script Apple uses into your project directory:</p>
 
 <p><code>
 cd your-project
@@ -286,10 +283,10 @@ cp /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnit
 
 <h1>Run the unit tests in this test bundle.</h1>
 
-<p>"${SRCROOT}/../scripts/RunPlatformUnitTests"
+<p>&ldquo;${SRCROOT}/../scripts/RunPlatformUnitTests&rdquo;
 ```</p>
 
-<p>Run the tests in the IDE to make sure you didn't screw anything up. Now quit the simulator, and run them from the command line with xcodebuild again. You should see the test output printed and a few statements at the bottom saying that the tests succeeded. Your tests do pass, right?</p>
+<p>Run the tests in the IDE to make sure you didn&rsquo;t screw anything up. Now quit the simulator, and run them from the command line with xcodebuild again. You should see the test output printed and a few statements at the bottom saying that the tests succeeded. Your tests do pass, right?</p>
 
 <p><code>
 /Developer/Tools/RunPlatformUnitTests.include:334: note: Passed tests for architecture 'i386' (GC OFF)
@@ -300,7 +297,7 @@ cp /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnit
 
 <h2>One simulator to rule them all</h2>
 
-<p>The reason I said to close the simulator before running the tests from the command line is that the tests don't seem to like running when the iOS Simulator is already doing something. Try it. Open the simulator, and then run the tests. If your system is anything like mine, you get an error like this:</p>
+<p>The reason I said to close the simulator before running the tests from the command line is that the tests don&rsquo;t seem to like running when the iOS Simulator is already doing something. Try it. Open the simulator, and then run the tests. If your system is anything like mine, you get an error like this:</p>
 
 <p>```
 <strong> BUILD FAILED </strong></p>
@@ -312,7 +309,7 @@ cp /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnit
 
 <p>```</p>
 
-<p>If I'm running them locally, I see this, quit the simulator and try again. That's a bit of a pain, and it certainly wont work on the CI server. To solve that, in my Makefile, I just use a little Applescript to close the simulator before running the tests:</p>
+<p>If I&rsquo;m running them locally, I see this, quit the simulator and try again. That&rsquo;s a bit of a pain, and it certainly wont work on the CI server. To solve that, in my Makefile, I just use a little Applescript to close the simulator before running the tests:</p>
 
 <p>```
 test:</p>
@@ -334,16 +331,16 @@ xcodebuild -sdk iphonesimulator -configuration Debug -scheme MyAppTests build
     <id>http://www.stewgleadow.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices</id>
     <content type="html"><![CDATA[<p>I wrote a recent post on <a href="/blog/2011/10/14/enabling-accessibility-for-ios-applications/">enabling accessibility for iOS applications</a>, which ended with a snippet of code for automatically enabling accessibility on the iOS simulator. This is essential if you want to have your tests running on a continuous integration server, since the accessibility inspector is off by default.</p>
 
-<p>I hadn't yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
+<p>I hadn&rsquo;t yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
 
-<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn't sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
+<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn&rsquo;t sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
 
-<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It's a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
+<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It&rsquo;s a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
 
 <p>After following the standard KIF set up instructions, I write the following test:</p>
 
 <p>```objc
-- (void)initializeScenarios;
+&ndash; (void)initializeScenarios;
 {</p>
 
 <pre><code>KIFTestScenario *loadScreen = [KIFTestScenario scenarioWithDescription:@"Test app loads up on correct screen"];
@@ -396,9 +393,9 @@ if (copySharedResourcesPreferencesDomainForDomain) {
 <p>}
 ```</p>
 
-<p>I'm a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device - but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I'm comfortable with it for now. I'm hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
+<p>I&rsquo;m a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device &ndash; but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I&rsquo;m comfortable with it for now. I&rsquo;m hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
 
-<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I'm hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
+<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I&rsquo;m hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
 ]]></content>
   </entry>
   

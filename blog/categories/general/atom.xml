@@ -4,7 +4,7 @@
   <title><![CDATA[Category: general | Stewart Gleadow's Blog]]></title>
   <link href="http://www.stewgleadow.com/blog/categories/general/atom.xml" rel="self"/>
   <link href="http://www.stewgleadow.com/"/>
-  <updated>2012-11-27T10:55:11+11:00</updated>
+  <updated>2013-06-14T10:18:00+10:00</updated>
   <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -18,11 +18,11 @@
     <link href="http://www.stewgleadow.com/blog/2011/09/16/moving-from-wordpress-to-octopress/"/>
     <updated>2011-09-16T16:53:00+10:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/09/16/moving-from-wordpress-to-octopress</id>
-    <content type="html"><![CDATA[<p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I'm hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer's text editor, in plain text, using Markdown is ideal.</p>
+    <content type="html"><![CDATA[<p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I&rsquo;m hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer&rsquo;s text editor, in plain text, using Markdown is ideal.</p>
 
-<p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn't find the time to get the blog set up properly. This morning I read about Matt Gemmell's blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
+<p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn&rsquo;t find the time to get the blog set up properly. This morning I read about Matt Gemmell&rsquo;s blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
 
-<p>I've gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!</p>
+<p>I&rsquo;ve gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!</p>
 ]]></content>
   </entry>
   
@@ -31,13 +31,13 @@
     <link href="http://www.stewgleadow.com/blog/2011/03/26/hello-world/"/>
     <updated>2011-03-26T15:47:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/03/26/hello-world</id>
-    <content type="html"><![CDATA[<p>I've been meaning to start a blog for a while know. Until now, I've kept notes to myself in all sorts of places about problems I've encountered while developing software and solutions I've found. My favourite way of keeping notes to date is in a nice Moleskine notebook with a fountain pen - a bit backwards I know, you wouldn't believe I write software for a living.</p>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been meaning to start a blog for a while know. Until now, I&rsquo;ve kept notes to myself in all sorts of places about problems I&rsquo;ve encountered while developing software and solutions I&rsquo;ve found. My favourite way of keeping notes to date is in a nice Moleskine notebook with a fountain pen &ndash; a bit backwards I know, you wouldn&rsquo;t believe I write software for a living.</p>
 
-<p>Often my notes just disappear into the depths of my filesystem or bookshelf never to be seen again. If I'm really proactive, I might write up an answer on Stack Overflow or reply to a mailing list. The next time I want to share that experience, I have to filter through to find that information again</p>
+<p>Often my notes just disappear into the depths of my filesystem or bookshelf never to be seen again. If I&rsquo;m really proactive, I might write up an answer on Stack Overflow or reply to a mailing list. The next time I want to share that experience, I have to filter through to find that information again</p>
 
-<p>Hopefully a blog will be an easier way to keep track of this information and later refer to it. Whether it's useful information or not remains to be seen, but it will at least be useful to me. For shorter, random and less useful musings, I'm on twitter at @stewgleadow</p>
+<p>Hopefully a blog will be an easier way to keep track of this information and later refer to it. Whether it&rsquo;s useful information or not remains to be seen, but it will at least be useful to me. For shorter, random and less useful musings, I&rsquo;m on twitter at @stewgleadow</p>
 
-<p>The current topics I'm interested in are:</p>
+<p>The current topics I&rsquo;m interested in are:</p>
 
 <ul>
 <li>Objective C and native iOS apps</li>
@@ -47,7 +47,7 @@
 </ul>
 
 
-<p>User groups I'm involved in or attend occasionally:</p>
+<p>User groups I&rsquo;m involved in or attend occasionally:</p>
 
 <ul>
 <li><a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a></li>

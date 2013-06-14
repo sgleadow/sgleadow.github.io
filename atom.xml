@@ -4,7 +4,7 @@
   <title><![CDATA[Stewart Gleadow's Blog]]></title>
   <link href="http://www.stewgleadow.com/atom.xml" rel="self"/>
   <link href="http://www.stewgleadow.com/"/>
-  <updated>2012-11-27T10:55:11+11:00</updated>
+  <updated>2013-06-14T10:18:00+10:00</updated>
   <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -18,43 +18,43 @@
     <link href="http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/"/>
     <updated>2012-07-02T14:07:00+10:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development</id>
-    <content type="html"><![CDATA[<p>Given the recent boom in demand for iOS apps, and the fact that many of us own these shiny new devices, I&#8217;m often asked where to start in learning iOS development. To save myself writing the same email over and over, here is the approach I would currently take to learning iOS, and some of the resources I would use. I hope it&#8217;s useful.</p>
+    <content type="html"><![CDATA[<p>Given the recent boom in demand for iOS apps, and the fact that many of us own these shiny new devices, I&rsquo;m often asked where to start in learning iOS development. To save myself writing the same email over and over, here is the approach I would currently take to learning iOS, and some of the resources I would use. I hope it&rsquo;s useful.</p>
 
 <h2>Starting out</h2>
 
-<p>Some people like to just start to code an app for themselves and learn along the way. I&#8217;m sure it&#8217;s possible for iOS as well, but I initially found Objective C to be a fairly strange language, and Xcode to be a very different IDE, that I wanted a guide to get me to a certain level of understanding. I wanted to know Objective C well enough to be able to write my own independent code, and understand solutions on Stack Overflow.</p>
+<p>Some people like to just start to code an app for themselves and learn along the way. I&rsquo;m sure it&rsquo;s possible for iOS as well, but I initially found Objective C to be a fairly strange language, and Xcode to be a very different IDE, that I wanted a guide to get me to a certain level of understanding. I wanted to know Objective C well enough to be able to write my own independent code, and understand solutions on Stack Overflow.</p>
 
-<p>I&#8217;m still one of those people who likes to read a book cover to cover when learning a completely new platform. The two introductory books and an online course I would recommend are below. Make sure you get the latest editions, as the iOS platform evolves quickly and older books get out of date.</p>
+<p>I&rsquo;m still one of those people who likes to read a book cover to cover when learning a completely new platform. The two introductory books and an online course I would recommend are below. Make sure you get the latest editions, as the iOS platform evolves quickly and older books get out of date.</p>
 
-<p>Read the <a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a> by Joe Conway and Aaron Hillegass. This is the most recommended introductory iOS book I&#8217;ve come across. If you have the time and resources to attend the Big Nerd Ranch training courses, that&#8217;d be a great way to start out, but given they are pretty expensive, this book is a great way to start. Get the 3rd Edition, which has been updated for all the iOS 5 goodness.</p>
+<p>Read the <a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a> by Joe Conway and Aaron Hillegass. This is the most recommended introductory iOS book I&rsquo;ve come across. If you have the time and resources to attend the Big Nerd Ranch training courses, that&rsquo;d be a great way to start out, but given they are pretty expensive, this book is a great way to start. Get the 3rd Edition, which has been updated for all the iOS 5 goodness.</p>
 
 <p>Read the <a href="http://pragprog.com/book/adios/ios-sdk-development">iOS SDK</a> book from Bill Dudney and Chris Adamson for the Pragmatic Programmers. This book goes into a bit more depth about specific SDKs and tools (eg. Storyboards, iCloud), but is still suitable for people just starting out.</p>
 
-<p>Watch a decent amount of Paul Hegarty&#8217;s <a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a> on iTunesU. Again, try to get the latest version which at the time of me writing this is the 2011 Fall semester. Watching videos can be a little slow. I would either watch them in double time or airplay it onto your TV and load up Xcode and code along with the lectures.</p>
+<p>Watch a decent amount of Paul Hegarty&rsquo;s <a href="http://itunes.apple.com/us/itunes-u/ipad-iphone-application-development/id473757255">Standford iOS Course</a> on iTunesU. Again, try to get the latest version which at the time of me writing this is the 2011 Fall semester. Watching videos can be a little slow. I would either watch them in double time or airplay it onto your TV and load up Xcode and code along with the lectures.</p>
 
 <h2>Build something</h2>
 
 <p>Those introductory materials should give you enough knowledge of Objective C, Xcode and iOS to really get going building your own app. Try to build something you care about, that solves a problem you have. Devote enough time to see it through.</p>
 
-<p>The things I struggled with when I started to code my own stuff was about how to break down my iOS app code properly (MVC, subclasses, categories and subprojects), and how to get out of code signing and provisioning hell. There will be a bunch of common problems you run into early on. Don&#8217;t code in isolation.</p>
+<p>The things I struggled with when I started to code my own stuff was about how to break down my iOS app code properly (MVC, subclasses, categories and subprojects), and how to get out of code signing and provisioning hell. There will be a bunch of common problems you run into early on. Don&rsquo;t code in isolation.</p>
 
-<p>The biggest help to me was attending the local <a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a> meetup, and they&#8217;re pretty widespread around the world these days. The group also has monthly hacknights in a bar. Once you get uses to a table of geeks with Apple hardware on the bench in the pub, it&#8217;s a great place to work and ask questions from folks who have been doing this a while.</p>
+<p>The biggest help to me was attending the local <a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a> meetup, and they&rsquo;re pretty widespread around the world these days. The group also has monthly hacknights in a bar. Once you get uses to a table of geeks with Apple hardware on the bench in the pub, it&rsquo;s a great place to work and ask questions from folks who have been doing this a while.</p>
 
 <h2>Understanding iOS</h2>
 
-<p>Building your own app will get you to the point where you&#8217;re quite comfortable coding apps independently. That&#8217;s great, but also dangerous. Apple is a very controlling company, and their SDKs and development tools reflect that. You want to get a good grasp of the Objective C language, it&#8217;s design and runtime environment, so you can effectively code for their platforms. You also want to read Apple&#8217;s developer material to get an idea of how they&#8217;re intending apps to be written and what direction the platform is heading in. There are two resources I&#8217;d recommend for this.</p>
+<p>Building your own app will get you to the point where you&rsquo;re quite comfortable coding apps independently. That&rsquo;s great, but also dangerous. Apple is a very controlling company, and their SDKs and development tools reflect that. You want to get a good grasp of the Objective C language, it&rsquo;s design and runtime environment, so you can effectively code for their platforms. You also want to read Apple&rsquo;s developer material to get an idea of how they&rsquo;re intending apps to be written and what direction the platform is heading in. There are two resources I&rsquo;d recommend for this.</p>
 
-<p>The <a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a> book is great. It&#8217;s more about Mac OS X than iOS, but they&#8217;re fundamentally very similar platforms. While the book is a few years old now (published in 2009), the fundamental design patterns of both the Objective C language and the runtime have not changed significantly in that time. Obviously, there have been plenty of superficial changes to the SDKs but this book will help you understand why things are the way they are.</p>
+<p>The <a href="http://www.amazon.com/Cocoa-Design-Patterns-Erik-Buck/dp/0321535022">Cocoa Design Patterns</a> book is great. It&rsquo;s more about Mac OS X than iOS, but they&rsquo;re fundamentally very similar platforms. While the book is a few years old now (published in 2009), the fundamental design patterns of both the Objective C language and the runtime have not changed significantly in that time. Obviously, there have been plenty of superficial changes to the SDKs but this book will help you understand why things are the way they are.</p>
 
-<p>Watch plenty of Apple&#8217;s WWDC videos. You&#8217;ll need an Apple developer account to get to these. The most recent <a href="https://developer.apple.com/videos/wwdc/2012/">WWDC 2012</a> have recently become available, but there are plenty of talks from <a href="https://developer.apple.com/videos/wwdc/2011/">WWDC 2011</a> and <a href="https://developer.apple.com/videos/wwdc/2010/">WWDC 2010</a> that are still relevant as well.</p>
+<p>Watch plenty of Apple&rsquo;s WWDC videos. You&rsquo;ll need an Apple developer account to get to these. The most recent <a href="https://developer.apple.com/videos/wwdc/2012/">WWDC 2012</a> have recently become available, but there are plenty of talks from <a href="https://developer.apple.com/videos/wwdc/2011/">WWDC 2011</a> and <a href="https://developer.apple.com/videos/wwdc/2010/">WWDC 2010</a> that are still relevant as well.</p>
 
-<p>Updated: <a href="http://mark.aufflick.com/">Mark Aufflick</a> suggested that I also mention <a href="http://mikeash.com/pyblog/">Mike Ash&#8217;s blog</a>, and I totally agree. Mike&#8217;s posts offer great insight into the bowels of the Objective C language and runtime. It&#8217;s definitely worth following and reading his material.</p>
+<p>Updated: <a href="http://mark.aufflick.com/">Mark Aufflick</a> suggested that I also mention <a href="http://mikeash.com/pyblog/">Mike Ash&rsquo;s blog</a>, and I totally agree. Mike&rsquo;s posts offer great insight into the bowels of the Objective C language and runtime. It&rsquo;s definitely worth following and reading his material.</p>
 
 <p>And if you really want to become an expect, work on an iOS app with some people who have already been on this journey and learn from them. I certainly learnt the most from pair programming with developers who are better than I will ever be.</p>
 
 <h2>Summary</h2>
 
-<p>For all you slackers who don&#8217;t like reading my carefully crafted prose, here&#8217;s a list of my recommended resources, in the order I would tackle them:</p>
+<p>For all you slackers who don&rsquo;t like reading my carefully crafted prose, here&rsquo;s a list of my recommended resources, in the order I would tackle them:</p>
 
 <ul>
 <li><a href="http://www.bignerdranch.com/book/ios_programming_the_big_nerd_ranch_guide_rd_edition_">Big Nerd Ranch iOS Guide</a></li>
@@ -66,7 +66,7 @@
 </ul>
 
 
-<p>I haven&#8217;t even mentioned the whole topic of mastering automated testing for iOS, which is something I&#8217;m passionate about. There&#8217;s enough information on iOS testing for an entirely separate post, so stay tuned for that.</p>
+<p>I haven&rsquo;t even mentioned the whole topic of mastering automated testing for iOS, which is something I&rsquo;m passionate about. There&rsquo;s enough information on iOS testing for an entirely separate post, so stay tuned for that.</p>
 
 <p>Done. Happy coding.</p>
 ]]></content>
@@ -77,15 +77,15 @@
     <link href="http://www.stewgleadow.com/blog/2012/05/18/tolerant-json-parsing-for-ios/"/>
     <updated>2012-05-18T09:38:00+10:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/05/18/tolerant-json-parsing-for-ios</id>
-    <content type="html"><![CDATA[<p>Many useful iOS apps need to talk to some kind of backend web service. If you have any control over the back end, it will be talking JSON with your app. Each of these apps has some kind of JSON parsing behaviour. We&#8217;ve had many debates on the merits of parsing the dictionary into our own plain old Objective C objects (POCOs) versus just passing around <code>NSDictionary</code> objects. I&#8217;ll put on my best consultant voice and say &#8220;it depends&#8221;, let&#8217;s not have that debate again today.</p>
+    <content type="html"><![CDATA[<p>Many useful iOS apps need to talk to some kind of backend web service. If you have any control over the back end, it will be talking JSON with your app. Each of these apps has some kind of JSON parsing behaviour. We&rsquo;ve had many debates on the merits of parsing the dictionary into our own plain old Objective C objects (POCOs) versus just passing around <code>NSDictionary</code> objects. I&rsquo;ll put on my best consultant voice and say &ldquo;it depends&rdquo;, let&rsquo;s not have that debate again today.</p>
 
 <p>Either way, at some stage you need to be pulling values out of an NSDictionary, and you want to do so safely. Martin Fowler wrote a few years ago about the <a href="http://martinfowler.com/bliki/TolerantReader.html">tolerant reader</a> approach, in which he says:</p>
 
-<blockquote><p><em>&#8220;My recommendation is to be as tolerant as possible when reading data from a service. If you&#8217;re consuming an XML file, then only take the elements you need, ignore anything you don&#8217;t.&#8221;</em></p></blockquote>
+<blockquote><p><em>&ldquo;My recommendation is to be as tolerant as possible when reading data from a service. If you&rsquo;re consuming an XML file, then only take the elements you need, ignore anything you don&rsquo;t.&rdquo;</em></p></blockquote>
 
 <h2>Simple mapping of NSDictionary to properties</h2>
 
-<p>Let&#8217;s say we have the following JSON to represent a person:</p>
+<p>Let&rsquo;s say we have the following JSON to represent a person:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;stew&quot;</span><span class="p">,</span>
@@ -105,7 +105,7 @@
 
 <h2>Dynamic mapping of NSDictionary to properties</h2>
 
-<p>That kind of works, it grabs the right keys&#8230; but the developer in you thinks, hey, that seems pretty repeatable. I bet I could make that dynamic so as I add more data to the <code>NSDictionary</code>, new properties on my <code>Person</code> object are automatically populated. There are frameworks that do that kind of stuff for you, but a simple version could look like:</p>
+<p>That kind of works, it grabs the right keys&hellip; but the developer in you thinks, hey, that seems pretty repeatable. I bet I could make that dynamic so as I add more data to the <code>NSDictionary</code>, new properties on my <code>Person</code> object are automatically populated. There are frameworks that do that kind of stuff for you, but a simple version could look like:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">dict</span> <span class="nl">enumerateKeysAndObjectsUsingBlock:</span><span class="o">^</span><span class="p">(</span><span class="kt">id</span> <span class="n">key</span><span class="p">,</span> <span class="kt">id</span> <span class="n">obj</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="p">[</span><span class="n">self</span> <span class="nl">setValue:</span><span class="n">obj</span> <span class="nl">forKey:</span><span class="n">key</span><span class="p">];</span>
@@ -119,13 +119,13 @@
 
 <p>The problem with dynamically mapping data from a web service is that it assumes that the JSON data pulled down exactly matches what is expected, and never changes. If you so much as add a new data element to the JSON coming from the server, the app with break with an exception like <code>raised [&lt;Person 0xe328ce0&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key new-key.</code></p>
 
-<p>Now, even if you control both the client and the server, you want have a bit more flexibility than that. Sure, you could version the API and make it clever enough to serve the right data, but creating new API versions every time you add a new field is a bit of overhead. It&#8217;s better to <em>&#8220;take only the elements you need&#8221;</em>, then you can add new data as much as you want.</p>
+<p>Now, even if you control both the client and the server, you want have a bit more flexibility than that. Sure, you could version the API and make it clever enough to serve the right data, but creating new API versions every time you add a new field is a bit of overhead. It&rsquo;s better to <em>&ldquo;take only the elements you need&rdquo;</em>, then you can add new data as much as you want.</p>
 
-<p>So you ditch the dynamic approach, it saves a few lines of Objective C but creates more problems elsewhere. We&#8217;re back with the explicit dictionary-to-property mapping, which at least gives us the flexibility to add new data to the API and our iOS app just ignores the extra data.</p>
+<p>So you ditch the dynamic approach, it saves a few lines of Objective C but creates more problems elsewhere. We&rsquo;re back with the explicit dictionary-to-property mapping, which at least gives us the flexibility to add new data to the API and our iOS app just ignores the extra data.</p>
 
 <h2>Be as tolerant as possible</h2>
 
-<p>The issue we still have with our <em>valueForKey</em> approach is that we are assuming that the API is giving us back the correct data for each key. Objective C is pretty dynamic, so we just grab the value out of the dictionary and set it on the properties, which are NSString types. If, for some reason, the API starts returning a different type for the <em>level</em>. Maybe they&#8217;ve decided the level is now the number 11 and not a string, or maybe they&#8217;ve introduced a more complex representation of the level as a dictionary with extra keys, for example:</p>
+<p>The issue we still have with our <em>valueForKey</em> approach is that we are assuming that the API is giving us back the correct data for each key. Objective C is pretty dynamic, so we just grab the value out of the dictionary and set it on the properties, which are NSString types. If, for some reason, the API starts returning a different type for the <em>level</em>. Maybe they&rsquo;ve decided the level is now the number 11 and not a string, or maybe they&rsquo;ve introduced a more complex representation of the level as a dictionary with extra keys, for example:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;stew&quot;</span><span class="p">,</span>
@@ -135,7 +135,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The actual parsing code still works fine. At runtime, Objective C will grab that dictionary for the <em>level</em> and shove it into the NSString. Now, everywhere else in our code will make the assumption that <code>person.level</code> will give back an NSString, and so it should - but when we start to call methods on this property that are specific to NSString, we&#8217;re going to get some strange errors. Say you had some code looking at the prefix of the level property:</p>
+<p>The actual parsing code still works fine. At runtime, Objective C will grab that dictionary for the <em>level</em> and shove it into the NSString. Now, everywhere else in our code will make the assumption that <code>person.level</code> will give back an NSString, and so it should &ndash; but when we start to call methods on this property that are specific to NSString, we&rsquo;re going to get some strange errors. Say you had some code looking at the prefix of the level property:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">level</span> <span class="o">=</span> <span class="n">person</span><span class="p">.</span><span class="n">level</span><span class="p">;</span>
 </span><span class='line'><span class="k">if</span><span class="p">([</span><span class="n">level</span> <span class="nl">hasPrefix:</span><span class="s">@&quot;awesome&quot;</span><span class="p">])</span>
@@ -145,11 +145,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Try running that and you&#8217;ll get an error like <code>[__NSCFDictionary hasPrefix:]: unrecognized selector sent to instance</code>. So what we really want is to be tolerant of receiving incorrect data back when you are parsing it. We&#8217;re already ignoring extra data, now we also want to ignore data that is of the incorrect type.</p>
+<p>Try running that and you&rsquo;ll get an error like <code>[__NSCFDictionary hasPrefix:]: unrecognized selector sent to instance</code>. So what we really want is to be tolerant of receiving incorrect data back when you are parsing it. We&rsquo;re already ignoring extra data, now we also want to ignore data that is of the incorrect type.</p>
 
 <h2>Safe dictionary extraction</h2>
 
-<p>On a number of projects now I&#8217;ve use a little category on NSDictionary that does this type checking for me, and also allows for feeding in a default value if the data is missing. In practice I don&#8217;t usually feed in a default value, I like the properties to end up being <em>nil</em> if the data doesn&#8217;t come back in the expected format. In the instance where I want to display certain values in the UI to show data is missing, that&#8217;s UI logic and doesn&#8217;t really belong in the data parsing in my opinion.</p>
+<p>On a number of projects now I&rsquo;ve use a little category on NSDictionary that does this type checking for me, and also allows for feeding in a default value if the data is missing. In practice I don&rsquo;t usually feed in a default value, I like the properties to end up being <em>nil</em> if the data doesn&rsquo;t come back in the expected format. In the instance where I want to display certain values in the UI to show data is missing, that&rsquo;s UI logic and doesn&rsquo;t really belong in the data parsing in my opinion.</p>
 
 <p>A short and sweet implementation of this safe NSDictionary category could be something like:</p>
 
@@ -175,7 +175,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>That&#8217;s it. Pretty simple. Credit should be given to <a href="http://twitter.com/#!/kevinoneill">Kevin O&#8217;Neill</a> who originally introduced this method, and has a more complete implementation in his <a href="https://github.com/kevinoneill/Useful-Bits">Useful Bits github project</a>.</p>
+<p>That&rsquo;s it. Pretty simple. Credit should be given to <a href="http://twitter.com/#!/kevinoneill">Kevin O&#8217;Neill</a> who originally introduced this method, and has a more complete implementation in his <a href="https://github.com/kevinoneill/Useful-Bits">Useful Bits github project</a>.</p>
 ]]></content>
   </entry>
   
@@ -184,7 +184,7 @@
     <link href="http://www.stewgleadow.com/blog/2012/03/03/installing-imagemagick-on-lion/"/>
     <updated>2012-03-03T13:49:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/03/03/installing-imagemagick-on-lion</id>
-    <content type="html"><![CDATA[<p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I&#8217;ll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I&#8217;ve found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="http://www.stewgleadow.com/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn&#8217;t surprised ImageMagick didn&#8217;t install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
+    <content type="html"><![CDATA[<p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I&rsquo;ll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I&rsquo;ve found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="http://www.stewgleadow.com/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn&rsquo;t surprised ImageMagick didn&rsquo;t install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>ln: ImageMagick: Permission denied
 </span><span class='line'>Error: The linking step did not complete successfully
@@ -192,9 +192,9 @@
 </span><span class='line'>You can try again using `brew link imagemagick'</span></code></pre></td></tr></table></div></figure>
 
 
-<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I&#8217;ll ignore that, maybe it&#8217;ll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
+<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I&rsquo;ll ignore that, maybe it&rsquo;ll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
 
-<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn&#8217;t actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
+<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn&rsquo;t actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>sudo brew link little-cms
 </span><span class='line'>sudo brew link imagemagick
@@ -202,7 +202,7 @@
 </span><span class='line'>sudo brew link jpeg</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Maybe it&#8217;s a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I&#8217;ve just ended up with such a mess of libraries in /usr/local on old machines, I&#8217;m trying to keep my new little machine as clean as possible.</p>
+<p>Maybe it&rsquo;s a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I&rsquo;ve just ended up with such a mess of libraries in /usr/local on old machines, I&rsquo;m trying to keep my new little machine as clean as possible.</p>
 ]]></content>
   </entry>
   
@@ -211,11 +211,11 @@
     <link href="http://www.stewgleadow.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/"/>
     <updated>2012-02-09T07:54:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line</id>
-    <content type="html"><![CDATA[<p>A common question I get asked is: how to I run my OCUnit tests from the command line? I&#8217;ve answered this a number of times, so here is a quick brain dump so I can just point to this post each time. I say OCUnit, but since <a href="https://github.com/allending/Kiwi">Kiwi</a> is just a wrapper above OCUnit, these instructions should also work for Kiwi tests.</p>
+    <content type="html"><![CDATA[<p>A common question I get asked is: how to I run my OCUnit tests from the command line? I&rsquo;ve answered this a number of times, so here is a quick brain dump so I can just point to this post each time. I say OCUnit, but since <a href="https://github.com/allending/Kiwi">Kiwi</a> is just a wrapper above OCUnit, these instructions should also work for Kiwi tests.</p>
 
 <h2>Xcodebuild</h2>
 
-<p>OCUnit tests are run from a shell script during the build for that target, which is usually called something like MyAppTests. If you look at the <em>Build Phases</em> for that target, you&#8217;ll see a little RunScript phase that actually runs the tests:</p>
+<p>OCUnit tests are run from a shell script during the build for that target, which is usually called something like MyAppTests. If you look at the <em>Build Phases</em> for that target, you&rsquo;ll see a little RunScript phase that actually runs the tests:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'># Run the unit tests in this test bundle.
 </span><span class='line'>"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests"</span></code></pre></td></tr></table></div></figure>
@@ -230,26 +230,26 @@
 
 <h2>Logic &amp; Application Unit Tests</h2>
 
-<p>I&#8217;m not sure why Apple bothers to differentiate these tests. The basic difference is that Application tests need to be run inside of a UIKit environment, while Logic tests don&#8217;t. I&#8217;d prefer if the build system just detected whether it needed UIKit and decided for you. There&#8217;s a longer explanation in  <a href="https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/00-About_Unit_Testing/about.html#//apple_ref/doc/uid/TP40002143">Apple&#8217;s unit testing guide</a>. I often want to write unit tests for my UIViewController classes and any other UI logic, so I always tick the Application checkbox when adding unit tests to an Xcode project. If you&#8217;re making a static library with no UI then you might want to select Logic.</p>
+<p>I&rsquo;m not sure why Apple bothers to differentiate these tests. The basic difference is that Application tests need to be run inside of a UIKit environment, while Logic tests don&rsquo;t. I&rsquo;d prefer if the build system just detected whether it needed UIKit and decided for you. There&rsquo;s a longer explanation in  <a href="https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/00-About_Unit_Testing/about.html#//apple_ref/doc/uid/TP40002143">Apple&rsquo;s unit testing guide</a>. I often want to write unit tests for my UIViewController classes and any other UI logic, so I always tick the Application checkbox when adding unit tests to an Xcode project. If you&rsquo;re making a static library with no UI then you might want to select Logic.</p>
 
-<p>Anyway, if your project has <em>Logic</em> tests, the above <code>xcodebuild</code> command should run your unit tests fine and you will see the test output in the Terminal window. However, if they are Application tests, the command silently succeeds without actually running your tests. If you look near the bottom of the output, you&#8217;ll see this in the output:</p>
+<p>Anyway, if your project has <em>Logic</em> tests, the above <code>xcodebuild</code> command should run your unit tests fine and you will see the test output in the Terminal window. However, if they are Application tests, the command silently succeeds without actually running your tests. If you look near the bottom of the output, you&rsquo;ll see this in the output:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests:95:
 </span><span class='line'>warning: Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set).</span></code></pre></td></tr></table></div></figure>
 
 
-<p>So the tests didn&#8217;t even run, but the command succeeds, the build stays green and everyone&#8217;s happy&#8230; but the tests aren&#8217;t running.</p>
+<p>So the tests didn&rsquo;t even run, but the command succeeds, the build stays green and everyone&rsquo;s happy&hellip; but the tests aren&rsquo;t running.</p>
 
 <h2>Running From The Command Line</h2>
 
-<p>I usually point people to <a href="http://longweekendmobile.com/2011/04/17/xcode4-running-application-tests-from-the-command-line-in-ios/">a post from the guys at Long Weekend</a> for how to get these Application tests running from the command line. Here&#8217;s quick summary:</p>
+<p>I usually point people to <a href="http://longweekendmobile.com/2011/04/17/xcode4-running-application-tests-from-the-command-line-in-ios/">a post from the guys at Long Weekend</a> for how to get these Application tests running from the command line. Here&rsquo;s quick summary:</p>
 
-<p>Open up <code>/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests</code> in your favourite editor and check out the code around line 95. You&#8217;ll see the culprit line:</p>
+<p>Open up <code>/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests</code> in your favourite editor and check out the code around line 95. You&rsquo;ll see the culprit line:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>Warning ${LINENO} "Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set)."</span></code></pre></td></tr></table></div></figure>
 
 
-<p>THe <code>TEST_HOST</code> is only set when running the tests through Xcode, not from the command line. If the host isn&#8217;t set, the tests don&#8217;t run. We want them to run in this case. We could replace that line with the following:</p>
+<p>THe <code>TEST_HOST</code> is only set when running the tests through Xcode, not from the command line. If the host isn&rsquo;t set, the tests don&rsquo;t run. We want them to run in this case. We could replace that line with the following:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>export OTHER_TEST_FLAGS="-RegisterForSystemEvents"
 </span><span class='line'>RunTestsForApplication "${TEST_HOST}" "${TEST_BUNDLE_PATH}"</span></code></pre></td></tr></table></div></figure>
@@ -257,7 +257,7 @@
 
 <p>This command will actually boot up your app in the iOS simulator and run the tests in that UI environment.</p>
 
-<p>I don&#8217;t really feel comfortable hacking scripts in my Developer directory, so I&#8217;d rather copy this script into my project and run it from there. Also, editing the actual installed tools like this means that you have to do it on each and every machine running the tests. Even once you get it running on your machine, you&#8217;ll need to log into your build machine and make the same hack there. Try making a copy of the same shell script Apple uses into your project directory:</p>
+<p>I don&rsquo;t really feel comfortable hacking scripts in my Developer directory, so I&rsquo;d rather copy this script into my project and run it from there. Also, editing the actual installed tools like this means that you have to do it on each and every machine running the tests. Even once you get it running on your machine, you&rsquo;ll need to log into your build machine and make the same hack there. Try making a copy of the same shell script Apple uses into your project directory:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>cd your-project
 </span><span class='line'>mkdir scripts
@@ -270,7 +270,7 @@
 </span><span class='line'>"${SRCROOT}/../scripts/RunPlatformUnitTests"</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Run the tests in the IDE to make sure you didn&#8217;t screw anything up. Now quit the simulator, and run them from the command line with xcodebuild again. You should see the test output printed and a few statements at the bottom saying that the tests succeeded. Your tests do pass, right?</p>
+<p>Run the tests in the IDE to make sure you didn&rsquo;t screw anything up. Now quit the simulator, and run them from the command line with xcodebuild again. You should see the test output printed and a few statements at the bottom saying that the tests succeeded. Your tests do pass, right?</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>/Developer/Tools/RunPlatformUnitTests.include:334: note: Passed tests for architecture 'i386' (GC OFF)
 </span><span class='line'>/Developer/Tools/RunPlatformUnitTests.include:345: note: Completed tests for architectures 'i386'</span></code></pre></td></tr></table></div></figure>
@@ -280,7 +280,7 @@
 
 <h2>One simulator to rule them all</h2>
 
-<p>The reason I said to close the simulator before running the tests from the command line is that the tests don&#8217;t seem to like running when the iOS Simulator is already doing something. Try it. Open the simulator, and then run the tests. If your system is anything like mine, you get an error like this:</p>
+<p>The reason I said to close the simulator before running the tests from the command line is that the tests don&rsquo;t seem to like running when the iOS Simulator is already doing something. Try it. Open the simulator, and then run the tests. If your system is anything like mine, you get an error like this:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>** BUILD FAILED **
 </span><span class='line'>
@@ -288,7 +288,7 @@
 </span><span class='line'>  PhaseScriptExecution "Run Script" path-to-the-script-in-derived-data</span></code></pre></td></tr></table></div></figure>
 
 
-<p>If I&#8217;m running them locally, I see this, quit the simulator and try again. That&#8217;s a bit of a pain, and it certainly wont work on the CI server. To solve that, in my Makefile, I just use a little Applescript to close the simulator before running the tests:</p>
+<p>If I&rsquo;m running them locally, I see this, quit the simulator and try again. That&rsquo;s a bit of a pain, and it certainly wont work on the CI server. To solve that, in my Makefile, I just use a little Applescript to close the simulator before running the tests:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>test:
 </span><span class='line'>  osascript -e 'tell app "iPhone Simulator" to quit'
@@ -304,9 +304,9 @@
     <link href="http://www.stewgleadow.com/blog/2011/12/10/installing-rvm-on-os-x-lion/"/>
     <updated>2011-12-10T19:28:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/12/10/installing-rvm-on-os-x-lion</id>
-    <content type="html"><![CDATA[<p>I wrote a post a little while ago about transferring my Ruby dev environments to use <a href="http://beginrescueend.com/">rvm</a> to organise and separate Ruby envinroments and assosiated <a href="http://beginrescueend.com/gemsets/">gemsets</a>. I just got a new MacBook Air which I&#8217;m setting up at the moment, so I&#8217;m running through the set up process again. Here are my notes.</p>
+    <content type="html"><![CDATA[<p>I wrote a post a little while ago about transferring my Ruby dev environments to use <a href="http://beginrescueend.com/">rvm</a> to organise and separate Ruby envinroments and assosiated <a href="http://beginrescueend.com/gemsets/">gemsets</a>. I just got a new MacBook Air which I&rsquo;m setting up at the moment, so I&rsquo;m running through the set up process again. Here are my notes.</p>
 
-<p>There are a few rvm haters out there who find it to be over-engineered and trying to do too much. If that&#8217;s you, there is another, more lightweight tool called <a href="https://github.com/sstephenson/rbenv">rbenv</a> that you can use and if you really like separate gemsets, someone has written <a href="https://github.com/jamis/rbenv-gemset">rbenv-gemset</a> to go with it. I have a handful of projects already set up with rvm, so I&#8217;m going to keep using it for now.</p>
+<p>There are a few rvm haters out there who find it to be over-engineered and trying to do too much. If that&rsquo;s you, there is another, more lightweight tool called <a href="https://github.com/sstephenson/rbenv">rbenv</a> that you can use and if you really like separate gemsets, someone has written <a href="https://github.com/jamis/rbenv-gemset">rbenv-gemset</a> to go with it. I have a handful of projects already set up with rvm, so I&rsquo;m going to keep using it for now.</p>
 
 <p>Installing rvm itself is pretty easy. The <a href="http://beginrescueend.com/">rvm homepage</a> gives a quick install command:</p>
 
@@ -318,19 +318,19 @@
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"</span></code></pre></td></tr></table></div></figure>
 
 
-<p>That works fine. Now it&#8217;s time to install some rubies - at the moment I have projects using 1.8.7 and 1.9.2, and I&#8217;d like to use 1.9.3 going forward. I used the following command and got an error:</p>
+<p>That works fine. Now it&rsquo;s time to install some rubies &ndash; at the moment I have projects using 1.8.7 and 1.9.2, and I&rsquo;d like to use 1.9.3 going forward. I used the following command and got an error:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>rvm install 1.8.7
 </span><span class='line'>...
 </span><span class='line'>ERROR: There has been an error while running configure. Halting the installation.</span></code></pre></td></tr></table></div></figure>
 
 
-<p>It turns out this is a common issue in OS X Lion because gcc is just a sym link to LLVM, and the whole installation gets a bit confused (that&#8217;s the technical term for it). I read on <a href="http://www.mattpolito.info/post/9383196211/rvm-ruby-install-on-lion-got-you-down">Matt Polito&#8217;s blog</a> that you can simply point the CC environment variable straight to GCC 4.2 like this:</p>
+<p>It turns out this is a common issue in OS X Lion because gcc is just a sym link to LLVM, and the whole installation gets a bit confused (that&rsquo;s the technical term for it). I read on <a href="http://www.mattpolito.info/post/9383196211/rvm-ruby-install-on-lion-got-you-down">Matt Polito&rsquo;s blog</a> that you can simply point the CC environment variable straight to GCC 4.2 like this:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>CC=/usr/bin/gcc-4.2 rvm install &lt;ruby version&gt;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>That didn&#8217;t work for me. I&#8217;m using a brand new machine with Xcode 4.2 installed. It turns out this solution worked for Xcode 4.1 but 4.2 does not install the right gcc to use. One solution I saw was to roll back to Xcode 4.1 and then install Xcode 4.2 again. That seemed like it would take a while, so I used the standalone OS X GCC installer from https://github.com/kennethreitz/osx-gcc-installer. After that, installing different Rubies worked fine. I&#8217;m hoping that installing gcc like this doesn&#8217;t mess up my Xcode 4.2. So far so good, the few Xcode projects I&#8217;ve tried still compile and run fine.</p>
+<p>That didn&rsquo;t work for me. I&rsquo;m using a brand new machine with Xcode 4.2 installed. It turns out this solution worked for Xcode 4.1 but 4.2 does not install the right gcc to use. One solution I saw was to roll back to Xcode 4.1 and then install Xcode 4.2 again. That seemed like it would take a while, so I used the standalone OS X GCC installer from <a href="https://github.com/kennethreitz/osx-gcc-installer.">https://github.com/kennethreitz/osx-gcc-installer.</a> After that, installing different Rubies worked fine. I&rsquo;m hoping that installing gcc like this doesn&rsquo;t mess up my Xcode 4.2. So far so good, the few Xcode projects I&rsquo;ve tried still compile and run fine.</p>
 
 <p><strong>Edit:</strong> I think next time I will try the approach mentioned by <a href="https://twitter.com/tonyarnold">Tony Arnold</a> in the comments below, using the <code>--with-gcc=clang</code> option to rvm, something like this:</p>
 
@@ -346,11 +346,11 @@
     <id>http://www.stewgleadow.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices</id>
     <content type="html"><![CDATA[<p>I wrote a recent post on <a href="http://www.stewgleadow.com/blog/2011/10/14/enabling-accessibility-for-ios-applications/">enabling accessibility for iOS applications</a>, which ended with a snippet of code for automatically enabling accessibility on the iOS simulator. This is essential if you want to have your tests running on a continuous integration server, since the accessibility inspector is off by default.</p>
 
-<p>I hadn&#8217;t yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
+<p>I hadn&rsquo;t yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
 
-<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn&#8217;t sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
+<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn&rsquo;t sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
 
-<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It&#8217;s a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
+<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It&rsquo;s a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
 
 <p>After following the standard KIF set up instructions, I write the following test:</p>
 
@@ -402,9 +402,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;m a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device - but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I&#8217;m comfortable with it for now. I&#8217;m hoping this combined with my <a href="http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
+<p>I&rsquo;m a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device &ndash; but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I&rsquo;m comfortable with it for now. I&rsquo;m hoping this combined with my <a href="http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
 
-<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I&#8217;m hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
+<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I&rsquo;m hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
 ]]></content>
   </entry>
   
@@ -413,28 +413,28 @@
     <link href="http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/"/>
     <updated>2011-11-05T10:50:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line</id>
-    <content type="html"><![CDATA[<p>One of the reasons I run most of my tests in the simulator is that it is easy to install and run applications automatically from the command line with tools like <a href="https://github.com/Fingertips/ios-sim">ios-sim</a>. Being able to run your tests from the command line make s it simple to set up continuous integration. I&#8217;ve used an Applescript to drive iTunes back in Xcode 3 days but it just felt wrong.</p>
+    <content type="html"><![CDATA[<p>One of the reasons I run most of my tests in the simulator is that it is easy to install and run applications automatically from the command line with tools like <a href="https://github.com/Fingertips/ios-sim">ios-sim</a>. Being able to run your tests from the command line make s it simple to set up continuous integration. I&rsquo;ve used an Applescript to drive iTunes back in Xcode 3 days but it just felt wrong.</p>
 
-<p>The most recent functional testing tool I&#8217;ve been playing with is Apple&#8217;s own <em>UIAutomation</em>, which runs within the Instruments app. I&#8217;ll write more about that separately, but let&#8217;s just say I don&#8217;t think it&#8217;s an ideal testing tool, especially if TDD and CI are important to you. Some details are in my <a href="http://www.stewgleadow.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project">comparison of a few functional testing tools</a>. The <code>instruments</code> command line tool does not seem to install the app on the device before running tests, which means you still need to use Xcode to manually install the app. Enter <code>fruitstrap</code>.</p>
+<p>The most recent functional testing tool I&rsquo;ve been playing with is Apple&rsquo;s own <em>UIAutomation</em>, which runs within the Instruments app. I&rsquo;ll write more about that separately, but let&rsquo;s just say I don&rsquo;t think it&rsquo;s an ideal testing tool, especially if TDD and CI are important to you. Some details are in my <a href="http://www.stewgleadow.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project">comparison of a few functional testing tools</a>. The <code>instruments</code> command line tool does not seem to install the app on the device before running tests, which means you still need to use Xcode to manually install the app. Enter <code>fruitstrap</code>.</p>
 
 <h2>Fruitstrap</h2>
 
-<p><a href="https://github.com/ghughes/fruitstrap">Fruitstrap</a> is a command line tool that uses the private MobileDevice API to install an iOS application on a physical device over USB. It&#8217;s pretty easy to get set up.</p>
+<p><a href="https://github.com/ghughes/fruitstrap">Fruitstrap</a> is a command line tool that uses the private MobileDevice API to install an iOS application on a physical device over USB. It&rsquo;s pretty easy to get set up.</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/ghughes/fruitstrap.git
 </span><span class='line'>cd fruitstrap
 </span><span class='line'>make fruitstrap</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Fruitstrap comes with a demo applicaiton, which you can compile and install on a device using <code>make install</code>. I actually had a few issues getting the demo app to work, but I did get it working for actual sample applications. You now have the <code>fruitstrap</code> command compiled and ready to go - if you want to access the command from anywhere you probably want to add it to you path, or sym link it to <code>/usr/local/bin</code> or however you like to tinker with your machine.</p>
+<p>Fruitstrap comes with a demo applicaiton, which you can compile and install on a device using <code>make install</code>. I actually had a few issues getting the demo app to work, but I did get it working for actual sample applications. You now have the <code>fruitstrap</code> command compiled and ready to go &ndash; if you want to access the command from anywhere you probably want to add it to you path, or sym link it to <code>/usr/local/bin</code> or however you like to tinker with your machine.</p>
 
 <h2>Building from the command line</h2>
 
-<p>I made a little sample application to play around with <code>fruitstrap</code> and scripting on my <a href="https://github.com/sgleadow">github</a>, in a project called <a href="https://github.com/sgleadow/fruitstrap-demo">fruitstrap-demo</a>. It&#8217;s just a simple Single View Application with a couple of labels so you know it&#8217;s the right app. To get the repository:</p>
+<p>I made a little sample application to play around with <code>fruitstrap</code> and scripting on my <a href="https://github.com/sgleadow">github</a>, in a project called <a href="https://github.com/sgleadow/fruitstrap-demo">fruitstrap-demo</a>. It&rsquo;s just a simple Single View Application with a couple of labels so you know it&rsquo;s the right app. To get the repository:</p>
 
 <p><code>git clone git://github.com/sgleadow/fruitstrap-demo.git</code></p>
 
-<p>Just to make sure everything is working, open up the project in Xcode and build and run to your device. If that doesn&#8217;t work, fruitstrap isn&#8217;t going to help you much. The <code>xcodebuild</code> command allows us to build our iOS apps from the command line fairly easily. The command I used was:</p>
+<p>Just to make sure everything is working, open up the project in Xcode and build and run to your device. If that doesn&rsquo;t work, fruitstrap isn&rsquo;t going to help you much. The <code>xcodebuild</code> command allows us to build our iOS apps from the command line fairly easily. The command I used was:</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>xcodebuild -scheme fruitstrap-demo -sdk iphoneos build</span></code></pre></td></tr></table></div></figure>
 
@@ -443,26 +443,26 @@
 
 <h2>Try out fruitstrap</h2>
 
-<p>Now we have an application build on the command line, let&#8217;s make sure fruitstrap works for our app. Make sure to remove your sample app from the device beforehand so you know it&#8217;s working. Then use the <code>xcodebuild</code> command above to compile the app so it&#8217;s ready to go, and make sure you know the full path to fruitstrap, or you&#8217;ve put fruitstrap on your path.</p>
+<p>Now we have an application build on the command line, let&rsquo;s make sure fruitstrap works for our app. Make sure to remove your sample app from the device beforehand so you know it&rsquo;s working. Then use the <code>xcodebuild</code> command above to compile the app so it&rsquo;s ready to go, and make sure you know the full path to fruitstrap, or you&rsquo;ve put fruitstrap on your path.</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>fruitstrap build/Debug-iphoneos/fruitstrap-demo.app</span></code></pre></td></tr></table></div></figure>
 
 
-<p>You should see a bunch of output and progress information finishing with the magic <code>[100%] Installed package build/Debug-iphoneos/fruitstrap-demo.app</code>, and in a few moments, the app appears in <em>Springboard</em> on your phone. That&#8217;s pretty cool - I&#8217;ve been trying to find a solution for installing on the device like that for a long time!</p>
+<p>You should see a bunch of output and progress information finishing with the magic <code>[100%] Installed package build/Debug-iphoneos/fruitstrap-demo.app</code>, and in a few moments, the app appears in <em>Springboard</em> on your phone. That&rsquo;s pretty cool &ndash; I&rsquo;ve been trying to find a solution for installing on the device like that for a long time!</p>
 
-<p>If you have more than one device plugged in (which is usually the case on a mobile continuous integration server), you&#8217;ll need to also specify the device id.</p>
+<p>If you have more than one device plugged in (which is usually the case on a mobile continuous integration server), you&rsquo;ll need to also specify the device id.</p>
 
 <h2>Scripting the fruitstrap installation</h2>
 
-<p>My next goal is to write a little shell script that we can integrate into a build phase in Xcode, so that we don&#8217;t have to hard code the path <code>build/Debug-iphoneos</code> into out shell script. I immediately reached for the Build Phases tab of the fruitstrap-demp target to optionally run the fruitstrap install code. However, these shell scripts seem to get called <em>before</em> the code signing is run, in which case, installing to the device will fail.</p>
+<p>My next goal is to write a little shell script that we can integrate into a build phase in Xcode, so that we don&rsquo;t have to hard code the path <code>build/Debug-iphoneos</code> into out shell script. I immediately reached for the Build Phases tab of the fruitstrap-demp target to optionally run the fruitstrap install code. However, these shell scripts seem to get called <em>before</em> the code signing is run, in which case, installing to the device will fail.</p>
 
 <p>I found out from <a href="http://stackoverflow.com/questions/1409981/how-to-run-a-script-after-xcode-runs-codesign-on-my-iphone-app">this stackoverflow thread</a> that you can run pre and post scripts for a scheme. This allows us to hook up a shell script to run fruitstrap <em>after</em> the code signing.</p>
 
-<p>There is only one scheme in the sample project, so select <em>Edit Scheme&#8230;</em>, and select the <em>Build</em> action from the list on the left hand side. There are no actions at the moment, so press the <strong>+</strong> button and add a <em>Run Script Action</em>. Since we need to know where our target has been compiled, make sure that the <em>provide build settings from</em> option is set to <em>fruitstrap-demo</em>, as show in the following screenshot.</p>
+<p>There is only one scheme in the sample project, so select <em>Edit Scheme&hellip;</em>, and select the <em>Build</em> action from the list on the left hand side. There are no actions at the moment, so press the <strong>+</strong> button and add a <em>Run Script Action</em>. Since we need to know where our target has been compiled, make sure that the <em>provide build settings from</em> option is set to <em>fruitstrap-demo</em>, as show in the following screenshot.</p>
 
 <p><img src="http://www.stewgleadow.com/images/posts/fruitstrap/fruitstrap-scheme-post-script.png" title="Running a script in the post action for a scheme" ></p>
 
-<p>The actual script code is shown below. It only runs if the <code>FRUITSTRAP_CLI</code> environment variable is set, since most of the time we don&#8217;t want Xcode to be using this third party tool to install on the device. We only need it to run when running from the command line as part of our continuous integration build. It seems the scheme scripts do not get run in the same working directory as you run xcodebuild, so our script makes sure to change to SRCROOT before running fruitstrap.</p>
+<p>The actual script code is shown below. It only runs if the <code>FRUITSTRAP_CLI</code> environment variable is set, since most of the time we don&rsquo;t want Xcode to be using this third party tool to install on the device. We only need it to run when running from the command line as part of our continuous integration build. It seems the scheme scripts do not get run in the same working directory as you run xcodebuild, so our script makes sure to change to SRCROOT before running fruitstrap.</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'># Do nothing unless we are running from the command line
 </span><span class='line'>if [ "$FRUITSTRAP_CLI" = "" ]; then
@@ -481,7 +481,7 @@
 </span><span class='line'>echo "******************"</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Check that when you run the xcodebuild example above that it <em>does not</em> run fruitstrap, since we don&#8217;t want it to in that normal operation. Now, try building the scheme with the environment variable set and check that it does in fact build and install to the device.</p>
+<p>Check that when you run the xcodebuild example above that it <em>does not</em> run fruitstrap, since we don&rsquo;t want it to in that normal operation. Now, try building the scheme with the environment variable set and check that it does in fact build and install to the device.</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>FRUITSTRAP_CLI=1 xcodebuild -scheme fruitstrap-demo -sdk iphoneos build</span></code></pre></td></tr></table></div></figure>
 
@@ -492,7 +492,7 @@
 
 <p>There is more information about fruitstrap on <a href="https://github.com/ghughes/fruitstrap">its github page</a>.</p>
 
-<p>One extra feature fruitstrap has is to be able to launch the application and attach a debugger, by using the <code>-d</code> option. I&#8217;ve had mixed success with this feature, it doesn&#8217;t always work for me. I&#8217;m not sure how much use it is to me anyway if the point of this is running in CI.</p>
+<p>One extra feature fruitstrap has is to be able to launch the application and attach a debugger, by using the <code>-d</code> option. I&rsquo;ve had mixed success with this feature, it doesn&rsquo;t always work for me. I&rsquo;m not sure how much use it is to me anyway if the point of this is running in CI.</p>
 
 <figure class='code'><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class=''><span class='line'>fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app</span></code></pre></td></tr></table></div></figure>
 
@@ -501,7 +501,7 @@
 
 <p>Now we can build the application and install it on the device from the command line. From here, the next step is to hook it up to the <code>instruments</code> command line interface. Massive thanks to <a href="https://twitter.com/#!/heardrwt">Richie</a> for letting me know about fruitstrap.</p>
 
-<p>Ideally, I would like to be able to boot the app on the device <em>without</em> being hooked into the debugger. I&#8217;m not sure if this is possible, I certainly haven&#8217;t got it working with fruitstrap yet - and the hairy C code isn&#8217;t making me want to jump in and try just yet. What we have now is enough to get UIAutomation up and running, since <code>instruments</code> will boot the app when the tests start. However, I&#8217;d prefer to use Frank or KIF in which case I need to find a way to boot onto the device.</p>
+<p>Ideally, I would like to be able to boot the app on the device <em>without</em> being hooked into the debugger. I&rsquo;m not sure if this is possible, I certainly haven&rsquo;t got it working with fruitstrap yet &ndash; and the hairy C code isn&rsquo;t making me want to jump in and try just yet. What we have now is enough to get UIAutomation up and running, since <code>instruments</code> will boot the app when the tests start. However, I&rsquo;d prefer to use Frank or KIF in which case I need to find a way to boot onto the device.</p>
 ]]></content>
   </entry>
   
@@ -512,15 +512,15 @@
     <id>http://www.stewgleadow.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project</id>
     <content type="html"><![CDATA[<p>I recently came across a post from the guys at <a href="http://twobitlabs.com">Two Bit Labs</a> on <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">Adding Unit Tests to an existing iOS project</a> with Xcode 4.</p>
 
-<p>I always include unit tests by default in any project that is more than a demo, but up until recently I have always used <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. <a href="http://twitter.com/#!/makdad">Mark Makdad</a> wrote a piece earlier in the year <a href="http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit">comparing GHUnit and OCUnit</a>. That post combined with <a href="https://github.com/allending/Kiwi">Kiwi</a>&#8217;s Rspec-style wrappers around OCUnit has made me consider using Apple&#8217;s built in unit testing again.</p>
+<p>I always include unit tests by default in any project that is more than a demo, but up until recently I have always used <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. <a href="http://twitter.com/#!/makdad">Mark Makdad</a> wrote a piece earlier in the year <a href="http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit">comparing GHUnit and OCUnit</a>. That post combined with <a href="https://github.com/allending/Kiwi">Kiwi</a>&rsquo;s Rspec-style wrappers around OCUnit has made me consider using Apple&rsquo;s built in unit testing again.</p>
 
-<p>I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the <em>Test</em> build action hooked up. This isn&#8217;t exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press <code>Cmd + U</code> or select <code>Product &gt; Test</code> from the menu.</p>
+<p>I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the <em>Test</em> build action hooked up. This isn&rsquo;t exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press <code>Cmd + U</code> or select <code>Product &gt; Test</code> from the menu.</p>
 
 <h2>Adding the test action to an existing scheme</h2>
 
-<p>When I select my target, called <em>Development</em>, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you&#8230; but here is what I had to do in order to get my unit tests hooked up to my main Development target&#8217;s scheme.</p>
+<p>When I select my target, called <em>Development</em>, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you&hellip; but here is what I had to do in order to get my unit tests hooked up to my main Development target&rsquo;s scheme.</p>
 
-<p>Select your main target&#8217;s scheme in the little scheme selector in the Xcode toolbar, and choose <em>Edit Scheme&#8230;</em> from the drop down menu. When you select the <em>Test</em> build action on the left, you&#8217;ll notice no tests appear in the list. Tap the <em>+</em> button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press <em>Add</em>.</p>
+<p>Select your main target&rsquo;s scheme in the little scheme selector in the Xcode toolbar, and choose <em>Edit Scheme&hellip;</em> from the drop down menu. When you select the <em>Test</em> build action on the left, you&rsquo;ll notice no tests appear in the list. Tap the <em>+</em> button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press <em>Add</em>.</p>
 
 <p><img src="http://www.stewgleadow.com/images/posts/adding-unit-tests/adding-test-action-to-scheme.png" title="Adding tests to the scheme's test action" ></p>
 
@@ -530,15 +530,15 @@
 
 <h2>Running your unit tests</h2>
 
-<p>Now that your unit tests are hooked up to your test build action, select your main target&#8217;s scheme. The menu item <code>Product &gt; Test</code> should now be active. Select <em>Test</em>, and Xcode will build your application and run your tests. When creating the test bundle, Apple&#8217;s default test case includes a failure, so if the tests run, you will see that failure.</p>
+<p>Now that your unit tests are hooked up to your test build action, select your main target&rsquo;s scheme. The menu item <code>Product &gt; Test</code> should now be active. Select <em>Test</em>, and Xcode will build your application and run your tests. When creating the test bundle, Apple&rsquo;s default test case includes a failure, so if the tests run, you will see that failure.</p>
 
-<p>Just to double check you&#8217;ve got all your target dependencies set up correctly, try a full clean (hold <em>Option</em> while selecting <code>Product &gt; Clean</code>) and then press <em>Cmd + U</em>. This should trigger a full build and run the unit tests and show your test failure again.</p>
+<p>Just to double check you&rsquo;ve got all your target dependencies set up correctly, try a full clean (hold <em>Option</em> while selecting <code>Product &gt; Clean</code>) and then press <em>Cmd + U</em>. This should trigger a full build and run the unit tests and show your test failure again.</p>
 
-<p>If you see an error like <code>ld: file not found:</code> <code>&lt;path to app&gt;/Debug-iphonesimulator/Development.app/Development</code>, it&#8217;s likely your test target does not automatically build your main application under test, as explained in the <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">original article</a>: select your project in the navigator, select your unit test target, open the <em>Build Phases</em> tab and add your app target as a dependency. Ending up with something like the image shown.</p>
+<p>If you see an error like <code>ld: file not found:</code> <code>&lt;path to app&gt;/Debug-iphonesimulator/Development.app/Development</code>, it&rsquo;s likely your test target does not automatically build your main application under test, as explained in the <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">original article</a>: select your project in the navigator, select your unit test target, open the <em>Build Phases</em> tab and add your app target as a dependency. Ending up with something like the image shown.</p>
 
 <p><img src="http://www.stewgleadow.com/images/posts/adding-unit-tests/test-target-dependency.png" title="Setting up dependencies for your test target" ></p>
 
-<p>Now&#8230; do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
+<p>Now&hellip; do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
 ]]></content>
   </entry>
   
@@ -547,7 +547,7 @@
     <link href="http://www.stewgleadow.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/"/>
     <updated>2011-10-28T17:48:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios</id>
-    <content type="html"><![CDATA[<p>You only have to look at github to see the explosion of new open source iOS frameworks. Incorporating third party libraries into your app is still a pain. I spent today fighting with static libraries and frameworks for the <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> library, and I think I won, so that&#8217;s got to be work writing about.</p>
+    <content type="html"><![CDATA[<p>You only have to look at github to see the explosion of new open source iOS frameworks. Incorporating third party libraries into your app is still a pain. I spent today fighting with static libraries and frameworks for the <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> library, and I think I won, so that&rsquo;s got to be work writing about.</p>
 
 <p>The changes I made can be see on <a href="https://github.com/sgleadow/DCIntrospect">my fork of DCIntrospect</a>.</p>
 
@@ -555,7 +555,7 @@
 
 <p>Until recently, my default use case was to actually drag in the source files from a third party library and compile it into my application. For libraries that I have forked and plan to modify or extend, this would still be my preferred option. Some third party libraries are stable and reliable, and I do not wish to change the source code at all. For these tools, I would prefer to just drag in a static library or framework and get on with my own app.</p>
 
-<p>I&#8217;ve tried my hand at static libraries before, and it definitely wasn&#8217;t plain sailing. A twitter conversation between two local iOS devs, <a href="http://twitter.com/#!/patr">Pat</a> and <a href="http://twitter.com/#!/orj">Oliver</a> prompted me to have another go at getting these libraries working. Pat&#8217;s own tool, <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> is a perfect example. It&#8217;s a great tool for introspecting and testing strange UI layout behaviour in your app, and it&#8217;s a library that <em>just works</em> (famous last words, I bet you find a bug in it now)&#8230; but credit to Pat, I&#8217;ve used it on a few apps, and never touched the source code. DCIntrospect seems like a good case for bundling everything up in a library.</p>
+<p>I&rsquo;ve tried my hand at static libraries before, and it definitely wasn&rsquo;t plain sailing. A twitter conversation between two local iOS devs, <a href="http://twitter.com/#!/patr">Pat</a> and <a href="http://twitter.com/#!/orj">Oliver</a> prompted me to have another go at getting these libraries working. Pat&rsquo;s own tool, <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> is a perfect example. It&rsquo;s a great tool for introspecting and testing strange UI layout behaviour in your app, and it&rsquo;s a library that <em>just works</em> (famous last words, I bet you find a bug in it now)&hellip; but credit to Pat, I&rsquo;ve used it on a few apps, and never touched the source code. DCIntrospect seems like a good case for bundling everything up in a library.</p>
 
 <h2>Static Library</h2>
 
@@ -563,13 +563,13 @@
 
 <p>The target name is DCIntrospectStaticLib, but I wanted the output to be libDCIntrospect.a, which can be done by changing the <strong>Product Name</strong> build setting. I also wanted to group the header files with the compiled binary, so I set the <strong>Public Headers Folder Path</strong> to be <code>$(PRODUCT_NAME)</code> so that it would match whatever I entered for the product name.</p>
 
-<p>To link to this static library, you simply have to drag it into your project. Xcode sorts out adjusting the <strong>Library Search Paths</strong> automatically when you add the library. However, if you want to import headers and make calls to the library, you will need to manually set the <strong>Header Search Paths</strong>. For DCIntrospectDemo, the search path is <code>"$(SRCROOT)/../Products/lib"</code> and then use <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code>. That&#8217;s easy enough to do, but it is one more barrier to entry for people using the library. A static framework could make it a single step.</p>
+<p>To link to this static library, you simply have to drag it into your project. Xcode sorts out adjusting the <strong>Library Search Paths</strong> automatically when you add the library. However, if you want to import headers and make calls to the library, you will need to manually set the <strong>Header Search Paths</strong>. For DCIntrospectDemo, the search path is <code>"$(SRCROOT)/../Products/lib"</code> and then use <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code>. That&rsquo;s easy enough to do, but it is one more barrier to entry for people using the library. A static framework could make it a single step.</p>
 
 <h2>Static Framework</h2>
 
-<p>I followed the steps described in <a href="http://twitter.com/#!/dineybomfim">Diney Bomfim&#8217;s</a> updated post on building a <a href="http://db-in.com/blog/2011/07/universal-framework-iphone-ios-2-0/">universal framework for iPhone</a>, and it all went pretty smoothly. He describes the different build settings you have to adjust to get it all to work.</p>
+<p>I followed the steps described in <a href="http://twitter.com/#!/dineybomfim">Diney Bomfim&rsquo;s</a> updated post on building a <a href="http://db-in.com/blog/2011/07/universal-framework-iphone-ios-2-0/">universal framework for iPhone</a>, and it all went pretty smoothly. He describes the different build settings you have to adjust to get it all to work.</p>
 
-<p>Diney&#8217;s instructions also include a sample shell script for compiling a universal static library using the <code>lipo</code> tool. I adjusted the script slightly, so that it would build both a universal static library as well as the static framework. I haven&#8217;t had much success running DCIntrospect on the device, so I&#8217;m not sure if that part is working or not.</p>
+<p>Diney&rsquo;s instructions also include a sample shell script for compiling a universal static library using the <code>lipo</code> tool. I adjusted the script slightly, so that it would build both a universal static library as well as the static framework. I haven&rsquo;t had much success running DCIntrospect on the device, so I&rsquo;m not sure if that part is working or not.</p>
 
 <p>The joy of using the static framework in this way is that installing DCIntrospect is now a single drag and drop of a framework into your source code. To get it working at this point, you would still need to add <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code> into your app delegate and after you have loaded the window, call <code>[[DCIntrospect sharedIntrospector] start]</code>.</p>
 
@@ -577,7 +577,7 @@
 
 <p>My next task is to get DCIntrospect to automatically load if it is linked to your target. I had a play around with this a few months ago with the <a href="https://github.com/moredip/Frank">Frank iOS testing library</a>, with some success but never pursued the final solution, but <a href="http://twitter.com/#!/beingagile">Pete Hodgson</a> obviously got sick of waiting for me and did it himself.</p>
 
-<p>The solution is pretty neat. You basically hook into when a class in the library is being loaded, and set yourself up to listen for the <code>UIApplicationDidBecomeActiveNotification</code> notification, which gets called after the app delegate <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code> gets called. When that happens, we start DCIntrospect. I&#8217;ve wrapped the call to load DCIntrospect in a check that we are running in the simulator, so it will never be called on the app we submit to Apple. Initially I tried to do a check using <code>#ifdef DEBUG</code>, but that wont work with the static precompiled library approach, since those flags are only valid when the library is initially compiled, not at run time.</p>
+<p>The solution is pretty neat. You basically hook into when a class in the library is being loaded, and set yourself up to listen for the <code>UIApplicationDidBecomeActiveNotification</code> notification, which gets called after the app delegate <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code> gets called. When that happens, we start DCIntrospect. I&rsquo;ve wrapped the call to load DCIntrospect in a check that we are running in the simulator, so it will never be called on the app we submit to Apple. Initially I tried to do a check using <code>#ifdef DEBUG</code>, but that wont work with the static precompiled library approach, since those flags are only valid when the library is initially compiled, not at run time.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;DCIntrospect.h&quot;</span>
 </span><span class='line'>
@@ -618,9 +618,9 @@
 
 <p>To use either the static library or the framework in the two demo project targets, the only change I had to make was to add the <em>-ObjC</em> setting to <strong>Other Linker Flags</strong>. For the static library, you still need to set a header path but only if you want to make direct calls to DCIntrospect, since it now loads automatically.</p>
 
-<p>Since I had both the DCIntrospect and DCIntrospectDemo projects in the same workspace, XCode 4 had the smarts to find the <em>implicit dependency</em>, so when I edit the library source code, it&#8217;s automatically rebuilt. However, I set up the project to use the <em>BundleProducts</em> target to create the universal distributable binaries, which did not get picked up as a dependency.</p>
+<p>Since I had both the DCIntrospect and DCIntrospectDemo projects in the same workspace, XCode 4 had the smarts to find the <em>implicit dependency</em>, so when I edit the library source code, it&rsquo;s automatically rebuilt. However, I set up the project to use the <em>BundleProducts</em> target to create the universal distributable binaries, which did not get picked up as a dependency.</p>
 
-<p>You can create <em>explicit dependencies</em> between targets in different projects by first creating a project dependency. That is, dragging the dependent project into the demo project. Once that is done, when editing the <strong>Target Dependencies</strong> in the demo target&#8217;s <em>Build Phases</em>, you will be able to explicitly select the dependency. In this case, it is the <em>BundleProducts</em> target.</p>
+<p>You can create <em>explicit dependencies</em> between targets in different projects by first creating a project dependency. That is, dragging the dependent project into the demo project. Once that is done, when editing the <strong>Target Dependencies</strong> in the demo target&rsquo;s <em>Build Phases</em>, you will be able to explicitly select the dependency. In this case, it is the <em>BundleProducts</em> target.</p>
 
 <p>Unless you plan to edit the source code and recompile the binary often, the chances are you wont need to set up the project dependencies like this.</p>
 
@@ -629,12 +629,12 @@
 <p>DCIntrospect is a fairly simple framework to generate. Larger libraries are likely to come across two issues, neither of which affect DCIntrospect.</p>
 
 <ul>
-<li>categories from static libraries don&#8217;t seem to load properly</li>
+<li>categories from static libraries don&rsquo;t seem to load properly</li>
 <li>resources is static libraries or frameworks need to be linked into the target using them separately</li>
 </ul>
 
 
-<p>For the categories issue, I know if two solutions. First, you can add <em>-all_load</em> to the <strong>Other Linker Flags</strong> section of the target using the static library. We&#8217;ve already added the <em>-ObjC</em> flag in there, so it&#8217;s not really adding much of a burden. The other option is to use Karl Stenerud&#8217;s <em>MAKE_CATEGORIES_LOADABLE</em> as <a href="https://github.com/moredip/Frank/blob/master/LoadableCategory.h">used in Frank</a>.</p>
+<p>For the categories issue, I know if two solutions. First, you can add <em>-all_load</em> to the <strong>Other Linker Flags</strong> section of the target using the static library. We&rsquo;ve already added the <em>-ObjC</em> flag in there, so it&rsquo;s not really adding much of a burden. The other option is to use Karl Stenerud&rsquo;s <em>MAKE_CATEGORIES_LOADABLE</em> as <a href="https://github.com/moredip/Frank/blob/master/LoadableCategory.h">used in Frank</a>.</p>
 
 <p>For the resources issue, you can generate a resource bundle along with your static library or framework. When linking the library to your target, you can also drag in the resources bundle as a dependency and it should work. Karl has a neat way of making this even easier in his <a href="https://github.com/kstenerud/iOS-Universal-Framework">iOS Univeral Framework</a> project in github. He creates an <em>embedded framework</em>, which is essentially a single container for both the static framework and the resources bundle. This extra container makes it easy to drag in a single <em>.embeddedframework</em> file into your project and have everything link up correctly.</p>
 
@@ -649,7 +649,7 @@
     <link href="http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
     <updated>2011-10-26T22:38:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:</p>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:</p>
 
 <ul>
 <li>Frank</li>
@@ -658,18 +658,18 @@
 </ul>
 
 
-<p>Other tools that might be worth looking at, but I haven&#8217;t used and wont comment on are: NativeDriver, LessPainful, iCuke and UISpec.</p>
+<p>Other tools that might be worth looking at, but I haven&rsquo;t used and wont comment on are: NativeDriver, LessPainful, iCuke and UISpec.</p>
 
 <p>I recently watched a recording of Pete Hodgson (@beingagile), the primary maintainer of Frank in which he gave a quick summary of the other testing tools, and when it might be appropriate to use them. I made a few notes, and added some of my own thoughts. There is a <a href="http://pivotallabs.com/talks/147-frank-cucumber-tests-for-native-ios-apps">video of the talk</a> Pete gave at <a href="http://pivotallabs.com/">Pivotal Labs</a>.</p>
 
 <h2>Frank</h2>
 
-<p>Frank has been described as Selenium for native iOS apps. It&#8217;s a tool written mainly by some fellow Thoughtworkers that uses a combination of <a href="http://cukes.info/">Cucumber</a> and JSON commands that are sent to a server running inside your native application, and leverages <a href="http://code.google.com/p/uispec/">UISpec</a> to run the commands. Frank used to require changes to your production code, but that&#8217;s got a lot easier with the new static library approach.</p>
+<p>Frank has been described as Selenium for native iOS apps. It&rsquo;s a tool written mainly by some fellow Thoughtworkers that uses a combination of <a href="http://cukes.info/">Cucumber</a> and JSON commands that are sent to a server running inside your native application, and leverages <a href="http://code.google.com/p/uispec/">UISpec</a> to run the commands. Frank used to require changes to your production code, but that&rsquo;s got a lot easier with the new static library approach.</p>
 
-<p>I&#8217;ve used Frank quite a bit, and I like it. I have a lot more I could say about it, but I&#8217;ll leave that for another time. You can find out more about Frank at:</p>
+<p>I&rsquo;ve used Frank quite a bit, and I like it. I have a lot more I could say about it, but I&rsquo;ll leave that for another time. You can find out more about Frank at:</p>
 
 <ul>
-<li><a href="http://www.testingwithfrank.com">Frank&#8217;s new home page</a></li>
+<li><a href="http://www.testingwithfrank.com">Frank&rsquo;s new home page</a></li>
 <li><a href="https://github.com/moredip/Frank">The github page for Frank</a></li>
 <li><a href="http://www.stewgleadow.com/talks.html">A slightly out of date talk I gave on Frank</a></li>
 </ul>
@@ -680,7 +680,7 @@
 <ul>
 <li>Clean CSS-like selector syntax, allowing for fairly tolerant tests</li>
 <li>Active community discussing and extending the library</li>
-<li>Driven by Cucumber (if you&#8217;re a cuke fan)</li>
+<li>Driven by Cucumber (if you&rsquo;re a cuke fan)</li>
 <li>Includes <em>Symbiote</em>, a live introspection tool</li>
 <li>Command line and CI come pretty much for free</li>
 </ul>
@@ -692,7 +692,7 @@
 <li>Difficult, but not impossible, to run on the device</li>
 <li>Separation between tests/native code over HTTP can confuse the cause of failure</li>
 <li>Decoupling test/native code into separate processes makes it a bit slower (Pete makes the good point that most of the slowness in your iOS tests are likely to be waiting for animations and transitions, not the HTTP communication)</li>
-<li>Very little support for gestures (but hopefully that&#8217;s coming soon)</li>
+<li>Very little support for gestures (but hopefully that&rsquo;s coming soon)</li>
 </ul>
 
 
@@ -708,7 +708,7 @@
 
 <h2>KIF</h2>
 
-<p>KIF is an Objective C based framework written at Square. It&#8217;s a nice solid implementation from what I&#8217;ve seen, with active development going on. Since it&#8217;s Objective C, you can call out to anything else in your app as well. It&#8217;s a brand new test framework, so it&#8217;s not going to immediately integrate with other tools (like JUnit-style XML output and that kind of thing). I haven&#8217;t KIF a lot yet, so I can&#8217;t comment too much but I think it shows a lot of promise. You can find out more about KIF at:</p>
+<p>KIF is an Objective C based framework written at Square. It&rsquo;s a nice solid implementation from what I&rsquo;ve seen, with active development going on. Since it&rsquo;s Objective C, you can call out to anything else in your app as well. It&rsquo;s a brand new test framework, so it&rsquo;s not going to immediately integrate with other tools (like JUnit-style XML output and that kind of thing). I haven&rsquo;t KIF a lot yet, so I can&rsquo;t comment too much but I think it shows a lot of promise. You can find out more about KIF at:</p>
 
 <ul>
 <li><a href="https://github.com/square/KIF">The github repo</a></li>
@@ -730,8 +730,8 @@
 <p><strong><em> The bad parts of KIF </em></strong></p>
 
 <ul>
-<li>Your tests are in Objective C. Non-devs will find it hard to read, doesn&#8217;t make a great executable spec)</li>
-<li>Tricky to integrate with back end stubs because it&#8217;s all running in-process</li>
+<li>Your tests are in Objective C. Non-devs will find it hard to read, doesn&rsquo;t make a great executable spec)</li>
+<li>Tricky to integrate with back end stubs because it&rsquo;s all running in-process</li>
 <li>Not stand alone</li>
 </ul>
 
@@ -741,23 +741,23 @@
 <ul>
 <li>Primarily a developer driven team</li>
 <li>Developers have stronger Objective C skills than Ruby/Cucumber/Javascript</li>
-<li>Don&#8217;t need business folk to read or write test specs</li>
-<li>Don&#8217;t want to deal with the whacky regex from Cucumber</li>
-<li>Don&#8217;t have really complex back end interactions to stub out</li>
-<li>Don&#8217;t have cross platform requirements</li>
+<li>Don&rsquo;t need business folk to read or write test specs</li>
+<li>Don&rsquo;t want to deal with the whacky regex from Cucumber</li>
+<li>Don&rsquo;t have really complex back end interactions to stub out</li>
+<li>Don&rsquo;t have cross platform requirements</li>
 </ul>
 
 
 <h2>UIAutomation</h2>
 
-<p><a href="http://developer.apple.com/library/ios/#documentation/DeveloperTools/Reference/UIAutomationRef/Introduction/Introduction.html">UIAutomation</a> is Apple&#8217;s own solution for automated testing. It runs tests written in Javascript through the Instruments application that comes with the developer tools. It sounds like a no-brainer to use Apple&#8217;s solution for building iOS apps, but I&#8217;ve found it a real pain to deal with in practice. UIAutomation is pretty good for actually driving the UI, but not great for organising and running a test suite, especially from CI. My impression is that Apple QA staff must use UIAutomation for test scripts with profiling instruments attached and actually sit there and watch, it doesn&#8217;t seem to be purpose built for fully automated testing.</p>
+<p><a href="http://developer.apple.com/library/ios/#documentation/DeveloperTools/Reference/UIAutomationRef/Introduction/Introduction.html">UIAutomation</a> is Apple&rsquo;s own solution for automated testing. It runs tests written in Javascript through the Instruments application that comes with the developer tools. It sounds like a no-brainer to use Apple&rsquo;s solution for building iOS apps, but I&rsquo;ve found it a real pain to deal with in practice. UIAutomation is pretty good for actually driving the UI, but not great for organising and running a test suite, especially from CI. My impression is that Apple QA staff must use UIAutomation for test scripts with profiling instruments attached and actually sit there and watch, it doesn&rsquo;t seem to be purpose built for fully automated testing.</p>
 
-<p>At this point I would like to link to a lot of useful documentation about UIAutomation, but in practice I have found Apple&#8217;s documentation to be either minimal or non-existent, and very little online discussion past the &#8220;boot up an app and tap a button in a single javascript file&#8221;.</p>
+<p>At this point I would like to link to a lot of useful documentation about UIAutomation, but in practice I have found Apple&rsquo;s documentation to be either minimal or non-existent, and very little online discussion past the &ldquo;boot up an app and tap a button in a single javascript file&rdquo;.</p>
 
 <p><strong><em> The good parts of UIAutomation </em></strong></p>
 
 <ul>
-<li>Apple&#8217;s own tool. Doing things the way Apple wants is generally a good idea (and as Pete mentions, Apple&#8217;s not going to go bust or quit iOS any time soon, so the chances are it will be supported)</li>
+<li>Apple&rsquo;s own tool. Doing things the way Apple wants is generally a good idea (and as Pete mentions, Apple&rsquo;s not going to go bust or quit iOS any time soon, so the chances are it will be supported)</li>
 <li>More closely linked to the device, I primarily run UIAutomation tests on the device, not in the simulator</li>
 <li>Good support for gestures (pinch zooming and swipes) and rotation</li>
 </ul>
@@ -767,8 +767,8 @@
 
 <ul>
 <li>Not built with CI in mind. The command line integration is pretty bad</li>
-<li>Can&#8217;t integrate with other tools very well</li>
-<li>It&#8217;s Apple&#8217;s tool, and it&#8217;s not open source. You can&#8217;t jump in and fix the bits that are missing</li>
+<li>Can&rsquo;t integrate with other tools very well</li>
+<li>It&rsquo;s Apple&rsquo;s tool, and it&rsquo;s not open source. You can&rsquo;t jump in and fix the bits that are missing</li>
 <li>Runs within Instruments, seems to be aimed at regression testing not TDD and aimed at QAs not devs</li>
 </ul>
 
@@ -778,14 +778,14 @@
 <ul>
 <li>You have a separation between development and QA on your team</li>
 <li>You prefer regression test suites over a test-first approach</li>
-<li>You don&#8217;t really care about CI</li>
+<li>You don&rsquo;t really care about CI</li>
 <li>You prefer manual QA and you just want to speed that up a bit</li>
 </ul>
 
 
 <h2>Conclusion</h2>
 
-<p>So far I&#8217;ve used Frank and UIAutomation on fairly large projects, and I&#8217;m very keen to try KIF. Ideally what I would like is the Frank architecture using Cucumber to drive your tests, but using KIF&#8217;s implementation on the native side which is a lot more solid than UISpec. Frank would give nice clean readable test features, and integration with other tools through cucumber as well as the concise selector syntax. KIF would give gesture support and a much cleaner implementation of those features.</p>
+<p>So far I&rsquo;ve used Frank and UIAutomation on fairly large projects, and I&rsquo;m very keen to try KIF. Ideally what I would like is the Frank architecture using Cucumber to drive your tests, but using KIF&rsquo;s implementation on the native side which is a lot more solid than UISpec. Frank would give nice clean readable test features, and integration with other tools through cucumber as well as the concise selector syntax. KIF would give gesture support and a much cleaner implementation of those features.</p>
 ]]></content>
   </entry>
   
@@ -794,11 +794,11 @@
     <link href="http://www.stewgleadow.com/blog/2011/10/14/enabling-accessibility-for-ios-applications/"/>
     <updated>2011-10-14T16:24:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/10/14/enabling-accessibility-for-ios-applications</id>
-    <content type="html"><![CDATA[<p>I&#8217;m looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling accessibility for your apps in the simulator and on the device.</p>
+    <content type="html"><![CDATA[<p>I&rsquo;m looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling accessibility for your apps in the simulator and on the device.</p>
 
 <h2>Why use accessibility</h2>
 
-<p>Firstly, the iPhone and iPad are setting a new standard for usability by impaired users. That&#8217;s a great thing, and I think we should be making a bigger effort to support these features. Apple provides assistants like VoiceOver that use the building UIAccessibility framework. If you&#8217;d like to find out more about accessibility for the sake of accessibility, <a href="http://mattgemmell.com/2010/12/19/accessibility-for-iphone-and-ipad-apps/">Matt Gemmell</a> has a great post on the topic</p>
+<p>Firstly, the iPhone and iPad are setting a new standard for usability by impaired users. That&rsquo;s a great thing, and I think we should be making a bigger effort to support these features. Apple provides assistants like VoiceOver that use the building UIAccessibility framework. If you&rsquo;d like to find out more about accessibility for the sake of accessibility, <a href="http://mattgemmell.com/2010/12/19/accessibility-for-iphone-and-ipad-apps/">Matt Gemmell</a> has a great post on the topic</p>
 
 <p>A great side effect of making an app accessible to assistive devices is that the app also becomes easier to test in an automated fashion. This post is not about how and why to use accessibility to test your app (although that is a valid topic that I will write a separate post on), it a quick guide to turning accessibility on. Generally, the properties of the UIAccessibilty framework are only available to third party testing tools like <a href="http://www.testingwithfrank.com/">Frank</a> and <a href="https://github.com/square/KIF">KIF</a> if you have accessibility enabled for the application, either in the simulator or on the device.</p>
 
@@ -809,24 +809,24 @@
 <p><img src="http://www.stewgleadow.com/images/posts/accessibility/osx-prefs.png" title="Universal Access in the OS X Preferences" >
 <img src="http://www.stewgleadow.com/images/posts/accessibility/enable-osx-prefs.png" title="Universal Access in the OS X Preferences" ></p>
 
-<p>Load the iOS Simulator and open the <em>Settings</em> application. Enable accessibility using the switch under <em>General > Accessibility</em>. If you see a little coloured box appear, you have successfully enabled accessibility in the simulator. The setting is stored in an underlying plist file under that iOS version of the simulator, so you will need to enable this setting for for both iOS 4 and 5 separately, but that will effect all of the device types (iPhone, iPhone Retina and iPad) for that OS version. The iOS Simulator will keep accessibility enabled as long as you don&#8217;t clear out its settings. If you&#8217;re anything like me, you have <em>Reset Content and Settings</em> mapped to a keyboard shortcut, you&#8217;ll regularly need to navigate in and re-enable accessibility.</p>
+<p>Load the iOS Simulator and open the <em>Settings</em> application. Enable accessibility using the switch under <em>General > Accessibility</em>. If you see a little coloured box appear, you have successfully enabled accessibility in the simulator. The setting is stored in an underlying plist file under that iOS version of the simulator, so you will need to enable this setting for for both iOS 4 and 5 separately, but that will effect all of the device types (iPhone, iPhone Retina and iPad) for that OS version. The iOS Simulator will keep accessibility enabled as long as you don&rsquo;t clear out its settings. If you&rsquo;re anything like me, you have <em>Reset Content and Settings</em> mapped to a keyboard shortcut, you&rsquo;ll regularly need to navigate in and re-enable accessibility.</p>
 
 <p><img class="right" src="http://www.stewgleadow.com/images/posts/accessibility/enable-on-simulator.png" title="Enable accessibility in the iOS Simulator" ></p>
 
-<p>The small coloured box that appears is called the accessibility inspector. It shows a small summary of what is available from the UIAccessibility framework for iOS. There are two main types of information shown in the inspector: notifications and properties. Notifications are fired when the UI changes. To be honest, I&#8217;ve not played around with firing accessibility notifications much at all. Notifications could be a potential solution for tests that need to &#8216;wait&#8217; until a screen transition is finished before continuing rather than busy-waiting or just a plain old sleep (you know it&#8217;s not a real test suite unless there are a couple of <em>sleep</em> calls in there!).</p>
+<p>The small coloured box that appears is called the accessibility inspector. It shows a small summary of what is available from the UIAccessibility framework for iOS. There are two main types of information shown in the inspector: notifications and properties. Notifications are fired when the UI changes. To be honest, I&rsquo;ve not played around with firing accessibility notifications much at all. Notifications could be a potential solution for tests that need to &lsquo;wait&rsquo; until a screen transition is finished before continuing rather than busy-waiting or just a plain old sleep (you know it&rsquo;s not a real test suite unless there are a couple of <em>sleep</em> calls in there!).</p>
 
-<p>The properties show aspects of the selected UI element. With the accessibility inspector expanded, tap around in some of Apple&#8217;s built in applications to see the UIAccessibility properties. With the accessibility inspector expanded like this, the first touch even brings up the accessibility - which is great if that&#8217;s the only way to use the app, but can get in the way if you&#8217;re not used to it. If you collapse the inspector using the little cross-button, touch interaction returns to normal.  In the image above I&#8217;ve collapsed the accessibility inspector and dragged it to the side, since the properties are available to our tests anyway, so it&#8217;s easiest to get it as far off the screen as possible.</p>
+<p>The properties show aspects of the selected UI element. With the accessibility inspector expanded, tap around in some of Apple&rsquo;s built in applications to see the UIAccessibility properties. With the accessibility inspector expanded like this, the first touch even brings up the accessibility &ndash; which is great if that&rsquo;s the only way to use the app, but can get in the way if you&rsquo;re not used to it. If you collapse the inspector using the little cross-button, touch interaction returns to normal.  In the image above I&rsquo;ve collapsed the accessibility inspector and dragged it to the side, since the properties are available to our tests anyway, so it&rsquo;s easiest to get it as far off the screen as possible.</p>
 
 <h2>Enabling accessibility on the device</h2>
 
-<p>Usually, to get access to the accessibility framework on an actual iOS device, you need to enable <em>VoiceOver</em>. If you do your testing with Apple&#8217;s sanctioned UIAutomation Instrument, it seems to be able to hook in automatically without you having to specifically enable those features. Although with iOS 5, I&#8217;ve found that to not always be the case.</p>
+<p>Usually, to get access to the accessibility framework on an actual iOS device, you need to enable <em>VoiceOver</em>. If you do your testing with Apple&rsquo;s sanctioned UIAutomation Instrument, it seems to be able to hook in automatically without you having to specifically enable those features. Although with iOS 5, I&rsquo;ve found that to not always be the case.</p>
 
 <p>VoiceOver is pretty easy to enable in the Settings app under <em>General > Accessibility > VoiceOver</em>. Once this is enabled, the device acts in a similar way to when you have the accessibility inspector visible in the simulator. A pleasant computerised voice now describes your every gesture, and more importantly, activates the accessibility framework for all applications, including the one you want to test. Your first tap will select a UI element and read the available information about it. Double-tapping actually executes the action for a button. People using VoiceOver as a means to navigate the OS are likely to drag their finger on the screen to get a better idea of where items are relative to each other, so single-finger scrolling is also disabled. You can scroll by dragging with three fingers.</p>
 
 <p><img class="left" src="http://www.stewgleadow.com/images/posts/accessibility/itunes-configure-accessibility.png" title="Configure Universal Access in iTunes" >
 <img class="left" src="http://www.stewgleadow.com/images/posts/accessibility/itunes-voiceover-on.png" title="Enable VoiceOver in iTunes" ></p>
 
-<p>Navigate some well known apps on the phone, and see how Apple&#8217;s own applications integrate with VoiceOver. To actually design an accessible application, you&#8217;ll be wanting to spend a whole lot of time using VoiceOver yourself to get an idea of what information is useful and necessary. At some stage, you will pick up a test device with VoiceOver on, so it’s good to know at least how to get into the settings and turn accessibility off in order to operate manually.</p>
+<p>Navigate some well known apps on the phone, and see how Apple&rsquo;s own applications integrate with VoiceOver. To actually design an accessible application, you&rsquo;ll be wanting to spend a whole lot of time using VoiceOver yourself to get an idea of what information is useful and necessary. At some stage, you will pick up a test device with VoiceOver on, so it’s good to know at least how to get into the settings and turn accessibility off in order to operate manually.</p>
 
 <p>If you are only enabling VoiceOver for testing purposes, the changed gestures and audio instructions can seem to get in the way of you just using the device. If you regularly switch accessibility on and off, using iTunes is going to be much more convenient. Before the latest version of iTunes, enabling accessibility this way required the device to be plugged in via USB. I was pleasantly surprised to discover that this VoiceOver can now be toggle on and off over wifi.</p>
 
@@ -834,7 +834,7 @@
 
 <p><em>Note: these steps apply to the iOS Simulator only. If someone knows how to enable accessibility programmatically on the device, I would love to know</em></p>
 
-<p>When you are running tests in the simulator, it&#8217;s likely that you use the <em>Reset Content and Settings&#8230;</em> menu item frequently. If you forget to reenable accessibility after this, tests will fail because UI information will not be available to the tests. We need a programmatic way to turn accessibility on. I&#8217;m not sure how to do this on the device, but in the simulator, this is just a matter of setting a flag in one of the underlying plist files. It&#8217;s possible to call plist editors from the command line to do this, but then the plist file is separate for each iOS version supported by the simulator. I find it&#8217;s easier to call from the Objective C code at run time, since it it possible to obtain the root for that version of the simulator.</p>
+<p>When you are running tests in the simulator, it&rsquo;s likely that you use the <em>Reset Content and Settings&hellip;</em> menu item frequently. If you forget to reenable accessibility after this, tests will fail because UI information will not be available to the tests. We need a programmatic way to turn accessibility on. I&rsquo;m not sure how to do this on the device, but in the simulator, this is just a matter of setting a flag in one of the underlying plist files. It&rsquo;s possible to call plist editors from the command line to do this, but then the plist file is separate for each iOS version supported by the simulator. I find it&rsquo;s easier to call from the Objective C code at run time, since it it possible to obtain the root for that version of the simulator.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;dlfcn.h&gt;</span>
 </span><span class='line'>
@@ -862,7 +862,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I first tried to use this code in <code>init</code> for a test framework class, and it didn&#8217;t seem to work. Moving the code to be called from <code>load</code> solved the problem. Since this code actually changes a <em>plist</em> file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&#8217;t bring up the inspector over the top of the UI.</p>
+<p>I first tried to use this code in <code>init</code> for a test framework class, and it didn&rsquo;t seem to work. Moving the code to be called from <code>load</code> solved the problem. Since this code actually changes a <em>plist</em> file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&rsquo;t bring up the inspector over the top of the UI.</p>
 
 <p>Special thanks to <a href="http://twitter.com/#!/0xced">Cedric Luthi</a>, who originally wrote the code to enable accessibility programmatically for DCIntrospect <a href="https://github.com/0xced/DCIntrospect/commit/49b76a6630cc29444aac30f14fd0fc17e22b37cf">in this commit</a>, and to an awesome colleague of mine, Sadat Rahman (@sadatrahman), for bringing that code to my attention.</p>
 ]]></content>
@@ -873,11 +873,11 @@
     <link href="http://www.stewgleadow.com/blog/2011/09/16/moving-from-wordpress-to-octopress/"/>
     <updated>2011-09-16T16:53:00+10:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/09/16/moving-from-wordpress-to-octopress</id>
-    <content type="html"><![CDATA[<p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I&#8217;m hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer&#8217;s text editor, in plain text, using Markdown is ideal.</p>
+    <content type="html"><![CDATA[<p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I&rsquo;m hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer&rsquo;s text editor, in plain text, using Markdown is ideal.</p>
 
-<p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn&#8217;t find the time to get the blog set up properly. This morning I read about Matt Gemmell&#8217;s blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
+<p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn&rsquo;t find the time to get the blog set up properly. This morning I read about Matt Gemmell&rsquo;s blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
 
-<p>I&#8217;ve gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!</p>
+<p>I&rsquo;ve gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!</p>
 ]]></content>
   </entry>
   
@@ -886,13 +886,13 @@
     <link href="http://www.stewgleadow.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk/"/>
     <updated>2011-04-19T16:46:00+10:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk</id>
-    <content type="html"><![CDATA[<p>Last week I have a short lightning talk with Jesse Collis (@sirjec) at the Melbourne Cocoaheads meetup. The topic was fairly boring, just some useful Xcode 4 shortcuts we have found since switching from Xcode 3 a few weeks ago. It ended up being a bit of a laugh, probably the first and only time a talk about keyboard shortcuts will be funny - I think it had something to do with the pizza and beer that had just arrived.</p>
+    <content type="html"><![CDATA[<p>Last week I have a short lightning talk with Jesse Collis (@sirjec) at the Melbourne Cocoaheads meetup. The topic was fairly boring, just some useful Xcode 4 shortcuts we have found since switching from Xcode 3 a few weeks ago. It ended up being a bit of a laugh, probably the first and only time a talk about keyboard shortcuts will be funny &ndash; I think it had something to do with the pizza and beer that had just arrived.</p>
 
 <p>Jesse saved me the effort of writing up anything more and linking to the slides on his blog below.</p>
 
 <p><a href="http://blog.jcmultimedia.com.au/2011/04/xcode4-shortcuts-melbourne-cocoaheads-april-2011.html">http://blog.jcmultimedia.com.au/2011/04/xcode4-shortcuts-melbourne-cocoaheads-april-2011.html</a></p>
 
-<p>I&#8217;ve managed to find the <a href="http://vimeo.com/22598371">video footage of the xcode shortcuts talk</a> put together by Oliver Jones (@orj) on vimeo. After flicking through the footage a couple of questions were raised that I can now answer:</p>
+<p>I&rsquo;ve managed to find the <a href="http://vimeo.com/22598371">video footage of the xcode shortcuts talk</a> put together by Oliver Jones (@orj) on vimeo. After flicking through the footage a couple of questions were raised that I can now answer:</p>
 
 <ul>
 <li>Q: <em>Does Cmd+Option+[ or ] work if multiple lines are selected?</em><br/>
@@ -907,25 +907,25 @@ A: Yes, it is based on the editor that has focus.</li>
 <p>The Melbourne Cocoaheads faithful also contributed some keyboard shortcuts of their own, here are the ones I jotted down:</p>
 
 <ul>
-<li><em>Cmd+Ctrl+Opt+?</em> - open item under the cursor in Xcode help (&#8220;real help, not the stupid little help&#8221; @tupps)</li>
-<li><em>Cmd+Double-Click</em> - drill through to the implementation</li>
-<li><em>Cmd+Opt+,</em> - open current file back in the main editor</li>
-<li><em>Cmd+/</em> - Comment Line</li>
-<li><em>Cmd+Shift+[ or ]</em> - navigate back and forth between tabs</li>
-<li><em>Cmd+T</em> - Open new tab (same as Safari)</li>
-<li><em>Cmd+Ctrl+Up and Down</em> - switch between counterparts</li>
+<li><em>Cmd+Ctrl+Opt+?</em> &ndash; open item under the cursor in Xcode help (&ldquo;real help, not the stupid little help&rdquo; @tupps)</li>
+<li><em>Cmd+Double-Click</em> &ndash; drill through to the implementation</li>
+<li><em>Cmd+Opt+,</em> &ndash; open current file back in the main editor</li>
+<li><em>Cmd+/</em> &ndash; Comment Line</li>
+<li><em>Cmd+Shift+[ or ]</em> &ndash; navigate back and forth between tabs</li>
+<li><em>Cmd+T</em> &ndash; Open new tab (same as Safari)</li>
+<li><em>Cmd+Ctrl+Up and Down</em> &ndash; switch between counterparts</li>
 </ul>
 
 
-<p>and a few more shortcuts I&#8217;ve found since then:</p>
+<p>and a few more shortcuts I&rsquo;ve found since then:</p>
 
 <ul>
-<li><em>Cmd+Ctrl+Opt+Up</em> - open up the counterpart in the secondary editor</li>
-<li><em>&#8230;</em> - Organise Import&#8230; just kidding. Maybe one day.</li>
+<li><em>Cmd+Ctrl+Opt+Up</em> &ndash; open up the counterpart in the secondary editor</li>
+<li><em>&hellip;</em> &ndash; Organise Import&hellip; just kidding. Maybe one day.</li>
 </ul>
 
 
-<p>I&#8217;m sure there are plenty more shortcuts I haven&#8217;t found yet. Let me know the ones you find most useful.</p>
+<p>I&rsquo;m sure there are plenty more shortcuts I haven&rsquo;t found yet. Let me know the ones you find most useful.</p>
 ]]></content>
   </entry>
   
@@ -936,9 +936,9 @@ A: Yes, it is based on the editor that has focus.</li>
     <id>http://www.stewgleadow.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell</id>
     <content type="html"><![CDATA[<p>This is my second post on my move to rvm. The first being about <a href="blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">cleaning out my existing gems</a> for a fresh start.</p>
 
-<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&#8217;m working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don&#8217;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
+<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&rsquo;m working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don&rsquo;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
 
-<p>I&#8217;m looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
+<p>I&rsquo;m looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
 
 <h2>Installing RVM</h2>
 
@@ -948,7 +948,7 @@ A: Yes, it is based on the editor that has focus.</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You&#8217;ll see a bunch of output, and towards the bottom, a confirmation message saying &#8220;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&#8221;, but that&#8217;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
+<p>You&rsquo;ll see a bunch of output, and towards the bottom, a confirmation message saying &ldquo;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&rdquo;, but that&rsquo;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[[</span> -s <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> . <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -968,7 +968,7 @@ A: Yes, it is based on the editor that has focus.</li>
 
 <h2>Installing some Rubies</h2>
 
-<p>Now that rvm is installed, let&#8217;s install some rubies to use with it. First, check which ruby versions are available.</p>
+<p>Now that rvm is installed, let&rsquo;s install some rubies to use with it. First, check which ruby versions are available.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm list known
 </span><span class='line'>...
@@ -977,14 +977,14 @@ A: Yes, it is based on the editor that has focus.</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;ll install the main two versions that I&#8217;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&#8217;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
+<p>I&rsquo;ll install the main two versions that I&rsquo;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&rsquo;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm install 1.8.7
 </span><span class='line'><span class="nv">$ </span>rvm install 1.9.2
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;m still using 1.8.7 for some things at the moment, so I&#8217;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
+<p>I&rsquo;m still using 1.8.7 for some things at the moment, so I&rsquo;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm --default use 1.8.7
 </span><span class='line'><span class="nv">$ </span>ruby -v
@@ -1003,9 +1003,9 @@ A: Yes, it is based on the editor that has focus.</li>
 
 <h2>Setting up your gemsets</h2>
 
-<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&#8217;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
+<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&rsquo;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
 
-<p>I should have a pretty clean slate to start on for my gems. I&#8217;m not 100% on whether rvm will use my old system gems or not, but I&#8217;ve cleaned them all out anyway, so it shouldn&#8217;t be a problem.</p>
+<p>I should have a pretty clean slate to start on for my gems. I&rsquo;m not 100% on whether rvm will use my old system gems or not, but I&rsquo;ve cleaned them all out anyway, so it shouldn&rsquo;t be a problem.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem list
 </span><span class='line'>*** LOCAL GEMS ***
@@ -1019,7 +1019,7 @@ A: Yes, it is based on the editor that has focus.</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>rvm will set up a default gemset for you, but I&#8217;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&#8217;m setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&#8217;s automatic.</p>
+<p>rvm will set up a default gemset for you, but I&rsquo;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&rsquo;m setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&rsquo;s automatic.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat my_project/.rvmrc
 </span><span class='line'>rvm --create use ruby-1.8.7-p334@frank
@@ -1028,7 +1028,7 @@ A: Yes, it is based on the editor that has focus.</li>
 
 <p>Once the .rvmrc file is created, leave and return to the directory to kick it off, authorise it and you should see something like <code>Using /Users/sgleadow/.rvm/gems/ruby-1.8.7-p334 with gemset frank</code> printed to the console. To double check we are, in fact, using the newly created gemset, use <code>rvm list gemsets</code> or <code>rvm gemset list</code> and check the little hashrocket is pointing to the new gemset. Do another <code>gem list</code> to double check you have a clean slate.</p>
 
-<p>Most of my projects use bundler, so first I&#8217;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
+<p>Most of my projects use bundler, so first I&rsquo;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rm .bundle/config
 </span><span class='line'><span class="nv">$ </span>rm -r vendor/bundle
@@ -1037,7 +1037,7 @@ A: Yes, it is based on the editor that has focus.</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you&#8217;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
+<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you&rsquo;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
 ]]></content>
   </entry>
   
@@ -1052,9 +1052,9 @@ A: Yes, it is based on the editor that has focus.</li>
 
 <p><code>$ for x in `gem list --no-versions` ; do gem uninstall -aIx $x; done</code></p>
 
-<p>After some googling, the next step I tried was to physically remove the gem directories that are returned by <code>gem env paths</code>. After that, <code>gem list</code> said there were no gems installed. There were still some binaries left over that depended on these gems, like <code>spec</code>, <code>rails</code>, <code>rake</code> in <code>/usr/bin</code>. These binaries no longer worked as the actual gem was gone, so I removed them. I couldn&#8217;t find a definitive list of the OS X default gems so I stopped here.</p>
+<p>After some googling, the next step I tried was to physically remove the gem directories that are returned by <code>gem env paths</code>. After that, <code>gem list</code> said there were no gems installed. There were still some binaries left over that depended on these gems, like <code>spec</code>, <code>rails</code>, <code>rake</code> in <code>/usr/bin</code>. These binaries no longer worked as the actual gem was gone, so I removed them. I couldn&rsquo;t find a definitive list of the OS X default gems so I stopped here.</p>
 
-<p>I&#8217;m not a shell guru by any means, but below is my attempt at a quick one line shell script to remove all the existing gem directories.</p>
+<p>I&rsquo;m not a shell guru by any means, but below is my attempt at a quick one line shell script to remove all the existing gem directories.</p>
 
 <p><code>rm -rf `gem env paths | tr ":" " "`</code></p>
 ]]></content>
@@ -1065,13 +1065,13 @@ A: Yes, it is based on the editor that has focus.</li>
     <link href="http://www.stewgleadow.com/blog/2011/03/26/hello-world/"/>
     <updated>2011-03-26T15:47:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/03/26/hello-world</id>
-    <content type="html"><![CDATA[<p>I&#8217;ve been meaning to start a blog for a while know. Until now, I&#8217;ve kept notes to myself in all sorts of places about problems I&#8217;ve encountered while developing software and solutions I&#8217;ve found. My favourite way of keeping notes to date is in a nice Moleskine notebook with a fountain pen - a bit backwards I know, you wouldn&#8217;t believe I write software for a living.</p>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been meaning to start a blog for a while know. Until now, I&rsquo;ve kept notes to myself in all sorts of places about problems I&rsquo;ve encountered while developing software and solutions I&rsquo;ve found. My favourite way of keeping notes to date is in a nice Moleskine notebook with a fountain pen &ndash; a bit backwards I know, you wouldn&rsquo;t believe I write software for a living.</p>
 
-<p>Often my notes just disappear into the depths of my filesystem or bookshelf never to be seen again. If I&#8217;m really proactive, I might write up an answer on Stack Overflow or reply to a mailing list. The next time I want to share that experience, I have to filter through to find that information again</p>
+<p>Often my notes just disappear into the depths of my filesystem or bookshelf never to be seen again. If I&rsquo;m really proactive, I might write up an answer on Stack Overflow or reply to a mailing list. The next time I want to share that experience, I have to filter through to find that information again</p>
 
-<p>Hopefully a blog will be an easier way to keep track of this information and later refer to it. Whether it&#8217;s useful information or not remains to be seen, but it will at least be useful to me. For shorter, random and less useful musings, I&#8217;m on twitter at @stewgleadow</p>
+<p>Hopefully a blog will be an easier way to keep track of this information and later refer to it. Whether it&rsquo;s useful information or not remains to be seen, but it will at least be useful to me. For shorter, random and less useful musings, I&rsquo;m on twitter at @stewgleadow</p>
 
-<p>The current topics I&#8217;m interested in are:</p>
+<p>The current topics I&rsquo;m interested in are:</p>
 
 <ul>
 <li>Objective C and native iOS apps</li>
@@ -1081,7 +1081,7 @@ A: Yes, it is based on the editor that has focus.</li>
 </ul>
 
 
-<p>User groups I&#8217;m involved in or attend occasionally:</p>
+<p>User groups I&rsquo;m involved in or attend occasionally:</p>
 
 <ul>
 <li><a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a></li>

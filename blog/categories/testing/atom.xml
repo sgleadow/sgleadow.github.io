@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Stewart Gleadow's Blog]]></title>
   <link href="http://www.stewgleadow.com/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://www.stewgleadow.com/"/>
-  <updated>2012-11-27T10:55:11+11:00</updated>
+  <updated>2013-06-14T10:18:00+10:00</updated>
   <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.stewgleadow.com/blog/2012/03/03/installing-imagemagick-on-lion/"/>
     <updated>2012-03-03T13:49:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/03/03/installing-imagemagick-on-lion</id>
-    <content type="html"><![CDATA[<p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I'll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I've found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn't surprised ImageMagick didn't install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
+    <content type="html"><![CDATA[<p>I needed to get ImageMagick installed this morning to play with an iOS testing tool called <a href="http://www.zucchiniframework.org/">Zucchini</a> that I&rsquo;ll write about separately. My new MacBook Air is running OS X Lion (never ran Snow Leopard), and Xcode 4.3. I&rsquo;ve found installing native tools like this has been pretty painful on Lion from the default compiler changes (like <a href="/blog/2011/12/10/installing-rvm-on-os-x-lion/">installing rvm</a>), so I wasn&rsquo;t surprised ImageMagick didn&rsquo;t install correctly first time. First I tried to <code>brew install imagemagick</code>. While it succeeded in installing the library, right at the end there was the following error:</p>
 
 <p><code>
 ln: ImageMagick: Permission denied
@@ -27,9 +27,9 @@ The formula built, but is not symlinked into /usr/local
 You can try again using `brew link imagemagick'
 </code></p>
 
-<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I'll ignore that, maybe it'll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
+<p>There were similar errors talking about little-cms, libtiff and jpeg as well. I thought, I&rsquo;ll ignore that, maybe it&rsquo;ll work anyway and went ahead and tried to use imagemagick. When I tried to use the tool though, I saw errors like <code>dyld: Library not loaded: /usr/local/lib/liblcms.1.0.19.dylib</code>.</p>
 
-<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn't actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
+<p>A bit of googling took me to a thread on the <a href="https://github.com/mxcl/homebrew/issues/6891">homebrew issues on github</a>. I didn&rsquo;t actually need to uninstall/reinstall like some of the comments there suggest, I just needed to link the libraries giving the errors into /usr/local like this:</p>
 
 <p><code>
 sudo brew link little-cms
@@ -38,7 +38,7 @@ sudo brew link libtiff
 sudo brew link jpeg
 </code></p>
 
-<p>Maybe it's a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I've just ended up with such a mess of libraries in /usr/local on old machines, I'm trying to keep my new little machine as clean as possible.</p>
+<p>Maybe it&rsquo;s a better solution to allow myself write access to /usr/local, and then the brew install would have linked automatically. I&rsquo;ve just ended up with such a mess of libraries in /usr/local on old machines, I&rsquo;m trying to keep my new little machine as clean as possible.</p>
 ]]></content>
   </entry>
   
@@ -47,17 +47,17 @@ sudo brew link jpeg
     <link href="http://www.stewgleadow.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/"/>
     <updated>2012-02-09T07:54:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line</id>
-    <content type="html"><![CDATA[<p>A common question I get asked is: how to I run my OCUnit tests from the command line? I've answered this a number of times, so here is a quick brain dump so I can just point to this post each time. I say OCUnit, but since <a href="https://github.com/allending/Kiwi">Kiwi</a> is just a wrapper above OCUnit, these instructions should also work for Kiwi tests.</p>
+    <content type="html"><![CDATA[<p>A common question I get asked is: how to I run my OCUnit tests from the command line? I&rsquo;ve answered this a number of times, so here is a quick brain dump so I can just point to this post each time. I say OCUnit, but since <a href="https://github.com/allending/Kiwi">Kiwi</a> is just a wrapper above OCUnit, these instructions should also work for Kiwi tests.</p>
 
 <h2>Xcodebuild</h2>
 
-<p>OCUnit tests are run from a shell script during the build for that target, which is usually called something like MyAppTests. If you look at the <em>Build Phases</em> for that target, you'll see a little RunScript phase that actually runs the tests:</p>
+<p>OCUnit tests are run from a shell script during the build for that target, which is usually called something like MyAppTests. If you look at the <em>Build Phases</em> for that target, you&rsquo;ll see a little RunScript phase that actually runs the tests:</p>
 
 <p>```</p>
 
 <h1>Run the unit tests in this test bundle.</h1>
 
-<p>"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests"
+<p>&ldquo;${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests&rdquo;
 ```</p>
 
 <p>We can then use the <code>xcodebuild</code> command line utility to run this same build from the command line. On the command line (or from a Makefile if you are so inclined), try building and running the tests:</p>
@@ -70,28 +70,28 @@ xcodebuild -sdk iphonesimulator -configuration Debug -scheme MyAppTests build
 
 <h2>Logic &amp; Application Unit Tests</h2>
 
-<p>I'm not sure why Apple bothers to differentiate these tests. The basic difference is that Application tests need to be run inside of a UIKit environment, while Logic tests don't. I'd prefer if the build system just detected whether it needed UIKit and decided for you. There's a longer explanation in  <a href="https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/00-About_Unit_Testing/about.html#//apple_ref/doc/uid/TP40002143">Apple's unit testing guide</a>. I often want to write unit tests for my UIViewController classes and any other UI logic, so I always tick the Application checkbox when adding unit tests to an Xcode project. If you're making a static library with no UI then you might want to select Logic.</p>
+<p>I&rsquo;m not sure why Apple bothers to differentiate these tests. The basic difference is that Application tests need to be run inside of a UIKit environment, while Logic tests don&rsquo;t. I&rsquo;d prefer if the build system just detected whether it needed UIKit and decided for you. There&rsquo;s a longer explanation in  <a href="https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/00-About_Unit_Testing/about.html#//apple_ref/doc/uid/TP40002143">Apple&rsquo;s unit testing guide</a>. I often want to write unit tests for my UIViewController classes and any other UI logic, so I always tick the Application checkbox when adding unit tests to an Xcode project. If you&rsquo;re making a static library with no UI then you might want to select Logic.</p>
 
-<p>Anyway, if your project has <em>Logic</em> tests, the above <code>xcodebuild</code> command should run your unit tests fine and you will see the test output in the Terminal window. However, if they are Application tests, the command silently succeeds without actually running your tests. If you look near the bottom of the output, you'll see this in the output:</p>
+<p>Anyway, if your project has <em>Logic</em> tests, the above <code>xcodebuild</code> command should run your unit tests fine and you will see the test output in the Terminal window. However, if they are Application tests, the command silently succeeds without actually running your tests. If you look near the bottom of the output, you&rsquo;ll see this in the output:</p>
 
 <p><code>
 /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests:95:
 warning: Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set).
 </code></p>
 
-<p>So the tests didn't even run, but the command succeeds, the build stays green and everyone's happy... but the tests aren't running.</p>
+<p>So the tests didn&rsquo;t even run, but the command succeeds, the build stays green and everyone&rsquo;s happy&hellip; but the tests aren&rsquo;t running.</p>
 
 <h2>Running From The Command Line</h2>
 
-<p>I usually point people to <a href="http://longweekendmobile.com/2011/04/17/xcode4-running-application-tests-from-the-command-line-in-ios/">a post from the guys at Long Weekend</a> for how to get these Application tests running from the command line. Here's quick summary:</p>
+<p>I usually point people to <a href="http://longweekendmobile.com/2011/04/17/xcode4-running-application-tests-from-the-command-line-in-ios/">a post from the guys at Long Weekend</a> for how to get these Application tests running from the command line. Here&rsquo;s quick summary:</p>
 
-<p>Open up <code>/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests</code> in your favourite editor and check out the code around line 95. You'll see the culprit line:</p>
+<p>Open up <code>/Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnitTests</code> in your favourite editor and check out the code around line 95. You&rsquo;ll see the culprit line:</p>
 
 <p><code>
 Warning ${LINENO} "Skipping tests; the iPhoneSimulator platform does not currently support application-hosted tests (TEST_HOST set)."
 </code></p>
 
-<p>THe <code>TEST_HOST</code> is only set when running the tests through Xcode, not from the command line. If the host isn't set, the tests don't run. We want them to run in this case. We could replace that line with the following:</p>
+<p>THe <code>TEST_HOST</code> is only set when running the tests through Xcode, not from the command line. If the host isn&rsquo;t set, the tests don&rsquo;t run. We want them to run in this case. We could replace that line with the following:</p>
 
 <p><code>
 export OTHER_TEST_FLAGS="-RegisterForSystemEvents"
@@ -100,7 +100,7 @@ RunTestsForApplication "${TEST_HOST}" "${TEST_BUNDLE_PATH}"
 
 <p>This command will actually boot up your app in the iOS simulator and run the tests in that UI environment.</p>
 
-<p>I don't really feel comfortable hacking scripts in my Developer directory, so I'd rather copy this script into my project and run it from there. Also, editing the actual installed tools like this means that you have to do it on each and every machine running the tests. Even once you get it running on your machine, you'll need to log into your build machine and make the same hack there. Try making a copy of the same shell script Apple uses into your project directory:</p>
+<p>I don&rsquo;t really feel comfortable hacking scripts in my Developer directory, so I&rsquo;d rather copy this script into my project and run it from there. Also, editing the actual installed tools like this means that you have to do it on each and every machine running the tests. Even once you get it running on your machine, you&rsquo;ll need to log into your build machine and make the same hack there. Try making a copy of the same shell script Apple uses into your project directory:</p>
 
 <p><code>
 cd your-project
@@ -114,10 +114,10 @@ cp /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnit
 
 <h1>Run the unit tests in this test bundle.</h1>
 
-<p>"${SRCROOT}/../scripts/RunPlatformUnitTests"
+<p>&ldquo;${SRCROOT}/../scripts/RunPlatformUnitTests&rdquo;
 ```</p>
 
-<p>Run the tests in the IDE to make sure you didn't screw anything up. Now quit the simulator, and run them from the command line with xcodebuild again. You should see the test output printed and a few statements at the bottom saying that the tests succeeded. Your tests do pass, right?</p>
+<p>Run the tests in the IDE to make sure you didn&rsquo;t screw anything up. Now quit the simulator, and run them from the command line with xcodebuild again. You should see the test output printed and a few statements at the bottom saying that the tests succeeded. Your tests do pass, right?</p>
 
 <p><code>
 /Developer/Tools/RunPlatformUnitTests.include:334: note: Passed tests for architecture 'i386' (GC OFF)
@@ -128,7 +128,7 @@ cp /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnit
 
 <h2>One simulator to rule them all</h2>
 
-<p>The reason I said to close the simulator before running the tests from the command line is that the tests don't seem to like running when the iOS Simulator is already doing something. Try it. Open the simulator, and then run the tests. If your system is anything like mine, you get an error like this:</p>
+<p>The reason I said to close the simulator before running the tests from the command line is that the tests don&rsquo;t seem to like running when the iOS Simulator is already doing something. Try it. Open the simulator, and then run the tests. If your system is anything like mine, you get an error like this:</p>
 
 <p>```
 <strong> BUILD FAILED </strong></p>
@@ -140,7 +140,7 @@ cp /Developer/Platforms/iPhoneSimulator.platform/Developer/Tools/RunPlatformUnit
 
 <p>```</p>
 
-<p>If I'm running them locally, I see this, quit the simulator and try again. That's a bit of a pain, and it certainly wont work on the CI server. To solve that, in my Makefile, I just use a little Applescript to close the simulator before running the tests:</p>
+<p>If I&rsquo;m running them locally, I see this, quit the simulator and try again. That&rsquo;s a bit of a pain, and it certainly wont work on the CI server. To solve that, in my Makefile, I just use a little Applescript to close the simulator before running the tests:</p>
 
 <p>```
 test:</p>
@@ -162,16 +162,16 @@ xcodebuild -sdk iphonesimulator -configuration Debug -scheme MyAppTests build
     <id>http://www.stewgleadow.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices</id>
     <content type="html"><![CDATA[<p>I wrote a recent post on <a href="/blog/2011/10/14/enabling-accessibility-for-ios-applications/">enabling accessibility for iOS applications</a>, which ended with a snippet of code for automatically enabling accessibility on the iOS simulator. This is essential if you want to have your tests running on a continuous integration server, since the accessibility inspector is off by default.</p>
 
-<p>I hadn't yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
+<p>I hadn&rsquo;t yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
 
-<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn't sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
+<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn&rsquo;t sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
 
-<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It's a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
+<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It&rsquo;s a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
 
 <p>After following the standard KIF set up instructions, I write the following test:</p>
 
 <p>```objc
-- (void)initializeScenarios;
+&ndash; (void)initializeScenarios;
 {</p>
 
 <pre><code>KIFTestScenario *loadScreen = [KIFTestScenario scenarioWithDescription:@"Test app loads up on correct screen"];
@@ -224,9 +224,9 @@ if (copySharedResourcesPreferencesDomainForDomain) {
 <p>}
 ```</p>
 
-<p>I'm a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device - but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I'm comfortable with it for now. I'm hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
+<p>I&rsquo;m a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device &ndash; but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I&rsquo;m comfortable with it for now. I&rsquo;m hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
 
-<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I'm hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
+<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I&rsquo;m hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
 ]]></content>
   </entry>
   
@@ -235,13 +235,13 @@ if (copySharedResourcesPreferencesDomainForDomain) {
     <link href="http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/"/>
     <updated>2011-11-05T10:50:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line</id>
-    <content type="html"><![CDATA[<p>One of the reasons I run most of my tests in the simulator is that it is easy to install and run applications automatically from the command line with tools like <a href="https://github.com/Fingertips/ios-sim">ios-sim</a>. Being able to run your tests from the command line make s it simple to set up continuous integration. I've used an Applescript to drive iTunes back in Xcode 3 days but it just felt wrong.</p>
+    <content type="html"><![CDATA[<p>One of the reasons I run most of my tests in the simulator is that it is easy to install and run applications automatically from the command line with tools like <a href="https://github.com/Fingertips/ios-sim">ios-sim</a>. Being able to run your tests from the command line make s it simple to set up continuous integration. I&rsquo;ve used an Applescript to drive iTunes back in Xcode 3 days but it just felt wrong.</p>
 
-<p>The most recent functional testing tool I've been playing with is Apple's own <em>UIAutomation</em>, which runs within the Instruments app. I'll write more about that separately, but let's just say I don't think it's an ideal testing tool, especially if TDD and CI are important to you. Some details are in my <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project">comparison of a few functional testing tools</a>. The <code>instruments</code> command line tool does not seem to install the app on the device before running tests, which means you still need to use Xcode to manually install the app. Enter <code>fruitstrap</code>.</p>
+<p>The most recent functional testing tool I&rsquo;ve been playing with is Apple&rsquo;s own <em>UIAutomation</em>, which runs within the Instruments app. I&rsquo;ll write more about that separately, but let&rsquo;s just say I don&rsquo;t think it&rsquo;s an ideal testing tool, especially if TDD and CI are important to you. Some details are in my <a href="/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project">comparison of a few functional testing tools</a>. The <code>instruments</code> command line tool does not seem to install the app on the device before running tests, which means you still need to use Xcode to manually install the app. Enter <code>fruitstrap</code>.</p>
 
 <h2>Fruitstrap</h2>
 
-<p><a href="https://github.com/ghughes/fruitstrap">Fruitstrap</a> is a command line tool that uses the private MobileDevice API to install an iOS application on a physical device over USB. It's pretty easy to get set up.</p>
+<p><a href="https://github.com/ghughes/fruitstrap">Fruitstrap</a> is a command line tool that uses the private MobileDevice API to install an iOS application on a physical device over USB. It&rsquo;s pretty easy to get set up.</p>
 
 <p><code>
 git clone git://github.com/ghughes/fruitstrap.git
@@ -249,15 +249,15 @@ cd fruitstrap
 make fruitstrap
 </code></p>
 
-<p>Fruitstrap comes with a demo applicaiton, which you can compile and install on a device using <code>make install</code>. I actually had a few issues getting the demo app to work, but I did get it working for actual sample applications. You now have the <code>fruitstrap</code> command compiled and ready to go - if you want to access the command from anywhere you probably want to add it to you path, or sym link it to <code>/usr/local/bin</code> or however you like to tinker with your machine.</p>
+<p>Fruitstrap comes with a demo applicaiton, which you can compile and install on a device using <code>make install</code>. I actually had a few issues getting the demo app to work, but I did get it working for actual sample applications. You now have the <code>fruitstrap</code> command compiled and ready to go &ndash; if you want to access the command from anywhere you probably want to add it to you path, or sym link it to <code>/usr/local/bin</code> or however you like to tinker with your machine.</p>
 
 <h2>Building from the command line</h2>
 
-<p>I made a little sample application to play around with <code>fruitstrap</code> and scripting on my <a href="https://github.com/sgleadow">github</a>, in a project called <a href="https://github.com/sgleadow/fruitstrap-demo">fruitstrap-demo</a>. It's just a simple Single View Application with a couple of labels so you know it's the right app. To get the repository:</p>
+<p>I made a little sample application to play around with <code>fruitstrap</code> and scripting on my <a href="https://github.com/sgleadow">github</a>, in a project called <a href="https://github.com/sgleadow/fruitstrap-demo">fruitstrap-demo</a>. It&rsquo;s just a simple Single View Application with a couple of labels so you know it&rsquo;s the right app. To get the repository:</p>
 
 <p><code>git clone git://github.com/sgleadow/fruitstrap-demo.git</code></p>
 
-<p>Just to make sure everything is working, open up the project in Xcode and build and run to your device. If that doesn't work, fruitstrap isn't going to help you much. The <code>xcodebuild</code> command allows us to build our iOS apps from the command line fairly easily. The command I used was:</p>
+<p>Just to make sure everything is working, open up the project in Xcode and build and run to your device. If that doesn&rsquo;t work, fruitstrap isn&rsquo;t going to help you much. The <code>xcodebuild</code> command allows us to build our iOS apps from the command line fairly easily. The command I used was:</p>
 
 <p><code>
 xcodebuild -scheme fruitstrap-demo -sdk iphoneos build
@@ -267,49 +267,49 @@ xcodebuild -scheme fruitstrap-demo -sdk iphoneos build
 
 <h2>Try out fruitstrap</h2>
 
-<p>Now we have an application build on the command line, let's make sure fruitstrap works for our app. Make sure to remove your sample app from the device beforehand so you know it's working. Then use the <code>xcodebuild</code> command above to compile the app so it's ready to go, and make sure you know the full path to fruitstrap, or you've put fruitstrap on your path.</p>
+<p>Now we have an application build on the command line, let&rsquo;s make sure fruitstrap works for our app. Make sure to remove your sample app from the device beforehand so you know it&rsquo;s working. Then use the <code>xcodebuild</code> command above to compile the app so it&rsquo;s ready to go, and make sure you know the full path to fruitstrap, or you&rsquo;ve put fruitstrap on your path.</p>
 
 <p><code>
 fruitstrap build/Debug-iphoneos/fruitstrap-demo.app
 </code></p>
 
-<p>You should see a bunch of output and progress information finishing with the magic <code>[100%] Installed package build/Debug-iphoneos/fruitstrap-demo.app</code>, and in a few moments, the app appears in <em>Springboard</em> on your phone. That's pretty cool - I've been trying to find a solution for installing on the device like that for a long time!</p>
+<p>You should see a bunch of output and progress information finishing with the magic <code>[100%] Installed package build/Debug-iphoneos/fruitstrap-demo.app</code>, and in a few moments, the app appears in <em>Springboard</em> on your phone. That&rsquo;s pretty cool &ndash; I&rsquo;ve been trying to find a solution for installing on the device like that for a long time!</p>
 
-<p>If you have more than one device plugged in (which is usually the case on a mobile continuous integration server), you'll need to also specify the device id.</p>
+<p>If you have more than one device plugged in (which is usually the case on a mobile continuous integration server), you&rsquo;ll need to also specify the device id.</p>
 
 <h2>Scripting the fruitstrap installation</h2>
 
-<p>My next goal is to write a little shell script that we can integrate into a build phase in Xcode, so that we don't have to hard code the path <code>build/Debug-iphoneos</code> into out shell script. I immediately reached for the Build Phases tab of the fruitstrap-demp target to optionally run the fruitstrap install code. However, these shell scripts seem to get called <em>before</em> the code signing is run, in which case, installing to the device will fail.</p>
+<p>My next goal is to write a little shell script that we can integrate into a build phase in Xcode, so that we don&rsquo;t have to hard code the path <code>build/Debug-iphoneos</code> into out shell script. I immediately reached for the Build Phases tab of the fruitstrap-demp target to optionally run the fruitstrap install code. However, these shell scripts seem to get called <em>before</em> the code signing is run, in which case, installing to the device will fail.</p>
 
 <p>I found out from <a href="http://stackoverflow.com/questions/1409981/how-to-run-a-script-after-xcode-runs-codesign-on-my-iphone-app">this stackoverflow thread</a> that you can run pre and post scripts for a scheme. This allows us to hook up a shell script to run fruitstrap <em>after</em> the code signing.</p>
 
-<p>There is only one scheme in the sample project, so select <em>Edit Scheme...</em>, and select the <em>Build</em> action from the list on the left hand side. There are no actions at the moment, so press the <strong>+</strong> button and add a <em>Run Script Action</em>. Since we need to know where our target has been compiled, make sure that the <em>provide build settings from</em> option is set to <em>fruitstrap-demo</em>, as show in the following screenshot.</p>
+<p>There is only one scheme in the sample project, so select <em>Edit Scheme&hellip;</em>, and select the <em>Build</em> action from the list on the left hand side. There are no actions at the moment, so press the <strong>+</strong> button and add a <em>Run Script Action</em>. Since we need to know where our target has been compiled, make sure that the <em>provide build settings from</em> option is set to <em>fruitstrap-demo</em>, as show in the following screenshot.</p>
 
 <p><img src="/images/posts/fruitstrap/fruitstrap-scheme-post-script.png" title="Running a script in the post action for a scheme" ></p>
 
-<p>The actual script code is shown below. It only runs if the <code>FRUITSTRAP_CLI</code> environment variable is set, since most of the time we don't want Xcode to be using this third party tool to install on the device. We only need it to run when running from the command line as part of our continuous integration build. It seems the scheme scripts do not get run in the same working directory as you run xcodebuild, so our script makes sure to change to SRCROOT before running fruitstrap.</p>
+<p>The actual script code is shown below. It only runs if the <code>FRUITSTRAP_CLI</code> environment variable is set, since most of the time we don&rsquo;t want Xcode to be using this third party tool to install on the device. We only need it to run when running from the command line as part of our continuous integration build. It seems the scheme scripts do not get run in the same working directory as you run xcodebuild, so our script makes sure to change to SRCROOT before running fruitstrap.</p>
 
 <p>```</p>
 
 <h1>Do nothing unless we are running from the command line</h1>
 
-<p>if [ "$FRUITSTRAP_CLI" = "" ]; then
+<p>if [ &ldquo;$FRUITSTRAP_CLI&rdquo; = &ldquo;&rdquo; ]; then
 exit 0
 fi</p>
 
-<p>echo "<strong><strong><strong><strong><strong><strong><strong><strong><strong>"
-echo "Installing app to device using fruitstrap..."
-echo "Workspace location: $SRCROOT"
-echo "Install location: $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME"
-echo "</strong></strong></strong></strong></strong></strong></strong></strong></strong>"</p>
+<p>echo &ldquo;<strong><strong><strong><strong><strong><strong><strong><strong><strong>&rdquo;
+echo &ldquo;Installing app to device using fruitstrap&hellip;&rdquo;
+echo &ldquo;Workspace location: $SRCROOT&rdquo;
+echo &ldquo;Install location: $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME&rdquo;
+echo &ldquo;</strong></strong></strong></strong></strong></strong></strong></strong></strong>&rdquo;</p>
 
 <p>cd $SRCROOT
 fruitstrap $TARGET_BUILD_DIR/$FULL_PRODUCT_NAME</p>
 
-<p>echo "******************"
+<p>echo &ldquo;******************&rdquo;
 ```</p>
 
-<p>Check that when you run the xcodebuild example above that it <em>does not</em> run fruitstrap, since we don't want it to in that normal operation. Now, try building the scheme with the environment variable set and check that it does in fact build and install to the device.</p>
+<p>Check that when you run the xcodebuild example above that it <em>does not</em> run fruitstrap, since we don&rsquo;t want it to in that normal operation. Now, try building the scheme with the environment variable set and check that it does in fact build and install to the device.</p>
 
 <p><code>
 FRUITSTRAP_CLI=1 xcodebuild -scheme fruitstrap-demo -sdk iphoneos build
@@ -321,7 +321,7 @@ FRUITSTRAP_CLI=1 xcodebuild -scheme fruitstrap-demo -sdk iphoneos build
 
 <p>There is more information about fruitstrap on <a href="https://github.com/ghughes/fruitstrap">its github page</a>.</p>
 
-<p>One extra feature fruitstrap has is to be able to launch the application and attach a debugger, by using the <code>-d</code> option. I've had mixed success with this feature, it doesn't always work for me. I'm not sure how much use it is to me anyway if the point of this is running in CI.</p>
+<p>One extra feature fruitstrap has is to be able to launch the application and attach a debugger, by using the <code>-d</code> option. I&rsquo;ve had mixed success with this feature, it doesn&rsquo;t always work for me. I&rsquo;m not sure how much use it is to me anyway if the point of this is running in CI.</p>
 
 <p><code>
 fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app
@@ -331,7 +331,7 @@ fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app
 
 <p>Now we can build the application and install it on the device from the command line. From here, the next step is to hook it up to the <code>instruments</code> command line interface. Massive thanks to <a href="https://twitter.com/#!/heardrwt">Richie</a> for letting me know about fruitstrap.</p>
 
-<p>Ideally, I would like to be able to boot the app on the device <em>without</em> being hooked into the debugger. I'm not sure if this is possible, I certainly haven't got it working with fruitstrap yet - and the hairy C code isn't making me want to jump in and try just yet. What we have now is enough to get UIAutomation up and running, since <code>instruments</code> will boot the app when the tests start. However, I'd prefer to use Frank or KIF in which case I need to find a way to boot onto the device.</p>
+<p>Ideally, I would like to be able to boot the app on the device <em>without</em> being hooked into the debugger. I&rsquo;m not sure if this is possible, I certainly haven&rsquo;t got it working with fruitstrap yet &ndash; and the hairy C code isn&rsquo;t making me want to jump in and try just yet. What we have now is enough to get UIAutomation up and running, since <code>instruments</code> will boot the app when the tests start. However, I&rsquo;d prefer to use Frank or KIF in which case I need to find a way to boot onto the device.</p>
 ]]></content>
   </entry>
   
@@ -342,17 +342,17 @@ fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app
     <id>http://www.stewgleadow.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project</id>
     <content type="html"><![CDATA[<p>I recently came across a post from the guys at <a href="http://twobitlabs.com">Two Bit Labs</a> on <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">Adding Unit Tests to an existing iOS project</a> with Xcode 4.</p>
 
-<p>I always include unit tests by default in any project that is more than a demo, but up until recently I have always used <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. <a href="http://twitter.com/#!/makdad">Mark Makdad</a> wrote a piece earlier in the year <a href="http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit">comparing GHUnit and OCUnit</a>. That post combined with <a href="https://github.com/allending/Kiwi">Kiwi</a>'s Rspec-style wrappers around OCUnit has made me consider using Apple's built in unit testing again.</p>
+<p>I always include unit tests by default in any project that is more than a demo, but up until recently I have always used <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. <a href="http://twitter.com/#!/makdad">Mark Makdad</a> wrote a piece earlier in the year <a href="http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit">comparing GHUnit and OCUnit</a>. That post combined with <a href="https://github.com/allending/Kiwi">Kiwi</a>&rsquo;s Rspec-style wrappers around OCUnit has made me consider using Apple&rsquo;s built in unit testing again.</p>
 
-<p>I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the <em>Test</em> build action hooked up. This isn't exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press <code>Cmd + U</code> or select <code>Product &gt; Test</code> from the menu.</p>
+<p>I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the <em>Test</em> build action hooked up. This isn&rsquo;t exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press <code>Cmd + U</code> or select <code>Product &gt; Test</code> from the menu.</p>
 
 <h2>Adding the test action to an existing scheme</h2>
 
-<p>When I select my target, called <em>Development</em>, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you... but here is what I had to do in order to get my unit tests hooked up to my main Development target's scheme.</p>
+<p>When I select my target, called <em>Development</em>, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you&hellip; but here is what I had to do in order to get my unit tests hooked up to my main Development target&rsquo;s scheme.</p>
 
-<p>Select your main target's scheme in the little scheme selector in the Xcode toolbar, and choose <em>Edit Scheme...</em> from the drop down menu. When you select the <em>Test</em> build action on the left, you'll notice no tests appear in the list. Tap the <em>+</em> button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press <em>Add</em>.</p>
+<p>Select your main target&rsquo;s scheme in the little scheme selector in the Xcode toolbar, and choose <em>Edit Scheme&hellip;</em> from the drop down menu. When you select the <em>Test</em> build action on the left, you&rsquo;ll notice no tests appear in the list. Tap the <em>+</em> button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press <em>Add</em>.</p>
 
-<p><img src="/images/posts/adding-unit-tests/adding-test-action-to-scheme.png" title="Adding tests to the scheme's test action" ></p>
+<p><img src="/images/posts/adding-unit-tests/adding-test-action-to-scheme.png" title="Adding tests to the scheme&rsquo;s test action" ></p>
 
 <p>You should see the test bundle appear in the table, as shown in the image above. Tap on the <em>Build</em> action for this scheme, and you will notice that there are now two targets lists: our application and our unit tests. The tests are only linked up to the <em>Test</em> build action by default, which should look similar to the image below.</p>
 
@@ -360,15 +360,15 @@ fruitstrap -d build/Debug-iphoneos/fruitstrap-demo.app
 
 <h2>Running your unit tests</h2>
 
-<p>Now that your unit tests are hooked up to your test build action, select your main target's scheme. The menu item <code>Product &gt; Test</code> should now be active. Select <em>Test</em>, and Xcode will build your application and run your tests. When creating the test bundle, Apple's default test case includes a failure, so if the tests run, you will see that failure.</p>
+<p>Now that your unit tests are hooked up to your test build action, select your main target&rsquo;s scheme. The menu item <code>Product &gt; Test</code> should now be active. Select <em>Test</em>, and Xcode will build your application and run your tests. When creating the test bundle, Apple&rsquo;s default test case includes a failure, so if the tests run, you will see that failure.</p>
 
-<p>Just to double check you've got all your target dependencies set up correctly, try a full clean (hold <em>Option</em> while selecting <code>Product &gt; Clean</code>) and then press <em>Cmd + U</em>. This should trigger a full build and run the unit tests and show your test failure again.</p>
+<p>Just to double check you&rsquo;ve got all your target dependencies set up correctly, try a full clean (hold <em>Option</em> while selecting <code>Product &gt; Clean</code>) and then press <em>Cmd + U</em>. This should trigger a full build and run the unit tests and show your test failure again.</p>
 
-<p>If you see an error like <code>ld: file not found:</code> <code>&lt;path to app&gt;/Debug-iphonesimulator/Development.app/Development</code>, it's likely your test target does not automatically build your main application under test, as explained in the <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">original article</a>: select your project in the navigator, select your unit test target, open the <em>Build Phases</em> tab and add your app target as a dependency. Ending up with something like the image shown.</p>
+<p>If you see an error like <code>ld: file not found:</code> <code>&lt;path to app&gt;/Debug-iphonesimulator/Development.app/Development</code>, it&rsquo;s likely your test target does not automatically build your main application under test, as explained in the <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">original article</a>: select your project in the navigator, select your unit test target, open the <em>Build Phases</em> tab and add your app target as a dependency. Ending up with something like the image shown.</p>
 
 <p><img src="/images/posts/adding-unit-tests/test-target-dependency.png" title="Setting up dependencies for your test target" ></p>
 
-<p>Now... do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
+<p>Now&hellip; do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
 ]]></content>
   </entry>
   

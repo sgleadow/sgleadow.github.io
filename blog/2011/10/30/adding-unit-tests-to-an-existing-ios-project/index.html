@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://www.stewgleadow.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
@@ -96,15 +97,15 @@
 
 <div class="entry-content"><p>I recently came across a post from the guys at <a href="http://twobitlabs.com">Two Bit Labs</a> on <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">Adding Unit Tests to an existing iOS project</a> with Xcode 4.</p>
 
-<p>I always include unit tests by default in any project that is more than a demo, but up until recently I have always used <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. <a href="http://twitter.com/#!/makdad">Mark Makdad</a> wrote a piece earlier in the year <a href="http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit">comparing GHUnit and OCUnit</a>. That post combined with <a href="https://github.com/allending/Kiwi">Kiwi</a>&#8217;s Rspec-style wrappers around OCUnit has made me consider using Apple&#8217;s built in unit testing again.</p>
+<p>I always include unit tests by default in any project that is more than a demo, but up until recently I have always used <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. <a href="http://twitter.com/#!/makdad">Mark Makdad</a> wrote a piece earlier in the year <a href="http://longweekendmobile.com/2011/04/15/unit-testing-in-xcode-4-use-ocunit-and-sentest-instead-of-ghunit">comparing GHUnit and OCUnit</a>. That post combined with <a href="https://github.com/allending/Kiwi">Kiwi</a>&rsquo;s Rspec-style wrappers around OCUnit has made me consider using Apple&rsquo;s built in unit testing again.</p>
 
-<p>I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the <em>Test</em> build action hooked up. This isn&#8217;t exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press <code>Cmd + U</code> or select <code>Product &gt; Test</code> from the menu.</p>
+<p>I worked through the post from Two Bit Labs to add a unit test target to an existing project, which all worked fine. Xcode automatically added a new scheme for my new unit test target that only had the <em>Test</em> build action hooked up. This isn&rsquo;t exactly what I wanted. Ideally, I want to run my unit tests without changing the current scheme, and just press <code>Cmd + U</code> or select <code>Product &gt; Test</code> from the menu.</p>
 
 <h2>Adding the test action to an existing scheme</h2>
 
-<p>When I select my target, called <em>Development</em>, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you&#8230; but here is what I had to do in order to get my unit tests hooked up to my main Development target&#8217;s scheme.</p>
+<p>When I select my target, called <em>Development</em>, that option is greyed out. I have a number of targets set up for this project, so perhaps for simple projects Xcode sorts it out for you&hellip; but here is what I had to do in order to get my unit tests hooked up to my main Development target&rsquo;s scheme.</p>
 
-<p>Select your main target&#8217;s scheme in the little scheme selector in the Xcode toolbar, and choose <em>Edit Scheme&#8230;</em> from the drop down menu. When you select the <em>Test</em> build action on the left, you&#8217;ll notice no tests appear in the list. Tap the <em>+</em> button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press <em>Add</em>.</p>
+<p>Select your main target&rsquo;s scheme in the little scheme selector in the Xcode toolbar, and choose <em>Edit Scheme&hellip;</em> from the drop down menu. When you select the <em>Test</em> build action on the left, you&rsquo;ll notice no tests appear in the list. Tap the <em>+</em> button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press <em>Add</em>.</p>
 
 <p><img src="/images/posts/adding-unit-tests/adding-test-action-to-scheme.png" title="Adding tests to the scheme's test action" ></p>
 
@@ -114,15 +115,15 @@
 
 <h2>Running your unit tests</h2>
 
-<p>Now that your unit tests are hooked up to your test build action, select your main target&#8217;s scheme. The menu item <code>Product &gt; Test</code> should now be active. Select <em>Test</em>, and Xcode will build your application and run your tests. When creating the test bundle, Apple&#8217;s default test case includes a failure, so if the tests run, you will see that failure.</p>
+<p>Now that your unit tests are hooked up to your test build action, select your main target&rsquo;s scheme. The menu item <code>Product &gt; Test</code> should now be active. Select <em>Test</em>, and Xcode will build your application and run your tests. When creating the test bundle, Apple&rsquo;s default test case includes a failure, so if the tests run, you will see that failure.</p>
 
-<p>Just to double check you&#8217;ve got all your target dependencies set up correctly, try a full clean (hold <em>Option</em> while selecting <code>Product &gt; Clean</code>) and then press <em>Cmd + U</em>. This should trigger a full build and run the unit tests and show your test failure again.</p>
+<p>Just to double check you&rsquo;ve got all your target dependencies set up correctly, try a full clean (hold <em>Option</em> while selecting <code>Product &gt; Clean</code>) and then press <em>Cmd + U</em>. This should trigger a full build and run the unit tests and show your test failure again.</p>
 
-<p>If you see an error like <code>ld: file not found:</code> <code>&lt;path to app&gt;/Debug-iphonesimulator/Development.app/Development</code>, it&#8217;s likely your test target does not automatically build your main application under test, as explained in the <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">original article</a>: select your project in the navigator, select your unit test target, open the <em>Build Phases</em> tab and add your app target as a dependency. Ending up with something like the image shown.</p>
+<p>If you see an error like <code>ld: file not found:</code> <code>&lt;path to app&gt;/Debug-iphonesimulator/Development.app/Development</code>, it&rsquo;s likely your test target does not automatically build your main application under test, as explained in the <a href="http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/">original article</a>: select your project in the navigator, select your unit test target, open the <em>Build Phases</em> tab and add your app target as a dependency. Ending up with something like the image shown.</p>
 
 <p><img src="/images/posts/adding-unit-tests/test-target-dependency.png" title="Setting up dependencies for your test target" ></p>
 
-<p>Now&#8230; do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
+<p>Now&hellip; do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.</p>
 </div>
 
 
@@ -192,11 +193,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting started with iOS development</a>
+        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting Started With iOS Development</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON parsing for iOS</a>
+        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON Parsing for iOS</a>
       </li>
     
       <li class="post">
@@ -223,7 +224,7 @@
   <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -244,23 +245,6 @@
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("stewgleadow", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
-  
-</section>
-
-
   
 </aside>
 
@@ -268,7 +252,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Stewart Gleadow -
+  Copyright &copy; 2013 - Stewart Gleadow -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

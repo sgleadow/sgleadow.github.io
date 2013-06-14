@@ -9,7 +9,7 @@
   <meta name="author" content="Stewart Gleadow">
 
   
-  <meta name="description" content="I&#8217;m looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling &hellip;">
+  <meta name="description" content="I&rsquo;m looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://www.stewgleadow.com/blog/page/2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
@@ -97,11 +98,11 @@
   </header>
 
 
-  <div class="entry-content"><p>I&#8217;m looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling accessibility for your apps in the simulator and on the device.</p>
+  <div class="entry-content"><p>I&rsquo;m looking to write up a few posts about using accessibility for testing native iOS applications. Here is the first one, dealing with enabling accessibility for your apps in the simulator and on the device.</p>
 
 <h2>Why use accessibility</h2>
 
-<p>Firstly, the iPhone and iPad are setting a new standard for usability by impaired users. That&#8217;s a great thing, and I think we should be making a bigger effort to support these features. Apple provides assistants like VoiceOver that use the building UIAccessibility framework. If you&#8217;d like to find out more about accessibility for the sake of accessibility, <a href="http://mattgemmell.com/2010/12/19/accessibility-for-iphone-and-ipad-apps/">Matt Gemmell</a> has a great post on the topic</p>
+<p>Firstly, the iPhone and iPad are setting a new standard for usability by impaired users. That&rsquo;s a great thing, and I think we should be making a bigger effort to support these features. Apple provides assistants like VoiceOver that use the building UIAccessibility framework. If you&rsquo;d like to find out more about accessibility for the sake of accessibility, <a href="http://mattgemmell.com/2010/12/19/accessibility-for-iphone-and-ipad-apps/">Matt Gemmell</a> has a great post on the topic</p>
 
 <p>A great side effect of making an app accessible to assistive devices is that the app also becomes easier to test in an automated fashion. This post is not about how and why to use accessibility to test your app (although that is a valid topic that I will write a separate post on), it a quick guide to turning accessibility on. Generally, the properties of the UIAccessibilty framework are only available to third party testing tools like <a href="http://www.testingwithfrank.com/">Frank</a> and <a href="https://github.com/square/KIF">KIF</a> if you have accessibility enabled for the application, either in the simulator or on the device.</p>
 
@@ -112,24 +113,24 @@
 <p><img src="/images/posts/accessibility/osx-prefs.png" title="Universal Access in the OS X Preferences" >
 <img src="/images/posts/accessibility/enable-osx-prefs.png" title="Universal Access in the OS X Preferences" ></p>
 
-<p>Load the iOS Simulator and open the <em>Settings</em> application. Enable accessibility using the switch under <em>General > Accessibility</em>. If you see a little coloured box appear, you have successfully enabled accessibility in the simulator. The setting is stored in an underlying plist file under that iOS version of the simulator, so you will need to enable this setting for for both iOS 4 and 5 separately, but that will effect all of the device types (iPhone, iPhone Retina and iPad) for that OS version. The iOS Simulator will keep accessibility enabled as long as you don&#8217;t clear out its settings. If you&#8217;re anything like me, you have <em>Reset Content and Settings</em> mapped to a keyboard shortcut, you&#8217;ll regularly need to navigate in and re-enable accessibility.</p>
+<p>Load the iOS Simulator and open the <em>Settings</em> application. Enable accessibility using the switch under <em>General > Accessibility</em>. If you see a little coloured box appear, you have successfully enabled accessibility in the simulator. The setting is stored in an underlying plist file under that iOS version of the simulator, so you will need to enable this setting for for both iOS 4 and 5 separately, but that will effect all of the device types (iPhone, iPhone Retina and iPad) for that OS version. The iOS Simulator will keep accessibility enabled as long as you don&rsquo;t clear out its settings. If you&rsquo;re anything like me, you have <em>Reset Content and Settings</em> mapped to a keyboard shortcut, you&rsquo;ll regularly need to navigate in and re-enable accessibility.</p>
 
 <p><img class="right" src="/images/posts/accessibility/enable-on-simulator.png" title="Enable accessibility in the iOS Simulator" ></p>
 
-<p>The small coloured box that appears is called the accessibility inspector. It shows a small summary of what is available from the UIAccessibility framework for iOS. There are two main types of information shown in the inspector: notifications and properties. Notifications are fired when the UI changes. To be honest, I&#8217;ve not played around with firing accessibility notifications much at all. Notifications could be a potential solution for tests that need to &#8216;wait&#8217; until a screen transition is finished before continuing rather than busy-waiting or just a plain old sleep (you know it&#8217;s not a real test suite unless there are a couple of <em>sleep</em> calls in there!).</p>
+<p>The small coloured box that appears is called the accessibility inspector. It shows a small summary of what is available from the UIAccessibility framework for iOS. There are two main types of information shown in the inspector: notifications and properties. Notifications are fired when the UI changes. To be honest, I&rsquo;ve not played around with firing accessibility notifications much at all. Notifications could be a potential solution for tests that need to &lsquo;wait&rsquo; until a screen transition is finished before continuing rather than busy-waiting or just a plain old sleep (you know it&rsquo;s not a real test suite unless there are a couple of <em>sleep</em> calls in there!).</p>
 
-<p>The properties show aspects of the selected UI element. With the accessibility inspector expanded, tap around in some of Apple&#8217;s built in applications to see the UIAccessibility properties. With the accessibility inspector expanded like this, the first touch even brings up the accessibility - which is great if that&#8217;s the only way to use the app, but can get in the way if you&#8217;re not used to it. If you collapse the inspector using the little cross-button, touch interaction returns to normal.  In the image above I&#8217;ve collapsed the accessibility inspector and dragged it to the side, since the properties are available to our tests anyway, so it&#8217;s easiest to get it as far off the screen as possible.</p>
+<p>The properties show aspects of the selected UI element. With the accessibility inspector expanded, tap around in some of Apple&rsquo;s built in applications to see the UIAccessibility properties. With the accessibility inspector expanded like this, the first touch even brings up the accessibility &ndash; which is great if that&rsquo;s the only way to use the app, but can get in the way if you&rsquo;re not used to it. If you collapse the inspector using the little cross-button, touch interaction returns to normal.  In the image above I&rsquo;ve collapsed the accessibility inspector and dragged it to the side, since the properties are available to our tests anyway, so it&rsquo;s easiest to get it as far off the screen as possible.</p>
 
 <h2>Enabling accessibility on the device</h2>
 
-<p>Usually, to get access to the accessibility framework on an actual iOS device, you need to enable <em>VoiceOver</em>. If you do your testing with Apple&#8217;s sanctioned UIAutomation Instrument, it seems to be able to hook in automatically without you having to specifically enable those features. Although with iOS 5, I&#8217;ve found that to not always be the case.</p>
+<p>Usually, to get access to the accessibility framework on an actual iOS device, you need to enable <em>VoiceOver</em>. If you do your testing with Apple&rsquo;s sanctioned UIAutomation Instrument, it seems to be able to hook in automatically without you having to specifically enable those features. Although with iOS 5, I&rsquo;ve found that to not always be the case.</p>
 
 <p>VoiceOver is pretty easy to enable in the Settings app under <em>General > Accessibility > VoiceOver</em>. Once this is enabled, the device acts in a similar way to when you have the accessibility inspector visible in the simulator. A pleasant computerised voice now describes your every gesture, and more importantly, activates the accessibility framework for all applications, including the one you want to test. Your first tap will select a UI element and read the available information about it. Double-tapping actually executes the action for a button. People using VoiceOver as a means to navigate the OS are likely to drag their finger on the screen to get a better idea of where items are relative to each other, so single-finger scrolling is also disabled. You can scroll by dragging with three fingers.</p>
 
 <p><img class="left" src="/images/posts/accessibility/itunes-configure-accessibility.png" title="Configure Universal Access in iTunes" >
 <img class="left" src="/images/posts/accessibility/itunes-voiceover-on.png" title="Enable VoiceOver in iTunes" ></p>
 
-<p>Navigate some well known apps on the phone, and see how Apple&#8217;s own applications integrate with VoiceOver. To actually design an accessible application, you&#8217;ll be wanting to spend a whole lot of time using VoiceOver yourself to get an idea of what information is useful and necessary. At some stage, you will pick up a test device with VoiceOver on, so it’s good to know at least how to get into the settings and turn accessibility off in order to operate manually.</p>
+<p>Navigate some well known apps on the phone, and see how Apple&rsquo;s own applications integrate with VoiceOver. To actually design an accessible application, you&rsquo;ll be wanting to spend a whole lot of time using VoiceOver yourself to get an idea of what information is useful and necessary. At some stage, you will pick up a test device with VoiceOver on, so it’s good to know at least how to get into the settings and turn accessibility off in order to operate manually.</p>
 
 <p>If you are only enabling VoiceOver for testing purposes, the changed gestures and audio instructions can seem to get in the way of you just using the device. If you regularly switch accessibility on and off, using iTunes is going to be much more convenient. Before the latest version of iTunes, enabling accessibility this way required the device to be plugged in via USB. I was pleasantly surprised to discover that this VoiceOver can now be toggle on and off over wifi.</p>
 
@@ -137,7 +138,7 @@
 
 <p><em>Note: these steps apply to the iOS Simulator only. If someone knows how to enable accessibility programmatically on the device, I would love to know</em></p>
 
-<p>When you are running tests in the simulator, it&#8217;s likely that you use the <em>Reset Content and Settings&#8230;</em> menu item frequently. If you forget to reenable accessibility after this, tests will fail because UI information will not be available to the tests. We need a programmatic way to turn accessibility on. I&#8217;m not sure how to do this on the device, but in the simulator, this is just a matter of setting a flag in one of the underlying plist files. It&#8217;s possible to call plist editors from the command line to do this, but then the plist file is separate for each iOS version supported by the simulator. I find it&#8217;s easier to call from the Objective C code at run time, since it it possible to obtain the root for that version of the simulator.</p>
+<p>When you are running tests in the simulator, it&rsquo;s likely that you use the <em>Reset Content and Settings&hellip;</em> menu item frequently. If you forget to reenable accessibility after this, tests will fail because UI information will not be available to the tests. We need a programmatic way to turn accessibility on. I&rsquo;m not sure how to do this on the device, but in the simulator, this is just a matter of setting a flag in one of the underlying plist files. It&rsquo;s possible to call plist editors from the command line to do this, but then the plist file is separate for each iOS version supported by the simulator. I find it&rsquo;s easier to call from the Objective C code at run time, since it it possible to obtain the root for that version of the simulator.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;dlfcn.h&gt;</span>
 </span><span class='line'>
@@ -165,7 +166,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I first tried to use this code in <code>init</code> for a test framework class, and it didn&#8217;t seem to work. Moving the code to be called from <code>load</code> solved the problem. Since this code actually changes a <em>plist</em> file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&#8217;t bring up the inspector over the top of the UI.</p>
+<p>I first tried to use this code in <code>init</code> for a test framework class, and it didn&rsquo;t seem to work. Moving the code to be called from <code>load</code> solved the problem. Since this code actually changes a <em>plist</em> file on the file system, perhaps it needs to be executed early before the UI loads so that the rest of the system acts as if accessibility is enabled. Not only does this approach ensure accessibility is always enabled in the simulator, it doesn&rsquo;t bring up the inspector over the top of the UI.</p>
 
 <p>Special thanks to <a href="http://twitter.com/#!/0xced">Cedric Luthi</a>, who originally wrote the code to enable accessibility programmatically for DCIntrospect <a href="https://github.com/0xced/DCIntrospect/commit/49b76a6630cc29444aac30f14fd0fc17e22b37cf">in this commit</a>, and to an awesome colleague of mine, Sadat Rahman (@sadatrahman), for bringing that code to my attention.</p>
 </div>
@@ -203,11 +204,11 @@
   </header>
 
 
-  <div class="entry-content"><p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I&#8217;m hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer&#8217;s text editor, in plain text, using Markdown is ideal.</p>
+  <div class="entry-content"><p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I&rsquo;m hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer&rsquo;s text editor, in plain text, using Markdown is ideal.</p>
 
-<p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn&#8217;t find the time to get the blog set up properly. This morning I read about Matt Gemmell&#8217;s blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
+<p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn&rsquo;t find the time to get the blog set up properly. This morning I read about Matt Gemmell&rsquo;s blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
 
-<p>I&#8217;ve gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!</p>
+<p>I&rsquo;ve gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!</p>
 </div>
   
   
@@ -243,13 +244,13 @@
   </header>
 
 
-  <div class="entry-content"><p>Last week I have a short lightning talk with Jesse Collis (@sirjec) at the Melbourne Cocoaheads meetup. The topic was fairly boring, just some useful Xcode 4 shortcuts we have found since switching from Xcode 3 a few weeks ago. It ended up being a bit of a laugh, probably the first and only time a talk about keyboard shortcuts will be funny - I think it had something to do with the pizza and beer that had just arrived.</p>
+  <div class="entry-content"><p>Last week I have a short lightning talk with Jesse Collis (@sirjec) at the Melbourne Cocoaheads meetup. The topic was fairly boring, just some useful Xcode 4 shortcuts we have found since switching from Xcode 3 a few weeks ago. It ended up being a bit of a laugh, probably the first and only time a talk about keyboard shortcuts will be funny &ndash; I think it had something to do with the pizza and beer that had just arrived.</p>
 
 <p>Jesse saved me the effort of writing up anything more and linking to the slides on his blog below.</p>
 
 <p><a href="http://blog.jcmultimedia.com.au/2011/04/xcode4-shortcuts-melbourne-cocoaheads-april-2011.html">http://blog.jcmultimedia.com.au/2011/04/xcode4-shortcuts-melbourne-cocoaheads-april-2011.html</a></p>
 
-<p>I&#8217;ve managed to find the <a href="http://vimeo.com/22598371">video footage of the xcode shortcuts talk</a> put together by Oliver Jones (@orj) on vimeo. After flicking through the footage a couple of questions were raised that I can now answer:</p>
+<p>I&rsquo;ve managed to find the <a href="http://vimeo.com/22598371">video footage of the xcode shortcuts talk</a> put together by Oliver Jones (@orj) on vimeo. After flicking through the footage a couple of questions were raised that I can now answer:</p>
 
 <ul>
 <li>Q: <em>Does Cmd+Option+[ or ] work if multiple lines are selected?</em><br/>
@@ -264,25 +265,25 @@ A: Yes, it is based on the editor that has focus.</li>
 <p>The Melbourne Cocoaheads faithful also contributed some keyboard shortcuts of their own, here are the ones I jotted down:</p>
 
 <ul>
-<li><em>Cmd+Ctrl+Opt+?</em> - open item under the cursor in Xcode help (&#8220;real help, not the stupid little help&#8221; @tupps)</li>
-<li><em>Cmd+Double-Click</em> - drill through to the implementation</li>
-<li><em>Cmd+Opt+,</em> - open current file back in the main editor</li>
-<li><em>Cmd+/</em> - Comment Line</li>
-<li><em>Cmd+Shift+[ or ]</em> - navigate back and forth between tabs</li>
-<li><em>Cmd+T</em> - Open new tab (same as Safari)</li>
-<li><em>Cmd+Ctrl+Up and Down</em> - switch between counterparts</li>
+<li><em>Cmd+Ctrl+Opt+?</em> &ndash; open item under the cursor in Xcode help (&ldquo;real help, not the stupid little help&rdquo; @tupps)</li>
+<li><em>Cmd+Double-Click</em> &ndash; drill through to the implementation</li>
+<li><em>Cmd+Opt+,</em> &ndash; open current file back in the main editor</li>
+<li><em>Cmd+/</em> &ndash; Comment Line</li>
+<li><em>Cmd+Shift+[ or ]</em> &ndash; navigate back and forth between tabs</li>
+<li><em>Cmd+T</em> &ndash; Open new tab (same as Safari)</li>
+<li><em>Cmd+Ctrl+Up and Down</em> &ndash; switch between counterparts</li>
 </ul>
 
 
-<p>and a few more shortcuts I&#8217;ve found since then:</p>
+<p>and a few more shortcuts I&rsquo;ve found since then:</p>
 
 <ul>
-<li><em>Cmd+Ctrl+Opt+Up</em> - open up the counterpart in the secondary editor</li>
-<li><em>&#8230;</em> - Organise Import&#8230; just kidding. Maybe one day.</li>
+<li><em>Cmd+Ctrl+Opt+Up</em> &ndash; open up the counterpart in the secondary editor</li>
+<li><em>&hellip;</em> &ndash; Organise Import&hellip; just kidding. Maybe one day.</li>
 </ul>
 
 
-<p>I&#8217;m sure there are plenty more shortcuts I haven&#8217;t found yet. Let me know the ones you find most useful.</p>
+<p>I&rsquo;m sure there are plenty more shortcuts I haven&rsquo;t found yet. Let me know the ones you find most useful.</p>
 </div>
   
   
@@ -320,9 +321,9 @@ A: Yes, it is based on the editor that has focus.</li>
 
   <div class="entry-content"><p>This is my second post on my move to rvm. The first being about <a href="blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">cleaning out my existing gems</a> for a fresh start.</p>
 
-<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&#8217;m working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don&#8217;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
+<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&rsquo;m working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don&rsquo;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
 
-<p>I&#8217;m looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
+<p>I&rsquo;m looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
 
 <h2>Installing RVM</h2>
 
@@ -332,7 +333,7 @@ A: Yes, it is based on the editor that has focus.</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You&#8217;ll see a bunch of output, and towards the bottom, a confirmation message saying &#8220;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&#8221;, but that&#8217;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
+<p>You&rsquo;ll see a bunch of output, and towards the bottom, a confirmation message saying &ldquo;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&rdquo;, but that&rsquo;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[[</span> -s <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> . <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -352,7 +353,7 @@ A: Yes, it is based on the editor that has focus.</li>
 
 <h2>Installing some Rubies</h2>
 
-<p>Now that rvm is installed, let&#8217;s install some rubies to use with it. First, check which ruby versions are available.</p>
+<p>Now that rvm is installed, let&rsquo;s install some rubies to use with it. First, check which ruby versions are available.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm list known
 </span><span class='line'>...
@@ -361,14 +362,14 @@ A: Yes, it is based on the editor that has focus.</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;ll install the main two versions that I&#8217;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&#8217;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
+<p>I&rsquo;ll install the main two versions that I&rsquo;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&rsquo;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm install 1.8.7
 </span><span class='line'><span class="nv">$ </span>rvm install 1.9.2
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;m still using 1.8.7 for some things at the moment, so I&#8217;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
+<p>I&rsquo;m still using 1.8.7 for some things at the moment, so I&rsquo;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm --default use 1.8.7
 </span><span class='line'><span class="nv">$ </span>ruby -v
@@ -387,9 +388,9 @@ A: Yes, it is based on the editor that has focus.</li>
 
 <h2>Setting up your gemsets</h2>
 
-<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&#8217;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
+<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&rsquo;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
 
-<p>I should have a pretty clean slate to start on for my gems. I&#8217;m not 100% on whether rvm will use my old system gems or not, but I&#8217;ve cleaned them all out anyway, so it shouldn&#8217;t be a problem.</p>
+<p>I should have a pretty clean slate to start on for my gems. I&rsquo;m not 100% on whether rvm will use my old system gems or not, but I&rsquo;ve cleaned them all out anyway, so it shouldn&rsquo;t be a problem.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem list
 </span><span class='line'>*** LOCAL GEMS ***
@@ -403,7 +404,7 @@ A: Yes, it is based on the editor that has focus.</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>rvm will set up a default gemset for you, but I&#8217;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&#8217;m setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&#8217;s automatic.</p>
+<p>rvm will set up a default gemset for you, but I&rsquo;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&rsquo;m setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&rsquo;s automatic.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat my_project/.rvmrc
 </span><span class='line'>rvm --create use ruby-1.8.7-p334@frank
@@ -412,7 +413,7 @@ A: Yes, it is based on the editor that has focus.</li>
 
 <p>Once the .rvmrc file is created, leave and return to the directory to kick it off, authorise it and you should see something like <code>Using /Users/sgleadow/.rvm/gems/ruby-1.8.7-p334 with gemset frank</code> printed to the console. To double check we are, in fact, using the newly created gemset, use <code>rvm list gemsets</code> or <code>rvm gemset list</code> and check the little hashrocket is pointing to the new gemset. Do another <code>gem list</code> to double check you have a clean slate.</p>
 
-<p>Most of my projects use bundler, so first I&#8217;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
+<p>Most of my projects use bundler, so first I&rsquo;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rm .bundle/config
 </span><span class='line'><span class="nv">$ </span>rm -r vendor/bundle
@@ -421,7 +422,7 @@ A: Yes, it is based on the editor that has focus.</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you&#8217;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
+<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you&rsquo;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
 </div>
   
   
@@ -463,9 +464,9 @@ A: Yes, it is based on the editor that has focus.</li>
 
 <p><code>$ for x in `gem list --no-versions` ; do gem uninstall -aIx $x; done</code></p>
 
-<p>After some googling, the next step I tried was to physically remove the gem directories that are returned by <code>gem env paths</code>. After that, <code>gem list</code> said there were no gems installed. There were still some binaries left over that depended on these gems, like <code>spec</code>, <code>rails</code>, <code>rake</code> in <code>/usr/bin</code>. These binaries no longer worked as the actual gem was gone, so I removed them. I couldn&#8217;t find a definitive list of the OS X default gems so I stopped here.</p>
+<p>After some googling, the next step I tried was to physically remove the gem directories that are returned by <code>gem env paths</code>. After that, <code>gem list</code> said there were no gems installed. There were still some binaries left over that depended on these gems, like <code>spec</code>, <code>rails</code>, <code>rake</code> in <code>/usr/bin</code>. These binaries no longer worked as the actual gem was gone, so I removed them. I couldn&rsquo;t find a definitive list of the OS X default gems so I stopped here.</p>
 
-<p>I&#8217;m not a shell guru by any means, but below is my attempt at a quick one line shell script to remove all the existing gem directories.</p>
+<p>I&rsquo;m not a shell guru by any means, but below is my attempt at a quick one line shell script to remove all the existing gem directories.</p>
 
 <p><code>rm -rf `gem env paths | tr ":" " "`</code></p>
 </div>
@@ -503,13 +504,13 @@ A: Yes, it is based on the editor that has focus.</li>
   </header>
 
 
-  <div class="entry-content"><p>I&#8217;ve been meaning to start a blog for a while know. Until now, I&#8217;ve kept notes to myself in all sorts of places about problems I&#8217;ve encountered while developing software and solutions I&#8217;ve found. My favourite way of keeping notes to date is in a nice Moleskine notebook with a fountain pen - a bit backwards I know, you wouldn&#8217;t believe I write software for a living.</p>
+  <div class="entry-content"><p>I&rsquo;ve been meaning to start a blog for a while know. Until now, I&rsquo;ve kept notes to myself in all sorts of places about problems I&rsquo;ve encountered while developing software and solutions I&rsquo;ve found. My favourite way of keeping notes to date is in a nice Moleskine notebook with a fountain pen &ndash; a bit backwards I know, you wouldn&rsquo;t believe I write software for a living.</p>
 
-<p>Often my notes just disappear into the depths of my filesystem or bookshelf never to be seen again. If I&#8217;m really proactive, I might write up an answer on Stack Overflow or reply to a mailing list. The next time I want to share that experience, I have to filter through to find that information again</p>
+<p>Often my notes just disappear into the depths of my filesystem or bookshelf never to be seen again. If I&rsquo;m really proactive, I might write up an answer on Stack Overflow or reply to a mailing list. The next time I want to share that experience, I have to filter through to find that information again</p>
 
-<p>Hopefully a blog will be an easier way to keep track of this information and later refer to it. Whether it&#8217;s useful information or not remains to be seen, but it will at least be useful to me. For shorter, random and less useful musings, I&#8217;m on twitter at @stewgleadow</p>
+<p>Hopefully a blog will be an easier way to keep track of this information and later refer to it. Whether it&rsquo;s useful information or not remains to be seen, but it will at least be useful to me. For shorter, random and less useful musings, I&rsquo;m on twitter at @stewgleadow</p>
 
-<p>The current topics I&#8217;m interested in are:</p>
+<p>The current topics I&rsquo;m interested in are:</p>
 
 <ul>
 <li>Objective C and native iOS apps</li>
@@ -519,7 +520,7 @@ A: Yes, it is based on the editor that has focus.</li>
 </ul>
 
 
-<p>User groups I&#8217;m involved in or attend occasionally:</p>
+<p>User groups I&rsquo;m involved in or attend occasionally:</p>
 
 <ul>
 <li><a href="http://www.melbournecocoaheads.com/">Melbourne Cocoaheads</a></li>
@@ -551,11 +552,11 @@ A: Yes, it is based on the editor that has focus.</li>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting started with iOS development</a>
+        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting Started With iOS Development</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON parsing for iOS</a>
+        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON Parsing for iOS</a>
       </li>
     
       <li class="post">
@@ -582,7 +583,7 @@ A: Yes, it is based on the editor that has focus.</li>
   <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -603,30 +604,13 @@ A: Yes, it is based on the editor that has focus.</li>
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("stewgleadow", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
-  
-</section>
-
-
   
 </aside>
 
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Stewart Gleadow -
+  Copyright &copy; 2013 - Stewart Gleadow -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

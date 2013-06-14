@@ -4,7 +4,7 @@
   <title><![CDATA[Category: frank | Stewart Gleadow's Blog]]></title>
   <link href="http://www.stewgleadow.com/blog/categories/frank/atom.xml" rel="self"/>
   <link href="http://www.stewgleadow.com/"/>
-  <updated>2012-11-27T10:55:11+11:00</updated>
+  <updated>2013-06-14T10:18:00+10:00</updated>
   <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.stewgleadow.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/"/>
     <updated>2011-10-28T17:48:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios</id>
-    <content type="html"><![CDATA[<p>You only have to look at github to see the explosion of new open source iOS frameworks. Incorporating third party libraries into your app is still a pain. I spent today fighting with static libraries and frameworks for the <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> library, and I think I won, so that's got to be work writing about.</p>
+    <content type="html"><![CDATA[<p>You only have to look at github to see the explosion of new open source iOS frameworks. Incorporating third party libraries into your app is still a pain. I spent today fighting with static libraries and frameworks for the <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> library, and I think I won, so that&rsquo;s got to be work writing about.</p>
 
 <p>The changes I made can be see on <a href="https://github.com/sgleadow/DCIntrospect">my fork of DCIntrospect</a>.</p>
 
@@ -26,7 +26,7 @@
 
 <p>Until recently, my default use case was to actually drag in the source files from a third party library and compile it into my application. For libraries that I have forked and plan to modify or extend, this would still be my preferred option. Some third party libraries are stable and reliable, and I do not wish to change the source code at all. For these tools, I would prefer to just drag in a static library or framework and get on with my own app.</p>
 
-<p>I've tried my hand at static libraries before, and it definitely wasn't plain sailing. A twitter conversation between two local iOS devs, <a href="http://twitter.com/#!/patr">Pat</a> and <a href="http://twitter.com/#!/orj">Oliver</a> prompted me to have another go at getting these libraries working. Pat's own tool, <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> is a perfect example. It's a great tool for introspecting and testing strange UI layout behaviour in your app, and it's a library that <em>just works</em> (famous last words, I bet you find a bug in it now)... but credit to Pat, I've used it on a few apps, and never touched the source code. DCIntrospect seems like a good case for bundling everything up in a library.</p>
+<p>I&rsquo;ve tried my hand at static libraries before, and it definitely wasn&rsquo;t plain sailing. A twitter conversation between two local iOS devs, <a href="http://twitter.com/#!/patr">Pat</a> and <a href="http://twitter.com/#!/orj">Oliver</a> prompted me to have another go at getting these libraries working. Pat&rsquo;s own tool, <a href="https://github.com/domesticcatsoftware/DCIntrospect">DCIntrospect</a> is a perfect example. It&rsquo;s a great tool for introspecting and testing strange UI layout behaviour in your app, and it&rsquo;s a library that <em>just works</em> (famous last words, I bet you find a bug in it now)&hellip; but credit to Pat, I&rsquo;ve used it on a few apps, and never touched the source code. DCIntrospect seems like a good case for bundling everything up in a library.</p>
 
 <h2>Static Library</h2>
 
@@ -34,13 +34,13 @@
 
 <p>The target name is DCIntrospectStaticLib, but I wanted the output to be libDCIntrospect.a, which can be done by changing the <strong>Product Name</strong> build setting. I also wanted to group the header files with the compiled binary, so I set the <strong>Public Headers Folder Path</strong> to be <code>$(PRODUCT_NAME)</code> so that it would match whatever I entered for the product name.</p>
 
-<p>To link to this static library, you simply have to drag it into your project. Xcode sorts out adjusting the <strong>Library Search Paths</strong> automatically when you add the library. However, if you want to import headers and make calls to the library, you will need to manually set the <strong>Header Search Paths</strong>. For DCIntrospectDemo, the search path is <code>"$(SRCROOT)/../Products/lib"</code> and then use <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code>. That's easy enough to do, but it is one more barrier to entry for people using the library. A static framework could make it a single step.</p>
+<p>To link to this static library, you simply have to drag it into your project. Xcode sorts out adjusting the <strong>Library Search Paths</strong> automatically when you add the library. However, if you want to import headers and make calls to the library, you will need to manually set the <strong>Header Search Paths</strong>. For DCIntrospectDemo, the search path is <code>"$(SRCROOT)/../Products/lib"</code> and then use <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code>. That&rsquo;s easy enough to do, but it is one more barrier to entry for people using the library. A static framework could make it a single step.</p>
 
 <h2>Static Framework</h2>
 
-<p>I followed the steps described in <a href="http://twitter.com/#!/dineybomfim">Diney Bomfim's</a> updated post on building a <a href="http://db-in.com/blog/2011/07/universal-framework-iphone-ios-2-0/">universal framework for iPhone</a>, and it all went pretty smoothly. He describes the different build settings you have to adjust to get it all to work.</p>
+<p>I followed the steps described in <a href="http://twitter.com/#!/dineybomfim">Diney Bomfim&rsquo;s</a> updated post on building a <a href="http://db-in.com/blog/2011/07/universal-framework-iphone-ios-2-0/">universal framework for iPhone</a>, and it all went pretty smoothly. He describes the different build settings you have to adjust to get it all to work.</p>
 
-<p>Diney's instructions also include a sample shell script for compiling a universal static library using the <code>lipo</code> tool. I adjusted the script slightly, so that it would build both a universal static library as well as the static framework. I haven't had much success running DCIntrospect on the device, so I'm not sure if that part is working or not.</p>
+<p>Diney&rsquo;s instructions also include a sample shell script for compiling a universal static library using the <code>lipo</code> tool. I adjusted the script slightly, so that it would build both a universal static library as well as the static framework. I haven&rsquo;t had much success running DCIntrospect on the device, so I&rsquo;m not sure if that part is working or not.</p>
 
 <p>The joy of using the static framework in this way is that installing DCIntrospect is now a single drag and drop of a framework into your source code. To get it working at this point, you would still need to add <code>#import &lt;DCIntrospect/DCIntrospect.h&gt;</code> into your app delegate and after you have loaded the window, call <code>[[DCIntrospect sharedIntrospector] start]</code>.</p>
 
@@ -48,11 +48,11 @@
 
 <p>My next task is to get DCIntrospect to automatically load if it is linked to your target. I had a play around with this a few months ago with the <a href="https://github.com/moredip/Frank">Frank iOS testing library</a>, with some success but never pursued the final solution, but <a href="http://twitter.com/#!/beingagile">Pete Hodgson</a> obviously got sick of waiting for me and did it himself.</p>
 
-<p>The solution is pretty neat. You basically hook into when a class in the library is being loaded, and set yourself up to listen for the <code>UIApplicationDidBecomeActiveNotification</code> notification, which gets called after the app delegate <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code> gets called. When that happens, we start DCIntrospect. I've wrapped the call to load DCIntrospect in a check that we are running in the simulator, so it will never be called on the app we submit to Apple. Initially I tried to do a check using <code>#ifdef DEBUG</code>, but that wont work with the static precompiled library approach, since those flags are only valid when the library is initially compiled, not at run time.</p>
+<p>The solution is pretty neat. You basically hook into when a class in the library is being loaded, and set yourself up to listen for the <code>UIApplicationDidBecomeActiveNotification</code> notification, which gets called after the app delegate <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code> gets called. When that happens, we start DCIntrospect. I&rsquo;ve wrapped the call to load DCIntrospect in a check that we are running in the simulator, so it will never be called on the app we submit to Apple. Initially I tried to do a check using <code>#ifdef DEBUG</code>, but that wont work with the static precompiled library approach, since those flags are only valid when the library is initially compiled, not at run time.</p>
 
 <p>```objc</p>
 
-<h1>import "DCIntrospect.h"</h1>
+<h1>import &ldquo;DCIntrospect.h&rdquo;</h1>
 
 <p>@interface DCIntrospectLoader : NSObject
 @end</p>
@@ -77,16 +77,13 @@ if (simulatorRoot)
 <ul>
 <li><p>(void)load
 {
-  NSLog(@"Injecting DCIntrospect loader");</p>
+  NSLog(@&ldquo;Injecting DCIntrospect loader&rdquo;);</p>
 
-<p>  [[NSNotificationCenter defaultCenter] addObserver:[self class]</p>
-
-<pre><code>                                       selector:@selector(applicationDidBecomeActive:) 
-                                           name:@"UIApplicationDidBecomeActiveNotification" 
-                                         object:nil];
-</code></pre>
-
-<p>}</p></li>
+<p>  [[NSNotificationCenter defaultCenter] addObserver:[self class]
+                                           selector:@selector(applicationDidBecomeActive:)
+                                               name:@&ldquo;UIApplicationDidBecomeActiveNotification&rdquo;
+                                             object:nil];
+}</p></li>
 </ul>
 
 
@@ -99,9 +96,9 @@ if (simulatorRoot)
 
 <p>To use either the static library or the framework in the two demo project targets, the only change I had to make was to add the <em>-ObjC</em> setting to <strong>Other Linker Flags</strong>. For the static library, you still need to set a header path but only if you want to make direct calls to DCIntrospect, since it now loads automatically.</p>
 
-<p>Since I had both the DCIntrospect and DCIntrospectDemo projects in the same workspace, XCode 4 had the smarts to find the <em>implicit dependency</em>, so when I edit the library source code, it's automatically rebuilt. However, I set up the project to use the <em>BundleProducts</em> target to create the universal distributable binaries, which did not get picked up as a dependency.</p>
+<p>Since I had both the DCIntrospect and DCIntrospectDemo projects in the same workspace, XCode 4 had the smarts to find the <em>implicit dependency</em>, so when I edit the library source code, it&rsquo;s automatically rebuilt. However, I set up the project to use the <em>BundleProducts</em> target to create the universal distributable binaries, which did not get picked up as a dependency.</p>
 
-<p>You can create <em>explicit dependencies</em> between targets in different projects by first creating a project dependency. That is, dragging the dependent project into the demo project. Once that is done, when editing the <strong>Target Dependencies</strong> in the demo target's <em>Build Phases</em>, you will be able to explicitly select the dependency. In this case, it is the <em>BundleProducts</em> target.</p>
+<p>You can create <em>explicit dependencies</em> between targets in different projects by first creating a project dependency. That is, dragging the dependent project into the demo project. Once that is done, when editing the <strong>Target Dependencies</strong> in the demo target&rsquo;s <em>Build Phases</em>, you will be able to explicitly select the dependency. In this case, it is the <em>BundleProducts</em> target.</p>
 
 <p>Unless you plan to edit the source code and recompile the binary often, the chances are you wont need to set up the project dependencies like this.</p>
 
@@ -110,12 +107,12 @@ if (simulatorRoot)
 <p>DCIntrospect is a fairly simple framework to generate. Larger libraries are likely to come across two issues, neither of which affect DCIntrospect.</p>
 
 <ul>
-<li>categories from static libraries don't seem to load properly</li>
+<li>categories from static libraries don&rsquo;t seem to load properly</li>
 <li>resources is static libraries or frameworks need to be linked into the target using them separately</li>
 </ul>
 
 
-<p>For the categories issue, I know if two solutions. First, you can add <em>-all_load</em> to the <strong>Other Linker Flags</strong> section of the target using the static library. We've already added the <em>-ObjC</em> flag in there, so it's not really adding much of a burden. The other option is to use Karl Stenerud's <em>MAKE_CATEGORIES_LOADABLE</em> as <a href="https://github.com/moredip/Frank/blob/master/LoadableCategory.h">used in Frank</a>.</p>
+<p>For the categories issue, I know if two solutions. First, you can add <em>-all_load</em> to the <strong>Other Linker Flags</strong> section of the target using the static library. We&rsquo;ve already added the <em>-ObjC</em> flag in there, so it&rsquo;s not really adding much of a burden. The other option is to use Karl Stenerud&rsquo;s <em>MAKE_CATEGORIES_LOADABLE</em> as <a href="https://github.com/moredip/Frank/blob/master/LoadableCategory.h">used in Frank</a>.</p>
 
 <p>For the resources issue, you can generate a resource bundle along with your static library or framework. When linking the library to your target, you can also drag in the resources bundle as a dependency and it should work. Karl has a neat way of making this even easier in his <a href="https://github.com/kstenerud/iOS-Universal-Framework">iOS Univeral Framework</a> project in github. He creates an <em>embedded framework</em>, which is essentially a single container for both the static framework and the resources bundle. This extra container makes it easy to drag in a single <em>.embeddedframework</em> file into your project and have everything link up correctly.</p>
 
@@ -130,7 +127,7 @@ if (simulatorRoot)
     <link href="http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/"/>
     <updated>2011-10-26T22:38:00+11:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use</id>
-    <content type="html"><![CDATA[<p>I've been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:</p>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been playing around with testing frameworks on iOS for over a year now. There are quite a few out there, all with communities building around them, but I think there are currently a few that stand out:</p>
 
 <ul>
 <li>Frank</li>
@@ -139,18 +136,18 @@ if (simulatorRoot)
 </ul>
 
 
-<p>Other tools that might be worth looking at, but I haven't used and wont comment on are: NativeDriver, LessPainful, iCuke and UISpec.</p>
+<p>Other tools that might be worth looking at, but I haven&rsquo;t used and wont comment on are: NativeDriver, LessPainful, iCuke and UISpec.</p>
 
 <p>I recently watched a recording of Pete Hodgson (@beingagile), the primary maintainer of Frank in which he gave a quick summary of the other testing tools, and when it might be appropriate to use them. I made a few notes, and added some of my own thoughts. There is a <a href="http://pivotallabs.com/talks/147-frank-cucumber-tests-for-native-ios-apps">video of the talk</a> Pete gave at <a href="http://pivotallabs.com/">Pivotal Labs</a>.</p>
 
 <h2>Frank</h2>
 
-<p>Frank has been described as Selenium for native iOS apps. It's a tool written mainly by some fellow Thoughtworkers that uses a combination of <a href="http://cukes.info/">Cucumber</a> and JSON commands that are sent to a server running inside your native application, and leverages <a href="http://code.google.com/p/uispec/">UISpec</a> to run the commands. Frank used to require changes to your production code, but that's got a lot easier with the new static library approach.</p>
+<p>Frank has been described as Selenium for native iOS apps. It&rsquo;s a tool written mainly by some fellow Thoughtworkers that uses a combination of <a href="http://cukes.info/">Cucumber</a> and JSON commands that are sent to a server running inside your native application, and leverages <a href="http://code.google.com/p/uispec/">UISpec</a> to run the commands. Frank used to require changes to your production code, but that&rsquo;s got a lot easier with the new static library approach.</p>
 
-<p>I've used Frank quite a bit, and I like it. I have a lot more I could say about it, but I'll leave that for another time. You can find out more about Frank at:</p>
+<p>I&rsquo;ve used Frank quite a bit, and I like it. I have a lot more I could say about it, but I&rsquo;ll leave that for another time. You can find out more about Frank at:</p>
 
 <ul>
-<li><a href="http://www.testingwithfrank.com">Frank's new home page</a></li>
+<li><a href="http://www.testingwithfrank.com">Frank&rsquo;s new home page</a></li>
 <li><a href="https://github.com/moredip/Frank">The github page for Frank</a></li>
 <li><a href="/talks.html">A slightly out of date talk I gave on Frank</a></li>
 </ul>
@@ -161,7 +158,7 @@ if (simulatorRoot)
 <ul>
 <li>Clean CSS-like selector syntax, allowing for fairly tolerant tests</li>
 <li>Active community discussing and extending the library</li>
-<li>Driven by Cucumber (if you're a cuke fan)</li>
+<li>Driven by Cucumber (if you&rsquo;re a cuke fan)</li>
 <li>Includes <em>Symbiote</em>, a live introspection tool</li>
 <li>Command line and CI come pretty much for free</li>
 </ul>
@@ -173,7 +170,7 @@ if (simulatorRoot)
 <li>Difficult, but not impossible, to run on the device</li>
 <li>Separation between tests/native code over HTTP can confuse the cause of failure</li>
 <li>Decoupling test/native code into separate processes makes it a bit slower (Pete makes the good point that most of the slowness in your iOS tests are likely to be waiting for animations and transitions, not the HTTP communication)</li>
-<li>Very little support for gestures (but hopefully that's coming soon)</li>
+<li>Very little support for gestures (but hopefully that&rsquo;s coming soon)</li>
 </ul>
 
 
@@ -189,7 +186,7 @@ if (simulatorRoot)
 
 <h2>KIF</h2>
 
-<p>KIF is an Objective C based framework written at Square. It's a nice solid implementation from what I've seen, with active development going on. Since it's Objective C, you can call out to anything else in your app as well. It's a brand new test framework, so it's not going to immediately integrate with other tools (like JUnit-style XML output and that kind of thing). I haven't KIF a lot yet, so I can't comment too much but I think it shows a lot of promise. You can find out more about KIF at:</p>
+<p>KIF is an Objective C based framework written at Square. It&rsquo;s a nice solid implementation from what I&rsquo;ve seen, with active development going on. Since it&rsquo;s Objective C, you can call out to anything else in your app as well. It&rsquo;s a brand new test framework, so it&rsquo;s not going to immediately integrate with other tools (like JUnit-style XML output and that kind of thing). I haven&rsquo;t KIF a lot yet, so I can&rsquo;t comment too much but I think it shows a lot of promise. You can find out more about KIF at:</p>
 
 <ul>
 <li><a href="https://github.com/square/KIF">The github repo</a></li>
@@ -211,8 +208,8 @@ if (simulatorRoot)
 <p><strong><em> The bad parts of KIF </em></strong></p>
 
 <ul>
-<li>Your tests are in Objective C. Non-devs will find it hard to read, doesn't make a great executable spec)</li>
-<li>Tricky to integrate with back end stubs because it's all running in-process</li>
+<li>Your tests are in Objective C. Non-devs will find it hard to read, doesn&rsquo;t make a great executable spec)</li>
+<li>Tricky to integrate with back end stubs because it&rsquo;s all running in-process</li>
 <li>Not stand alone</li>
 </ul>
 
@@ -222,23 +219,23 @@ if (simulatorRoot)
 <ul>
 <li>Primarily a developer driven team</li>
 <li>Developers have stronger Objective C skills than Ruby/Cucumber/Javascript</li>
-<li>Don't need business folk to read or write test specs</li>
-<li>Don't want to deal with the whacky regex from Cucumber</li>
-<li>Don't have really complex back end interactions to stub out</li>
-<li>Don't have cross platform requirements</li>
+<li>Don&rsquo;t need business folk to read or write test specs</li>
+<li>Don&rsquo;t want to deal with the whacky regex from Cucumber</li>
+<li>Don&rsquo;t have really complex back end interactions to stub out</li>
+<li>Don&rsquo;t have cross platform requirements</li>
 </ul>
 
 
 <h2>UIAutomation</h2>
 
-<p><a href="http://developer.apple.com/library/ios/#documentation/DeveloperTools/Reference/UIAutomationRef/Introduction/Introduction.html">UIAutomation</a> is Apple's own solution for automated testing. It runs tests written in Javascript through the Instruments application that comes with the developer tools. It sounds like a no-brainer to use Apple's solution for building iOS apps, but I've found it a real pain to deal with in practice. UIAutomation is pretty good for actually driving the UI, but not great for organising and running a test suite, especially from CI. My impression is that Apple QA staff must use UIAutomation for test scripts with profiling instruments attached and actually sit there and watch, it doesn't seem to be purpose built for fully automated testing.</p>
+<p><a href="http://developer.apple.com/library/ios/#documentation/DeveloperTools/Reference/UIAutomationRef/Introduction/Introduction.html">UIAutomation</a> is Apple&rsquo;s own solution for automated testing. It runs tests written in Javascript through the Instruments application that comes with the developer tools. It sounds like a no-brainer to use Apple&rsquo;s solution for building iOS apps, but I&rsquo;ve found it a real pain to deal with in practice. UIAutomation is pretty good for actually driving the UI, but not great for organising and running a test suite, especially from CI. My impression is that Apple QA staff must use UIAutomation for test scripts with profiling instruments attached and actually sit there and watch, it doesn&rsquo;t seem to be purpose built for fully automated testing.</p>
 
-<p>At this point I would like to link to a lot of useful documentation about UIAutomation, but in practice I have found Apple's documentation to be either minimal or non-existent, and very little online discussion past the "boot up an app and tap a button in a single javascript file".</p>
+<p>At this point I would like to link to a lot of useful documentation about UIAutomation, but in practice I have found Apple&rsquo;s documentation to be either minimal or non-existent, and very little online discussion past the &ldquo;boot up an app and tap a button in a single javascript file&rdquo;.</p>
 
 <p><strong><em> The good parts of UIAutomation </em></strong></p>
 
 <ul>
-<li>Apple's own tool. Doing things the way Apple wants is generally a good idea (and as Pete mentions, Apple's not going to go bust or quit iOS any time soon, so the chances are it will be supported)</li>
+<li>Apple&rsquo;s own tool. Doing things the way Apple wants is generally a good idea (and as Pete mentions, Apple&rsquo;s not going to go bust or quit iOS any time soon, so the chances are it will be supported)</li>
 <li>More closely linked to the device, I primarily run UIAutomation tests on the device, not in the simulator</li>
 <li>Good support for gestures (pinch zooming and swipes) and rotation</li>
 </ul>
@@ -248,8 +245,8 @@ if (simulatorRoot)
 
 <ul>
 <li>Not built with CI in mind. The command line integration is pretty bad</li>
-<li>Can't integrate with other tools very well</li>
-<li>It's Apple's tool, and it's not open source. You can't jump in and fix the bits that are missing</li>
+<li>Can&rsquo;t integrate with other tools very well</li>
+<li>It&rsquo;s Apple&rsquo;s tool, and it&rsquo;s not open source. You can&rsquo;t jump in and fix the bits that are missing</li>
 <li>Runs within Instruments, seems to be aimed at regression testing not TDD and aimed at QAs not devs</li>
 </ul>
 
@@ -259,14 +256,14 @@ if (simulatorRoot)
 <ul>
 <li>You have a separation between development and QA on your team</li>
 <li>You prefer regression test suites over a test-first approach</li>
-<li>You don't really care about CI</li>
+<li>You don&rsquo;t really care about CI</li>
 <li>You prefer manual QA and you just want to speed that up a bit</li>
 </ul>
 
 
 <h2>Conclusion</h2>
 
-<p>So far I've used Frank and UIAutomation on fairly large projects, and I'm very keen to try KIF. Ideally what I would like is the Frank architecture using Cucumber to drive your tests, but using KIF's implementation on the native side which is a lot more solid than UISpec. Frank would give nice clean readable test features, and integration with other tools through cucumber as well as the concise selector syntax. KIF would give gesture support and a much cleaner implementation of those features.</p>
+<p>So far I&rsquo;ve used Frank and UIAutomation on fairly large projects, and I&rsquo;m very keen to try KIF. Ideally what I would like is the Frank architecture using Cucumber to drive your tests, but using KIF&rsquo;s implementation on the native side which is a lot more solid than UISpec. Frank would give nice clean readable test features, and integration with other tools through cucumber as well as the concise selector syntax. KIF would give gesture support and a much cleaner implementation of those features.</p>
 ]]></content>
   </entry>
   
@@ -277,9 +274,9 @@ if (simulatorRoot)
     <id>http://www.stewgleadow.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell</id>
     <content type="html"><![CDATA[<p>This is my second post on my move to rvm. The first being about <a href="blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">cleaning out my existing gems</a> for a fresh start.</p>
 
-<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I'm working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don't have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
+<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&rsquo;m working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don&rsquo;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
 
-<p>I'm looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
+<p>I&rsquo;m looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
 
 <h2>Installing RVM</h2>
 
@@ -289,7 +286,7 @@ if (simulatorRoot)
 $ bash &lt; &lt;(curl -B http://rvm.beginrescueend.com/install/rvm)
 </code></p>
 
-<p>You'll see a bunch of output, and towards the bottom, a confirmation message saying "Installation of RVM to /Users/sgleadow/.rvm/ is complete.", but that's not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
+<p>You&rsquo;ll see a bunch of output, and towards the bottom, a confirmation message saying &ldquo;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&rdquo;, but that&rsquo;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
 
 <p><code>bash
 [[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm"
@@ -309,7 +306,7 @@ rvm is a function
 
 <h2>Installing some Rubies</h2>
 
-<p>Now that rvm is installed, let's install some rubies to use with it. First, check which ruby versions are available.</p>
+<p>Now that rvm is installed, let&rsquo;s install some rubies to use with it. First, check which ruby versions are available.</p>
 
 <p><code>bash
 $ rvm list known
@@ -318,14 +315,14 @@ $ rvm list known
 ...
 </code></p>
 
-<p>I'll install the main two versions that I'm using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven't bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
+<p>I&rsquo;ll install the main two versions that I&rsquo;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&rsquo;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
 
 <p><code>bash
 $ rvm install 1.8.7
 $ rvm install 1.9.2
 </code></p>
 
-<p>I'm still using 1.8.7 for some things at the moment, so I'll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
+<p>I&rsquo;m still using 1.8.7 for some things at the moment, so I&rsquo;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
 
 <p><code>bash
 $ rvm --default use 1.8.7
@@ -344,9 +341,9 @@ ruby-1.8.7-p334 [ x86_64 ]
 
 <h2>Setting up your gemsets</h2>
 
-<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I'd like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
+<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&rsquo;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
 
-<p>I should have a pretty clean slate to start on for my gems. I'm not 100% on whether rvm will use my old system gems or not, but I've cleaned them all out anyway, so it shouldn't be a problem.</p>
+<p>I should have a pretty clean slate to start on for my gems. I&rsquo;m not 100% on whether rvm will use my old system gems or not, but I&rsquo;ve cleaned them all out anyway, so it shouldn&rsquo;t be a problem.</p>
 
 <p><code>bash
 $ gem list
@@ -360,7 +357,7 @@ rvm gemsets
    ruby-1.9.2-head@global [ x86_64 ]
 </code></p>
 
-<p>rvm will set up a default gemset for you, but I'd like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I'm setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it's automatic.</p>
+<p>rvm will set up a default gemset for you, but I&rsquo;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&rsquo;m setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&rsquo;s automatic.</p>
 
 <p><code>bash
 $ cat my_project/.rvmrc
@@ -369,7 +366,7 @@ rvm --create use ruby-1.8.7-p334@frank
 
 <p>Once the .rvmrc file is created, leave and return to the directory to kick it off, authorise it and you should see something like <code>Using /Users/sgleadow/.rvm/gems/ruby-1.8.7-p334 with gemset frank</code> printed to the console. To double check we are, in fact, using the newly created gemset, use <code>rvm list gemsets</code> or <code>rvm gemset list</code> and check the little hashrocket is pointing to the new gemset. Do another <code>gem list</code> to double check you have a clean slate.</p>
 
-<p>Most of my projects use bundler, so first I'll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
+<p>Most of my projects use bundler, so first I&rsquo;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
 
 <p><code>bash
 $ rm .bundle/config
@@ -378,7 +375,7 @@ $ gem install bundler
 $ bundle
 </code></p>
 
-<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you're project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
+<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you&rsquo;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
 ]]></content>
   </entry>
   

@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://www.stewgleadow.com/blog/2011/09/16/moving-from-wordpress-to-octopress">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
@@ -94,11 +95,11 @@
   </header>
 
 
-<div class="entry-content"><p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I&#8217;m hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer&#8217;s text editor, in plain text, using Markdown is ideal.</p>
+<div class="entry-content"><p>My Wordpress blog was a complete failure in terms of content and effort on my part. I blame part of this on the barrier of having to use Wordpress, which I find bloated and slow. I want to write blogs the same way I write code: in my text editor using git to keep track of changes, and deploying with a git push. I&rsquo;m hoping most of my posts will involve a lot of code snippets, so being able to edit the posts in a proper programmer&rsquo;s text editor, in plain text, using Markdown is ideal.</p>
 
-<p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn&#8217;t find the time to get the blog set up properly. This morning I read about Matt Gemmell&#8217;s blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
+<p>I tried to get <code>jekyll</code> set up, but being a bit of a noob when it comes to stylesheets as well as Ruby, I just couldn&rsquo;t find the time to get the blog set up properly. This morning I read about Matt Gemmell&rsquo;s blog <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">moving to Octopress</a>, which seemed the best of both worlds. The simple ongoing use and management that jekyll provides, and with some additional scripts to set it all up for me.</p>
 
-<p>I&#8217;ve gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!</p>
+<p>I&rsquo;ve gone and set it all up this afternoon, now to see if that means I actually have the time to write up posts!</p>
 </div>
 
 
@@ -168,11 +169,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting started with iOS development</a>
+        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting Started With iOS Development</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON parsing for iOS</a>
+        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON Parsing for iOS</a>
       </li>
     
       <li class="post">
@@ -199,7 +200,7 @@
   <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -220,23 +221,6 @@
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("stewgleadow", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
-  
-</section>
-
-
   
 </aside>
 
@@ -244,7 +228,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Stewart Gleadow -
+  Copyright &copy; 2013 - Stewart Gleadow -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

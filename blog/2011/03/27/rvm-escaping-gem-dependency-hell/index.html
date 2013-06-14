@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://www.stewgleadow.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
@@ -96,9 +97,9 @@
 
 <div class="entry-content"><p>This is my second post on my move to rvm. The first being about <a href="blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/">cleaning out my existing gems</a> for a fresh start.</p>
 
-<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&#8217;m working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don&#8217;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
+<p>Bundler seemed like it was the ideal solution to having specific gems for specific projects, but it seems to install in your system gems by default causing version and dependency conflicts with other projects I&rsquo;m working on. I know I can use <code>bundle --deployment</code> but then I have to <code>bundle exec</code> everything and I don&rsquo;t have enough Ruby-fu to use the bundler-managed gems within Rakefile etc.</p>
 
-<p>I&#8217;m looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
+<p>I&rsquo;m looking to <a href="http://rvm.beginrescueend.com/">rvm</a> to solve the problem. The steps I followed are below:</p>
 
 <h2>Installing RVM</h2>
 
@@ -108,7 +109,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You&#8217;ll see a bunch of output, and towards the bottom, a confirmation message saying &#8220;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&#8221;, but that&#8217;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
+<p>You&rsquo;ll see a bunch of output, and towards the bottom, a confirmation message saying &ldquo;Installation of RVM to /Users/sgleadow/.rvm/ is complete.&rdquo;, but that&rsquo;s not all. You need to set up your shell to know about rvm. Put the following line into your .bash_profile or wherever your chosen shell wants it.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[[</span> -s <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> . <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -128,7 +129,7 @@
 
 <h2>Installing some Rubies</h2>
 
-<p>Now that rvm is installed, let&#8217;s install some rubies to use with it. First, check which ruby versions are available.</p>
+<p>Now that rvm is installed, let&rsquo;s install some rubies to use with it. First, check which ruby versions are available.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm list known
 </span><span class='line'>...
@@ -137,14 +138,14 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;ll install the main two versions that I&#8217;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&#8217;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
+<p>I&rsquo;ll install the main two versions that I&rsquo;m using at the moment. Each install will take a few minutes, so this is a good time to make a cup of tea. I would usually say coffee but I haven&rsquo;t bought any fresh coffee beans in a while and the stuff I has is so old that the coffee tastes like sawdust.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm install 1.8.7
 </span><span class='line'><span class="nv">$ </span>rvm install 1.9.2
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;m still using 1.8.7 for some things at the moment, so I&#8217;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
+<p>I&rsquo;m still using 1.8.7 for some things at the moment, so I&rsquo;ll set that up as the default, and double check that the active ruby binary is now the one I just installed using rvm.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm --default use 1.8.7
 </span><span class='line'><span class="nv">$ </span>ruby -v
@@ -163,9 +164,9 @@
 
 <h2>Setting up your gemsets</h2>
 
-<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&#8217;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
+<p>While rvm solves the issue of having multiple versions of ruby installed on the one machine, and switching between them, it also allows you to set up multiple gemsets, which is the feature that started me on this journey in the first place. I&rsquo;d like to set up a separate gemset for each separate project to try and keep them separate and escape from dependency hell.</p>
 
-<p>I should have a pretty clean slate to start on for my gems. I&#8217;m not 100% on whether rvm will use my old system gems or not, but I&#8217;ve cleaned them all out anyway, so it shouldn&#8217;t be a problem.</p>
+<p>I should have a pretty clean slate to start on for my gems. I&rsquo;m not 100% on whether rvm will use my old system gems or not, but I&rsquo;ve cleaned them all out anyway, so it shouldn&rsquo;t be a problem.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem list
 </span><span class='line'>*** LOCAL GEMS ***
@@ -179,7 +180,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>rvm will set up a default gemset for you, but I&#8217;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&#8217;m setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&#8217;s automatic.</p>
+<p>rvm will set up a default gemset for you, but I&rsquo;d like to have each project automatically set its own ruby version and gemset. We can use the .rvmrc file to achieve this. I&rsquo;m setting a project up that uses the <a href="https://github.com/moredip/Frank">Frank</a> iOS testing tool, below is a sample of the .rvmrc file I have <em>inside</em> that my project root directory. When I enter that directory in the shell, rvm picks up the rc file and will switch to that version of ruby (the part before the @) and also switch to a specific gemset (the part after the @). The <code>--create</code> means that if the gemset does not already exist, create one. The first time you enter the directory, you will need to specifically allow rvm to do this. After that, it&rsquo;s automatic.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat my_project/.rvmrc
 </span><span class='line'>rvm --create use ruby-1.8.7-p334@frank
@@ -188,7 +189,7 @@
 
 <p>Once the .rvmrc file is created, leave and return to the directory to kick it off, authorise it and you should see something like <code>Using /Users/sgleadow/.rvm/gems/ruby-1.8.7-p334 with gemset frank</code> printed to the console. To double check we are, in fact, using the newly created gemset, use <code>rvm list gemsets</code> or <code>rvm gemset list</code> and check the little hashrocket is pointing to the new gemset. Do another <code>gem list</code> to double check you have a clean slate.</p>
 
-<p>Most of my projects use bundler, so first I&#8217;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
+<p>Most of my projects use bundler, so first I&rsquo;ll need to install that, then I can use bundler to manage all the gems I need installed. Before using bundler, I wanted to remove the existing gems that had been used by bundler.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr></pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rm .bundle/config
 </span><span class='line'><span class="nv">$ </span>rm -r vendor/bundle
@@ -197,7 +198,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you&#8217;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
+<p>Bundler should install all the gems listed in the Gemfile into the gemset you have just defined for this project. Once bundle is complete, check the gems were installed in the gemset and not just in vendor with <code>gem list</code>. If you&rsquo;re project is all set up with a Rakefile to run your tests, try that to double check everything has gone smoothly.</p>
 </div>
 
 
@@ -267,11 +268,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting started with iOS development</a>
+        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting Started With iOS Development</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON parsing for iOS</a>
+        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON Parsing for iOS</a>
       </li>
     
       <li class="post">
@@ -298,7 +299,7 @@
   <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -319,23 +320,6 @@
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("stewgleadow", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
-  
-</section>
-
-
   
 </aside>
 
@@ -343,7 +327,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Stewart Gleadow -
+  Copyright &copy; 2013 - Stewart Gleadow -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

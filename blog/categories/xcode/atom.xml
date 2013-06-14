@@ -4,7 +4,7 @@
   <title><![CDATA[Category: xcode | Stewart Gleadow's Blog]]></title>
   <link href="http://www.stewgleadow.com/blog/categories/xcode/atom.xml" rel="self"/>
   <link href="http://www.stewgleadow.com/"/>
-  <updated>2012-11-27T10:55:11+11:00</updated>
+  <updated>2013-06-14T10:18:00+10:00</updated>
   <id>http://www.stewgleadow.com/</id>
   <author>
     <name><![CDATA[Stewart Gleadow]]></name>
@@ -18,13 +18,13 @@
     <link href="http://www.stewgleadow.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk/"/>
     <updated>2011-04-19T16:46:00+10:00</updated>
     <id>http://www.stewgleadow.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk</id>
-    <content type="html"><![CDATA[<p>Last week I have a short lightning talk with Jesse Collis (@sirjec) at the Melbourne Cocoaheads meetup. The topic was fairly boring, just some useful Xcode 4 shortcuts we have found since switching from Xcode 3 a few weeks ago. It ended up being a bit of a laugh, probably the first and only time a talk about keyboard shortcuts will be funny - I think it had something to do with the pizza and beer that had just arrived.</p>
+    <content type="html"><![CDATA[<p>Last week I have a short lightning talk with Jesse Collis (@sirjec) at the Melbourne Cocoaheads meetup. The topic was fairly boring, just some useful Xcode 4 shortcuts we have found since switching from Xcode 3 a few weeks ago. It ended up being a bit of a laugh, probably the first and only time a talk about keyboard shortcuts will be funny &ndash; I think it had something to do with the pizza and beer that had just arrived.</p>
 
 <p>Jesse saved me the effort of writing up anything more and linking to the slides on his blog below.</p>
 
 <p><a href="http://blog.jcmultimedia.com.au/2011/04/xcode4-shortcuts-melbourne-cocoaheads-april-2011.html">http://blog.jcmultimedia.com.au/2011/04/xcode4-shortcuts-melbourne-cocoaheads-april-2011.html</a></p>
 
-<p>I've managed to find the <a href="http://vimeo.com/22598371">video footage of the xcode shortcuts talk</a> put together by Oliver Jones (@orj) on vimeo. After flicking through the footage a couple of questions were raised that I can now answer:</p>
+<p>I&rsquo;ve managed to find the <a href="http://vimeo.com/22598371">video footage of the xcode shortcuts talk</a> put together by Oliver Jones (@orj) on vimeo. After flicking through the footage a couple of questions were raised that I can now answer:</p>
 
 <ul>
 <li>Q: <em>Does Cmd+Option+[ or ] work if multiple lines are selected?</em><br/>
@@ -39,25 +39,25 @@ A: Yes, it is based on the editor that has focus.</li>
 <p>The Melbourne Cocoaheads faithful also contributed some keyboard shortcuts of their own, here are the ones I jotted down:</p>
 
 <ul>
-<li><em>Cmd+Ctrl+Opt+?</em> - open item under the cursor in Xcode help ("real help, not the stupid little help" @tupps)</li>
-<li><em>Cmd+Double-Click</em> - drill through to the implementation</li>
-<li><em>Cmd+Opt+,</em> - open current file back in the main editor</li>
-<li><em>Cmd+/</em> - Comment Line</li>
-<li><em>Cmd+Shift+[ or ]</em> - navigate back and forth between tabs</li>
-<li><em>Cmd+T</em> - Open new tab (same as Safari)</li>
-<li><em>Cmd+Ctrl+Up and Down</em> - switch between counterparts</li>
+<li><em>Cmd+Ctrl+Opt+?</em> &ndash; open item under the cursor in Xcode help (&ldquo;real help, not the stupid little help&rdquo; @tupps)</li>
+<li><em>Cmd+Double-Click</em> &ndash; drill through to the implementation</li>
+<li><em>Cmd+Opt+,</em> &ndash; open current file back in the main editor</li>
+<li><em>Cmd+/</em> &ndash; Comment Line</li>
+<li><em>Cmd+Shift+[ or ]</em> &ndash; navigate back and forth between tabs</li>
+<li><em>Cmd+T</em> &ndash; Open new tab (same as Safari)</li>
+<li><em>Cmd+Ctrl+Up and Down</em> &ndash; switch between counterparts</li>
 </ul>
 
 
-<p>and a few more shortcuts I've found since then:</p>
+<p>and a few more shortcuts I&rsquo;ve found since then:</p>
 
 <ul>
-<li><em>Cmd+Ctrl+Opt+Up</em> - open up the counterpart in the secondary editor</li>
-<li><em>...</em> - Organise Import... just kidding. Maybe one day.</li>
+<li><em>Cmd+Ctrl+Opt+Up</em> &ndash; open up the counterpart in the secondary editor</li>
+<li><em>&hellip;</em> &ndash; Organise Import&hellip; just kidding. Maybe one day.</li>
 </ul>
 
 
-<p>I'm sure there are plenty more shortcuts I haven't found yet. Let me know the ones you find most useful.</p>
+<p>I&rsquo;m sure there are plenty more shortcuts I haven&rsquo;t found yet. Let me know the ones you find most useful.</p>
 ]]></content>
   </entry>
   

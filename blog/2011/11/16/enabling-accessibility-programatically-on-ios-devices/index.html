@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://www.stewgleadow.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Stewart Gleadow's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
@@ -96,11 +97,11 @@
 
 <div class="entry-content"><p>I wrote a recent post on <a href="/blog/2011/10/14/enabling-accessibility-for-ios-applications/">enabling accessibility for iOS applications</a>, which ended with a snippet of code for automatically enabling accessibility on the iOS simulator. This is essential if you want to have your tests running on a continuous integration server, since the accessibility inspector is off by default.</p>
 
-<p>I hadn&#8217;t yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
+<p>I hadn&rsquo;t yet found a solution for enabling accessibility on the device. We need accessibility turned on so that we can access the UIAccessibility values that we use in automated functional tests in one of the <a href="/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">common automated testing tools</a>. My solution up until now has been to turn VoiceOver on, which is a real pain. Since I sometimes use screenshot-based regression tests, VoiceOver breaks the tests since it visually highlights the selected item.</p>
 
-<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn&#8217;t sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
+<p><a href="http://twitter.com/#!/0xced">Cedric Luthi</a> commented on my previous post that it may be possible to modify his code to also enable accessibility on the device. I wasn&rsquo;t sure how that would work with the app sandbox, and whether it was an application or system preference setting. Last night I gave it a try, and amazingly it worked.</p>
 
-<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It&#8217;s a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
+<p>I wrote a simple application based on the master-detail iPhone template in Xcode 4, and wrote a quick <a href="https://github.com/square/KIF">KIF</a> test that checked a label on the master screen, pushed through to the detail screen and checked a label there also. It&rsquo;s a gimmick test, but enough that it will fail if accessibility is <em>not</em> enabled because none of the labels will be available to the test.</p>
 
 <p>After following the standard KIF set up instructions, I write the following test:</p>
 
@@ -152,9 +153,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I&#8217;m a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device - but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I&#8217;m comfortable with it for now. I&#8217;m hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
+<p>I&rsquo;m a little bit unsure of the security of this, and whether you actually want your tests messing with your phones system settings on the device &ndash; but I usually have separate test devices to my personal phone, and the KIF code is never part of the actual production app that you submit to Apple, so I&rsquo;m comfortable with it for now. I&rsquo;m hoping this combined with my <a href="/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line">recent work with fruitstrap</a> could get us all the way to functional tests running on a physical device in CI.</p>
 
-<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I&#8217;m hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
+<p>You can find this code in <a href="https://github.com/sgleadow/KIF">my fork of KIF</a>, and I&rsquo;m hoping after a bit of testing it can be merged into the main KIF repo, so I sent them <a href="https://github.com/square/KIF/pull/93">this pull request</a>.</p>
 </div>
 
 
@@ -224,11 +225,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting started with iOS development</a>
+        <a href="/blog/2012/07/02/getting-started-with-ios-development/">Getting Started With iOS Development</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON parsing for iOS</a>
+        <a href="/blog/2012/05/18/tolerant-json-parsing-for-ios/">Tolerant JSON Parsing for iOS</a>
       </li>
     
       <li class="post">
@@ -255,7 +256,7 @@
   <a href="https://github.com/sgleadow">@sgleadow</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -276,23 +277,6 @@
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("stewgleadow", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/stewgleadow" class="twitter-follow-button" data-show-count="false">Follow @stewgleadow</a>
-  
-</section>
-
-
   
 </aside>
 
@@ -300,7 +284,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Stewart Gleadow -
+  Copyright &copy; 2013 - Stewart Gleadow -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

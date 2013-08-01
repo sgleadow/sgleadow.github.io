@@ -2,95 +2,95 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://www.stewgleadow.com/blog/2011/03/26/hello-world/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/blog/2011/03/27/cleaning-out-ruby-gems-under-os-x/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/blog/2011/03/27/rvm-escaping-gem-dependency-hell/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/blog/2011/04/19/xcode-4-shortcuts-lightning-talk/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/blog/2011/09/16/moving-from-wordpress-to-octopress/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.stewgleadow.com/blog/2011/10/14/enabling-accessibility-for-ios-applications/
         </loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.stewgleadow.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/
         </loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.stewgleadow.com/blog/2011/10/28/universal-static-libraries-and-frameworks-for-ios/
         </loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.stewgleadow.com/blog/2011/10/30/adding-unit-tests-to-an-existing-ios-project/
         </loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.stewgleadow.com/blog/2011/11/05/installing-ios-apps-on-the-device-from-the-command-line/
         </loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.stewgleadow.com/blog/2011/11/16/enabling-accessibility-programatically-on-ios-devices/
         </loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/blog/2011/12/10/installing-rvm-on-os-x-lion/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-01T19:31:00+11:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.stewgleadow.com/blog/2012/02/09/running-ocunit-and-kiwi-tests-on-the-command-line/
         </loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-04-18T13:14:25+10:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/blog/2012/03/03/installing-imagemagick-on-lion/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-03-03T14:05:31+11:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/blog/2012/05/18/tolerant-json-parsing-for-ios/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-05-18T11:38:48+10:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.stewgleadow.com/blog/2012/07/02/getting-started-with-ios-development/
         </loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-07-03T10:10:02+10:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/about.html</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2013-08-02T00:44:38+10:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/blog/archives/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-07-03T10:10:02+10:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2012-07-03T10:10:02+10:00</lastmod>
     </url>
     <url>
         <loc>http://www.stewgleadow.com/robots.txt</loc>
@@ -98,6 +98,6 @@
     </url>
     <url>
         <loc>http://www.stewgleadow.com/talks.html</loc>
-        <lastmod>2013-06-14T10:14:22+10:00</lastmod>
+        <lastmod>2013-08-02T00:45:01+10:00</lastmod>
     </url>
 </urlset>

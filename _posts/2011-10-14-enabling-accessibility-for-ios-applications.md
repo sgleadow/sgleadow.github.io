@@ -19,12 +19,13 @@ Enabling accessibility in the Simulator
 
 During development, we need to enable accessibility for both OS X and the iOS Simulator. Under Mac OS X, open up the System Preferences and open the *Universal Access* pane at the top right. In the pane that opens, check the box for *Enable Access for Assistive Devices*. The OS will persist this setting from now on.
 
-{% img /images/posts/accessibility/osx-prefs.png Universal Access in the OS X Preferences %}
-{% img /images/posts/accessibility/enable-osx-prefs.png Universal Access in the OS X Preferences %}
+![Universal Access in the OS X Preferences]({{ site.baseurl }}/assets/images/posts/accessibility/osx-prefs.png)
+![Universal Access in the OS X Preferences]({{ site.baseurl }}/assets/images/posts/accessibility/enable-osx-prefs.png)
 
 Load the iOS Simulator and open the *Settings* application. Enable accessibility using the switch under *General > Accessibility*. If you see a little coloured box appear, you have successfully enabled accessibility in the simulator. The setting is stored in an underlying plist file under that iOS version of the simulator, so you will need to enable this setting for for both iOS 4 and 5 separately, but that will effect all of the device types (iPhone, iPhone Retina and iPad) for that OS version. The iOS Simulator will keep accessibility enabled as long as you don't clear out its settings. If you're anything like me, you have *Reset Content and Settings* mapped to a keyboard shortcut, you'll regularly need to navigate in and re-enable accessibility.
 
-{% img right /images/posts/accessibility/enable-on-simulator.png Enable accessibility in the iOS Simulator %}
+<!-- right -->
+![Enable accessibility in the iOS Simulator]({{ site.baseurl }}/assets/images/posts/accessibility/enable-on-simulator.png)
 
 The small coloured box that appears is called the accessibility inspector. It shows a small summary of what is available from the UIAccessibility framework for iOS. There are two main types of information shown in the inspector: notifications and properties. Notifications are fired when the UI changes. To be honest, I've not played around with firing accessibility notifications much at all. Notifications could be a potential solution for tests that need to 'wait' until a screen transition is finished before continuing rather than busy-waiting or just a plain old sleep (you know it's not a real test suite unless there are a couple of *sleep* calls in there!).
 
@@ -37,8 +38,9 @@ Usually, to get access to the accessibility framework on an actual iOS device, y
 
 VoiceOver is pretty easy to enable in the Settings app under *General > Accessibility > VoiceOver*. Once this is enabled, the device acts in a similar way to when you have the accessibility inspector visible in the simulator. A pleasant computerised voice now describes your every gesture, and more importantly, activates the accessibility framework for all applications, including the one you want to test. Your first tap will select a UI element and read the available information about it. Double-tapping actually executes the action for a button. People using VoiceOver as a means to navigate the OS are likely to drag their finger on the screen to get a better idea of where items are relative to each other, so single-finger scrolling is also disabled. You can scroll by dragging with three fingers.
 
-{% img left /images/posts/accessibility/itunes-configure-accessibility.png Configure Universal Access in iTunes %}
-{% img left /images/posts/accessibility/itunes-voiceover-on.png Enable VoiceOver in iTunes %}
+<!-- left -->
+![Configure Universal Access in iTunes]({{ site.baseurl }}/assets/images/posts/accessibility/itunes-configure-accessibility.png)
+![Enable VoiceOver in iTunes]({{ site.baseurl }}/assets/images/posts/accessibility/itunes-voiceover-on.png)
 
 Navigate some well known apps on the phone, and see how Apple's own applications integrate with VoiceOver. To actually design an accessible application, you'll be wanting to spend a whole lot of time using VoiceOver yourself to get an idea of what information is useful and necessary. At some stage, you will pick up a test device with VoiceOver on, so it’s good to know at least how to get into the settings and turn accessibility off in order to operate manually.
 

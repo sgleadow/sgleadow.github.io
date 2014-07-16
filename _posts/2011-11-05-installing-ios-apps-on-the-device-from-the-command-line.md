@@ -59,7 +59,7 @@ I found out from [this stackoverflow thread](http://stackoverflow.com/questions/
 
 There is only one scheme in the sample project, so select *Edit Scheme...*, and select the *Build* action from the list on the left hand side. There are no actions at the moment, so press the **+** button and add a *Run Script Action*. Since we need to know where our target has been compiled, make sure that the *provide build settings from* option is set to *fruitstrap-demo*, as show in the following screenshot.
 
-{% img /images/posts/fruitstrap/fruitstrap-scheme-post-script.png Running a script in the post action for a scheme %}
+![Running a script in the post action for a scheme]({{ site.baseurl }}/assets/images/posts/fruitstrap/fruitstrap-scheme-post-script.png)
 
 The actual script code is shown below. It only runs if the `FRUITSTRAP_CLI` environment variable is set, since most of the time we don't want Xcode to be using this third party tool to install on the device. We only need it to run when running from the command line as part of our continuous integration build. It seems the scheme scripts do not get run in the same working directory as you run xcodebuild, so our script makes sure to change to SRCROOT before running fruitstrap.
 

@@ -18,11 +18,11 @@ When I select my target, called *Development*, that option is greyed out. I have
 
 Select your main target's scheme in the little scheme selector in the Xcode toolbar, and choose *Edit Scheme...* from the drop down menu. When you select the *Test* build action on the left, you'll notice no tests appear in the list. Tap the *+* button at the bottom edge of the table, which should show a list of available test bundles (I had a whole lot to choose from because my project has the unfortunate privilege of still including Three20). Choose the unit test bundle you just created you just created and press *Add*.
 
-{% img /images/posts/adding-unit-tests/adding-test-action-to-scheme.png Adding tests to the scheme's test action %}
+![Adding tests to the scheme's test action]({{ site.baseurl }}/assets/images/posts/adding-unit-tests/adding-test-action-to-scheme.png)
 
 You should see the test bundle appear in the table, as shown in the image above. Tap on the *Build* action for this scheme, and you will notice that there are now two targets lists: our application and our unit tests. The tests are only linked up to the *Test* build action by default, which should look similar to the image below.
 
-{% img /images/posts/adding-unit-tests/test-build-action.png Checking the two targets in the build action %}
+![Checking the two targets in the build action]({{ site.baseurl }}/assets/images/posts/adding-unit-tests/test-build-action.png)
 
 Running your unit tests
 -----------------------
@@ -33,6 +33,6 @@ Just to double check you've got all your target dependencies set up correctly, t
 
 If you see an error like `ld: file not found:` `<path to app>/Debug-iphonesimulator/Development.app/Development`, it's likely your test target does not automatically build your main application under test, as explained in the [original article](http://twobitlabs.com/2011/06/adding-ocunit-to-an-existing-ios-project-with-xcode-4/): select your project in the navigator, select your unit test target, open the *Build Phases* tab and add your app target as a dependency. Ending up with something like the image shown.
 
-{% img /images/posts/adding-unit-tests/test-target-dependency.png Setting up dependencies for your test target %}
+![Setting up dependencies for your test target]({{ site.baseurl }}/assets/images/posts/adding-unit-tests/test-target-dependency.png)
 
 Now... do I use this approach and start convert all my unit tests slowly from GHUnit to OCUnit? I think I might leave existing projects on GHUnit, and just use OCUnit for new tests.

@@ -41,10 +41,12 @@ a:visited { color: #205caa; }
 /* Site header */
 
 .site-header {
-  border-top: 5px solid #333;
+  border-top: 1px solid #e8e8e8;
   border-bottom: 1px solid #e8e8e8;
   min-height: 56px;
   background-color: white;
+  position:fixed;
+  width:100%;
 }
 
 .site-title,
@@ -136,7 +138,7 @@ a:visited { color: #205caa; }
 /* ----------------------------------------------------------*/
 
 .page-content {
-  padding: 30px 0;
+  padding: 80px 0;
   background-color: #fff;
 }
 

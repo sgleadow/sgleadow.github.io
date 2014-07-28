@@ -8,6 +8,10 @@ twitter_username: stewgleadow
 github_username:  sgleadow
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
 permalink: pretty
-exclude: [LICENSE, README.md, Gemfile, Gemfile.lock, .bundle, .git, vendor]
+exclude: [LICENSE, README.md, Gemfile, Gemfile.lock, .bundle, .git, vendor, serve]
+
+redcarpet:
+  extensions: ["fenced_code_blocks"]
+highligher: pygments

@@ -160,8 +160,28 @@ a:visited { color: #205caa; }
 
 .posts .post-date {
   display: block;
-  font-size: 15px;
+  font-size: 16px;
   color: #818181;
+}
+
+.archive { list-style-type: none; }
+
+.archive li { margin-bottom: 10px; }
+
+.archive .post-link {
+  font-size: 16px;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.archive .post-date {
+  /*display: block;*/
+  font-size: 16px;
+  color: #818181;
+}
+
+.rss-subscribe {
+  margin-top: 25px;
 }
 
 

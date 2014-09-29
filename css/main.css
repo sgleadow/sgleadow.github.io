@@ -9,10 +9,10 @@
 html, body { height: 100%; }
 
 body {
-  font-family: 'tuffyregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  font-weight: 300;
+  font-weight: 100;
   background-color: #fdfdfd;
 }
 

@@ -9,7 +9,7 @@ github_username:  sgleadow
 
 # Build settings
 markdown: redcarpet
-permalink: pretty
+permalink: /blog/:year/:month/:day/:title
 exclude: [LICENSE, README.md, Gemfile, Gemfile.lock, .bundle, .git, vendor, serve]
 
 redcarpet:

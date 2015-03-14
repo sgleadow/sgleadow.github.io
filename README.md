@@ -32,4 +32,4 @@ Authors
 Stewart Gleadow
 Gmail: sgleadow
 Github: sgleadow
-Blog: http://stewgleadow.com
+Blog: stewgleadow.com

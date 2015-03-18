@@ -2,7 +2,7 @@
 title: Stew Gleadow's Blog
 email: sgleadow@gmail.com
 description: "My random thoughts about iOS development, backend services and all the associated fun and games."
-baseurl: "/"
+# baseurl: "/stewgleadow"
 url: "http://stewgleadow.com"
 twitter_username: stewgleadow
 github_username:  sgleadow

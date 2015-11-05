@@ -2,3 +2,4 @@ _site/
 vendor/ruby
 bin
 
+.DS_Store
